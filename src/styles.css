@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+body, html {
+  height: -webkit-fill-available;
+}
+
+main {
+  height: 100vh;
+  height: -webkit-fill-available;
+  max-height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+hr:not([size]) {
+  height: 1px;
+}
+
+hr {
+  margin: 1rem 0;
+  color: inherit;
+  background-color: white;
+  border: 0;
+  opacity: .25;
+}
