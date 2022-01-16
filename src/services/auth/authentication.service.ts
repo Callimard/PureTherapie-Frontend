@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BasicCredential} from "./basic-credential";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {GlobalVariables} from "../../global/global-variables";
-import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +15,14 @@ export class AuthenticationService {
     this.basicCredential = new BasicCredential();
   }
 
-  public login(username: string, password: string): Observable<any> {
+  public login(username: string, password: string) {
     this.basicCredential.username = username;
     this.basicCredential.password = password;
 
-    let obs: Observable<any> = this.httpClient.post(GlobalVariables.LOGIN_URL, null, {
-      headers: new HttpHeaders({'Authorization': this.basicCredential.basicCredential()})
-    });
-
-    obs.subscribe({
+    this.httpClient.post(GlobalVariables.LOGIN_URL, null, {
+      headers: {'Authorization': this.basicCredential.basicCredential()},
+      withCredentials: true
+    }).subscribe({
       next: () => {
         console.log("Success to login");
         this.authenticated = true;
@@ -33,25 +31,20 @@ export class AuthenticationService {
         console.log("Fail to login")
         this.authenticated = false;
       }
-    })
-
-    return obs;
+    });
   }
 
-  public logout(): Observable<any> {
+  public logout(): void {
     this.basicCredential = new BasicCredential();
 
-    let obs: Observable<any> = this.httpClient.post(GlobalVariables.LOGOUT_URL, null);
-
-    obs.subscribe({
+    this.httpClient.post(GlobalVariables.LOGOUT_URL, null, {withCredentials: true}).subscribe({
       next: () => {
         console.log("Success to logout");
       },
       error: () => {
         console.log("Fail to logout");
       }
-    })
-    return obs;
+    });
   }
 
   public isAuthenticated(): boolean {
