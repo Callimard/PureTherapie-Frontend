@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {GlobalVariables} from "../../../global/global-variables";
 import {ClientDTO} from "./client-dto";
 import {ClientRegistrationResponseDTO} from "./client-registration-response-dto";
@@ -20,10 +20,10 @@ export class ClientRegistrationService {
           console.log(resp);
           resolve(resp);
         },
-        error: err => {
+        error: (err: HttpErrorResponse) => {
           console.log('Fail registration')
           console.log(err)
-          reject(err)
+          reject(err.error)
         }
       })
     }));
