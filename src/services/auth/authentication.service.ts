@@ -15,23 +15,28 @@ export class AuthenticationService {
     this.basicCredential = new BasicCredential();
   }
 
-  public login(username: string, password: string) {
+  public login(username: string, password: string): Promise<string> {
     this.basicCredential.username = username;
     this.basicCredential.password = password;
 
-    this.httpClient.post(GlobalVariables.LOGIN_URL, null, {
-      headers: {'Authorization': this.basicCredential.basicCredential()},
-      withCredentials: true
-    }).subscribe({
-      next: () => {
-        console.log("Success to login");
-        this.authenticated = true;
-      },
-      error: () => {
-        console.log("Fail to login")
-        this.authenticated = false;
-      }
-    });
+    return new Promise<any>(((resolve, reject) => {
+      this.httpClient.post(GlobalVariables.LOGIN_URL, null, {
+        headers: {'Authorization': this.basicCredential.basicCredential()},
+        withCredentials: true
+      }).subscribe({
+          next: () => {
+            console.log("Success to login");
+            this.authenticated = true;
+            resolve('login success');
+          },
+          error: () => {
+            console.log("Fail to login");
+            this.authenticated = false;
+            reject('login fail');
+          }
+        }
+      )
+    }));
   }
 
   public logout(): void {
