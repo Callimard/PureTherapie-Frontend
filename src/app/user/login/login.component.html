@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <form (ngSubmit)="onSubmit(f)" #f="ngForm">
     <h3 style="text-align: center">Connection</h3>
-    <div *ngIf="submitted && !isAuthenticated()" class="border-danger bg-danger text-white">
+    <div *ngIf="submitted && error" class="border-danger bg-danger text-white">
       <p>Connexion non réussie</p>
     </div>
     <div>
