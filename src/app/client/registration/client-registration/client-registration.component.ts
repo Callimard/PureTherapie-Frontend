@@ -4,7 +4,7 @@ import {NgForm} from "@angular/forms";
 import {PersonOriginDTO} from "../../../../services/client/person-origin-dto";
 import {ClientDTO} from "../../../../services/client/registration/client-dto";
 import {ClientRegistrationService} from "../../../../services/client/registration/client-registration.service";
-import {ClientRegistrationResponseDTO} from "../../../../services/client/registration/client-registration-response-dto";
+import {ClientRegistrationFailDTO} from "../../../../services/client/registration/client-registration-fail-dto";
 
 @Component({
   selector: 'app-client-registration',
@@ -41,13 +41,11 @@ export class ClientRegistrationComponent implements OnInit {
       value['email'], value['gender'] === ClientRegistrationComponent.FEMALE, '+33' + value['phone'],
       value['birthday'], value['origin'].idPersonOrigin);
 
-    console.log(clientRegistrationDTO);
-    this.clientRegistrationService.registerClient(clientRegistrationDTO).then(resp => {
-      console.log("Success!!!");
-      console.log(resp);
-    }).catch((err: ClientRegistrationResponseDTO) => {
-      console.log("Fail!!!");
-      console.log(err);
+    console.log('ClientRegistrationDTO {}', clientRegistrationDTO);
+    this.clientRegistrationService.registerClient(clientRegistrationDTO).then((successResponse) => {
+      console.log("Client registration success = ", successResponse);
+    }).catch((err: ClientRegistrationFailDTO) => {
+      console.log("Client registration error = ", err);
     })
   }
 
