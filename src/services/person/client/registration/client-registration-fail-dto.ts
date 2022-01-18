@@ -1,4 +1,4 @@
-import {ClientDTO} from "./client-dto";
+import {ClientDTO} from "../client-dto";
 
 export class ClientRegistrationFailDTO {
   constructor(public firstName: string, public lastName: string, public email: string, public phone: string,

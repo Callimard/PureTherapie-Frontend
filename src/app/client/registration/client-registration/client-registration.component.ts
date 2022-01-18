@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ClientOriginService} from "../../../../services/client/client-origin.service";
+import {ClientOriginService} from "../../../../services/person/client/client-origin.service";
 import {NgForm} from "@angular/forms";
-import {PersonOriginDTO} from "../../../../services/client/person-origin-dto";
-import {ClientDTO} from "../../../../services/client/registration/client-dto";
-import {ClientRegistrationService} from "../../../../services/client/registration/client-registration.service";
-import {ClientRegistrationFailDTO} from "../../../../services/client/registration/client-registration-fail-dto";
+import {PersonOriginDTO} from "../../../../services/person/client/person-origin-dto";
+import {ClientDTO} from "../../../../services/person/client/client-dto";
+import {ClientRegistrationService} from "../../../../services/person/client/registration/client-registration.service";
+import {ClientRegistrationFailDTO} from "../../../../services/person/client/registration/client-registration-fail-dto";
 
 @Component({
   selector: 'app-client-registration',
@@ -37,7 +37,7 @@ export class ClientRegistrationComponent implements OnInit {
   onSubmit(form: NgForm) {
     let value = form.value;
 
-    let clientRegistrationDTO: ClientDTO = new ClientDTO(value['firstName'], value['lastName'],
+    let clientRegistrationDTO: ClientDTO = new ClientDTO(-1, value['firstName'], value['lastName'],
       value['email'], value['gender'] === ClientRegistrationComponent.FEMALE, '+33' + value['phone'],
       value['birthday'], value['origin'].idPersonOrigin);
 

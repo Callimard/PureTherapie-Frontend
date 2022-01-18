@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {PersonOriginDTO} from "./person-origin-dto";
-import {GlobalVariables} from "../../global/global-variables";
+import {GlobalVariables} from "../../../global/global-variables";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class ClientOriginService {
 
   public getAllPersonOrigins(): Promise<PersonOriginDTO[]> {
     return new Promise<PersonOriginDTO[]>((resolve, reject) => {
-      this.httpClient.get<PersonOriginDTO[]>(GlobalVariables.PERSON_ORIGIN, {
+      this.httpClient.get<PersonOriginDTO[]>(GlobalVariables.PERSON_ORIGINS_URL, {
         withCredentials: false
       }).subscribe({
           next: (resp) => {
