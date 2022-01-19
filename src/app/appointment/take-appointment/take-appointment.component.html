@@ -1,1 +1,34 @@
-<p>take-appointment works!</p>
+<form class="container align-self-center justify-content-center w-50 p-3">
+  <div class="row text-center">
+    <label for="aestheticCare" class="col-sm-2 m-sm-auto">
+      Soin:
+    </label>
+    <select name="aestheticCare" id="aestheticCare" class="col-sm-7 m-sm-auto" [ngModel]="">
+      <option *ngFor="let ac of allACs">{{ac.name}}</option>
+    </select>
+    <p class="col-sm-3 m-sm-auto">Time = 10 min</p>
+  </div>
+  <div class="row">
+    <label class="col-sm-2 m-sm-auto" for="day">
+      Horaires:
+    </label>
+    <input type="date" name="day" id="day" class="col-sm-7 m-sm-auto" [ngModel]=""/>
+    <select name="timeSlot" id="timeSlot" class="col-sm-2 m-sm-auto" [ngModel]="">
+      <option *ngFor="let freeTS of allFreeTS">{{freeTS.begin}}</option>
+    </select>
+  </div>
+  <div class="row">
+    <label for="technicians" class="col-sm-2 m-sm-auto">
+      Technicien:
+    </label>
+    <select name="technicians" id="technicians" class="col-sm-10 m-sm-auto" [ngModel]="allTechnicians[0]">
+      <option *ngFor="let tech of allTechnicians" [ngValue]="tech.idPerson">{{tech.lastName}} {{tech.firstName}}</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <div class="d-flex justify-content-center col-sm-10">
+      <button class="btn btn-primary mt-sm-3" type="submit">Connexion</button>
+    </div>
+  </div>
+</form>

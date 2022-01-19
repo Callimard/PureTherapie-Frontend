@@ -6,7 +6,7 @@ import {GlobalVariables} from "../../global/global-variables";
 @Injectable({
   providedIn: 'root'
 })
-export class TechnicianAgendaService {
+export class AgendaService {
 
   constructor(private httpClient: HttpClient) {
   }
