@@ -35,4 +35,5 @@ export class GlobalVariables {
   public static readonly AGENDA_URL = GlobalVariables.API_V1_URL + "/agenda";
   public static readonly TECHNICIAN_FREE_TIME_SLOTS_URL = GlobalVariables.AGENDA_URL + "/technicians/free_time_slots";
 
+  public static readonly APPOINTMENT_URL = GlobalVariables.API_V1_URL + "/appointments";
 }

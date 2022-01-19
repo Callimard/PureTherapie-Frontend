@@ -6,6 +6,7 @@ import {AestheticCareDTO} from "../../../services/product/aesthetic/care/aesthet
 import {TechnicianDTO} from "../../../services/person/technician/technician-dto";
 import {FreeTimeSlotDTO} from "../../../services/agenda/free-time-slot-dto";
 import {DateTool} from "../../../services/agenda/date-tool";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-take-appointment',
@@ -18,8 +19,8 @@ export class TakeAppointmentComponent implements OnInit {
   allTechnicians: TechnicianDTO[] = [];
   allFreeTS: FreeTimeSlotDTO[] = [];
 
-  acSelected: AestheticCareDTO;
-  technicianSelected: TechnicianDTO;
+  selectedAC: AestheticCareDTO;
+  selectedTechnician: TechnicianDTO;
   freeTSSelected: FreeTimeSlotDTO;
   selectedDay: string;
 
@@ -27,8 +28,8 @@ export class TakeAppointmentComponent implements OnInit {
 
   constructor(private acService: AestheticCareService, private technicianService: TechnicianService,
               private agendaService: AgendaService) {
-    this.acSelected = AestheticCareDTO.default();
-    this.technicianSelected = TechnicianDTO.default();
+    this.selectedAC = AestheticCareDTO.default();
+    this.selectedTechnician = TechnicianDTO.default();
     this.freeTSSelected = FreeTimeSlotDTO.default();
     this.selectedDay = DateTool.toMySQLDateString(this.today);
   }
@@ -50,7 +51,7 @@ export class TakeAppointmentComponent implements OnInit {
   private chargeTechnician() {
     this.technicianService.getAllTechnicians().then(res => {
       this.allTechnicians = res;
-      this.technicianSelected = this.allTechnicians[0];
+      this.selectedTechnician = this.allTechnicians[0];
       this.chargeFreeTimeSlots();
     });
   }
@@ -58,14 +59,19 @@ export class TakeAppointmentComponent implements OnInit {
   private chargeAestheticCares() {
     this.acService.getAllAestheticCare().then(res => {
       this.allACs = res;
-      this.acSelected = this.allACs[0];
+      this.selectedAC = this.allACs[0];
     });
   }
 
   private chargeFreeTimeSlots() {
-    this.agendaService.getFreeTimeSlots(this.technicianSelected.idPerson, this.selectedDay).then(res => {
+    this.agendaService.getFreeTimeSlots(this.selectedTechnician.idPerson, this.selectedDay, this.selectedAC.timeExecution).then(res => {
       this.allFreeTS = res;
       this.freeTSSelected = this.allFreeTS[0];
     });
+  }
+
+  onSubmit(form: NgForm) {
+    let value = form.value;
+    // TODO
   }
 }

@@ -8,13 +8,13 @@ import {GlobalVariables} from "../../../global/global-variables";
 })
 export class ClientOriginService {
 
-  public static readonly NO_ORIGIN = new PersonOriginDTO(1, "None");
+  public static readonly NO_ORIGIN = new PersonOriginDTO(1, "Aucune");
 
   constructor(private httpClient: HttpClient) {
   }
 
   public getAllPersonOrigins(): Promise<PersonOriginDTO[]> {
-    return new Promise<PersonOriginDTO[]>((resolve, reject) => {
+    return new Promise<PersonOriginDTO[]>((resolve) => {
       this.httpClient.get<PersonOriginDTO[]>(GlobalVariables.PERSON_ORIGINS_URL, {
         withCredentials: false
       }).subscribe({

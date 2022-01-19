@@ -1,19 +1,19 @@
-<form class="container align-self-center justify-content-center w-50 p-3">
+<form class="container align-self-center justify-content-center w-50 p-3" (ngSubmit)="onSubmit(f)" #f="ngForm">
   <div class="row text-center">
     <label for="aestheticCare" class="col-sm-2 m-sm-auto">
       Soin:
     </label>
-    <select name="aestheticCare" id="aestheticCare" class="col-sm-7 m-sm-auto" [(ngModel)]="acSelected">
+    <select name="aestheticCare" id="aestheticCare" class="col-sm-7 m-sm-auto" [(ngModel)]="selectedAC">
       <option *ngFor="let ac of allACs" [ngValue]="ac">{{ac.name}}</option>
     </select>
-    <p class="col-sm-3 m-sm-auto">Time = {{acSelected.timeExecution}} min</p>
+    <p class="col-sm-3 m-sm-auto">Time = {{selectedAC.timeExecution}} min</p>
   </div>
   <div class="row">
     <label for="technicians" class="col-sm-2 m-sm-auto">
       Technicien:
     </label>
     <select name="technicians" id="technicians" class="col-sm-10 m-sm-auto" (change)="onChangeTechnicianChoice()"
-            [(ngModel)]="technicianSelected">
+            [(ngModel)]="selectedTechnician">
       <option *ngFor="let tech of allTechnicians"
               [ngValue]="tech">{{tech.lastName}} {{tech.firstName}}</option>
     </select>

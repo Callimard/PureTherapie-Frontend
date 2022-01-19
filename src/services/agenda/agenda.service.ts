@@ -11,10 +11,10 @@ export class AgendaService {
   constructor(private httpClient: HttpClient) {
   }
 
-  public getFreeTimeSlots(idTechnician: number, day: string): Promise<FreeTimeSlotDTO[]> {
+  public getFreeTimeSlots(idTechnician: number, day: string, processDuration: number): Promise<FreeTimeSlotDTO[]> {
     return new Promise<FreeTimeSlotDTO[]>(((resolve, reject) => {
       this.httpClient.get<FreeTimeSlotDTO[]>(GlobalVariables.TECHNICIAN_FREE_TIME_SLOTS_URL + "?idTechnician="
-        + idTechnician + "&day=" + day).subscribe({
+        + idTechnician + "&day=" + day + "&processDuration=" + processDuration).subscribe({
         next: (freeTimeSlots) => {
           console.log("Receive all free time slots, ", freeTimeSlots);
           resolve(freeTimeSlots);

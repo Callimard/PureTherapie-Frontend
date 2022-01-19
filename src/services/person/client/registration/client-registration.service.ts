@@ -13,15 +13,17 @@ export class ClientRegistrationService {
   }
 
   public registerClient(clientRegistrationDTO: ClientDTO, doubloonVerification: boolean = true): Promise<ClientRegistrationSuccessDTO> {
-    return new Promise<any>(((resolve, reject) => {
-      this.httpClient.post<ClientRegistrationSuccessDTO>(GlobalVariables.CLIENTS_URL + ("?doubloonVerification=" + doubloonVerification), clientRegistrationDTO).subscribe({
-        next: resp => {
-          resolve(resp);
-        },
-        error: (err: HttpErrorResponse) => {
-          reject(err.error)
-        }
-      })
+    return new Promise<ClientRegistrationSuccessDTO>(((resolve, reject) => {
+      this.httpClient.post<ClientRegistrationSuccessDTO>(GlobalVariables.CLIENTS_URL + ("?doubloonVerification="
+        + doubloonVerification), clientRegistrationDTO)
+        .subscribe({
+          next: resp => {
+            resolve(resp);
+          },
+          error: (err: HttpErrorResponse) => {
+            reject(err.error)
+          }
+        })
     }));
   }
 
