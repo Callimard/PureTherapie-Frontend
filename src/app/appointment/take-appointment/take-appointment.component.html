@@ -1,9 +1,10 @@
-<form class="container align-self-center justify-content-center w-50 p-3" (ngSubmit)="onSubmit(f)" #f="ngForm">
+<form class="container align-self-center justify-content-center w-50 p-3" (ngSubmit)="onSubmit()">
   <div class="row text-center">
     <label for="aestheticCare" class="col-sm-2 m-sm-auto">
       Soin:
     </label>
-    <select name="aestheticCare" id="aestheticCare" class="col-sm-7 m-sm-auto" [(ngModel)]="selectedAC">
+    <select name="aestheticCare" id="aestheticCare" class="col-sm-7 m-sm-auto" (change)="onChangeAC()"
+            [(ngModel)]="selectedAC">
       <option *ngFor="let ac of allACs" [ngValue]="ac">{{ac.name}}</option>
     </select>
     <p class="col-sm-3 m-sm-auto">Time = {{selectedAC.timeExecution}} min</p>
@@ -22,7 +23,8 @@
     <label class="col-sm-2 m-sm-auto" for="day">
       Horaires:
     </label>
-    <input type="date" name="day" id="day" class="col-sm-7 m-sm-auto" (change)="onChangeDay()" [(ngModel)]="selectedDay"/>
+    <input type="date" name="day" id="day" class="col-sm-7 m-sm-auto" (change)="onChangeDay()"
+           [(ngModel)]="selectedDay"/>
     <select name="timeSlot" id="timeSlot" class="col-sm-2 m-sm-auto" [(ngModel)]="freeTSSelected">
       <option *ngFor="let freeTS of allFreeTS" [ngValue]="freeTS">{{freeTS.begin}}</option>
     </select>

@@ -6,7 +6,8 @@ import {AestheticCareDTO} from "../../../services/product/aesthetic/care/aesthet
 import {TechnicianDTO} from "../../../services/person/technician/technician-dto";
 import {FreeTimeSlotDTO} from "../../../services/agenda/free-time-slot-dto";
 import {DateTool} from "../../../services/agenda/date-tool";
-import {NgForm} from "@angular/forms";
+import {AppointmentService} from "../../../services/appointment/appointment.service";
+import {TakeAppointmentDTO} from "../../../services/appointment/take_appointment/take-appointment-dto";
 
 @Component({
   selector: 'app-take-appointment',
@@ -24,10 +25,12 @@ export class TakeAppointmentComponent implements OnInit {
   freeTSSelected: FreeTimeSlotDTO;
   selectedDay: string;
 
+  private clientID: number = 9;
+
   private readonly today = new Date();
 
   constructor(private acService: AestheticCareService, private technicianService: TechnicianService,
-              private agendaService: AgendaService) {
+              private agendaService: AgendaService, private appointmentService: AppointmentService) {
     this.selectedAC = AestheticCareDTO.default();
     this.selectedTechnician = TechnicianDTO.default();
     this.freeTSSelected = FreeTimeSlotDTO.default();
@@ -39,12 +42,15 @@ export class TakeAppointmentComponent implements OnInit {
     this.chargeTechnician();
   }
 
+  onChangeAC() {
+    this.chargeFreeTimeSlots();
+  }
+
   onChangeTechnicianChoice() {
     this.chargeFreeTimeSlots();
   }
 
   onChangeDay() {
-    console.log("Selected day = ", this.selectedDay)
     this.chargeFreeTimeSlots();
   }
 
@@ -70,8 +76,16 @@ export class TakeAppointmentComponent implements OnInit {
     });
   }
 
-  onSubmit(form: NgForm) {
-    let value = form.value;
-    // TODO
+  onSubmit() {
+    let takeAppointmentDTO = new TakeAppointmentDTO(this.clientID, this.selectedTechnician.idPerson, this.selectedAC.idAestheticCare,
+      this.selectedDay, this.freeTSSelected.begin);
+
+    this.appointmentService.takeAppointment(takeAppointmentDTO).then((res) => {
+      console.log("Success TA", res);
+      this.chargeFreeTimeSlots();
+    }).catch((err) => {
+      console.log("Fail TA", err);
+      this.chargeFreeTimeSlots();
+    })
   }
 }
