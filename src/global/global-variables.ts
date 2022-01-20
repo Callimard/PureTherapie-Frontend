@@ -26,6 +26,14 @@ export class GlobalVariables {
 
   public static readonly CLIENTS_URL = GlobalVariables.API_V1_URL + "/clients";
 
-  public static readonly PERSON_ORIGIN = GlobalVariables.CLIENTS_URL + "/personOrigins";
+  public static readonly PERSON_ORIGINS_URL = GlobalVariables.CLIENTS_URL + "/person_origins";
 
+  public static readonly AESTHETIC_CARES_URL = GlobalVariables.API_V1_URL + "/aesthetic_cares";
+
+  public static readonly TECHNICIANS_URL = GlobalVariables.API_V1_URL + "/technicians";
+
+  public static readonly AGENDA_URL = GlobalVariables.API_V1_URL + "/agenda";
+  public static readonly TECHNICIAN_FREE_TIME_SLOTS_URL = GlobalVariables.AGENDA_URL + "/technicians/free_time_slots";
+
+  public static readonly APPOINTMENT_URL = GlobalVariables.API_V1_URL + "/appointments";
 }

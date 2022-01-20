@@ -10,10 +10,12 @@ import {CookieService} from "ngx-cookie-service";
 import {ClientRegistrationComponent} from './client/registration/client-registration/client-registration.component';
 import {HomeComponent} from './home/home/home.component';
 import {SecurityInterceptor} from "../services/http/security.interceptor";
+import {TakeAppointmentComponent} from './appointment/take-appointment/take-appointment.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'clients/registration', component: ClientRegistrationComponent},
+  {path: 'appointments', component: TakeAppointmentComponent},
   {path: '', component: HomeComponent}
 ];
 
@@ -22,7 +24,8 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     ClientRegistrationComponent,
-    HomeComponent
+    HomeComponent,
+    TakeAppointmentComponent
   ],
   imports: [
     BrowserModule,
