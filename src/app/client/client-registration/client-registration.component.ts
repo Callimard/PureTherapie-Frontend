@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ClientOriginService} from "../../../../services/person/client/client-origin.service";
+import {ClientOriginService} from "../../../services/person/client/client-origin.service";
 import {NgForm} from "@angular/forms";
-import {PersonOriginDTO} from "../../../../services/person/client/person-origin-dto";
-import {ClientDTO} from "../../../../services/person/client/client-dto";
-import {ClientRegistrationService} from "../../../../services/person/client/registration/client-registration.service";
-import {ClientRegistrationFailDTO} from "../../../../services/person/client/registration/client-registration-fail-dto";
+import {PersonOriginDTO} from "../../../services/person/client/person-origin-dto";
+import {ClientDTO} from "../../../services/person/client/client-dto";
+import {ClientRegistrationService} from "../../../services/person/client/registration/client-registration.service";
+import {ClientRegistrationFailDTO} from "../../../services/person/client/registration/client-registration-fail-dto";
 
 @Component({
   selector: 'app-client-registration',

@@ -7,13 +7,15 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {RouterModule, Routes} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
-import {ClientRegistrationComponent} from './client/registration/client-registration/client-registration.component';
+import {ClientRegistrationComponent} from './client/client-registration/client-registration.component';
 import {HomeComponent} from './home/home/home.component';
 import {SecurityInterceptor} from "../services/http/security.interceptor";
 import {TakeAppointmentComponent} from './appointment/take-appointment/take-appointment.component';
+import {ClientHomeComponent} from './client/client-home/client-home.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
+  {path: 'clients/home', component: ClientHomeComponent},
   {path: 'clients/registration', component: ClientRegistrationComponent},
   {path: 'appointments', component: TakeAppointmentComponent},
   {path: '', component: HomeComponent}
@@ -25,7 +27,8 @@ const appRoutes: Routes = [
     LoginComponent,
     ClientRegistrationComponent,
     HomeComponent,
-    TakeAppointmentComponent
+    TakeAppointmentComponent,
+    ClientHomeComponent
   ],
   imports: [
     BrowserModule,
