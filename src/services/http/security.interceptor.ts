@@ -15,11 +15,9 @@ export class SecurityInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
     if (this.cookieService.check(GlobalVariables.CSRF_COOKIE) && !request.withCredentials) {
-      console.log("Security interceptor -> find csrf cookie without credentials");
       request = request.clone({
         headers: request.headers.set(GlobalVariables.CSRF_HEADER, this.cookieService.get(GlobalVariables.CSRF_COOKIE))
       });
-      console.log(request);
     }
 
     return next.handle(request);

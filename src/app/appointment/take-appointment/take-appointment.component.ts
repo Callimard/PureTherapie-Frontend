@@ -8,6 +8,11 @@ import {FreeTimeSlotDTO} from "../../../services/agenda/free-time-slot-dto";
 import {DateTool} from "../../../services/agenda/date-tool";
 import {AppointmentService} from "../../../services/appointment/appointment.service";
 import {TakeAppointmentDTO} from "../../../services/appointment/take_appointment/take-appointment-dto";
+import {ActivatedRoute} from "@angular/router";
+import {ClientDTO} from "../../../services/person/client/client-dto";
+import {ClientService} from "../../../services/person/client/client.service";
+import {GlobalVariables} from "../../../global/global-variables";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-take-appointment',
@@ -15,6 +20,8 @@ import {TakeAppointmentDTO} from "../../../services/appointment/take_appointment
   styleUrls: ['./take-appointment.component.css']
 })
 export class TakeAppointmentComponent implements OnInit {
+
+  public readonly NO_CLIENT_ID_PARAM: string = "NO_CLIENT_ID_PARAM";
 
   allACs: AestheticCareDTO[] = [];
   allTechnicians: TechnicianDTO[] = [];
@@ -25,12 +32,19 @@ export class TakeAppointmentComponent implements OnInit {
   freeTSSelected: FreeTimeSlotDTO;
   selectedDay: string;
 
-  private clientID: number = 9;
+  private clientID: number = -1;
 
   private readonly today = new Date();
 
+  makeClientResearch: string = GlobalVariables.FALSE_STRING;
+
+  clientEmail: string = "";
+  clientNotFound: boolean = false;
+  clientFound: boolean = false;
+
   constructor(private acService: AestheticCareService, private technicianService: TechnicianService,
-              private agendaService: AgendaService, private appointmentService: AppointmentService) {
+              private agendaService: AgendaService, private appointmentService: AppointmentService,
+              private dialog: MatDialog, private clientService: ClientService, private route: ActivatedRoute) {
     this.selectedAC = AestheticCareDTO.default();
     this.selectedTechnician = TechnicianDTO.default();
     this.freeTSSelected = FreeTimeSlotDTO.default();
@@ -40,6 +54,30 @@ export class TakeAppointmentComponent implements OnInit {
   ngOnInit(): void {
     this.chargeAestheticCares();
     this.chargeTechnician();
+    this.parseURLParams();
+  }
+
+  private parseURLParams() {
+    this.route.queryParams.subscribe({
+      next: (params) => {
+        this.makeClientResearch = params['makeClientResearch'];
+        if (this.makeClientResearch == null)
+          this.makeClientResearch = GlobalVariables.FALSE_STRING;
+
+        this.clientID = Number(params['clientID']);
+
+        if (this.correctClientID())
+          this.makeClientResearch = 'false';
+
+      },
+      error: (fail) => {
+        console.log("Fail to load url params, ", fail);
+      }
+    });
+  }
+
+  private correctClientID() {
+    return !isNaN(this.clientID) && this.clientID > 0;
   }
 
   onChangeAC() {
@@ -76,16 +114,31 @@ export class TakeAppointmentComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    let takeAppointmentDTO = new TakeAppointmentDTO(this.clientID, this.selectedTechnician.idPerson, this.selectedAC.idAestheticCare,
-      this.selectedDay, this.freeTSSelected.begin);
+  onAcceptToTakeAppointment() {
+    if (this.correctClientID()) {
+      let takeAppointmentDTO = new TakeAppointmentDTO(this.clientID, this.selectedTechnician.idPerson, this.selectedAC.idAestheticCare,
+        this.selectedDay, this.freeTSSelected.begin);
 
-    this.appointmentService.takeAppointment(takeAppointmentDTO).then((res) => {
-      console.log("Success TA", res);
-      this.chargeFreeTimeSlots();
-    }).catch((err) => {
-      console.log("Fail TA", err);
-      this.chargeFreeTimeSlots();
-    })
+      this.appointmentService.takeAppointment(takeAppointmentDTO).then(() => {
+        this.chargeFreeTimeSlots();
+      }).catch((err) => {
+        console.error("Fail for taking an appointment", err);
+        this.chargeFreeTimeSlots();
+      })
+    } else
+      console.error("No client ID");
+  }
+
+  async searchClient() {
+    this.clientNotFound = false;
+    this.clientFound = false;
+
+    let client: ClientDTO = await this.clientService.searchClientWithEmail(this.clientEmail);
+    if (client == null) {
+      this.clientNotFound = true;
+    } else {
+      this.clientFound = true;
+      this.clientID = client.idPerson;
+    }
   }
 }

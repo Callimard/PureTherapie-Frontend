@@ -15,11 +15,10 @@ export class TechnicianService {
     return new Promise<TechnicianDTO[]>(((resolve, reject) => {
       this.httpClient.get<TechnicianDTO[]>(GlobalVariables.TECHNICIANS_URL + "?alsoInactivated=" + alsoInactivated).subscribe({
         next: (technicians) => {
-          console.log("Receive technicians, ", technicians);
           resolve(technicians);
         },
         error: (error: HttpErrorResponse) => {
-          console.log("Fail to charge Technicians, error = ", error.error);
+          console.error("Fail to charge Technicians, error = ", error.error);
           reject(error.error)
         }
       });
