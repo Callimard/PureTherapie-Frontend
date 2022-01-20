@@ -1,4 +1,20 @@
-<form class="container align-self-center justify-content-center w-50 p-3" (ngSubmit)="onSubmit()">
+<div class="container align-self-center justify-content-center w-50 p-5" *ngIf="makeClientResearch.match('true')">
+  <div class="row">
+    <label for="clientEmail">Votre e-mail: </label>
+    <input type="email" name="clientEmail" id="clientEmail" [(ngModel)]="clientEmail"/>
+  </div>
+  <div class="row" *ngIf="clientNotFound">
+    <p class="text-danger m-sm-auto p-2">Aucun client trouvé avec cette email.</p>
+  </div>
+  <div class="row" *ngIf="clientFound">
+    <p class="text-success  m-sm-auto p-2">Client trouvé!</p>
+  </div>
+  <div class="row justify-content-sm-center">
+    <button class="btn btn-primary" (click)="searchClient()">Rechercher</button>
+  </div>
+</div>
+
+<div class="container align-self-center justify-content-center w-50 p-3">
   <div class="row text-center">
     <label for="aestheticCare" class="col-sm-2 m-sm-auto">
       Soin:
@@ -31,7 +47,8 @@
   </div>
   <div class="row">
     <div class="d-flex justify-content-center col-sm-10">
-      <button class="btn btn-primary mt-sm-3" type="submit">Connexion</button>
+      <button class="btn btn-primary mt-sm-3" type="button" data-toggle="modal" data-target="#takeAppointmentModal">
+        Prender rendez-vous !</button>
     </div>
   </div>
-</form>
+</div>

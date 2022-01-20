@@ -15,11 +15,10 @@ export class AestheticCareService {
     return new Promise<AestheticCareDTO[]>(((resolve, reject) => {
       this.httpClient.get<AestheticCareDTO[]>(GlobalVariables.AESTHETIC_CARES_URL).subscribe({
         next: (aestheticCares) => {
-          console.log("Receive ACs, ", aestheticCares);
           resolve(aestheticCares);
         },
         error: (error: HttpErrorResponse) => {
-          console.log("Fail to charge ACs, error = ", error.error);
+          console.error("Fail to charge ACs, error = ", error.error);
           reject(error.error);
         }
       });

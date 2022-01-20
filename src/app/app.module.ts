@@ -12,12 +12,15 @@ import {HomeComponent} from './home/home/home.component';
 import {SecurityInterceptor} from "../services/http/security.interceptor";
 import {TakeAppointmentComponent} from './appointment/take-appointment/take-appointment.component';
 import {ClientHomeComponent} from './client/client-home/client-home.component';
+import {GlobalVariables} from "../global/global-variables";
+import { TakeAppointmentSuccessComponent } from './appointment/take-appointment-success/take-appointment-success.component';
+import { TakeAppointmentConfirmModalComponent } from './appointment/take-appointment/take-appointment-confirm-modal/take-appointment-confirm-modal.component';
 
 const appRoutes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'clients/home', component: ClientHomeComponent},
-  {path: 'clients/registration', component: ClientRegistrationComponent},
-  {path: 'appointments', component: TakeAppointmentComponent},
+  {path: GlobalVariables.INTERN_LOGIN_URL, component: LoginComponent},
+  {path: GlobalVariables.INTERN_CLIENTS_HOME_URL, component: ClientHomeComponent},
+  {path: GlobalVariables.INTERN_CLIENTS_REGISTRATION_URL, component: ClientRegistrationComponent},
+  {path: GlobalVariables.INTERN_APPOINTMENTS_URL, component: TakeAppointmentComponent},
   {path: '', component: HomeComponent}
 ];
 
@@ -28,7 +31,9 @@ const appRoutes: Routes = [
     ClientRegistrationComponent,
     HomeComponent,
     TakeAppointmentComponent,
-    ClientHomeComponent
+    ClientHomeComponent,
+    TakeAppointmentSuccessComponent,
+    TakeAppointmentConfirmModalComponent
   ],
   imports: [
     BrowserModule,

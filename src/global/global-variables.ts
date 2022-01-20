@@ -5,6 +5,18 @@ import {Injectable} from "@angular/core";
 })
 export class GlobalVariables {
 
+  // Utils
+
+  public static readonly TRUE_STRING: string = "true";
+  public static readonly FALSE_STRING: string = "false";
+
+  // INTERN URL
+
+  public static readonly INTERN_LOGIN_URL = 'login';
+  public static readonly INTERN_CLIENTS_HOME_URL = 'clients/home';
+  public static readonly INTERN_CLIENTS_REGISTRATION_URL = 'clients/registration';
+  public static readonly INTERN_APPOINTMENTS_URL = 'appointments';
+
   // BACKEND Session
 
   public static readonly SESSION_ID = "JSESSIONID"
@@ -25,6 +37,7 @@ export class GlobalVariables {
   public static readonly LOGOUT_URL = GlobalVariables.USERS_URL + "/logout";
 
   public static readonly CLIENTS_URL = GlobalVariables.API_V1_URL + "/clients";
+  public static readonly CLIENT_SEARCH_WITH_EMAIL_URL = GlobalVariables.CLIENTS_URL + "/searchWithEmail";
 
   public static readonly PERSON_ORIGINS_URL = GlobalVariables.CLIENTS_URL + "/person_origins";
 

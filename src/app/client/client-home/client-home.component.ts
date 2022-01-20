@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-client-home',
@@ -7,17 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
   }
 
   alreadyClientClick() {
-
+    this.router.navigate(['/appointments'], {
+      queryParams: {
+        makeClientResearch: true
+      }
+    });
   }
 
   newClientClick() {
-
+    this.router.navigate(['/clients/registration'], {
+      queryParams: {
+        registrationForAppointment: true
+      }
+    });
   }
 
 }

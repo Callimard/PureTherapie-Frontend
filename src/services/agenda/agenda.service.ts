@@ -16,11 +16,10 @@ export class AgendaService {
       this.httpClient.get<FreeTimeSlotDTO[]>(GlobalVariables.TECHNICIAN_FREE_TIME_SLOTS_URL + "?idTechnician="
         + idTechnician + "&day=" + day + "&processDuration=" + processDuration).subscribe({
         next: (freeTimeSlots) => {
-          console.log("Receive all free time slots, ", freeTimeSlots);
           resolve(freeTimeSlots);
         },
         error: (error: HttpErrorResponse) => {
-          console.log("Fail to charge free time slots, error = ", error.error);
+          console.error("Fail to charge free time slots, error = ", error.error);
           reject(error.error);
         }
       });
