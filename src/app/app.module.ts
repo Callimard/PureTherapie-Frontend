@@ -13,8 +13,14 @@ import {SecurityInterceptor} from "../services/http/security.interceptor";
 import {TakeAppointmentComponent} from './appointment/take-appointment/take-appointment.component';
 import {ClientHomeComponent} from './client/client-home/client-home.component';
 import {GlobalVariables} from "../global/global-variables";
-import { TakeAppointmentSuccessComponent } from './appointment/take-appointment-success/take-appointment-success.component';
-import { TakeAppointmentConfirmModalComponent } from './appointment/take-appointment/take-appointment-confirm-modal/take-appointment-confirm-modal.component';
+import {
+  TakeAppointmentSuccessComponent
+} from './appointment/take-appointment-success/take-appointment-success.component';
+import {
+  TakeAppointmentDialogConfirmationComponent
+} from './appointment/take-appointment/take-appointment-dialog-confirmation/take-appointment-dialog-confirmation.component';
+import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_LOGIN_URL, component: LoginComponent},
@@ -33,20 +39,28 @@ const appRoutes: Routes = [
     TakeAppointmentComponent,
     ClientHomeComponent,
     TakeAppointmentSuccessComponent,
-    TakeAppointmentConfirmModalComponent
+    TakeAppointmentDialogConfirmationComponent
   ],
   imports: [
+    MatDialogModule,
+    BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
     RouterModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [CookieService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: SecurityInterceptor,
-    multi: true
-  }],
+  providers: [CookieService,
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SecurityInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

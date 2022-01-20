@@ -12,6 +12,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ClientDTO} from "../../../services/person/client/client-dto";
 import {ClientService} from "../../../services/person/client/client.service";
 import {GlobalVariables} from "../../../global/global-variables";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-take-appointment',
@@ -43,7 +44,7 @@ export class TakeAppointmentComponent implements OnInit {
 
   constructor(private acService: AestheticCareService, private technicianService: TechnicianService,
               private agendaService: AgendaService, private appointmentService: AppointmentService,
-              private clientService: ClientService, private route: ActivatedRoute) {
+              private dialog: MatDialog, private clientService: ClientService, private route: ActivatedRoute) {
     this.selectedAC = AestheticCareDTO.default();
     this.selectedTechnician = TechnicianDTO.default();
     this.freeTSSelected = FreeTimeSlotDTO.default();
@@ -60,6 +61,9 @@ export class TakeAppointmentComponent implements OnInit {
     this.route.queryParams.subscribe({
       next: (params) => {
         this.makeClientResearch = params['makeClientResearch'];
+        if (this.makeClientResearch == null)
+          this.makeClientResearch = GlobalVariables.FALSE_STRING;
+
         this.clientID = Number(params['clientID']);
 
         if (this.correctClientID())
@@ -115,7 +119,7 @@ export class TakeAppointmentComponent implements OnInit {
       let takeAppointmentDTO = new TakeAppointmentDTO(this.clientID, this.selectedTechnician.idPerson, this.selectedAC.idAestheticCare,
         this.selectedDay, this.freeTSSelected.begin);
 
-      this.appointmentService.takeAppointment(takeAppointmentDTO).then((res) => {
+      this.appointmentService.takeAppointment(takeAppointmentDTO).then(() => {
         this.chargeFreeTimeSlots();
       }).catch((err) => {
         console.error("Fail for taking an appointment", err);
