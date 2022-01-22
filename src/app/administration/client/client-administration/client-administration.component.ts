@@ -1,13 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {ClientDTO} from "../../../../services/person/client/client-dto";
 import {ClientService} from "../../../../services/person/client/client.service";
-import {AuthenticationService} from "../../../../services/auth/authentication.service";
 
 @Component({
   selector: 'app-client-administration',
   templateUrl: './client-administration.component.html',
   styleUrls: ['client-administration.component.css'],
-  host: {'class': 'd-flex flex-column justify-content-start flex-grow-1'}
+  host: {'class': 'd-flex flex-column flex-grow-1'}
 })
 export class ClientAdministrationComponent implements OnInit {
 
@@ -19,7 +18,7 @@ export class ClientAdministrationComponent implements OnInit {
   selectPhone?: string;
   selectAll: boolean = false;
 
-  constructor(private clientService: ClientService, private authenticationService: AuthenticationService) {
+  constructor(private clientService: ClientService) {
   }
 
   ngOnInit(): void {
@@ -32,7 +31,7 @@ export class ClientAdministrationComponent implements OnInit {
       this.foundClients = clients;
     }).catch((err) => {
       console.error("Fail to search client", err);
-    })
+    });
   }
 
   cleanFilter() {

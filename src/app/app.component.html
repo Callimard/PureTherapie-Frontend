@@ -1,38 +1,47 @@
 <!-- Sidebar -->
-<div id="sidebar" class="d-flex flex-column flex-shrink-0 h-100 p-3 bg-dark">
+<div id="sidebar" class="d-flex flex-column flex-shrink-0 h-100 p-3" style="background-color: #eeeeee">
   <div class="sidebar-header">
-    <a routerLink="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-      <img src="http://localhost:8080/images/logo-pure-therapie.png" alt="PureTherapie logo"/>
-      <span>PureTherapie</span>
+    <a routerLink="/"
+       class="d-flex flex-column align-items-start text-white text-decoration-none">
+      <img class="mb-sm-3" src="http://localhost:8080/images/logo-pure-therapie.png" alt="PureTherapie logo"/>
+      <h3 class="text-black"><strong>PureTherapie</strong></h3>
     </a>
   </div>
-
   <hr>
-
   <ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item">
-      <a routerLink="#" class="nav-link text-white" routerLinkActive="active">
-        Home
+      <a routerLink="#" class="nav-link d-flex justify-content-start align-items-center text-black"
+         routerLinkActive="active">
+        <span class="material-icons mx-2">home</span>
+        <strong>Home</strong>
       </a>
     </li>
     <li class="nav-item">
-      <a routerLink="#" class="nav-link text-white" routerLinkActive="active">
-        Agenda
+      <a routerLink="#" class="nav-link d-flex justify-content-start align-items-center text-black"
+         routerLinkActive="active">
+        <span class="material-icons mx-2">calendar_month</span>
+        <strong>Agenda</strong>
       </a>
     </li>
     <li class="nav-item">
-      <a routerLink="#" class="nav-link text-white" routerLinkActive="active">
-        Clients
+      <a routerLink="administration/clients" class="nav-link text-black d-flex justify-content-start align-items-center"
+         routerLinkActive="active">
+        <span class="material-icons mx-2">supervisor_account</span>
+        <strong>Clients</strong>
       </a>
     </li>
     <li class="nav-item">
-      <a routerLink="#" class="nav-link text-white" routerLinkActive="active">
-        Techniciens
+      <a routerLink="#" class="nav-link d-flex justify-content-start align-items-center text-black"
+         routerLinkActive="active">
+        <span class="material-icons mx-2">manage_accounts</span>
+        <strong>Techniciens</strong>
       </a>
     </li>
-    <li class="nav-item">
-      <a routerLink="#" class="nav-link text-white" routerLinkActive="active">
-        Produits
+    <li class="nav-item ">
+      <a routerLink="#" class="nav-link d-flex justify-content-start align-items-center text-black"
+         routerLinkActive="active">
+        <span class="material-icons mx-2">shopping_cart</span>
+        <strong>Produits</strong>
       </a>
     </li>
   </ul>
@@ -41,14 +50,14 @@
 
   <div class="dropdown text-white text-decoration-non container">
     <div class="row">
-      <span class="col-sm-10">{{username()}}</span>
-      <span class="material-icons col-sm-2" (click)="logout()">logout</span>
+      <span class="col-sm-10 text-black">{{username()}}</span>
+      <span class="material-icons" (click)="logout()">logout</span>
     </div>
   </div>
 </div>
 
 <!-- Page Content -->
-<div id="content" class="d-flex justify-content-center flex-grow-1">
-    <router-outlet></router-outlet>
+<div id="content" class="d-flex justify-content-center align-content-stretch flex-grow-1">
+  <router-outlet></router-outlet>
 </div>
 

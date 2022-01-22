@@ -1,12 +1,11 @@
-<div
-  class="client-administration-container d-flex flex-column justify-content-start flex-grow-1 border m-2">
+<div class="client-administration-container d-flex flex-column justify-content-start flex-fill border m-2">
   <div class="client-administration-header d-flex flex-row justify-content-start">
     <h2 class="px-3 my-2">Gestion des clients</h2>
   </div>
   <div class="d-flex flex-row justify-content-start p-2 m-sm-2">
     <button class="add_client_btn btn p-2 mx-2" type="button">Ajouter client</button>
   </div>
-  <div class="d-flex flex-column p-2">
+  <div class="d-flex flex-column flex-fill overflow-auto p-2">
     <div class="d-flex justify-content-between py-sm-4 px-sm-3" style="background-color: #eeeeee">
       <div class="client_research_field_title d-flex justify-content-start flex-grow-1"><strong>Nom</strong></div>
       <div class="client_research_field_title d-flex justify-content-start flex-grow-1"><strong>Prénom</strong></div>
@@ -14,7 +13,7 @@
       <div class="client_research_field_title d-flex justify-content-start flex-grow-1"><strong>Téléphone</strong></div>
       <div class="client_research_field_title d-flex justify-content-start flex-grow-1"><strong>Action</strong></div>
     </div>
-    <div class="d-flex flex-row justify-content-between py-sm-4 px-sm-3">
+    <div class="d-flex flex-row justify-content-between py-sm-4 px-sm-3" style="box-shadow: 0 3px 2px #adacac;">
       <div class="d-flex justify-content-start flex-grow-1">
         <input class="client_research_field" type="text" [disabled]="selectAll" [(ngModel)]="selectedLastName"/>
       </div>
@@ -28,7 +27,7 @@
         <input class="client_research_field" type="text" [disabled]="selectAll" [(ngModel)]="selectPhone"/>
       </div>
       <div class="d-flex justify-content-start align-items-center flex-grow-1">
-        <input type="checkbox" [(ngModel)]="selectAll"/>
+        <input class="me-sm-2" type="checkbox" [(ngModel)]="selectAll"/>
         <span>Tous</span>
       </div>
       <div class="d-flex justify-content-start flex-grow-1">
@@ -36,8 +35,9 @@
         <button type="button" class="btn btn-warning" style="margin-left: 2%" (click)="cleanFilter()">Effacer</button>
       </div>
     </div>
-    <div class="d-flex flex-column overflow-auto">
-      <div class="d-flex justify-content-between flex-grow-1 py-sm-4 px-sm-3" *ngFor="let client of foundClients">
+    <div class="d-flex flex-column flex-fill" style="height: 150px; overflow: auto;">
+      <div tabindex="1" class="d-flex justify-content-between py-sm-2 px-sm-1"
+           style="outline: none;" *ngFor="let client of foundClients">
         <div class="d-flex justify-content-start flex-grow-1">
           <strong class="client-item">{{client.lastName}}</strong></div>
         <div class="d-flex justify-content-start flex-grow-1">
@@ -47,8 +47,7 @@
         <div class="d-flex justify-content-start flex-grow-1">
           <strong class="client-item">{{client.phone}}</strong></div>
         <div class="d-flex justify-content-start flex-grow-1">
-          <button type="button" class="btn" style="background-color: #2cf111">Editer</button>
-          <button type="button" class="btn btn-danger" style="margin-left: 2%">Supprimer</button>
+          <button type="button" class="btn btn-primary">Editer</button>
         </div>
       </div>
     </div>
