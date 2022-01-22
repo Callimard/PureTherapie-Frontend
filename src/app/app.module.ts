@@ -13,14 +13,9 @@ import {SecurityInterceptor} from "../services/http/security.interceptor";
 import {TakeAppointmentComponent} from './appointment/take-appointment/take-appointment.component';
 import {ClientHomeComponent} from './client/client-home/client-home.component';
 import {GlobalVariables} from "../global/global-variables";
-import {
-  TakeAppointmentSuccessComponent
-} from './appointment/take-appointment-success/take-appointment-success.component';
-import {
-  TakeAppointmentDialogConfirmationComponent
-} from './appointment/take-appointment/take-appointment-dialog-confirmation/take-appointment-dialog-confirmation.component';
-import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {TooltipModule} from "ngx-bootstrap/tooltip";
+import {ModalModule} from "ngx-bootstrap/modal";
 
 const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_LOGIN_URL, component: LoginComponent},
@@ -37,12 +32,11 @@ const appRoutes: Routes = [
     ClientRegistrationComponent,
     HomeComponent,
     TakeAppointmentComponent,
-    ClientHomeComponent,
-    TakeAppointmentSuccessComponent,
-    TakeAppointmentDialogConfirmationComponent
+    ClientHomeComponent
   ],
   imports: [
-    MatDialogModule,
+    TooltipModule.forRoot(),
+    ModalModule.forRoot(),
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
@@ -51,10 +45,6 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   providers: [CookieService,
-    {
-      provide: MatDialogRef,
-      useValue: {}
-    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SecurityInterceptor,

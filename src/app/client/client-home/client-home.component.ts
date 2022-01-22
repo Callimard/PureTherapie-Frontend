@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {GlobalVariables} from "../../../global/global-variables";
 
 @Component({
   selector: 'app-client-home',
@@ -15,7 +16,7 @@ export class ClientHomeComponent implements OnInit {
   }
 
   alreadyClientClick() {
-    this.router.navigate(['/appointments'], {
+    this.router.navigate(['/' + GlobalVariables.INTERN_APPOINTMENTS_URL], {
       queryParams: {
         makeClientResearch: true
       }
@@ -23,9 +24,9 @@ export class ClientHomeComponent implements OnInit {
   }
 
   newClientClick() {
-    this.router.navigate(['/clients/registration'], {
+    this.router.navigate(['/' + GlobalVariables.INTERN_APPOINTMENTS_URL], {
       queryParams: {
-        registrationForAppointment: true
+        newClient: true
       }
     });
   }
