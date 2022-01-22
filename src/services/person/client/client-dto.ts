@@ -5,4 +5,10 @@ export class ClientDTO extends PersonDTO {
               public comment?: string, public technicalComment?: string) {
     super(idPerson, firstName, lastName, email, gender, phone, birthday, idPersonOrigin);
   }
+
+  public static default(): ClientDTO {
+    return new ClientDTO(-1, "DEFAULT_CLIENT_DTO", "DEFAULT_CLIENT_DTO",
+      "DEFAULT_CLIENT_DTO", false, "DEFAULT_CLIENT_DTO", "DEFAULT_CLIENT_DTO", -1,
+      "DEFAULT_CLIENT_DTO", "DEFAULT_CLIENT_DTO", "DEFAULT_CLIENT_DTO");
+  }
 }

@@ -1,4 +1,5 @@
-<div class="container align-self-center justify-content-center w-50 p-5" *ngIf="makeClientResearch.match('true')">
+<div class="container align-self-center justify-content-center w-50 p-5" *ngIf="(makeClientResearch === 'true' && newClient === 'false')
+&& !takingAppointmentSuccess">
   <div class="row">
     <label for="clientEmail">Votre e-mail: </label>
     <input type="email" name="clientEmail" id="clientEmail" [(ngModel)]="clientEmail"/>
@@ -14,7 +15,7 @@
   </div>
 </div>
 
-<div class="container align-self-center justify-content-center w-50 p-3">
+<div class="container align-self-center justify-content-center w-50 p-3" *ngIf="!takingAppointmentSuccess">
   <div class="row text-center">
     <label for="aestheticCare" class="col-sm-2 m-sm-auto">
       Soin:
@@ -41,13 +42,58 @@
     </label>
     <input type="date" name="day" id="day" class="col-sm-7 m-sm-auto" (change)="onChangeDay()"
            [(ngModel)]="selectedDay"/>
-    <select name="timeSlot" id="timeSlot" class="col-sm-2 m-sm-auto" [(ngModel)]="freeTSSelected">
+    <select name="timeSlot" id="timeSlot" class="col-sm-2 m-sm-auto" [(ngModel)]="selectedFreeTS">
       <option *ngFor="let freeTS of allFreeTS" [ngValue]="freeTS">{{freeTS.begin}}</option>
     </select>
   </div>
   <div class="row">
     <div class="d-flex justify-content-center col-sm-10">
-      <button class="btn btn-primary mt-sm-3" type="button" (click)="onAcceptToTakeAppointment()">Prendre rendez-vous !</button>
+      <button class="btn btn-primary mt-sm-3" type="button"
+              (click)="openModalTakeAppointmentConfirmation(takingAppointmentConfirmation)">
+        Prendre rendez-vous !
+      </button>
     </div>
   </div>
+  <ng-template #takingAppointmentConfirmation>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title text-success" id="takingAppointmentConfirmation">Confirmation de pris de rendez-vous</h3>
+        <button type="button" class="btn-close" (click)="declineTakingAppointment()"></button>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-secondary">Récapitulatif du rendez-vous:</h4>
+        <p>
+          <strong>Jour: </strong>{{this.selectedDay}}<br/>
+          <strong>Heure: </strong>{{this.selectedFreeTS.begin}}<br/>
+          <strong>Technicien(ne): </strong> {{this.selectedTechnician.lastName}} {{this.selectedTechnician.firstName}}
+          <br/>
+          <strong>Soin pratiqué: </strong> {{this.selectedAC.name}}<br/>
+          <strong>Temps de prise en charge: </strong> {{this.selectedAC.timeExecution}} min<br/>
+          <span
+            *ngIf="newClient !== 'true'"><strong>Client: </strong> {{this.client.lastName}} {{this.client.firstName}}
+            <br/></span>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="declineTakingAppointment()">Annuler</button>
+        <button type="button" class="btn btn-primary" (click)="confirmTakingAppointment()">
+          Accepté{{newClient === 'true' ? "et s'enregistrer" : ''}}</button>
+      </div>
+    </div>
+  </ng-template>
+</div>
+<div class="d-flex flex-column justify-content-center align-items-start w-50 p-3"
+     *ngIf="takingAppointmentSuccess">
+  <h2 class="text-success">Féliciation, votre rendez-vous à été validé!</h2>
+  <h3>Récapitulatif du rendez-vous</h3>
+  <p>
+    <strong>Jour: </strong>{{this.selectedDay}}<br/>
+    <strong>Heure: </strong>{{this.selectedFreeTS.begin}}<br/>
+    <strong>Technicien(ne): </strong> {{this.selectedTechnician.lastName}} {{this.selectedTechnician.firstName}}
+    <br/>
+    <strong>Soin pratiqué: </strong> {{this.selectedAC.name}}<br/>
+    <strong>Temps de prise en charge: </strong> {{this.selectedAC.timeExecution}} min<br/>
+    <strong>Client: </strong> {{this.client.lastName}} {{this.client.firstName}}<br/>
+  </p>
+  <a href="https://puretherapie.com/" class="btn btn-primary">Retour à l'acceuil PureTherapie</a>
 </div>
