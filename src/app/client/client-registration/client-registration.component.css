@@ -1,0 +1,27 @@
+.client-administration-container {
+  border-radius: 10px;
+}
+
+.add_client_btn {
+  width: 10%;
+  background-color: #2dadf1;
+}
+
+.client-administration-header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0 1px 2px black;
+  background-color: #2dadf1;
+}
+
+.client_research_field_title {
+  width: 17%;
+}
+
+.client_research_field {
+  width: 17%;
+}
+
+.client-item {
+  color: #38b6ff;
+}
