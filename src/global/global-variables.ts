@@ -18,6 +18,7 @@ export class GlobalVariables {
   public static readonly INTERN_APPOINTMENTS_URL = 'appointments';
   public static readonly INTERN_ADMINISTRATION_URL = 'administration';
   public static readonly INTERN_ADMINISTRATION_CLIENT_URL = GlobalVariables.INTERN_ADMINISTRATION_URL + '/clients';
+  public static readonly INTERN_PRODUCT_PURCHASE_URL = 'product-purchase';
 
   // BACKEND Session
 

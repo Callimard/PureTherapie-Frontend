@@ -3,6 +3,7 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/com
 import {Observable} from 'rxjs';
 import {CookieService} from "ngx-cookie-service";
 import {AuthenticationService} from "../auth/authentication.service";
+import {GlobalVariables} from "../../global/global-variables";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,12 @@ export class SecurityInterceptor implements HttpInterceptor {
     if (this.authenticationService.isAuthenticated()) {
       request = request.clone({
         withCredentials: true
+      });
+    }
+
+    if (this.cookieService.check(GlobalVariables.CSRF_COOKIE)) {
+      request = request.clone({
+        headers: request.headers.set(GlobalVariables.CSRF_HEADER, this.cookieService.get(GlobalVariables.CSRF_COOKIE))
       });
     }
 

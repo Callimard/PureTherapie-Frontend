@@ -20,10 +20,15 @@ import {
   ClientAdministrationComponent
 } from './administration/client/client-administration/client-administration.component';
 import {AuthenticationService} from "../services/auth/authentication.service";
-import { ClientEditionModalComponent } from './administration/client/client-administration/client-edition-modal/client-edition-modal.component';
-import { SuccessModalComponent } from './Util/modal/success-modal/success-modal.component';
-import { ClientRegistrationModalComponent } from './administration/client/client-administration/client-registration-modal/client-registration-modal.component';
-import { FailModalComponent } from './Util/modal/fail-modal/fail-modal.component';
+import {
+  ClientEditionModalComponent
+} from './administration/client/client-administration/client-edition-modal/client-edition-modal.component';
+import {SuccessModalComponent} from './Util/modal/success-modal/success-modal.component';
+import {
+  ClientRegistrationModalComponent
+} from './administration/client/client-administration/client-registration-modal/client-registration-modal.component';
+import {FailModalComponent} from './Util/modal/fail-modal/fail-modal.component';
+import {ProductPurchaseComponent} from './administration/product/product-purchase/product-purchase.component';
 
 const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_LOGIN_URL, component: LoginComponent},
@@ -31,6 +36,7 @@ const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_CLIENTS_REGISTRATION_URL, component: ClientRegistrationComponent},
   {path: GlobalVariables.INTERN_APPOINTMENTS_URL, component: TakeAppointmentComponent},
   {path: GlobalVariables.INTERN_ADMINISTRATION_CLIENT_URL, component: ClientAdministrationComponent},
+  {path: GlobalVariables.INTERN_PRODUCT_PURCHASE_URL, component: ProductPurchaseComponent},
   {path: '', redirectTo: GlobalVariables.INTERN_LOGIN_URL, pathMatch: 'full'}
 ];
 
@@ -46,7 +52,8 @@ const appRoutes: Routes = [
     ClientEditionModalComponent,
     SuccessModalComponent,
     ClientRegistrationModalComponent,
-    FailModalComponent
+    FailModalComponent,
+    ProductPurchaseComponent
   ],
   imports: [
     TooltipModule.forRoot(),
