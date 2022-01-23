@@ -12,10 +12,17 @@ export class ClientRegistrationService {
   constructor(private httpClient: HttpClient) {
   }
 
-  public registerClient(clientRegistrationDTO: ClientDTO, doubloonVerification: boolean = true): Promise<ClientRegistrationSuccessDTO> {
+  /**
+   * NO +33 for the phone just 6 00 00 00 00
+   *
+   * @param clientDTO
+   * @param doubloonVerification
+   */
+  public registerClient(clientDTO: ClientDTO, doubloonVerification: boolean = true): Promise<ClientRegistrationSuccessDTO> {
+    let client = ClientDTO.formatForSend(clientDTO);
     return new Promise<ClientRegistrationSuccessDTO>(((resolve, reject) => {
       this.httpClient.post<ClientRegistrationSuccessDTO>(GlobalVariables.CLIENTS_URL + ("?doubloonVerification="
-        + doubloonVerification), clientRegistrationDTO)
+        + doubloonVerification), client)
         .subscribe({
           next: resp => {
             resolve(resp);

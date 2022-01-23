@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ClientDTO} from "../../../../services/person/client/client-dto";
 import {ClientService} from "../../../../services/person/client/client.service";
-import {BsModalRef, BsModalService, ModalOptions} from "ngx-bootstrap/modal";
+import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {ClientCardModalComponent} from "./client-card-modal/client-card-modal.component";
 
 @Component({
@@ -30,8 +30,8 @@ export class ClientAdministrationComponent implements OnInit {
 
   search() {
     this.foundClients = [];
-    this.clientService.searchClientsWithFilter(this.selectAll, this.selectedLastName, this.selectedFirstName, this.selectedEmail, this.selectPhone).then((clients) => {
-      console.log("Receive clients");
+    this.clientService.searchClientsWithFilter(this.selectAll, this.selectedLastName, this.selectedFirstName,
+      this.selectedEmail, this.selectPhone).then((clients) => {
       this.foundClients = clients;
     }).catch((err) => {
       console.error("Fail to search client", err);
@@ -48,8 +48,8 @@ export class ClientAdministrationComponent implements OnInit {
   }
 
   editClient(client: ClientDTO) {
-    this.bsModalRef = this.modalService.show(ClientCardModalComponent);
-    this.bsModalRef.content.client = client;
+    this.bsModalRef = this.modalService.show(ClientCardModalComponent, {class: 'big-modal d-flex'});
+    this.bsModalRef.content.baseClient = ClientDTO.clone(client);
+    this.bsModalRef.content.updatedClient = ClientDTO.clone(client);
   }
-
 }

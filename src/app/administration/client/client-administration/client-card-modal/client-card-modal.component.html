@@ -1,8 +1,64 @@
-<div class="d-flex flex-column align-content-start" style="width: 90%">
-  <div class="d-flex">
-    <h2>Edition de client</h2>
+<div class="modal-content">
+  <div class="modal-header client-edition-header">
+    <h2 class="modal-title"><strong>Edition de client</strong></h2>
+    <button type="button" class="btn-close" (click)="closeClientEditionModal()"></button>
   </div>
-  <div class="d-flex justify-content-start">
-    <h3>{{client?.firstName}} {{client?.lastName?.toUpperCase()}}</h3>
+  <div class="client-edition-body modal-body">
+    <h3 class="client-edition-title">
+      <strong>{{baseClient.firstName[0].toUpperCase()}}{{baseClient.firstName.slice(1)}} {{baseClient.lastName.toUpperCase()}}</strong>
+    </h3>
+    <div class="client-edition-info">
+      <div class="d-flex flex-column justify-content-start p-2">
+        <h3 class="client-information-title">Information client</h3>
+        <div class="client-edition-information-row">
+          <label for="lastName" class="client-edition-information-label">Nom de famille: </label>
+          <input type="text" name="lastName" id="lastName" class="client-edition-information-input"
+                 [(ngModel)]="updatedClient.lastName"/>
+        </div>
+        <div class="client-edition-information-row">
+          <label for="firstName" class="client-edition-information-label">Prénom: </label>
+          <input type="text" name="firstName" id="firstName" class="client-edition-information-input"
+                 [(ngModel)]="updatedClient.firstName"/>
+        </div>
+        <div class="client-edition-information-row">
+          <label for="email" class="client-edition-information-label">E-mail: </label>
+          <input type="email" name="email" id="email" class="client-edition-information-input"
+                 [(ngModel)]="updatedClient.email"/>
+        </div>
+        <div class="client-edition-information-row">
+          <label for="phone" class="client-edition-information-label">Téléphone: +33</label>
+          <input type="tel" name="phone" id="phone" class="client-edition-information-input"
+                 [(ngModel)]="updatedClient.phone"/>
+        </div>
+        <div class="client-edition-information-row">
+          <label for="gender" class="client-edition-information-label">Genre: </label>
+          <select class="client-edition-information-input" id="gender" name="gender" [(ngModel)]="updatedClient.gender">
+            <option [value]="true">Homme</option>
+            <option [value]="false">Femme</option>
+          </select>
+        </div>
+        <div class="client-edition-information-row">
+          <label for="birthday" class="client-edition-information-label">Date de naissance: </label>
+          <input type="date" name="birthday" id="birthday" class="client-edition-information-input"
+                 [(ngModel)]="updatedClient.birthday"/>
+        </div>
+        <div class="client-edition-information-row">
+          <label for="comment" class="client-edition-information-label">Commentaire: </label>
+          <input type="text" name="comment" id="comment" class="client-edition-information-input"
+                 [(ngModel)]="updatedClient.comment"/>
+        </div>
+        <div class="client-edition-information-row">
+          <label for="technical-comment" class="client-edition-information-label">Commentaire technique: </label>
+          <input type="textarea" name="technical-comment" id="technical-comment"
+                 class="client-edition-information-input" [(ngModel)]="updatedClient.technicalComment"/>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+          <button type="button" class="btn btn-success w-50 p-2" (click)="updateChange()">Mettre à jour</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer d-flex justify-content-end">
+    <button type="button" class="btn btn-danger" (click)="closeClientEditionModal()">Annuler</button>
   </div>
 </div>

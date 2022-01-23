@@ -1,9 +1,28 @@
 import {PersonDTO} from "../person-dto";
 
 export class ClientDTO extends PersonDTO {
-  constructor(idPerson: number, firstName: string, lastName: string, email: string, gender: boolean, phone: string, birthday: string, idPersonOrigin: number, public photo?: string,
-              public comment?: string, public technicalComment?: string) {
+  constructor(idPerson: number, firstName: string, lastName: string, email: string, gender: boolean, phone: string,
+              birthday: string, idPersonOrigin: number, public photo?: string, public comment?: string,
+              public technicalComment?: string) {
     super(idPerson, firstName, lastName, email, gender, phone, birthday, idPersonOrigin);
+  }
+
+  public static clone(clientDTO: ClientDTO): ClientDTO {
+    return new ClientDTO(clientDTO.idPerson, clientDTO.firstName, clientDTO.lastName, clientDTO.email, clientDTO.gender,
+      clientDTO.phone, clientDTO.birthday, clientDTO.idPersonOrigin, clientDTO.photo, clientDTO.comment,
+      clientDTO.technicalComment);
+  }
+
+  public static formatForSend(clientDTO: ClientDTO): ClientDTO {
+    console.error("Actual phone number = " + clientDTO.phone);
+
+    let client = ClientDTO.clone(clientDTO);
+    client.phone = client.phone.slice(1);
+    client.phone = '33' + client.phone;
+
+    console.error("After phone number format = " + client.phone);
+
+    return client;
   }
 
   public static default(): ClientDTO {

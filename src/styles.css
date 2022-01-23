@@ -25,3 +25,8 @@ hr {
   border: 0;
   opacity: .25;
 }
+
+.big-modal {
+  max-width: 85%;
+  height: 90%;
+}

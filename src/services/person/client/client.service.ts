@@ -11,6 +11,27 @@ export class ClientService {
   constructor(private httpClient: HttpClient) {
   }
 
+  /**
+   * NO +33 for the phone just 06 00 00 00 00
+   *
+   * @param clientDTO
+   */
+  public updateClient(clientDTO: ClientDTO): Promise<ClientDTO> {
+    let client = ClientDTO.formatForSend(clientDTO);
+    return new Promise<ClientDTO>(((resolve, reject) => {
+      this.httpClient.post<ClientDTO>(GlobalVariables.CLIENTS_URL + "/" + client.idPerson, client).subscribe({
+        next: (clientResp) => {
+          console.log("Success to update client, updated client = ", clientResp);
+          resolve(clientResp);
+        },
+        error: (error: HttpErrorResponse) => {
+          console.error("Fail to update client, error = ", error.error);
+          reject(error.error);
+        }
+      })
+    }));
+  }
+
   public searchClientWithEmail(clientEmail: string): Promise<ClientDTO> {
     return new Promise<ClientDTO>(((resolve, reject) => {
       this.httpClient.get<ClientDTO>(GlobalVariables.CLIENTS_GET_WITH_EMAIL_URL + "?email=" + clientEmail).subscribe({
@@ -31,9 +52,8 @@ export class ClientService {
         + "lastName=" + (lastName ? lastName : '') + "+"
         + "firstName=" + (firstName ? firstName : '') + "+"
         + "email=" + (email ? email : '') + "+"
-        + "phone=" + (phone ? '\t%2B33' + phone : '') + "+"))).subscribe({
+        + "phone=" + (phone ? '33' + phone : '')))).subscribe({
         next: (clients) => {
-          console.log("Success to search client with filter", clients);
           resolve(clients);
         },
         error: (error: HttpErrorResponse) => {

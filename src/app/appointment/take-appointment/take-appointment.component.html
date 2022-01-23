@@ -1,4 +1,4 @@
-<div class="container align-self-center justify-content-center w-50 p-5" *ngIf="(makeClientResearch === 'true' && newClient === 'false')
+<div class="container align-self-center justify-content-center p-3" *ngIf="(makeClientResearch === 'true' && newClient === 'false')
 && !takingAppointmentSuccess">
   <div class="row">
     <label for="clientEmail">Votre e-mail: </label>
@@ -15,7 +15,7 @@
   </div>
 </div>
 
-<div class="container align-self-center justify-content-center w-50 p-3" *ngIf="!takingAppointmentSuccess">
+<div class="container align-self-center justify-content-center p-3" *ngIf="!takingAppointmentSuccess">
   <div class="row text-center">
     <label for="aestheticCare" class="col-sm-2 m-sm-auto">
       Soin:
@@ -77,7 +77,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" (click)="declineTakingAppointment()">Annuler</button>
         <button type="button" class="btn btn-primary" (click)="confirmTakingAppointment()">
-          Accepté{{newClient === 'true' ? "et s'enregistrer" : ''}}</button>
+          Accepté{{newClient === 'true' ? " et s'enregistrer" : ''}}</button>
       </div>
     </div>
   </ng-template>
