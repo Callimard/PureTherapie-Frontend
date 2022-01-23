@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ClientDTO} from "../../../../services/person/client/client-dto";
 import {ClientService} from "../../../../services/person/client/client.service";
+import {BsModalRef, BsModalService, ModalOptions} from "ngx-bootstrap/modal";
+import {ClientCardModalComponent} from "./client-card-modal/client-card-modal.component";
 
 @Component({
   selector: 'app-client-administration',
@@ -18,7 +20,9 @@ export class ClientAdministrationComponent implements OnInit {
   selectPhone?: string;
   selectAll: boolean = false;
 
-  constructor(private clientService: ClientService) {
+  bsModalRef?: BsModalRef;
+
+  constructor(private clientService: ClientService, private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
@@ -41,6 +45,11 @@ export class ClientAdministrationComponent implements OnInit {
     this.selectedEmail = '';
     this.selectPhone = '';
     this.selectAll = false;
+  }
+
+  editClient(client: ClientDTO) {
+    this.bsModalRef = this.modalService.show(ClientCardModalComponent);
+    this.bsModalRef.content.client = client;
   }
 
 }

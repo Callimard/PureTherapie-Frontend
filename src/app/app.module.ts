@@ -20,6 +20,7 @@ import {
   ClientAdministrationComponent
 } from './administration/client/client-administration/client-administration.component';
 import {AuthenticationService} from "../services/auth/authentication.service";
+import { ClientCardModalComponent } from './administration/client/client-administration/client-card-modal/client-card-modal.component';
 
 const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_LOGIN_URL, component: LoginComponent},
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
     HomeComponent,
     TakeAppointmentComponent,
     ClientHomeComponent,
-    ClientAdministrationComponent
+    ClientAdministrationComponent,
+    ClientCardModalComponent
   ],
   imports: [
     TooltipModule.forRoot(),
