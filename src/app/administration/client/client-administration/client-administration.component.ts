@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ClientDTO} from "../../../../services/person/client/client-dto";
 import {ClientService} from "../../../../services/person/client/client.service";
-import {BsModalRef, BsModalService, ModalOptions} from "ngx-bootstrap/modal";
+import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {ClientCardModalComponent} from "./client-card-modal/client-card-modal.component";
 
 @Component({
@@ -48,7 +48,7 @@ export class ClientAdministrationComponent implements OnInit {
   }
 
   editClient(client: ClientDTO) {
-    this.bsModalRef = this.modalService.show(ClientCardModalComponent);
+    this.bsModalRef = this.modalService.show(ClientCardModalComponent, {class: 'big-modal'});
     this.bsModalRef.content.client = client;
   }
 

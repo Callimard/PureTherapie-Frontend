@@ -28,7 +28,7 @@ const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_CLIENTS_REGISTRATION_URL, component: ClientRegistrationComponent},
   {path: GlobalVariables.INTERN_APPOINTMENTS_URL, component: TakeAppointmentComponent},
   {path: GlobalVariables.INTERN_ADMINISTRATION_CLIENT_URL, component: ClientAdministrationComponent},
-  {path: '', component: HomeComponent}
+  {path: '', redirectTo: GlobalVariables.INTERN_LOGIN_URL, pathMatch: 'full'}
 ];
 
 @NgModule({

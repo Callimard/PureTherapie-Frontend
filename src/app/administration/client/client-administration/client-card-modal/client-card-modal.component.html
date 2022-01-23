@@ -1,8 +1,15 @@
-<div class="d-flex flex-column align-content-start" style="width: 90%">
-  <div class="d-flex">
-    <h2>Edition de client</h2>
-  </div>
-  <div class="d-flex justify-content-start">
-    <h3>{{client?.firstName}} {{client?.lastName?.toUpperCase()}}</h3>
+<div class="d-flex flex-column align-content-start">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">Edition de client</h2>
+      <button type="button" class="btn-close"></button>
+    </div>
+    <div class="modal-body">
+      <h3>{{client?.firstName}} {{client?.lastName?.toUpperCase()}}</h3>
+    </div>
+    <div class="modal-footer d-flex justify-content-end">
+      <button type="button" class="btn btn-danger">Annuler</button>
+      <button type="button" class="btn btn-success">Mettre à jour</button>
+    </div>
   </div>
 </div>
