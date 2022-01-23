@@ -5,7 +5,7 @@ import {ClientDTO} from "../../../services/person/client/client-dto";
 import {ClientRegistrationService} from "../../../services/person/client/registration/client-registration.service";
 import {ClientRegistrationFailDTO} from "../../../services/person/client/registration/client-registration-fail-dto";
 import {GlobalVariables} from "../../../global/global-variables";
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ActivatedRoute, Params} from "@angular/router";
 import {AppointmentDataService} from "../../../services/appointment/take_appointment/appointment-data.service";
 import {AppointmentService} from "../../../services/appointment/appointment.service";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
@@ -91,7 +91,7 @@ export class ClientRegistrationComponent implements OnInit {
 
   confirmOnlyClientRegistration() {
     let clientRegistrationDTO: ClientDTO = new ClientDTO(-1, this.selectedFirstName, this.selectedLastName,
-      this.selectedEmail, this.selectedGender, '+33' + this.selectedPhone,
+      this.selectedEmail, this.selectedGender, this.selectedPhone,
       this.selectedBirthday, this.selectedPersonOrigin != null ? this.selectedPersonOrigin.idPersonOrigin : -1);
 
     this.clientRegistrationService.registerClient(clientRegistrationDTO).then(() => {
@@ -105,10 +105,10 @@ export class ClientRegistrationComponent implements OnInit {
   confirmClientRegistrationAndAppointment() {
     this.chooseAlsoTakingAppointment = true;
 
-    let clientRegistrationDTO: ClientDTO = new ClientDTO(-1, this.selectedFirstName, this.selectedLastName,
-      this.selectedEmail, this.selectedGender, '+33' + this.selectedPhone, this.selectedBirthday,
+    let clientDTO: ClientDTO = new ClientDTO(-1, this.selectedFirstName, this.selectedLastName,
+      this.selectedEmail, this.selectedGender, this.selectedPhone, this.selectedBirthday,
       this.selectedPersonOrigin != null ? this.selectedPersonOrigin.idPersonOrigin : -1);
-    this.clientRegistrationService.registerClient(clientRegistrationDTO).then((successResponse) => {
+    this.clientRegistrationService.registerClient(clientDTO).then((successResponse) => {
       this.demandAppointment(successResponse.idClient);
     }).catch((err: ClientRegistrationFailDTO) => {
       console.log("Client registration error = ", err);

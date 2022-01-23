@@ -1,0 +1,42 @@
+.client-edition-header {
+  background-color: #4ab42c;
+  box-shadow: 0 3px 6px -1px rgba(115, 115, 115, 0.55);
+}
+
+.client-edition-body {
+  display: grid;
+  grid-template: 5% 95% / 50% 50%;
+}
+
+.client-edition-title {
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 2;
+  border-bottom: 1px solid rgba(175, 173, 173, 0.42);
+}
+
+.client-edition-info {
+  grid-row: 2 / span 1;
+  grid-column: 1 / span 1;
+  border-right: 1px solid rgba(175, 173, 173, 0.42);
+}
+
+.client-information-title {
+  color: #000000;
+  text-decoration: underline;
+}
+
+.client-edition-information-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 2% 2% 2% 0;
+}
+
+.client-edition-information-label {
+  flex-grow: 1;
+  font-weight: bold;
+}
+
+.client-edition-information-input {
+  flex-grow: 1;
+  margin-left: 3%;
+}
