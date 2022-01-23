@@ -20,8 +20,10 @@ import {
   ClientAdministrationComponent
 } from './administration/client/client-administration/client-administration.component';
 import {AuthenticationService} from "../services/auth/authentication.service";
-import { ClientCardModalComponent } from './administration/client/client-administration/client-card-modal/client-card-modal.component';
+import { ClientEditionModalComponent } from './administration/client/client-administration/client-edition-modal/client-edition-modal.component';
 import { SuccessModalComponent } from './Util/modal/success-modal/success-modal.component';
+import { ClientRegistrationModalComponent } from './administration/client/client-administration/client-registration-modal/client-registration-modal.component';
+import { FailModalComponent } from './Util/modal/fail-modal/fail-modal.component';
 
 const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_LOGIN_URL, component: LoginComponent},
@@ -41,8 +43,10 @@ const appRoutes: Routes = [
     TakeAppointmentComponent,
     ClientHomeComponent,
     ClientAdministrationComponent,
-    ClientCardModalComponent,
-    SuccessModalComponent
+    ClientEditionModalComponent,
+    SuccessModalComponent,
+    ClientRegistrationModalComponent,
+    FailModalComponent
   ],
   imports: [
     TooltipModule.forRoot(),
