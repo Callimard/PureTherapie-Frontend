@@ -21,7 +21,7 @@ export class AppComponent {
     this.authService.logout();
   }
 
-  username(): string {
-    return this.authService.currentBasicCredential().username;
+  username(): string | undefined {
+    return this.authService.currentBasicCredential()?.username;
   }
 }

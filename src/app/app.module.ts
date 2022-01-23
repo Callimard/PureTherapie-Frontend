@@ -16,12 +16,17 @@ import {GlobalVariables} from "../global/global-variables";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {TooltipModule} from "ngx-bootstrap/tooltip";
 import {ModalModule} from "ngx-bootstrap/modal";
+import {
+  ClientAdministrationComponent
+} from './administration/client/client-administration/client-administration.component';
+import {AuthenticationService} from "../services/auth/authentication.service";
 
 const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_LOGIN_URL, component: LoginComponent},
   {path: GlobalVariables.INTERN_CLIENTS_HOME_URL, component: ClientHomeComponent},
   {path: GlobalVariables.INTERN_CLIENTS_REGISTRATION_URL, component: ClientRegistrationComponent},
   {path: GlobalVariables.INTERN_APPOINTMENTS_URL, component: TakeAppointmentComponent},
+  {path: GlobalVariables.INTERN_ADMINISTRATION_CLIENT_URL, component: ClientAdministrationComponent},
   {path: '', component: HomeComponent}
 ];
 
@@ -32,7 +37,8 @@ const appRoutes: Routes = [
     ClientRegistrationComponent,
     HomeComponent,
     TakeAppointmentComponent,
-    ClientHomeComponent
+    ClientHomeComponent,
+    ClientAdministrationComponent
   ],
   imports: [
     TooltipModule.forRoot(),
@@ -44,7 +50,7 @@ const appRoutes: Routes = [
     RouterModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [CookieService,
+  providers: [CookieService, AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SecurityInterceptor,

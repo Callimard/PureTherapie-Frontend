@@ -16,6 +16,8 @@ export class GlobalVariables {
   public static readonly INTERN_CLIENTS_HOME_URL = 'clients/home';
   public static readonly INTERN_CLIENTS_REGISTRATION_URL = 'clients/registration';
   public static readonly INTERN_APPOINTMENTS_URL = 'appointments';
+  public static readonly INTERN_ADMINISTRATION_URL = 'administration';
+  public static readonly INTERN_ADMINISTRATION_CLIENT_URL = GlobalVariables.INTERN_ADMINISTRATION_URL + '/clients';
 
   // BACKEND Session
 
@@ -37,7 +39,7 @@ export class GlobalVariables {
   public static readonly LOGOUT_URL = GlobalVariables.USERS_URL + "/logout";
 
   public static readonly CLIENTS_URL = GlobalVariables.API_V1_URL + "/clients";
-  public static readonly CLIENT_SEARCH_WITH_EMAIL_URL = GlobalVariables.CLIENTS_URL + "/searchWithEmail";
+  public static readonly CLIENTS_GET_WITH_EMAIL_URL = GlobalVariables.CLIENTS_URL + "/searchWithEmail";
 
   public static readonly PERSON_ORIGINS_URL = GlobalVariables.CLIENTS_URL + "/person_origins";
 

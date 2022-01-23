@@ -13,7 +13,7 @@ export class ClientService {
 
   public searchClientWithEmail(clientEmail: string): Promise<ClientDTO> {
     return new Promise<ClientDTO>(((resolve, reject) => {
-      this.httpClient.get<ClientDTO>(GlobalVariables.CLIENT_SEARCH_WITH_EMAIL_URL + "?email=" + clientEmail).subscribe({
+      this.httpClient.get<ClientDTO>(GlobalVariables.CLIENTS_GET_WITH_EMAIL_URL + "?email=" + clientEmail).subscribe({
         next: (client) => {
           resolve(client);
         },
@@ -22,6 +22,25 @@ export class ClientService {
           reject(error.error);
         }
       })
+    }));
+  }
+
+  public searchClientsWithFilter(all: boolean = false, lastName?: string, firstName?: string, email?: string, phone?: string): Promise<ClientDTO[]> {
+    return new Promise<ClientDTO[]>(((resolve, reject) => {
+      this.httpClient.get<ClientDTO[]>(GlobalVariables.CLIENTS_URL + (all ? "?all=true&filter=" : ("?filter="
+        + "lastName=" + (lastName ? lastName : '') + "+"
+        + "firstName=" + (firstName ? firstName : '') + "+"
+        + "email=" + (email ? email : '') + "+"
+        + "phone=" + (phone ? '\t%2B33' + phone : '') + "+"))).subscribe({
+        next: (clients) => {
+          console.log("Success to search client with filter", clients);
+          resolve(clients);
+        },
+        error: (error: HttpErrorResponse) => {
+          console.error("Fail to search client with filter", error.error);
+          reject(error.error);
+        }
+      });
     }));
   }
 }

@@ -8,30 +8,31 @@ import {GlobalVariables} from "../../global/global-variables";
 })
 export class AuthenticationService {
 
-  private basicCredential: BasicCredential;
+  public static readonly IS_AUTHENTICATED_LS_KEY = "isAuthenticated";
+
+  private basicCredential?: BasicCredential;
   private authenticated: boolean = false;
 
   constructor(private httpClient: HttpClient) {
-    this.basicCredential = new BasicCredential();
   }
 
   public login(username: string, password: string): Promise<string> {
-    this.basicCredential.username = username;
-    this.basicCredential.password = password;
+    this.basicCredential = new BasicCredential(username, password);
+    let basicCredString = this.basicCredential.basicCredential();
 
     return new Promise<any>(((resolve, reject) => {
       this.httpClient.post(GlobalVariables.LOGIN_URL, null, {
-        headers: {'Authorization': this.basicCredential.basicCredential()},
+        headers: {'Authorization': basicCredString},
         withCredentials: true
       }).subscribe({
           next: () => {
             console.log("Success to login");
-            this.authenticated = true;
+            this.setAuthenticated();
             resolve('login success');
           },
           error: () => {
             console.log("Fail to login");
-            this.authenticated = false;
+            this.setNotAuthenticated();
             reject('login fail');
           }
         }
@@ -42,21 +43,33 @@ export class AuthenticationService {
   public logout(): void {
     this.basicCredential = new BasicCredential();
 
-    this.httpClient.post(GlobalVariables.LOGOUT_URL, null, {withCredentials: true}).subscribe({
+    this.httpClient.post(GlobalVariables.LOGOUT_URL, null).subscribe({
       next: () => {
+        this.setNotAuthenticated();
         console.log("Success to logout");
       },
       error: () => {
+        this.setNotAuthenticated();
         console.log("Fail to logout");
       }
     });
   }
 
   public isAuthenticated(): boolean {
-    return this.authenticated;
+    return localStorage.getItem(AuthenticationService.IS_AUTHENTICATED_LS_KEY) === GlobalVariables.TRUE_STRING;
   }
 
-  public currentBasicCredential(): BasicCredential {
-    return new BasicCredential(this.basicCredential.username, this.basicCredential.password);
+  public currentBasicCredential(): BasicCredential | undefined {
+    return this.basicCredential;
+  }
+
+  private setAuthenticated() {
+    this.authenticated = true;
+    localStorage.setItem(AuthenticationService.IS_AUTHENTICATED_LS_KEY, String(this.authenticated));
+  }
+
+  private setNotAuthenticated() {
+    this.authenticated = false;
+    localStorage.setItem(AuthenticationService.IS_AUTHENTICATED_LS_KEY, String(this.authenticated));
   }
 }
