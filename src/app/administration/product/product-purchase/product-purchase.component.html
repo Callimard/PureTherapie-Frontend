@@ -34,7 +34,7 @@
               <h5 class="my-0">{{bundle.price}} €</h5>
             </div>
             <div class="d-flex justify-content-start align-items-center product-package-purchase">
-              <button class="btn btn-primary m-2">Vendre</button>
+              <button class="btn btn-primary m-2" (click)="purchaseBundle(bundle)">Vendre</button>
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@
               <h5 class="my-0">{{ac.timeExecution}} min</h5>
             </div>
             <div class="d-flex justify-content-start align-items-center product-ac-purchase">
-              <button class="btn btn-primary m-2">Vendre</button>
+              <button class="btn btn-primary m-2" (click)="purchaseAestheticCare(ac)">Vendre</button>
             </div>
           </div>
         </div>

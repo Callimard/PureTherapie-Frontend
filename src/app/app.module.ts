@@ -23,12 +23,13 @@ import {AuthenticationService} from "../services/auth/authentication.service";
 import {
   ClientEditionModalComponent
 } from './administration/client/client-administration/client-edition-modal/client-edition-modal.component';
-import {SuccessModalComponent} from './Util/modal/success-modal/success-modal.component';
+import {SuccessModalComponent} from './util/modal/success-modal/success-modal.component';
 import {
   ClientRegistrationModalComponent
 } from './administration/client/client-administration/client-registration-modal/client-registration-modal.component';
-import {FailModalComponent} from './Util/modal/fail-modal/fail-modal.component';
+import {FailModalComponent} from './util/modal/fail-modal/fail-modal.component';
 import {ProductPurchaseComponent} from './administration/product/product-purchase/product-purchase.component';
+import { ProductPurchaseModalComponent } from './administration/product/product-purchase/product-purchase-modal/product-purchase-modal.component';
 
 const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_LOGIN_URL, component: LoginComponent},
@@ -53,7 +54,8 @@ const appRoutes: Routes = [
     SuccessModalComponent,
     ClientRegistrationModalComponent,
     FailModalComponent,
-    ProductPurchaseComponent
+    ProductPurchaseComponent,
+    ProductPurchaseModalComponent
   ],
   imports: [
     TooltipModule.forRoot(),

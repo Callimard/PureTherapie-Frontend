@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {BundleDTO} from "../../../../services/product/aesthetic/bundle/bundle-dto";
 import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/aesthetic-care-dto";
+import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
+import {ProductPurchaseModalComponent} from "./product-purchase-modal/product-purchase-modal.component";
+import {AestheticCareService} from "../../../../services/product/aesthetic/care/aesthetic-care.service";
+import {BundleService} from "../../../../services/product/aesthetic/bundle/bundle.service";
 
 @Component({
   selector: 'app-product-purchase',
@@ -13,14 +17,31 @@ export class ProductPurchaseComponent implements OnInit {
   bundles: BundleDTO[] = [];
   aestheticCares: AestheticCareDTO[] = [];
 
-  constructor() {
+  productPurchaseModalRef?: BsModalRef;
+
+  constructor(private acService: AestheticCareService, private bundleService: BundleService,
+              private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
-    for (let i = 0; i < 100; i++) {
-      this.bundles.push(BundleDTO.default());
-      this.aestheticCares.push(AestheticCareDTO.default());
-    }
+    this.chargeACs();
+    this.chargeBundles();
+  }
+
+  private chargeACs() {
+    this.acService.getAllAestheticCare().then((res) => {
+      this.aestheticCares = res;
+    }).catch(() => {
+      console.error("Fail to charge all ACs");
+    });
+  }
+
+  private chargeBundles() {
+    this.bundleService.getAllBundles().then((res) => {
+      this.bundles = res;
+    }).catch(() => {
+      console.error("Fail to charge all Bundles");
+    });
   }
 
   openTab(tabId: string) {
@@ -34,6 +55,26 @@ export class ProductPurchaseComponent implements OnInit {
     } else {
       console.error("No tab with id" + tabId);
     }
+  }
+
+  purchaseBundle(bundle: BundleDTO) {
+    this.productPurchaseModalRef = this.modalService.show(ProductPurchaseModalComponent, {
+      initialState: {
+        bundleToPurchase: bundle,
+        modePackage: true
+      },
+      class: "medium-modal"
+    })
+  }
+
+  purchaseAestheticCare(ac: AestheticCareDTO) {
+    this.productPurchaseModalRef = this.modalService.show(ProductPurchaseModalComponent, {
+      initialState: {
+        acToPurchase: ac,
+        modePackage: false
+      },
+      class: "medium-modal"
+    })
   }
 
 }

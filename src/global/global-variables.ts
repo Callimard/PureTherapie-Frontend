@@ -46,6 +46,11 @@ export class GlobalVariables {
 
   public static readonly AESTHETIC_CARES_URL = GlobalVariables.API_V1_URL + "/aesthetic_cares";
 
+  public static readonly AESTHETIC_CARE_PACKAGES_URL = GlobalVariables.API_V1_URL + "/aesthetic_care_packages";
+  public static readonly AESTHETIC_CARE_PURCHASE = "/purchase";
+
+  public static readonly BUNDLES_URL = GlobalVariables.API_V1_URL + "/bundles";
+
   public static readonly TECHNICIANS_URL = GlobalVariables.API_V1_URL + "/technicians";
 
   public static readonly AGENDA_URL = GlobalVariables.API_V1_URL + "/agenda";

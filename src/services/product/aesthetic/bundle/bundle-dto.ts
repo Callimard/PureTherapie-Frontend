@@ -4,7 +4,7 @@ export class BundleDTO {
   constructor(public idBundle: number,
               public name: string,
               public price: number,
-              public aestheticCareDTOList: AestheticCarePackageDTO[]) {
+              public aestheticCarePackageList: AestheticCarePackageDTO[]) {
   }
 
   public static default(): BundleDTO {

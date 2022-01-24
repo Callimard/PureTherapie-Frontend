@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ClientDTO} from "../../../../../services/person/client/client-dto";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {ClientService} from "../../../../../services/person/client/client.service";
-import {SuccessModalComponent} from "../../../../Util/modal/success-modal/success-modal.component";
-import {FailModalComponent} from "../../../../Util/modal/fail-modal/fail-modal.component";
+import {SuccessModalComponent} from "../../../../util/modal/success-modal/success-modal.component";
+import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
 
 @Component({
   selector: 'app-client-edition-modal',
@@ -27,7 +27,7 @@ export class ClientEditionModalComponent implements OnInit {
   }
 
   updateChange(): void {
-    this.clientService.updateClient(this.updatedClient).then((res) => {
+    this.clientService.updateClient(this.updatedClient).then(() => {
       this.modalService.show(SuccessModalComponent, {
         initialState: {
           title: "Mise à jour des données client réussie",

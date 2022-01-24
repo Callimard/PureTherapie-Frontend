@@ -1,0 +1,69 @@
+<div class="modal-content">
+  <div class="modal-header" style="background-color: rgba(168,168,168,0.58)">
+    <h2 class="modal-title package-purchase-modal-title" style="font-weight: bold;">Vente
+      de {{modePackage ? 'Packages' : 'Soin ésthétiques'}}</h2>
+    <button type="button" class="btn-close" (click)="close()"></button>
+  </div>
+  <div class="modal-body d-flex flex-column justify-content-start">
+    <div class="research-client-container d-flex flex-column justify-content-start mt-2">
+      <div class="client-info d-flex justify-content-between">
+        <label for="email" class="form-label flex-grow-1 my-auto" style="font-weight: bold">E-mail client: </label>
+        <input type="email" name="email" id="email" class="form-control" [(ngModel)]="emailClient"/>
+      </div>
+      <div class="d-flex justify-content-center align-items-center mt-2">
+        <span class="alert text-success p-1" *ngIf="hasSearchClient && hasFoundClient">Client trouvé!</span>
+        <span class="alert text-fail p-1"
+              *ngIf="hasSearchClient && !hasFoundClient">Pas de client pour cet e-mail</span>
+      </div>
+      <div class="d-flex justify-content-center align-items-center mt-2">
+        <button type="button" class="btn btn-primary" (click)="searchClient()">Rechercher client</button>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center mt-2">
+      <hr class="separator">
+    </div>
+    <div class="product-purchase-info d-flex flex-column justify-content-start" *ngIf="modePackage">
+      <div class="bundle-purchase-info-header flex-shrink-1">
+        <div class="bundle-name d-flex justify-content-start">
+          <h4 style="font-weight: bold; text-decoration: underline" class="my-auto">Package: </h4>
+          <span style="margin-left: 5%" class="my-auto">{{bundleToPurchase.name}}</span>
+        </div>
+        <div class="bundle-price d-flex justify-content-end">
+          <h4 style="font-weight: bold; text-decoration: underline" class="my-auto">Prix: </h4>
+          <span style="margin-left: 5%" class="my-auto">{{bundleToPurchase.price}} €</span>
+        </div>
+      </div>
+      <div class="bundle-purchase-info-content d-flex flex-column justify-content-start flex-grow-1 mt-4">
+        <h5 class="flex-grow-1 text-underline" style="font-weight: bold">Soins contenus dans le package:</h5>
+        <div class="all-ac d-flex flex-column justify-content-start flex-grow-1 mt-3">
+          <div class="acp-row p-2" *ngFor="let acP of bundleToPurchase.aestheticCarePackageList">
+            <h6 style="font-weight: bold" class="acp-ac-name">{{acP.aestheticCare.name}}</h6>
+            <h6 class="acp-stock"><strong>Stock: </strong>{{acP.numberAestheticCare}}</h6>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center align-items-center mt-3">
+        <button type="button" class="btn btn-primary" style="font-weight: bold"
+                [disabled]="!hasSearchClient || !hasFoundClient">Vendre
+        </button>
+      </div>
+    </div>
+    <div class="ac-purchase-info d-flex flex-column justify-content-start" *ngIf="!modePackage">
+      <div class="ac-purchase-info-header flex-shrink-1">
+        <div class="ac-name d-flex justify-content-start">
+          <h4 style="font-weight: bold; text-decoration: underline" class="my-auto">Soin ésthétique: </h4>
+          <span style="margin-left: 5%" class="my-auto">{{acToPurchase.name}}</span>
+        </div>
+        <div class="ac-price d-flex justify-content-end">
+          <h4 style="font-weight: bold; text-decoration: underline" class="my-auto">Prix: </h4>
+          <span style="margin-left: 5%" class="my-auto">{{acToPurchase.price}} €</span>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center align-items-center mt-3">
+        <button type="button" class="btn btn-primary" style="font-weight: bold"
+                [disabled]="!hasSearchClient || !hasFoundClient" (click)="purchaseAC()">Vendre
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

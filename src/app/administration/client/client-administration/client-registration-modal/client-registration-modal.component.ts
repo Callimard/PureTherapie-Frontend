@@ -9,8 +9,8 @@ import {ClientDTO} from "../../../../../services/person/client/client-dto";
 import {
   ClientRegistrationFailDTO
 } from "../../../../../services/person/client/registration/client-registration-fail-dto";
-import {SuccessModalComponent} from "../../../../Util/modal/success-modal/success-modal.component";
-import {FailModalComponent} from "../../../../Util/modal/fail-modal/fail-modal.component";
+import {SuccessModalComponent} from "../../../../util/modal/success-modal/success-modal.component";
+import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
 
 @Component({
   selector: 'app-client-registration-modal',
@@ -28,7 +28,7 @@ export class ClientRegistrationModalComponent implements OnInit {
   selectedPhone: string = "";
   selectedBirthday: string = "";
   selectedPersonOrigin: PersonOriginDTO = PersonOriginDTO.default();
-  
+
   confirmationModal?: BsModalRef;
 
   constructor(private clientOriginService: ClientOriginService, private clientRegistrationService: ClientRegistrationService,

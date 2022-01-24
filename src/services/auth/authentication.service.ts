@@ -31,7 +31,6 @@ export class AuthenticationService {
             resolve('login success');
           },
           error: () => {
-            console.log("Fail to login");
             this.setNotAuthenticated();
             reject('login fail');
           }
@@ -46,11 +45,9 @@ export class AuthenticationService {
     this.httpClient.post(GlobalVariables.LOGOUT_URL, null).subscribe({
       next: () => {
         this.setNotAuthenticated();
-        console.log("Success to logout");
       },
       error: () => {
         this.setNotAuthenticated();
-        console.log("Fail to logout");
       }
     });
   }

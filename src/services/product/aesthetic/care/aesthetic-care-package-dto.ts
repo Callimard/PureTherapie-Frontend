@@ -2,7 +2,7 @@ import {AestheticCareDTO} from "./aesthetic-care-dto";
 
 export class AestheticCarePackageDTO {
   constructor(public idAestheticCarePackage: number,
-              public aestheticCareDTO: AestheticCareDTO,
+              public aestheticCare: AestheticCareDTO,
               public name: string,
               public numberAestheticCare: number) {
   }
