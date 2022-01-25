@@ -5,7 +5,6 @@ import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {ProductPurchaseModalComponent} from "./product-purchase-modal/product-purchase-modal.component";
 import {AestheticCareService} from "../../../../services/product/aesthetic/care/aesthetic-care.service";
 import {BundleService} from "../../../../services/product/aesthetic/bundle/bundle.service";
-import {SimpleResponseDTO} from "../../../../services/util/simple-response-dto";
 
 @Component({
   selector: 'app-product-purchase',
