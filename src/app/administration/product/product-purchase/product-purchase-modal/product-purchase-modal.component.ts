@@ -7,6 +7,7 @@ import {AestheticCareDTO} from "../../../../../services/product/aesthetic/care/a
 import {AestheticCareService} from "../../../../../services/product/aesthetic/care/aesthetic-care.service";
 import {SuccessModalComponent} from "../../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
+import {BundleService} from "../../../../../services/product/aesthetic/bundle/bundle.service";
 
 @Component({
   selector: 'app-product-purchase-modal',
@@ -28,7 +29,8 @@ export class ProductPurchaseModalComponent implements OnInit {
   bundleToPurchase: BundleDTO = BundleDTO.default();
   acToPurchase: AestheticCareDTO = AestheticCareDTO.default();
 
-  constructor(private clientService: ClientService, private acService: AestheticCareService, public bsModalRef: BsModalRef,
+  constructor(private clientService: ClientService, private acService: AestheticCareService,
+              private bundleService: BundleService, public bsModalRef: BsModalRef,
               private modalService: BsModalService) {
   }
 
@@ -67,7 +69,27 @@ export class ProductPurchaseModalComponent implements OnInit {
             + " " + this.clientFound.firstName + " N'A PAS ETE PRIS EN COMPTE."
         }
       });
-    })
+    });
+  }
+
+  purchaseBundle() {
+    this.bundleService.purchaseBundle(this.bundleToPurchase.idBundle, this.clientFound.idPerson).then(() => {
+      this.modalService.show(SuccessModalComponent, {
+        initialState: {
+          title: "L'achat du packages à réussie!",
+          text: "L'achat du package " + this.bundleToPurchase.name + " par le client " + this.clientFound.lastName
+            + " " + this.clientFound.firstName + " a été pris en compte."
+        }
+      });
+    }).catch(() => {
+      this.modalService.show(FailModalComponent, {
+        initialState: {
+          title: "L'achat du packages à échoué!",
+          text: "L'achat du packages " + this.acToPurchase.name + " par le client " + this.clientFound.lastName
+            + " " + this.clientFound.firstName + " N'A PAS ETE PRIS EN COMPTE."
+        }
+      });
+    });
   }
 
 }

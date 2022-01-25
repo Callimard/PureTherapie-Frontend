@@ -5,6 +5,7 @@ import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {ProductPurchaseModalComponent} from "./product-purchase-modal/product-purchase-modal.component";
 import {AestheticCareService} from "../../../../services/product/aesthetic/care/aesthetic-care.service";
 import {BundleService} from "../../../../services/product/aesthetic/bundle/bundle.service";
+import {SimpleResponseDTO} from "../../../../services/util/simple-response-dto";
 
 @Component({
   selector: 'app-product-purchase',
@@ -38,13 +39,14 @@ export class ProductPurchaseComponent implements OnInit {
 
   private chargeBundles() {
     this.bundleService.getAllBundles().then((res) => {
+      console.log("All bundles = ", res);
       this.bundles = res;
     }).catch(() => {
       console.error("Fail to charge all Bundles");
     });
   }
 
-  openTab(tabId: string) {
+  changeTab(tabId: string) {
     let elem: HTMLCollectionOf<any> = document.getElementsByClassName('product-purchase-tab-content');
     for (let i = 0; i < elem.length; i++) {
       elem[i].style.display = "none";

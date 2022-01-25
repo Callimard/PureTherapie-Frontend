@@ -50,6 +50,8 @@ export class GlobalVariables {
   public static readonly AESTHETIC_CARE_PURCHASE = "/purchase";
 
   public static readonly BUNDLES_URL = GlobalVariables.API_V1_URL + "/bundles";
+  public static readonly BUNDLE_PURCHASE = "/purchase";
+
 
   public static readonly TECHNICIANS_URL = GlobalVariables.API_V1_URL + "/technicians";
 
