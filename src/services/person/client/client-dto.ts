@@ -13,15 +13,17 @@ export class ClientDTO extends PersonDTO {
       clientDTO.technicalComment);
   }
 
-  public static formatForSend(clientDTO: ClientDTO): ClientDTO {
-    console.error("Actual phone number = " + clientDTO.phone);
+  public static removePhonePrefix(clientDTO: ClientDTO): ClientDTO {
+    let client = ClientDTO.clone(clientDTO);
+    client.phone = client.phone.slice(4);
+    client.phone = '0' + client.phone;
+    return client
+  }
 
+  public static formatForSend(clientDTO: ClientDTO): ClientDTO {
     let client = ClientDTO.clone(clientDTO);
     client.phone = client.phone.slice(1);
     client.phone = '33' + client.phone;
-
-    console.error("After phone number format = " + client.phone);
-
     return client;
   }
 

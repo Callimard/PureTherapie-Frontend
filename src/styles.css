@@ -30,3 +30,20 @@ hr {
   max-width: 85%;
   height: 90%;
 }
+
+.medium-modal {
+  max-width: 45%;
+  height: 60%;
+}
+
+.alert {
+  font-weight: bold;
+}
+
+.text-success {
+  color: #4ab42c;
+}
+
+.text-fail {
+  color: red;
+}

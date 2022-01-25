@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ClientDTO} from "../../../../services/person/client/client-dto";
 import {ClientService} from "../../../../services/person/client/client.service";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {ClientCardModalComponent} from "./client-card-modal/client-card-modal.component";
+import {ClientEditionModalComponent} from "./client-edition-modal/client-edition-modal.component";
+import {ClientRegistrationModalComponent} from "./client-registration-modal/client-registration-modal.component";
 
 @Component({
   selector: 'app-client-administration',
@@ -20,7 +21,8 @@ export class ClientAdministrationComponent implements OnInit {
   selectPhone?: string;
   selectAll: boolean = false;
 
-  bsModalRef?: BsModalRef;
+  clientEditionModal?: BsModalRef;
+  clientRegistrationModal?: BsModalRef;
 
   constructor(private clientService: ClientService, private modalService: BsModalService) {
   }
@@ -48,8 +50,12 @@ export class ClientAdministrationComponent implements OnInit {
   }
 
   editClient(client: ClientDTO) {
-    this.bsModalRef = this.modalService.show(ClientCardModalComponent, {class: 'big-modal d-flex'});
-    this.bsModalRef.content.baseClient = ClientDTO.clone(client);
-    this.bsModalRef.content.updatedClient = ClientDTO.clone(client);
+    this.clientEditionModal = this.modalService.show(ClientEditionModalComponent, {class: 'big-modal d-flex'});
+    this.clientEditionModal.content.baseClient = ClientDTO.removePhonePrefix(client);
+    this.clientEditionModal.content.updatedClient = ClientDTO.removePhonePrefix(client);
+  }
+
+  registerClient() {
+    this.clientEditionModal = this.modalService.show(ClientRegistrationModalComponent);
   }
 }

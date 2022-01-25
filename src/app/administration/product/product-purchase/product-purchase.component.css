@@ -1,0 +1,136 @@
+.product-purchase-container {
+  border-radius: 10px;
+}
+
+.product-purchase-header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0 1px 2px black;
+  background-color: #2dadf1;
+}
+
+.product-purchase-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-top: 3%;
+}
+
+.product-purchase-tab-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: #adacac;
+}
+
+.product-purchase-tab {
+  font-weight: bold;
+  color: black;
+  border-right: 1px solid #000000;
+}
+
+.product-purchase-tab:hover {
+  background-color: #38b6ff;
+}
+
+.product-purchase-grid-container {
+  display: grid;
+  grid-template: 5% 95% / 100%;
+  height: 150px;
+}
+
+.product-purchase-package-grid-header {
+  display: grid;
+  grid-template: 100% / 80% 10% 10%;
+  grid-area: 1 span 1 / 1 span 1;
+  background-color: #adacac;
+  border: 1px solid #000000;
+}
+
+.product-p-item-title-name {
+  grid-area: 1 span 1 / 1 span 1;
+}
+
+.product-p-item-title-price {
+  grid-area: 1 span 1 / 2 span 1;
+}
+
+.product-p-item-title-purchase {
+  grid-area: 1 span 1 / 3 span 1;
+}
+
+.product-purchase-grid-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: auto;
+  overflow: auto;
+  grid-area: 2 span / 1 span;
+}
+
+.product-purchase-grid-package {
+  flex-shrink: 1;
+  display: grid;
+  grid-template: 100% / 80% 10% 10%;
+  border-bottom: 1px solid #adacac;
+}
+
+.product-package-name {
+  grid-area: 1 span 1 / 1 span 1;
+}
+
+.product-package-price {
+  grid-area: 1 span 1 / 2 span 1;
+}
+
+.product-package-purchase {
+  grid-area: 1 span 1 / 3 span 1;
+}
+
+.product-purchase-ac-grid-header {
+  display: grid;
+  grid-template: 100% / 70% 10% 10% 10%;
+  grid-area: 1 span 1 / 1 span 1;
+  background-color: #adacac;
+  border: 1px solid #000000;
+}
+
+.product-ac-item-title-name {
+  grid-area: 1 span 1 / 1 span 1;
+}
+
+.product-ac-item-title-price {
+  grid-area: 1 span 1 / 2 span 1;
+}
+
+.product-ac-item-title-time {
+  grid-area: 1 span 1 / 3 span 1;
+}
+
+.product-ac-item-title-purchase {
+  grid-area: 1 span 1 / 4 span 1;
+}
+
+.product-purchase-grid-ac {
+  flex-shrink: 1;
+  display: grid;
+  grid-template: 100% / 70% 10% 10% 10%;
+  border-bottom: 1px solid #adacac;
+}
+
+.product-ac-name {
+  grid-area: 1 span 1 / 1 span 1;
+}
+
+.product-ac-price {
+  grid-area: 1 span 1 / 2 span 1;
+}
+
+.product-ac-time-execution {
+  grid-area: 1 span 1 / 3 span 1;
+}
+
+.product-ac-purchase {
+  grid-area: 1 span 1 / 4 span 1;
+}
+

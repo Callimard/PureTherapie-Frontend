@@ -1,0 +1,52 @@
+.package-purchase-modal-title {
+  text-decoration: underline;
+}
+
+.separator {
+  width: 60%;
+}
+
+.bundle-purchase-info-header {
+  display: grid;
+  grid-template: 100% / 50% 50%;
+}
+
+.bundle-name {
+  grid-area: 1 span 1 / 1 span 1;
+}
+
+.bundle-price {
+  grid-area: 1 span 1 / 2 span 1;
+}
+
+.acp-row {
+  flex-shrink: 1;
+  display: grid;
+  grid-template: 100% / 80% 20%;
+  border-bottom: 1px solid #000000;
+}
+
+.acp-ac-name {
+  grid-area: 1 span 1 / 1 span 1;
+}
+
+.acp-stock {
+  grid-area: 1 span 1 / 2 span 1;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.ac-purchase-info-header {
+  display: grid;
+  grid-template: 100% / 50% 50%;
+}
+
+.ac-name {
+  grid-area: 1 span 1 / 1 span 1;
+}
+
+.ac-price {
+  grid-area: 1 span 1 / 2 span 1;
+}

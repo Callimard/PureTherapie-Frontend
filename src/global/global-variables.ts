@@ -18,6 +18,7 @@ export class GlobalVariables {
   public static readonly INTERN_APPOINTMENTS_URL = 'appointments';
   public static readonly INTERN_ADMINISTRATION_URL = 'administration';
   public static readonly INTERN_ADMINISTRATION_CLIENT_URL = GlobalVariables.INTERN_ADMINISTRATION_URL + '/clients';
+  public static readonly INTERN_PRODUCT_PURCHASE_URL = 'product-purchase';
 
   // BACKEND Session
 
@@ -44,6 +45,13 @@ export class GlobalVariables {
   public static readonly PERSON_ORIGINS_URL = GlobalVariables.CLIENTS_URL + "/person_origins";
 
   public static readonly AESTHETIC_CARES_URL = GlobalVariables.API_V1_URL + "/aesthetic_cares";
+
+  public static readonly AESTHETIC_CARE_PACKAGES_URL = GlobalVariables.API_V1_URL + "/aesthetic_care_packages";
+  public static readonly AESTHETIC_CARE_PURCHASE = "/purchase";
+
+  public static readonly BUNDLES_URL = GlobalVariables.API_V1_URL + "/bundles";
+  public static readonly BUNDLE_PURCHASE = "/purchase";
+
 
   public static readonly TECHNICIANS_URL = GlobalVariables.API_V1_URL + "/technicians";
 

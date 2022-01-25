@@ -72,8 +72,6 @@ export class ClientRegistrationComponent implements OnInit {
 
   private chargeAllPersonOrigins() {
     this.clientOriginService.getAllPersonOrigins().then((origins) => {
-      console.log("Receive origin");
-      console.log(origins);
       this.personOrigins = origins;
     }).catch(err => {
       console.log("Fail to receive person origins");
