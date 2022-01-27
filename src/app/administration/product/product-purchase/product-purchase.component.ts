@@ -5,6 +5,7 @@ import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {ProductPurchaseModalComponent} from "./product-purchase-modal/product-purchase-modal.component";
 import {AestheticCareService} from "../../../../services/product/aesthetic/care/aesthetic-care.service";
 import {BundleService} from "../../../../services/product/aesthetic/bundle/bundle.service";
+import {AuthenticationService} from "../../../../services/auth/authentication.service";
 
 @Component({
   selector: 'app-product-purchase',
@@ -19,11 +20,12 @@ export class ProductPurchaseComponent implements OnInit {
 
   productPurchaseModalRef?: BsModalRef;
 
-  constructor(private acService: AestheticCareService, private bundleService: BundleService,
-              private modalService: BsModalService) {
+  constructor(private acService: AestheticCareService, private authenticationService: AuthenticationService,
+              private bundleService: BundleService, private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
+    this.authenticationService.checkLogin();
     this.chargeACs();
     this.chargeBundles();
   }
@@ -38,7 +40,6 @@ export class ProductPurchaseComponent implements OnInit {
 
   private chargeBundles() {
     this.bundleService.getAllBundles().then((res) => {
-      console.log("All bundles = ", res);
       this.bundles = res;
     }).catch(() => {
       console.error("Fail to charge all Bundles");

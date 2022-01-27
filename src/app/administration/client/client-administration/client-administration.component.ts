@@ -4,6 +4,7 @@ import {ClientService} from "../../../../services/person/client/client.service";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {ClientEditionModalComponent} from "./client-edition-modal/client-edition-modal.component";
 import {ClientRegistrationModalComponent} from "./client-registration-modal/client-registration-modal.component";
+import {AuthenticationService} from "../../../../services/auth/authentication.service";
 
 @Component({
   selector: 'app-client-administration',
@@ -24,10 +25,12 @@ export class ClientAdministrationComponent implements OnInit {
   clientEditionModal?: BsModalRef;
   clientRegistrationModal?: BsModalRef;
 
-  constructor(private clientService: ClientService, private modalService: BsModalService) {
+  constructor(private clientService: ClientService, private modalService: BsModalService,
+              private authenticationService: AuthenticationService) {
   }
 
   ngOnInit(): void {
+    this.authenticationService.checkLogin();
   }
 
   search() {

@@ -4,6 +4,7 @@ import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {ClientService} from "../../../../../services/person/client/client.service";
 import {SuccessModalComponent} from "../../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
+import {AuthenticationService} from "../../../../../services/auth/authentication.service";
 
 @Component({
   selector: 'app-client-edition-modal',
@@ -16,10 +17,12 @@ export class ClientEditionModalComponent implements OnInit {
   baseClient: ClientDTO = ClientDTO.default();
   updatedClient: ClientDTO = ClientDTO.default();
 
-  constructor(private clientService: ClientService, public bsModalRef: BsModalRef, private modalService: BsModalService) {
+  constructor(private clientService: ClientService, private authenticationService: AuthenticationService,
+              public bsModalRef: BsModalRef, private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
+    this.authenticationService.checkLogin();
   }
 
   closeClientEditionModal() {

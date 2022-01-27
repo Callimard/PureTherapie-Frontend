@@ -11,6 +11,7 @@ import {
 } from "../../../../../services/person/client/registration/client-registration-fail-dto";
 import {SuccessModalComponent} from "../../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
+import {AuthenticationService} from "../../../../../services/auth/authentication.service";
 
 @Component({
   selector: 'app-client-registration-modal',
@@ -32,11 +33,12 @@ export class ClientRegistrationModalComponent implements OnInit {
   confirmationModal?: BsModalRef;
 
   constructor(private clientOriginService: ClientOriginService, private clientRegistrationService: ClientRegistrationService,
-              public bsModalRef: BsModalRef, private modalService: BsModalService) {
+              private authenticationService: AuthenticationService, public bsModalRef: BsModalRef, private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
     this.chargeAllPersonOrigins();
+    this.authenticationService.checkLogin();
   }
 
   private chargeAllPersonOrigins() {
