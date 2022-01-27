@@ -15,6 +15,7 @@ import {GlobalVariables} from "../../../global/global-variables";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {AppointmentDataService} from "../../../services/appointment/take_appointment/appointment-data.service";
 import {AppointmentData} from "../../../services/appointment/take_appointment/appointment-data";
+import {SimpleClientInfoDTO} from "../../../services/person/client/simple-client-info-dto";
 
 @Component({
   selector: 'app-take-appointment',
@@ -34,7 +35,7 @@ export class TakeAppointmentComponent implements OnInit {
   selectedFreeTS: FreeTimeSlotDTO;
   selectedDay: string;
 
-  client: ClientDTO = ClientDTO.default();
+  client: SimpleClientInfoDTO = SimpleClientInfoDTO.default();
 
   private readonly today = new Date();
 
@@ -166,7 +167,7 @@ export class TakeAppointmentComponent implements OnInit {
     this.clientNotFound = false;
     this.clientFound = false;
 
-    let client: ClientDTO = await this.clientService.searchClientWithEmail(this.clientEmail);
+    let client: SimpleClientInfoDTO = await this.clientService.searchClientWithEmail(this.clientEmail);
     if (client == null) {
       this.clientNotFound = true;
       this.client = ClientDTO.default();
