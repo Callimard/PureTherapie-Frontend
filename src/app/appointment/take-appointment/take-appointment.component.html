@@ -69,9 +69,6 @@
           <br/>
           <strong>Soin pratiqué: </strong> {{this.selectedAC.name}}<br/>
           <strong>Temps de prise en charge: </strong> {{this.selectedAC.timeExecution}} min<br/>
-          <span
-            *ngIf="newClient !== 'true'"><strong>Client: </strong> {{this.client.lastName}} {{this.client.firstName}}
-            <br/></span>
         </p>
       </div>
       <div class="modal-footer">
@@ -93,7 +90,6 @@
     <br/>
     <strong>Soin pratiqué: </strong> {{this.selectedAC.name}}<br/>
     <strong>Temps de prise en charge: </strong> {{this.selectedAC.timeExecution}} min<br/>
-    <strong>Client: </strong> {{this.client.lastName}} {{this.client.firstName}}<br/>
   </p>
   <a href="https://puretherapie.com/" class="btn btn-primary">Retour à l'acceuil PureTherapie</a>
 </div>

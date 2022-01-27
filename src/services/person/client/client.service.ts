@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {ClientDTO} from "./client-dto";
 import {GlobalVariables} from "../../../global/global-variables";
+import {SimpleClientInfoDTO} from "./simple-client-info-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -32,9 +33,9 @@ export class ClientService {
     }));
   }
 
-  public searchClientWithEmail(clientEmail: string): Promise<ClientDTO> {
-    return new Promise<ClientDTO>(((resolve, reject) => {
-      this.httpClient.get<ClientDTO>(GlobalVariables.CLIENTS_GET_WITH_EMAIL_URL + "?email=" + clientEmail).subscribe({
+  public searchClientWithEmail(clientEmail: string): Promise<SimpleClientInfoDTO> {
+    return new Promise<SimpleClientInfoDTO>(((resolve, reject) => {
+      this.httpClient.get<SimpleClientInfoDTO>(GlobalVariables.CLIENTS_GET_WITH_EMAIL_URL + "?email=" + clientEmail).subscribe({
         next: (client) => {
           resolve(client);
         },
