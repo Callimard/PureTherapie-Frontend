@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BasicCredential} from "./basic-credential";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {GlobalVariables} from "../../global/global-variables";
 import {Router} from "@angular/router";
 
@@ -53,6 +53,19 @@ export class AuthenticationService {
         this.router.navigate(['/', GlobalVariables.INTERN_LOGIN_URL]);
       }
     });
+  }
+
+  public checkLogin() {
+    this.httpClient.head<string>(GlobalVariables.LOGIN_URL).subscribe({
+      next: (res) => {
+        console.log("CHECK LOGIN GOOD ", res);
+        this.setAuthenticated();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.setNotAuthenticated();
+        this.router.navigate(['/' + GlobalVariables.INTERN_LOGIN_URL]);
+      }
+    })
   }
 
   public isAuthenticated(): boolean {

@@ -2,12 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {BundleDTO} from "../../../../../services/product/aesthetic/bundle/bundle-dto";
 import {ClientService} from "../../../../../services/person/client/client.service";
+import {ClientDTO} from "../../../../../services/person/client/client-dto";
 import {AestheticCareDTO} from "../../../../../services/product/aesthetic/care/aesthetic-care-dto";
 import {AestheticCareService} from "../../../../../services/product/aesthetic/care/aesthetic-care.service";
 import {SuccessModalComponent} from "../../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
 import {BundleService} from "../../../../../services/product/aesthetic/bundle/bundle.service";
-import {SimpleClientInfoDTO} from "../../../../../services/person/client/simple-client-info-dto";
+import {AuthenticationService} from "../../../../../services/auth/authentication.service";
 
 @Component({
   selector: 'app-product-purchase-modal',
@@ -30,11 +31,12 @@ export class ProductPurchaseModalComponent implements OnInit {
   acToPurchase: AestheticCareDTO = AestheticCareDTO.default();
 
   constructor(private clientService: ClientService, private acService: AestheticCareService,
-              private bundleService: BundleService, public bsModalRef: BsModalRef,
-              private modalService: BsModalService) {
+              private bundleService: BundleService, private authenticationService: AuthenticationService,
+              public bsModalRef: BsModalRef, private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
+    this.authenticationService.checkLogin();
   }
 
   close() {
@@ -105,4 +107,5 @@ export class ProductPurchaseModalComponent implements OnInit {
       }
     });
   }
+
 }
