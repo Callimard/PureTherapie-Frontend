@@ -19,6 +19,7 @@ export class GlobalVariables {
   public static readonly INTERN_ADMINISTRATION_URL = 'administration';
   public static readonly INTERN_ADMINISTRATION_CLIENT_URL = GlobalVariables.INTERN_ADMINISTRATION_URL + '/clients';
   public static readonly INTERN_PRODUCT_PURCHASE_URL = 'product-purchase';
+  public static readonly INTERN_AGENDA_URL = 'agenda';
 
   // BACKEND Session
 
@@ -57,6 +58,7 @@ export class GlobalVariables {
 
   public static readonly AGENDA_URL = GlobalVariables.API_V1_URL + "/agenda";
   public static readonly TECHNICIAN_FREE_TIME_SLOTS_URL = GlobalVariables.AGENDA_URL + "/technicians/free_time_slots";
+  public static readonly DAY_ALL_TIME_SLOTS_URL = GlobalVariables.AGENDA_URL + "/time_slots";
 
   public static readonly APPOINTMENT_URL = GlobalVariables.API_V1_URL + "/appointments";
 }

@@ -1,0 +1,27 @@
+<div class="agenda-container d-flex flex-column  justify-content-start flex-fill border m-2">
+  <div class="agenda-header d-flex flex-row justify-content-start">
+    <h2 class="px-3 my-2">Gestion de l'agenda</h2>
+  </div>
+  <div class="d-flex flex-row justify-content-start p-2 m-sm-2">
+    <button class="add-appointment-btn btn btn-primary p-2 mx-2" type="button">Créer un rendez-vous
+    </button>
+  </div>
+  <div class="calendar-container d-flex justify-content-around flex-fill border m-2 p-2 bg-secondary">
+    <div class="d-flex flex-column justify-content-start flex-grow-1 mx-2 border"
+         *ngFor="let technician of technicians">
+      <div class="d-flex justify-content-center align-items-center bg-info">
+        <h4 class="technician-agenda-title p-3">{{technician.firstName}} {{technician.lastName.toUpperCase()}}</h4>
+      </div>
+      <div class="technician-agenda flex-fill d-flex justify-content-start bg-danger">
+        <div class="times flex-shrink-1 d-flex flex-column justify-content-start">
+          <span class="flex-grow-1" style="font-weight: bold" *ngFor="let ts of timeSlots">
+            {{ts.begin}}
+          </span>
+        </div>
+        <div class="time-slots flex-grow-1 d-flex flex-column justify-content-start">
+          <button type="button" class="ts-button flex-grow-1" *ngFor="let ts of timeSlots"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

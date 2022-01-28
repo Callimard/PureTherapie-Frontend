@@ -1,0 +1,23 @@
+.agenda-container {
+  border-radius: 10px;
+}
+
+.agenda-header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0 1px 2px black;
+  background-color: #2dadf1;
+}
+
+.add-appointment-btn {
+  font-weight: bold;
+}
+
+.technician-agenda-title {
+  font-weight: bold;
+  line-height: 0;
+}
+
+.ts-button:hover {
+  background-color: #4ab42c;
+}
