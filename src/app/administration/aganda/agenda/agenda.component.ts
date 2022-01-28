@@ -27,7 +27,7 @@ export class AgendaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.chargeTechnician()
+    this.recharge()
   }
 
   private chargeTechnician() {
@@ -53,6 +53,23 @@ export class AgendaComponent implements OnInit {
     this.createAppointmentModal = this.modalService.show(CreateAppointmentModalComponent, {
       class: 'medium-modal'
     });
+    this.createAppointmentModal.content.agenda = this;
+  }
+
+  clickOnFreeTS(proposedTechnician: TechnicianDTO, day: string, time: string, duration: number) {
+    this.createAppointmentModal = this.modalService.show(CreateAppointmentModalComponent);
+    this.createAppointmentModal.content.idParamTechnician = proposedTechnician.idPerson;
+    this.createAppointmentModal.content.selectedDay = day;
+    this.createAppointmentModal.content.paramTime = time;
+    this.createAppointmentModal.content.agenda = this;
+  }
+
+  clickOnOccupiedTS() {
+    console.log("Click on occupied TS")
+  }
+
+  recharge() {
+    this.chargeTechnician()
   }
 
 }

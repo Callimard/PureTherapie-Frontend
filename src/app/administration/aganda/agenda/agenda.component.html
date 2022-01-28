@@ -26,7 +26,8 @@
         </div>
         <div class="time-slots flex-grow-1 d-flex flex-column justify-content-start">
           <div class="technician-ts flex-grow-1" [class.ts-free]="ts.free" [class.ts-occupied]="!ts.free"
-               *ngFor="let ts of technicianTimeSlotMap.get(technician.idPerson)"></div>
+               *ngFor="let ts of technicianTimeSlotMap.get(technician.idPerson)"
+               (click)="ts.free ? clickOnFreeTS(technician, ts.day, ts.begin, ts.time) : clickOnOccupiedTS()"></div>
         </div>
       </div>
     </div>

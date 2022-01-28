@@ -14,6 +14,7 @@ import {TakeAppointmentDTO} from "../../../../../services/appointment/take_appoi
 import {AppointmentService} from "../../../../../services/appointment/appointment.service";
 import {SuccessModalComponent} from "../../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
+import {AgendaComponent} from "../agenda.component";
 
 @Component({
   selector: 'app-create-appointment-modal',
@@ -21,9 +22,8 @@ import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.c
   styleUrls: ['./create-appointment-modal.component.css']
 })
 export class CreateAppointmentModalComponent implements OnInit {
-
-  proposedTechnician?: TechnicianDTO;
-  time?: string;
+  idParamTechnician?: number;
+  paramTime?: string;
 
   allACs: AestheticCareDTO[] = [];
   allTechnicians: TechnicianDTO[] = [];
@@ -40,6 +40,8 @@ export class CreateAppointmentModalComponent implements OnInit {
   clientEmail: string = "";
 
   recapAppointmentModalRef?: BsModalRef;
+
+  agenda?: AgendaComponent;
 
   constructor(private clientService: ClientService, private appointmentService: AppointmentService,
               private acService: AestheticCareService, private technicianService: TechnicianService,
@@ -62,8 +64,18 @@ export class CreateAppointmentModalComponent implements OnInit {
   private chargeTechnician() {
     this.technicianService.getAllTechnicians().then(res => {
       this.allTechnicians = res;
-      if (this.proposedTechnician != null) {
-        this.selectedTechnician = this.proposedTechnician;
+      if (this.idParamTechnician !== undefined) {
+        let found = false;
+        for (let tech of this.allTechnicians) {
+          if (tech.idPerson == this.idParamTechnician) {
+            this.selectedTechnician = tech;
+            found = true;
+            break;
+          }
+        }
+
+        if (!found)
+          this.selectedTechnician = this.allTechnicians[0];
       } else {
         this.selectedTechnician = this.allTechnicians[0];
       }
@@ -81,14 +93,18 @@ export class CreateAppointmentModalComponent implements OnInit {
   private chargeFreeTimeSlots() {
     this.agendaService.getFreeTimeSlots(this.selectedTechnician.idPerson, this.selectedDay, this.selectedAC.timeExecution).then(res => {
       this.allFreeTS = res;
-      if (this.time != null) {
+      if (this.paramTime !== undefined) {
+        let found = false;
         for (let freeTS of this.allFreeTS) {
-          if (freeTS.begin === this.time) {
+          if (freeTS.begin === this.paramTime) {
             this.selectedFreeTS = freeTS;
-            return;
+            found = true;
+            break;
           }
         }
-        this.selectedFreeTS = this.allFreeTS[0];
+
+        if (!found)
+          this.selectedFreeTS = this.allFreeTS[0];
       } else {
         this.selectedFreeTS = this.allFreeTS[0];
       }
@@ -128,23 +144,32 @@ export class CreateAppointmentModalComponent implements OnInit {
 
   private demandAppointment(takeAppointmentDTO: TakeAppointmentDTO) {
     this.appointmentService.takeAppointment(takeAppointmentDTO).then(() => {
-      this.chargeFreeTimeSlots();
-      this.modalService.show(SuccessModalComponent, {
-        initialState: {
-          title: "Création du rendez-vous réussie",
-          text: "La création du rendez-vous a réussie!"
-        }
-      });
-      this.bsModalRef.hide();
+      this.creationAppointmentSuccess();
     }).catch((err) => {
-      console.error("Fail for taking an appointment", err);
-      this.chargeFreeTimeSlots();
-      this.modalService.show(FailModalComponent, {
-        initialState: {
-          title: "Création du rendez-vous échouée",
-          text: "La création du rendez-vous n'a pas réussie."
-        }
-      });
+      this.creationAppointmentFail(err);
+    });
+  }
+
+  private creationAppointmentSuccess() {
+    this.chargeFreeTimeSlots();
+    this.modalService.show(SuccessModalComponent, {
+      initialState: {
+        title: "Création du rendez-vous réussie",
+        text: "La création du rendez-vous a réussie!"
+      }
+    });
+    this.agenda?.recharge();
+    this.bsModalRef.hide();
+  }
+
+  private creationAppointmentFail(err: any) {
+    console.error("Fail for taking an appointment", err);
+    this.chargeFreeTimeSlots();
+    this.modalService.show(FailModalComponent, {
+      initialState: {
+        title: "Création du rendez-vous échouée",
+        text: "La création du rendez-vous n'a pas réussie."
+      }
     });
   }
 
