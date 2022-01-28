@@ -7,12 +7,16 @@ export class TimeSlotDTO {
               public begin: string,
               public time: number,
               public free: boolean,
+              public isLaunchBreak: boolean,
+              public isAbsence: boolean,
               public technician: TechnicianDTO,
               public appointment: AppointmentDTO) {
   }
 
   public static default(): TimeSlotDTO {
     return new TimeSlotDTO(-1, "DEFAULT_TIME_SLOT", "DEFAULT_TIME_SLOT", -1, false,
-      TechnicianDTO.default(), AppointmentDTO.default());
+      false, false, TechnicianDTO.default(), AppointmentDTO.default()
+    )
+      ;
   }
 }

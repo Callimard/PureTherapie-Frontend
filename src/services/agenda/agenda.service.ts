@@ -27,14 +27,15 @@ export class AgendaService {
     }));
   }
 
-  public getAllTimeSlots(day: string): Promise<TimeSlotDTO[]> {
+  public getAllTimeSlotsOfTechnician(idTechnician: number, day: string): Promise<TimeSlotDTO[]> {
     return new Promise<TimeSlotDTO[]>(((resolve, reject) => {
-      this.httpClient.get<TimeSlotDTO[]>(GlobalVariables.DAY_ALL_TIME_SLOTS_URL + "?date=" + day).subscribe({
+      this.httpClient.get<TimeSlotDTO[]>(GlobalVariables.DAY_ALL_TECHNICIAN_TIME_SLOTS_URL + "?idTechnician=" +
+        idTechnician + "&date=" + day).subscribe({
         next: (res) => {
           resolve(res);
         },
         error: (err: HttpErrorResponse) => {
-          console.error("Fail to get all time slot of the day " + day);
+          console.error("Fail to get all technician TS of the day, Error = ", err);
           reject(err.error);
         }
       });

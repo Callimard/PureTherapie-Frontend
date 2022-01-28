@@ -18,6 +18,34 @@
   line-height: 0;
 }
 
-.ts-button:hover {
-  background-color: #4ab42c;
+.agenda-day-label {
+  font-weight: bold;
+}
+
+.technician-ts {
+  border-bottom: 1px solid black;
+}
+
+.technician-ts:hover {
+  background-color: rgb(80, 106, 145);
+}
+
+.technician-ts:active {
+  box-shadow: rgba(50, 50, 93, 0.25) 0 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0 18px 36px -18px inset;
+}
+
+.ts-occupied {
+  background-color: #da6817;
+}
+
+.ts-occupied:hover {
+  background-color: rgba(218, 23, 29, 0.34);
+}
+
+.ts-free {
+  background-color: #61d910;
+}
+
+.ts-free:hover {
+  background-color: rgba(16, 103, 217, 0.34);
 }

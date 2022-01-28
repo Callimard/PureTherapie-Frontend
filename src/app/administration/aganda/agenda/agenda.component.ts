@@ -14,7 +14,7 @@ import {DateTool} from "../../../../services/agenda/date-tool";
 export class AgendaComponent implements OnInit {
 
   technicians: TechnicianDTO[] = [];
-  timeSlots: TimeSlotDTO[] = [];
+  technicianTimeSlotMap: Map<number, TimeSlotDTO[]> = new Map<number, TimeSlotDTO[]>();
 
   today: string = DateTool.toMySQLDateString(new Date());
 
@@ -28,15 +28,20 @@ export class AgendaComponent implements OnInit {
   private chargeTechnician() {
     this.technicianService.getAllTechnicians().then(res => {
       this.technicians = res;
-      this.chargeAllTimeSlots();
+      for (let tech of this.technicians)
+        this.chargeAllTimeSlots(tech.idPerson);
     });
   }
 
-  private chargeAllTimeSlots() {
-    this.agendaService.getAllTimeSlots(this.today).then((res) => {
-      this.timeSlots = res;
-      console.log("Success to charge TS => ", this.timeSlots);
+  private chargeAllTimeSlots(idTechnician: number) {
+    this.agendaService.getAllTimeSlotsOfTechnician(idTechnician, this.today).then((res) => {
+      this.technicianTimeSlotMap.set(idTechnician, res);
     });
+  }
+
+  dayChange() {
+    for (let tech of this.technicians)
+      this.chargeAllTimeSlots(tech.idPerson);
   }
 
 }

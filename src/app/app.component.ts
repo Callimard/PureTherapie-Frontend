@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {AuthenticationService} from "../services/auth/authentication.service";
+import {Router} from "@angular/router";
+import {GlobalVariables} from "../global/global-variables";
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,7 @@ import {AuthenticationService} from "../services/auth/authentication.service";
 export class AppComponent {
   title = 'puretherapie-agenda-crm-angular-front-end';
 
-  constructor(private authService: AuthenticationService) {
+  constructor(private authService: AuthenticationService, private router: Router) {
   }
 
   isAuthenticated(): boolean {
@@ -19,6 +21,7 @@ export class AppComponent {
   logout(): void {
     console.log("Try to logout");
     this.authService.logout();
+    this.router.navigate(['/', GlobalVariables.INTERN_LOGIN_URL]);
   }
 
   username(): string | undefined {

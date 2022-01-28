@@ -2,9 +2,13 @@
   <div class="agenda-header d-flex flex-row justify-content-start">
     <h2 class="px-3 my-2">Gestion de l'agenda</h2>
   </div>
-  <div class="d-flex flex-row justify-content-start p-2 m-sm-2">
+  <div class="d-flex justify-content-start p-2 m-2">
     <button class="add-appointment-btn btn btn-primary p-2 mx-2" type="button">Créer un rendez-vous
     </button>
+  </div>
+  <div class="d-flex justify-content-start p-2 m-2">
+    <label class="agenda-day-label mx-3" for="agenda-day">Jour: </label>
+    <input type="date" name="agenda-day" id="agenda-day" (change)="dayChange()" [(ngModel)]="today"/>
   </div>
   <div class="calendar-container d-flex justify-content-around flex-fill border m-2 p-2 bg-secondary">
     <div class="d-flex flex-column justify-content-start flex-grow-1 mx-2 border"
@@ -14,12 +18,14 @@
       </div>
       <div class="technician-agenda flex-fill d-flex justify-content-start bg-danger">
         <div class="times flex-shrink-1 d-flex flex-column justify-content-start">
-          <span class="flex-grow-1" style="font-weight: bold" *ngFor="let ts of timeSlots">
+          <span class="flex-grow-1" style="font-weight: bold"
+                *ngFor="let ts of technicianTimeSlotMap.get(technician.idPerson)">
             {{ts.begin}}
           </span>
         </div>
         <div class="time-slots flex-grow-1 d-flex flex-column justify-content-start">
-          <button type="button" class="ts-button flex-grow-1" *ngFor="let ts of timeSlots"></button>
+          <div class="technician-ts flex-grow-1" [class.ts-free]="ts.free" [class.ts-occupied]="!ts.free"
+               *ngFor="let ts of technicianTimeSlotMap.get(technician.idPerson)"></div>
         </div>
       </div>
     </div>
