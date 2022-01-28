@@ -130,7 +130,6 @@ export class TakeAppointmentComponent implements OnInit {
   }
 
   private demandAppointment(takeAppointmentDTO: TakeAppointmentDTO) {
-    console.log('New client param = ', this.newClient);
     if (this.newClient === GlobalVariables.FALSE_STRING) {
       if (this.correctClientID()) {
         this.postTakeAppointment(takeAppointmentDTO);

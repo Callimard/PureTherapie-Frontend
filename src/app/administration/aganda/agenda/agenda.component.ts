@@ -4,6 +4,8 @@ import {TechnicianService} from "../../../../services/person/technician/technici
 import {AgendaService} from "../../../../services/agenda/agenda.service";
 import {TimeSlotDTO} from "../../../../services/agenda/time-slot-dto";
 import {DateTool} from "../../../../services/agenda/date-tool";
+import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
+import {CreateAppointmentModalComponent} from "./create-appointment-modal/create-appointment-modal.component";
 
 @Component({
   selector: 'app-agenda',
@@ -18,7 +20,10 @@ export class AgendaComponent implements OnInit {
 
   today: string = DateTool.toMySQLDateString(new Date());
 
-  constructor(private technicianService: TechnicianService, private agendaService: AgendaService) {
+  createAppointmentModal?: BsModalRef;
+
+  constructor(private technicianService: TechnicianService, private agendaService: AgendaService,
+              private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
@@ -42,6 +47,12 @@ export class AgendaComponent implements OnInit {
   dayChange() {
     for (let tech of this.technicians)
       this.chargeAllTimeSlots(tech.idPerson);
+  }
+
+  createAppointment() {
+    this.createAppointmentModal = this.modalService.show(CreateAppointmentModalComponent, {
+      class: 'medium-modal'
+    });
   }
 
 }

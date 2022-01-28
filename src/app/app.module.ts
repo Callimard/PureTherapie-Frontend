@@ -33,6 +33,7 @@ import {
   ProductPurchaseModalComponent
 } from './administration/product/product-purchase/product-purchase-modal/product-purchase-modal.component';
 import {AgendaComponent} from './administration/aganda/agenda/agenda.component';
+import { CreateAppointmentModalComponent } from './administration/aganda/agenda/create-appointment-modal/create-appointment-modal.component';
 
 const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_LOGIN_URL, component: LoginComponent},
@@ -60,7 +61,8 @@ const appRoutes: Routes = [
     FailModalComponent,
     ProductPurchaseComponent,
     ProductPurchaseModalComponent,
-    AgendaComponent
+    AgendaComponent,
+    CreateAppointmentModalComponent
   ],
   imports: [
     TooltipModule.forRoot(),
