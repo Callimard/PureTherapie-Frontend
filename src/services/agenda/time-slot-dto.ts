@@ -13,10 +13,9 @@ export class TimeSlotDTO {
               public appointment: AppointmentDTO) {
   }
 
-  public static default(): TimeSlotDTO {
+  public static default(appointment?: AppointmentDTO): TimeSlotDTO {
     return new TimeSlotDTO(-1, "DEFAULT_TIME_SLOT", "DEFAULT_TIME_SLOT", -1, false,
-      false, false, TechnicianDTO.default(), AppointmentDTO.default()
-    )
-      ;
+      false, false, TechnicianDTO.default(),
+      appointment === undefined ? AppointmentDTO.default() : appointment);
   }
 }

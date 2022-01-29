@@ -61,5 +61,6 @@ export class GlobalVariables {
   public static readonly DAY_ALL_TIME_SLOTS_URL = GlobalVariables.AGENDA_URL + "/time_slots";
   public static readonly DAY_ALL_TECHNICIAN_TIME_SLOTS_URL = GlobalVariables.AGENDA_URL + "/technician/time_slots";
 
-  public static readonly APPOINTMENT_URL = GlobalVariables.API_V1_URL + "/appointments";
+  public static readonly APPOINTMENTS_URL = GlobalVariables.API_V1_URL + "/appointments";
+  public static readonly APPOINTMENTS_CANCELLATION_URL = GlobalVariables.APPOINTMENTS_URL + "/cancel";
 }

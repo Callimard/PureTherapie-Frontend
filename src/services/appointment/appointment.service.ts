@@ -3,6 +3,7 @@ import {TakeAppointmentDTO} from "./take_appointment/take-appointment-dto";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {GlobalVariables} from "../../global/global-variables";
 import {TakeAppointmentSuccessDTO} from "./take_appointment/take-appointment-success-dto";
+import {SimpleResponseDTO} from "../util/simple-response-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,10 @@ export class AppointmentService {
   }
 
   public takeAppointment(appointmentDTO: TakeAppointmentDTO): Promise<TakeAppointmentSuccessDTO> {
-    return new Promise(((resolve, reject) => {
-      this.httpClient.post<any>(GlobalVariables.APPOINTMENT_URL, appointmentDTO)
+    return new Promise<TakeAppointmentSuccessDTO>(((resolve, reject) => {
+      this.httpClient.post<any>(GlobalVariables.APPOINTMENTS_URL, appointmentDTO)
         .subscribe({
           next: (resp) => {
-            console.log("Appointment success, ", resp);
             resolve(resp);
           },
           error: (err: HttpErrorResponse) => {
@@ -26,5 +26,19 @@ export class AppointmentService {
           }
         });
     }));
+  }
+
+  public cancelAppointment(idAppointment: number): Promise<any> {
+    return new Promise<any>(((resolve, reject) => {
+      this.httpClient.post<SimpleResponseDTO>(GlobalVariables.APPOINTMENTS_CANCELLATION_URL + "?idAppointment=" + idAppointment, null).subscribe({
+        next: (res) => {
+          resolve(res.message)
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to cancel appointment, Err = ", err.error);
+          reject(err.error);
+        }
+      })
+    }))
   }
 }

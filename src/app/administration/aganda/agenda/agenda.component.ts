@@ -6,6 +6,8 @@ import {TimeSlotDTO} from "../../../../services/agenda/time-slot-dto";
 import {DateTool} from "../../../../services/agenda/date-tool";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {CreateAppointmentModalComponent} from "./create-appointment-modal/create-appointment-modal.component";
+import {AppointmentSummaryModalComponent} from "./appointment-summary-modal/appointment-summary-modal.component";
+import {AppointmentDTO} from "../../../../services/appointment/appointment-dto";
 
 @Component({
   selector: 'app-agenda',
@@ -21,6 +23,7 @@ export class AgendaComponent implements OnInit {
   today: string = DateTool.toMySQLDateString(new Date());
 
   createAppointmentModal?: BsModalRef;
+  appointmentSummaryModal?: BsModalRef;
 
   constructor(private technicianService: TechnicianService, private agendaService: AgendaService,
               private modalService: BsModalService) {
@@ -56,7 +59,7 @@ export class AgendaComponent implements OnInit {
     this.createAppointmentModal.content.agenda = this;
   }
 
-  clickOnFreeTS(proposedTechnician: TechnicianDTO, day: string, time: string, duration: number) {
+  clickOnFreeTS(proposedTechnician: TechnicianDTO, day: string, time: string) {
     this.createAppointmentModal = this.modalService.show(CreateAppointmentModalComponent);
     this.createAppointmentModal.content.idParamTechnician = proposedTechnician.idPerson;
     this.createAppointmentModal.content.selectedDay = day;
@@ -64,8 +67,10 @@ export class AgendaComponent implements OnInit {
     this.createAppointmentModal.content.agenda = this;
   }
 
-  clickOnOccupiedTS() {
-    console.log("Click on occupied TS")
+  clickOnOccupiedTS(appointment: AppointmentDTO) {
+    this.appointmentSummaryModal = this.modalService.show(AppointmentSummaryModalComponent);
+    this.appointmentSummaryModal.content.appointmentInfo = appointment;
+    this.appointmentSummaryModal.content.agenda = this;
   }
 
   recharge() {

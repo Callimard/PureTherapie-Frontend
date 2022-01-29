@@ -36,7 +36,7 @@ hr {
   height: 60%;
 }
 
-.alert {
+.alert, .text-bold {
   font-weight: bold;
 }
 

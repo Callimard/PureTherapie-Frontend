@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {BasicCredential} from "./basic-credential";
 import {HttpClient} from "@angular/common/http";
 import {GlobalVariables} from "../../global/global-variables";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthenticationService {
   private basicCredential?: BasicCredential;
   private authenticated: boolean = false;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private router: Router) {
   }
 
   public login(username: string, password: string): Promise<string> {
@@ -45,9 +46,11 @@ export class AuthenticationService {
     this.httpClient.post(GlobalVariables.LOGOUT_URL, null).subscribe({
       next: () => {
         this.setNotAuthenticated();
+        this.router.navigate(['/', GlobalVariables.INTERN_LOGIN_URL]);
       },
       error: () => {
         this.setNotAuthenticated();
+        this.router.navigate(['/', GlobalVariables.INTERN_LOGIN_URL]);
       }
     });
   }

@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {AuthenticationService} from "../services/auth/authentication.service";
 import {Router} from "@angular/router";
-import {GlobalVariables} from "../global/global-variables";
 
 @Component({
   selector: 'app-root',
@@ -21,7 +20,6 @@ export class AppComponent {
   logout(): void {
     console.log("Try to logout");
     this.authService.logout();
-    this.router.navigate(['/', GlobalVariables.INTERN_LOGIN_URL]);
   }
 
   username(): string | undefined {
