@@ -4,6 +4,10 @@ import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {ClientService} from "../../../../../services/person/client/client.service";
 import {SuccessModalComponent} from "../../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
+import {BundlePurchaseDTO} from "../../../../../services/product/aesthetic/bundle/bundle-purchase-dto";
+import {BundleService} from "../../../../../services/product/aesthetic/bundle/bundle.service";
+import {BillDTO} from "../../../../../services/product/bill/bill-dto";
+import {DateTool} from "../../../../../services/agenda/date-tool";
 
 @Component({
   selector: 'app-client-edition-modal',
@@ -16,10 +20,26 @@ export class ClientEditionModalComponent implements OnInit {
   baseClient: ClientDTO = ClientDTO.default();
   updatedClient: ClientDTO = ClientDTO.default();
 
-  constructor(private clientService: ClientService, public bsModalRef: BsModalRef, private modalService: BsModalService) {
+  clientBundlePurchases: BundlePurchaseDTO[] = [];
+
+  constructor(private clientService: ClientService, private bundleService: BundleService,
+              public bsModalRef: BsModalRef, private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
+    this.recharge();
+  }
+
+  recharge() {
+    this.chargeClientBundlePurchases();
+  }
+
+  private chargeClientBundlePurchases() {
+    this.bundleService.getAllClientBundlePurchases(this.baseClient.idPerson).then((res) => {
+      this.clientBundlePurchases = res;
+    }).catch(() => {
+      console.error("Fail to charge all client bundle purchases");
+    })
   }
 
   closeClientEditionModal() {
@@ -42,6 +62,28 @@ export class ClientEditionModalComponent implements OnInit {
         }
       })
     })
+  }
+
+  extractOnlyDay(dateTime: string): string {
+    return DateTool.extractOnlyDay(dateTime);
+  }
+
+  billIsTotallyPaid(bill: BillDTO) {
+    let amountPaid = 0;
+    for (let payment of bill.payments) {
+      amountPaid += payment.amountPaid;
+    }
+
+    return amountPaid == bill.purchasePrice;
+  }
+
+  billPartiallyPaid(bill: BillDTO) {
+    let amountPaid = 0;
+    for (let payment of bill.payments) {
+      amountPaid += payment.amountPaid;
+    }
+
+    return amountPaid > 0;
   }
 
 }

@@ -5,7 +5,7 @@
 
 .client-edition-body {
   display: grid;
-  grid-template: 5% 95% / 50% 50%;
+  grid-template: 5% 95% / 30% 70%;
 }
 
 .client-edition-title {
@@ -23,6 +23,7 @@
 .client-information-title {
   color: #000000;
   text-decoration: underline;
+  font-weight: bold;
 }
 
 .client-edition-information-row {
@@ -39,4 +40,64 @@
 .client-edition-information-input {
   flex-grow: 1;
   margin-left: 3%;
+}
+
+.client-edition-stock {
+  grid-row: 2 / span 1;
+  grid-column: 2 / span 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.client-stock-title {
+  font-weight: bold;
+  color: black;
+  text-decoration: underline;
+}
+
+.purchase-summary {
+  flex-grow: 1;
+  display: grid;
+  grid-template: 50% 50% / 100%;
+}
+
+.product-summary-title {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.bundle-purchase-summary {
+  grid-area: 1 span 1 / 1 span 1;
+  border-bottom: 1px solid rgba(175, 173, 173, 0.42);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.client-all-bundle-purchases {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 150px;
+  overflow: auto;
+  border: 1px solid #000000;
+}
+
+.client-bundle-purchase {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #000000;
+}
+
+.bundle-purchase-item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.ac-purchase-summary {
+  grid-area: 2 span 1 / 1 span 1;
 }

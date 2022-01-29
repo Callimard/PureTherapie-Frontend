@@ -52,6 +52,7 @@ export class GlobalVariables {
 
   public static readonly BUNDLES_URL = GlobalVariables.API_V1_URL + "/bundles";
   public static readonly BUNDLE_PURCHASE = "/purchase";
+  public static readonly CLIENT_ALL_BUNDLE_PURCHASES = "/purchases";
 
 
   public static readonly TECHNICIANS_URL = GlobalVariables.API_V1_URL + "/technicians";

@@ -3,6 +3,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {BundleDTO} from "./bundle-dto";
 import {GlobalVariables} from "../../../../global/global-variables";
 import {SimpleResponseDTO} from "../../../util/simple-response-dto";
+import {BundlePurchaseDTO} from "./bundle-purchase-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +43,20 @@ export class BundleService {
           }
         })
     }))
+  }
+
+  getAllClientBundlePurchases(idClient: number): Promise<BundlePurchaseDTO[]> {
+    return new Promise<BundlePurchaseDTO[]>(((resolve, reject) => {
+      this.httpClient.get<BundlePurchaseDTO[]>(GlobalVariables.BUNDLES_URL
+        + GlobalVariables.CLIENT_ALL_BUNDLE_PURCHASES + "?idClient=" + idClient).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to get all client bundle purchases");
+          reject(err.error);
+        }
+      })
+    }));
   }
 }
