@@ -1,0 +1,35 @@
+.client-email-label {
+  font-weight: bold;
+}
+
+.search-client-btn {
+  font-weight: bold;
+}
+
+.fail-search-client {
+  color: red;
+}
+
+.success-search-client {
+  color: green;
+}
+
+.separator {
+  width: 60%;
+}
+
+.bold-label {
+  font-weight: bold;
+}
+
+.little-span {
+  line-height: 0;
+}
+
+.create-appointment-btn {
+  font-weight: bold;
+}
+
+.btn-bold {
+  font-weight: bold;
+}

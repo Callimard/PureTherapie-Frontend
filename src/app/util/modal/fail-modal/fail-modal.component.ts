@@ -10,7 +10,7 @@ export class FailModalComponent implements OnInit {
 
   title?: string;
   text?: string;
-
+  parent?: BsModalRef;
 
   constructor(public bsModalRef: BsModalRef) { }
 
@@ -18,6 +18,7 @@ export class FailModalComponent implements OnInit {
   }
 
   close() {
+    this.parent?.hide();
     this.bsModalRef.hide();
   }
 

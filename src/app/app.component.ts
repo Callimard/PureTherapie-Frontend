@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {AuthenticationService} from "../services/auth/authentication.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import {AuthenticationService} from "../services/auth/authentication.service";
 export class AppComponent {
   title = 'puretherapie-agenda-crm-angular-front-end';
 
-  constructor(private authService: AuthenticationService) {
+  constructor(private authService: AuthenticationService, private router: Router) {
   }
 
   isAuthenticated(): boolean {

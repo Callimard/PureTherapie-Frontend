@@ -2,10 +2,8 @@
   border-radius: 10px;
 }
 
-.add_client_btn {
-  width: 10%;
-  background-color: #2dadf1;
-  color: black;
+.add-client-btn {
+  font-weight: bold;
 }
 
 .client-administration-header {

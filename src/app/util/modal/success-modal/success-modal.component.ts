@@ -10,6 +10,7 @@ export class SuccessModalComponent implements OnInit {
 
   title?: string;
   text?: string;
+  parent?: BsModalRef;
 
   constructor(public bsModalRef: BsModalRef) {
   }
@@ -18,6 +19,7 @@ export class SuccessModalComponent implements OnInit {
   }
 
   close() {
+    this.parent?.hide();
     this.bsModalRef.hide();
   }
 

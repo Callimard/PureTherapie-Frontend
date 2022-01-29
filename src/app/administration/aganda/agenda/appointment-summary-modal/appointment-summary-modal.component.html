@@ -1,0 +1,48 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h2 class="modal-title success-title">Récapitulatif Rendez-vous</h2>
+    <button type="button" class="btn-close" (click)="close()"></button>
+  </div>
+  <div class="modal-body" *ngIf="appointmentInfo !== undefined">
+    <div class="d-flex flex-column flex-fill">
+      <div class="app-summary-row-info">
+        <span class="text-bold p-2">Client: </span>
+        <span
+          class="p-2">{{appointmentInfo.client.firstName}} {{appointmentInfo.client.lastName.toUpperCase()}}</span>
+      </div>
+    </div>
+    <div class="app-summary-row-info">
+      <span class="text-bold p-2">Soin: </span>
+      <span class="p-2">{{appointmentInfo.aestheticCare.name}}</span>
+      <span class="text-bold p-2">temps:</span>
+      <span class="p-2">{{appointmentInfo.aestheticCare.timeExecution}} min</span>
+    </div>
+    <div class="app-summary-row-info">
+      <span class="text-bold p-2">Technicien(ne): </span>
+      <span
+        class="p-2">{{appointmentInfo.technician.firstName}} {{appointmentInfo.technician.lastName.toUpperCase()}}</span>
+    </div>
+    <div class="app-summary-row-info">
+      <span class="text-bold p-2">Arrivée client: </span>
+      <span
+        class="p-2">{{appointmentInfo.clientArrival == null ? 'Client pas encore arrivé' : 'Arrivée à ' + appointmentInfo.clientArrival.arrivalDate}}</span>
+    </div>
+    <div class="app-summary-row-info">
+      <span class="text-bold p-2">Jour: </span>
+      <span class="p-2">{{appointmentInfo.day}}</span>
+    </div>
+    <div class="app-summary-row-info">
+      <span class="text-bold p-2">Heure de début: </span>
+      <span class="p-2">{{appointmentInfo.time}}</span>
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+      <button type="button" class="btn btn-danger text-bold" (click)="demandCancelAppointment()">Annuler le rendez-vous</button>
+    </div>
+  </div>
+  <div *ngIf="appointmentInfo === undefined">
+    <h2 style="font-weight: bold; color: red">Problème, pas de rendez-vous à afficher</h2>
+  </div>
+  <div class="modal-footer d-flex justify-content-end">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+  </div>
+</div>

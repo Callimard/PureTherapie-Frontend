@@ -29,7 +29,13 @@ import {
 } from './administration/client/client-administration/client-registration-modal/client-registration-modal.component';
 import {FailModalComponent} from './util/modal/fail-modal/fail-modal.component';
 import {ProductPurchaseComponent} from './administration/product/product-purchase/product-purchase.component';
-import { ProductPurchaseModalComponent } from './administration/product/product-purchase/product-purchase-modal/product-purchase-modal.component';
+import {
+  ProductPurchaseModalComponent
+} from './administration/product/product-purchase/product-purchase-modal/product-purchase-modal.component';
+import {AgendaComponent} from './administration/aganda/agenda/agenda.component';
+import { CreateAppointmentModalComponent } from './administration/aganda/agenda/create-appointment-modal/create-appointment-modal.component';
+import { AppointmentSummaryModalComponent } from './administration/aganda/agenda/appointment-summary-modal/appointment-summary-modal.component';
+import { SimpleConfirmationModalComponent } from './util/modal/simple-confirmation-modal/simple-confirmation-modal.component';
 
 const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_LOGIN_URL, component: LoginComponent},
@@ -38,6 +44,7 @@ const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_APPOINTMENTS_URL, component: TakeAppointmentComponent},
   {path: GlobalVariables.INTERN_ADMINISTRATION_CLIENT_URL, component: ClientAdministrationComponent},
   {path: GlobalVariables.INTERN_PRODUCT_PURCHASE_URL, component: ProductPurchaseComponent},
+  {path: GlobalVariables.INTERN_AGENDA_URL, component: AgendaComponent},
   {path: '', redirectTo: GlobalVariables.INTERN_LOGIN_URL, pathMatch: 'full'}
 ];
 
@@ -55,7 +62,11 @@ const appRoutes: Routes = [
     ClientRegistrationModalComponent,
     FailModalComponent,
     ProductPurchaseComponent,
-    ProductPurchaseModalComponent
+    ProductPurchaseModalComponent,
+    AgendaComponent,
+    CreateAppointmentModalComponent,
+    AppointmentSummaryModalComponent,
+    SimpleConfirmationModalComponent
   ],
   imports: [
     TooltipModule.forRoot(),
