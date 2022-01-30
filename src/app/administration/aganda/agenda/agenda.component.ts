@@ -9,6 +9,9 @@ import {CreateAppointmentModalComponent} from "./create-appointment-modal/create
 import {AppointmentSummaryModalComponent} from "./appointment-summary-modal/appointment-summary-modal.component";
 import {AppointmentDTO} from "../../../../services/appointment/appointment-dto";
 import {AuthenticationService} from "../../../../services/auth/authentication.service";
+import {
+  ClientRegistrationModalComponent
+} from "../../client/client-administration/client-registration-modal/client-registration-modal.component";
 
 @Component({
   selector: 'app-agenda',
@@ -25,6 +28,7 @@ export class AgendaComponent implements OnInit {
 
   createAppointmentModal?: BsModalRef;
   appointmentSummaryModal?: BsModalRef;
+  registerClientModal?: BsModalRef;
 
   constructor(private technicianService: TechnicianService, private agendaService: AgendaService,
               private authService: AuthenticationService, private modalService: BsModalService) {
@@ -73,6 +77,10 @@ export class AgendaComponent implements OnInit {
     this.appointmentSummaryModal = this.modalService.show(AppointmentSummaryModalComponent);
     this.appointmentSummaryModal.content.appointmentInfo = appointment;
     this.appointmentSummaryModal.content.agenda = this;
+  }
+
+  registerClient() {
+    this.registerClientModal = this.modalService.show(ClientRegistrationModalComponent);
   }
 
   recharge() {
