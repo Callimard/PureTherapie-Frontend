@@ -47,8 +47,7 @@ export class BundleService {
 
   getAllClientBundlePurchases(idClient: number): Promise<BundlePurchaseDTO[]> {
     return new Promise<BundlePurchaseDTO[]>(((resolve, reject) => {
-      this.httpClient.get<BundlePurchaseDTO[]>(GlobalVariables.BUNDLES_URL
-        + GlobalVariables.CLIENT_ALL_BUNDLE_PURCHASES + "?idClient=" + idClient).subscribe({
+      this.httpClient.get<BundlePurchaseDTO[]>(GlobalVariables.CLIENT_ALL_BUNDLE_PURCHASES_URL + "?idClient=" + idClient).subscribe({
         next: (res) => {
           resolve(res);
         },

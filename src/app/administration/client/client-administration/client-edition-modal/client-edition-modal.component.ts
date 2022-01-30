@@ -8,6 +8,8 @@ import {BundlePurchaseDTO} from "../../../../../services/product/aesthetic/bundl
 import {BundleService} from "../../../../../services/product/aesthetic/bundle/bundle.service";
 import {BillDTO} from "../../../../../services/product/bill/bill-dto";
 import {DateTool} from "../../../../../services/agenda/date-tool";
+import {SessionPurchaseDTO} from "../../../../../services/product/aesthetic/care/session-purchase-dto";
+import {AestheticCareService} from "../../../../../services/product/aesthetic/care/aesthetic-care.service";
 
 @Component({
   selector: 'app-client-edition-modal',
@@ -21,17 +23,23 @@ export class ClientEditionModalComponent implements OnInit {
   updatedClient: ClientDTO = ClientDTO.default();
 
   clientBundlePurchases: BundlePurchaseDTO[] = [];
+  clientSessionPurchases: SessionPurchaseDTO[] = [];
 
   constructor(private clientService: ClientService, private bundleService: BundleService,
-              public bsModalRef: BsModalRef, private modalService: BsModalService) {
+              private acService: AestheticCareService, public bsModalRef: BsModalRef,
+              private modalService: BsModalService
+  ) {
   }
 
-  ngOnInit(): void {
+  ngOnInit()
+    :
+    void {
     this.recharge();
   }
 
   recharge() {
     this.chargeClientBundlePurchases();
+    this.chargeClientSessionPurchases();
   }
 
   private chargeClientBundlePurchases() {
@@ -42,11 +50,21 @@ export class ClientEditionModalComponent implements OnInit {
     })
   }
 
+  private chargeClientSessionPurchases() {
+    this.acService.getAllClientACPurchases(this.baseClient.idPerson).then((res) => {
+      this.clientSessionPurchases = res;
+    }).catch(() => {
+      console.error("Fail to charge all client ac purchases");
+    })
+  }
+
   closeClientEditionModal() {
     this.bsModalRef?.hide();
   }
 
-  updateChange(): void {
+  updateChange()
+    :
+    void {
     this.clientService.updateClient(this.updatedClient).then(() => {
       this.modalService.show(SuccessModalComponent, {
         initialState: {
@@ -64,11 +82,18 @@ export class ClientEditionModalComponent implements OnInit {
     })
   }
 
-  extractOnlyDay(dateTime: string): string {
+  extractOnlyDay(dateTime
+                   :
+                   string
+  ):
+    string {
     return DateTool.extractOnlyDay(dateTime);
   }
 
-  billIsTotallyPaid(bill: BillDTO) {
+  billIsTotallyPaid(bill
+                      :
+                      BillDTO
+  ) {
     let amountPaid = 0;
     for (let payment of bill.payments) {
       amountPaid += payment.amountPaid;
@@ -77,7 +102,10 @@ export class ClientEditionModalComponent implements OnInit {
     return amountPaid == bill.purchasePrice;
   }
 
-  billPartiallyPaid(bill: BillDTO) {
+  billPartiallyPaid(bill
+                      :
+                      BillDTO
+  ) {
     let amountPaid = 0;
     for (let payment of bill.payments) {
       amountPaid += payment.amountPaid;

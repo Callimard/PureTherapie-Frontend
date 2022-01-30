@@ -3,6 +3,7 @@ import {AestheticCareDTO} from "./aesthetic-care-dto";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {GlobalVariables} from "../../../../global/global-variables";
 import {SimpleResponseDTO} from "../../../util/simple-response-dto";
+import {SessionPurchaseDTO} from "./session-purchase-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +43,21 @@ export class AestheticCareService {
           }
         });
     }));
+  }
+
+  public getAllClientACPurchases(idClient: number): Promise<SessionPurchaseDTO[]> {
+    return new Promise<SessionPurchaseDTO[]>(((resolve, reject) => {
+      this.httpClient.get<SessionPurchaseDTO[]>(GlobalVariables.CLIENT_ALL_SESSION_PURCHASES_URL + "?idClient=" + idClient)
+        .subscribe({
+          next: (res) => {
+            resolve(res);
+          },
+          error: (err: HttpErrorResponse) => {
+            console.error("Fail to get all client ac purchases");
+            reject(err.error);
+          }
+        })
+
+    }))
   }
 }

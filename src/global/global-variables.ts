@@ -46,13 +46,14 @@ export class GlobalVariables {
   public static readonly PERSON_ORIGINS_URL = GlobalVariables.CLIENTS_URL + "/person_origins";
 
   public static readonly AESTHETIC_CARES_URL = GlobalVariables.API_V1_URL + "/aesthetic_cares";
+  public static readonly CLIENT_ALL_SESSION_PURCHASES_URL = GlobalVariables.AESTHETIC_CARES_URL + "/purchases";
 
   public static readonly AESTHETIC_CARE_PACKAGES_URL = GlobalVariables.API_V1_URL + "/aesthetic_care_packages";
   public static readonly AESTHETIC_CARE_PURCHASE = "/purchase";
 
   public static readonly BUNDLES_URL = GlobalVariables.API_V1_URL + "/bundles";
   public static readonly BUNDLE_PURCHASE = "/purchase";
-  public static readonly CLIENT_ALL_BUNDLE_PURCHASES = "/purchases";
+  public static readonly CLIENT_ALL_BUNDLE_PURCHASES_URL = GlobalVariables.BUNDLES_URL + "/purchases";
 
 
   public static readonly TECHNICIANS_URL = GlobalVariables.API_V1_URL + "/technicians";
