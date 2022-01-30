@@ -1,0 +1,53 @@
+.bundle-purchase-edition-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.bundle-purchase-title {
+  font-weight: bold;
+}
+
+.bundle-purchase-ac-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1;
+}
+
+.bundle-ac-row {
+  display: grid;
+  grid-template: 100% / 60% 40%;
+  border-bottom: 2px solid black;
+}
+
+.bundle-ac-name {
+  grid-area: 1 span 1 / 1 span 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.bundle-ac-name-title {
+  margin-right: 2%;
+}
+
+.bundle-ac-stock {
+  grid-area: 1 span 1 / 2 span 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bundle-ac-stock-title {
+  margin-right: 2%;
+}
+
+.stock-number {
+  flex-shrink: 1;
+}
+
+.bundle-purchase-edition-validation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

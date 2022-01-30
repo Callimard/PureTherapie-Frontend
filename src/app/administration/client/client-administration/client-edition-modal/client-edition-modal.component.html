@@ -57,8 +57,77 @@
         </div>
       </div>
     </div>
+    <div class="client-edition-stock p-3">
+      <h3 class="client-stock-title">Achats</h3>
+      <div class="purchase-summary">
+        <div class="bundle-purchase-summary p-2">
+          <h4 class="product-summary-title">Packages:</h4>
+          <div class="client-all-bundle-purchases">
+            <div class="client-bundle-purchase p-2" *ngFor="let bundlePurchase of clientBundlePurchases">
+              <div class="bundle-purchase-name">
+                <span class="text-bold purchase-item-title">Nom:</span>
+                <span>{{bundlePurchase.bundle.name}}</span>
+              </div>
+              <div class="bundle-purchase-purchase-date">
+                <span class="text-bold purchase-item-title">Date d'achat: </span>
+                <span>{{extractOnlyDay(bundlePurchase.bill.creationDate)}}</span>
+              </div>
+              <div class="bundle-purchase-totally-paid">
+                <span class="text-bold purchase-item-title">Payée totalement: </span>
+                <span>{{billIsTotallyPaid(bundlePurchase.bill)}}</span>
+              </div>
+              <div class="bundle-purchase-partially-paid">
+                <span class="text-bold purchase-item-title">Partiellement payée: </span>
+                <span>{{billPartiallyPaid(bundlePurchase.bill)}}</span>
+              </div>
+              <div class="bundle-purchase-button">
+                <button type="button" class="text-bold btn btn-warning"
+                        [disabled]="billIsTotallyPaid(bundlePurchase.bill)" (click)="pay(bundlePurchase.bill)">Payer
+                </button>
+                <button type="button" class="text-bold btn btn-primary m-2"
+                        (click)="openBundlePurchaseEdition(bundlePurchase)">Editer
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ac-purchase-summary p-2">
+          <h4 class="product-summary-title">Soin ésthétiques:</h4>
+          <div class="client-all-ac-purchases">
+            <div class="client-ac-purchase p-2" *ngFor="let sessionPurchase of clientSessionPurchases">
+              <div class="ac-purchase-name">
+                <span class="text-bold purchase-item-title">Nom:</span>
+                <span>{{sessionPurchase.aestheticCare.name}}</span>
+              </div>
+              <div class="ac-purchase-used">
+                <span class="text-bold purchase-item-title">Consommé:</span>
+                <span>{{sessionPurchase.used}}</span>
+              </div>
+              <div class="ac-purchase-purchase-date">
+                <span class="text-bold purchase-item-title">Date d'achat: </span>
+                <span>{{extractOnlyDay(sessionPurchase.bill.creationDate)}}</span>
+              </div>
+              <div class="ac-purchase-totally-paid">
+                <span class="text-bold purchase-item-title">Payée totalement: </span>
+                <span>{{billIsTotallyPaid(sessionPurchase.bill)}}</span>
+              </div>
+              <div class="ac-purchase-partially-paid">
+                <span class="text-bold purchase-item-title">Partiellement payée: </span>
+                <span>{{billPartiallyPaid(sessionPurchase.bill)}}</span>
+              </div>
+              <div class="ac-purchase-button">
+                <button type="button" class="text-bold btn btn-warning"
+                        [disabled]="billIsTotallyPaid(sessionPurchase.bill)" (click)="pay(sessionPurchase.bill)">Payer
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="modal-footer d-flex justify-content-end">
+  <div class=" modal-footer d-flex justify-content-end
+                ">
     <button type="button" class="btn btn-danger" (click)="closeClientEditionModal()">Annuler</button>
   </div>
 </div>

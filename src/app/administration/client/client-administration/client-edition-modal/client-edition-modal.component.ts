@@ -4,6 +4,16 @@ import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {ClientService} from "../../../../../services/person/client/client.service";
 import {SuccessModalComponent} from "../../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
+import {BundlePurchaseDTO} from "../../../../../services/product/aesthetic/bundle/bundle-purchase-dto";
+import {BundleService} from "../../../../../services/product/aesthetic/bundle/bundle.service";
+import {BillDTO} from "../../../../../services/product/bill/bill-dto";
+import {DateTool} from "../../../../../services/agenda/date-tool";
+import {SessionPurchaseDTO} from "../../../../../services/product/aesthetic/care/session-purchase-dto";
+import {AestheticCareService} from "../../../../../services/product/aesthetic/care/aesthetic-care.service";
+import {
+  ClientBundlePurchaseEditionModalComponent
+} from "../client-bundle-purchase-edition-modal/client-bundle-purchase-edition-modal.component";
+import {ClientPaymentModalComponent} from "../client-payment-modal/client-payment-modal.component";
 
 @Component({
   selector: 'app-client-edition-modal',
@@ -16,10 +26,39 @@ export class ClientEditionModalComponent implements OnInit {
   baseClient: ClientDTO = ClientDTO.default();
   updatedClient: ClientDTO = ClientDTO.default();
 
-  constructor(private clientService: ClientService, public bsModalRef: BsModalRef, private modalService: BsModalService) {
+  clientBundlePurchases: BundlePurchaseDTO[] = [];
+  clientSessionPurchases: SessionPurchaseDTO[] = [];
+
+  bundlePurchaseEditionRef?: BsModalRef;
+  payBillRef?: BsModalRef;
+
+  constructor(private clientService: ClientService, private bundleService: BundleService,
+              private acService: AestheticCareService, public bsModalRef: BsModalRef,
+              private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
+  }
+
+  recharge() {
+    this.chargeClientBundlePurchases();
+    this.chargeClientSessionPurchases();
+  }
+
+  private chargeClientBundlePurchases() {
+    this.bundleService.getAllClientBundlePurchases(this.baseClient.idPerson).then((res) => {
+      this.clientBundlePurchases = res;
+    }).catch(() => {
+      console.error("Fail to charge all client bundle purchases");
+    })
+  }
+
+  private chargeClientSessionPurchases() {
+    this.acService.getAllClientACPurchases(this.baseClient.idPerson).then((res) => {
+      this.clientSessionPurchases = res;
+    }).catch(() => {
+      console.error("Fail to charge all client ac purchases");
+    })
   }
 
   closeClientEditionModal() {
@@ -42,6 +81,47 @@ export class ClientEditionModalComponent implements OnInit {
         }
       })
     })
+  }
+
+  extractOnlyDay(dateTime: string):
+    string {
+    return DateTool.extractOnlyDay(dateTime);
+  }
+
+  billIsTotallyPaid(bill: BillDTO) {
+    let amountPaid = 0;
+    for (let payment of bill.payments) {
+      if (!payment.canceled)
+        amountPaid += payment.amountPaid;
+    }
+
+    return amountPaid == bill.purchasePrice;
+  }
+
+  billPartiallyPaid(bill: BillDTO) {
+    let amountPaid = 0;
+    for (let payment of bill.payments) {
+      if (!payment.canceled)
+        amountPaid += payment.amountPaid;
+    }
+
+    return amountPaid > 0;
+  }
+
+  openBundlePurchaseEdition(bundlePurchase: BundlePurchaseDTO) {
+    this.bundlePurchaseEditionRef = this.modalService.show(ClientBundlePurchaseEditionModalComponent, {
+      class: "medium-modal"
+    });
+    this.bundlePurchaseEditionRef.content.clientBundlePurchase = bundlePurchase;
+    this.bundlePurchaseEditionRef.content.recharge();
+  }
+
+  pay(bill: BillDTO) {
+    this.payBillRef = this.modalService.show(ClientPaymentModalComponent, {
+      class: 'medium-modal'
+    });
+    this.payBillRef.content.bill = bill;
+    this.payBillRef.content.clientEditionModal = this;
   }
 
 }

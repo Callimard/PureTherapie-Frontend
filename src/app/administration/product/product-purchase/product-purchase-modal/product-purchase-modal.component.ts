@@ -54,38 +54,55 @@ export class ProductPurchaseModalComponent implements OnInit {
 
   purchaseAC() {
     this.acService.purchaseAestheticCare(this.acToPurchase.idAestheticCare, this.clientFound.idPerson).then(() => {
-      this.modalService.show(SuccessModalComponent, {
-        initialState: {
-          title: "L'achat du soin ésthétique à réussie!",
-          text: "L'achat du soin ésthétique " + this.acToPurchase.name + " a été pris en compte."
-        }
-      });
+      this.sucessACPurchase();
     }).catch(() => {
-      this.modalService.show(FailModalComponent, {
-        initialState: {
-          title: "L'achat du soin ésthétique à échoué!",
-          text: "L'achat du soin ésthétique " + this.acToPurchase.name + " N'A PAS ETE PRIS EN COMPTE."
-        }
-      });
+      this.failACPurchase();
+    });
+  }
+
+  private sucessACPurchase() {
+    this.modalService.show(SuccessModalComponent, {
+      initialState: {
+        title: "L'achat du soin ésthétique à réussie!",
+        text: "L'achat du soin ésthétique " + this.acToPurchase.name + " a été pris en compte."
+      }
+    });
+    this.bsModalRef.hide();
+  }
+
+  private failACPurchase() {
+    this.modalService.show(FailModalComponent, {
+      initialState: {
+        title: "L'achat du soin ésthétique à échoué!",
+        text: "L'achat du soin ésthétique " + this.acToPurchase.name + " N'A PAS ETE PRIS EN COMPTE."
+      }
     });
   }
 
   purchaseBundle() {
     this.bundleService.purchaseBundle(this.bundleToPurchase.idBundle, this.clientFound.idPerson).then(() => {
-      this.modalService.show(SuccessModalComponent, {
-        initialState: {
-          title: "L'achat du packages à réussie!",
-          text: "L'achat du package " + this.bundleToPurchase.name + " a été pris en compte."
-        }
-      });
+      this.successBundlePurchase();
     }).catch(() => {
-      this.modalService.show(FailModalComponent, {
-        initialState: {
-          title: "L'achat du packages à échoué!",
-          text: "L'achat du packages " + this.acToPurchase.name + "  N'A PAS ETE PRIS EN COMPTE."
-        }
-      });
+      this.failBundlePurchase();
     });
   }
 
+  private successBundlePurchase() {
+    this.modalService.show(SuccessModalComponent, {
+      initialState: {
+        title: "L'achat du packages à réussie!",
+        text: "L'achat du package " + this.bundleToPurchase.name + " a été pris en compte."
+      }
+    });
+    this.bsModalRef.hide();
+  }
+
+  private failBundlePurchase() {
+    this.modalService.show(FailModalComponent, {
+      initialState: {
+        title: "L'achat du packages à échoué!",
+        text: "L'achat du packages " + this.acToPurchase.name + "  N'A PAS ETE PRIS EN COMPTE."
+      }
+    });
+  }
 }

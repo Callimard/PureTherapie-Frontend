@@ -1,0 +1,29 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h2 class="modal-title success-title">Edition de package achété par un client</h2>
+    <button type="button" class="btn-close" (click)="close()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="bundle-purchase-edition-container">
+      <h4 class="bundle-purchase-title">{{clientBundlePurchase.bundle.name}}</h4>
+      <div class="bundle-purchase-ac-content">
+        <div class="bundle-ac-row p-2" *ngFor="let stock of bundlePurchaseStocks">
+          <div class="bundle-ac-name">
+            <span class="bundle-ac-name-title text-bold">Soin ésthetique:</span>
+            <span>{{stock.aestheticCare.name}}</span>
+          </div>
+          <div class="bundle-ac-stock">
+            <span class="bundle-ac-stock-title text-bold">Stock:</span>
+            <input type="number" class="stock-number" [(ngModel)]="stock.remainingQuantity"/>
+          </div>
+        </div>
+      </div>
+      <div class="bundle-purchase-edition-validation p-2">
+        <button type="button" class="text-bold btn btn-primary" (click)="updateStocks()">Valider</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer d-flex justify-content-end">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+  </div>
+</div>
