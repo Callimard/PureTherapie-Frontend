@@ -1,0 +1,64 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h2 class="modal-title success-title">Payer</h2>
+    <button type="button" class="btn-close" (click)="close()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="payment-modal-body p-2">
+      <div class="bill-info p-2">
+        <div class="bill-info-row">
+          <span class="text-bold">Montant total de la vente:</span>
+          <span>{{bill.purchasePrice}} €</span>
+        </div>
+        <div class="bill-info-row">
+          <span class="text-bold">Montant déjà payé:</span>
+          <span>{{getAlreadyAmountPaid()}} €</span>
+        </div>
+        <div class="bill-info-row">
+          <span class="text-bold">Reste à payer:</span>
+          <span>{{bill.purchasePrice - getAlreadyAmountPaid()}}€</span>
+        </div>
+      </div>
+      <div class="do-payment-row p-2">
+        <span class="text-bold my-auto" style="line-height: 0">Montant</span>
+        <div class="amount-to-paid-item">
+          <input type="number" [(ngModel)]="amountToPaid"/>
+          <span class="text-bold my-auto" style="line-height: 0">€</span>
+        </div>
+        <select class="select-means-of-payment" [(ngModel)]="selectMeansOfPayment">
+          <option *ngFor="let meansOfPayment of allMeansOfPayment"
+                  [ngValue]="meansOfPayment">{{meansOfPayment.name}}</option>
+        </select>
+        <button type="button" class="btn btn-warning text-bold" (click)="pay()">Payer</button>
+      </div>
+      <div class="all-payments-content p-2">
+        <div class="all-payments p-2" *ngIf="bill.payments.length > 0">
+          <div class="payment-row" *ngFor="let payment of bill.payments">
+            <div class="payment-date">
+              <span class="text-bold">Date: </span>
+              <span>{{extractOnlyDay(payment.paymentDate)}}</span>
+            </div>
+            <div class="payment-amount">
+              <span class="text-bold">Montant payé: </span>
+              <span>{{payment.amountPaid}}</span>
+            </div>
+            <div class="payment-means-of-payment">
+              <span class="text-bold">Moyen de paiement: </span>
+              <span>{{payment.meansOfPayment.name}}</span>
+            </div>
+            <button class="cancel-payment btn btn-danger text-bold m-2" (click)="cancelPayment(payment)"
+                    *ngIf="!payment.canceled">Annuler Paiement
+            </button>
+            <span class="cancel-payment payment-canceled-text my-auto" style="" *ngIf="payment.canceled">
+                Annulé
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer d-flex justify-content-end">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+  </div>
+</div>
+

@@ -1,0 +1,80 @@
+.payment-modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.bill-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-bottom: 1px solid rgba(175, 173, 173, 0.42);
+}
+
+.bill-info-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.do-payment-row {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid rgba(175, 173, 173, 0.42);
+}
+
+.select-means-of-payment {
+  flex-shrink: 1;
+}
+
+.amount-to-paid-item {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.all-payments-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.all-payments {
+  border: 1px solid black;
+  flex-grow: 1;
+  overflow: auto;
+  max-height: 20%;
+  margin-bottom: 2%;
+}
+
+.payment-row {
+  display: grid;
+  grid-template: 100% / 1fr 1fr 1fr 1fr;
+  border-bottom: 1px solid black;
+}
+
+.payment-item {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.payment-date {
+  grid-area: 1 span 1 / 1 span 1;
+}
+
+.payment-amount {
+  grid-area: 1 span 1 / 2 span 1;
+}
+
+.payment-means-of-payment {
+  grid-area: 1 span 1 / 3 span 1;
+}
+
+.cancel-payment {
+  grid-area: 1 span 1 / 4 span 1;
+}
+
+.payment-canceled-text {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}

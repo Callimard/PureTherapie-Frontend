@@ -13,6 +13,7 @@ import {AestheticCareService} from "../../../../../services/product/aesthetic/ca
 import {
   ClientBundlePurchaseEditionModalComponent
 } from "../client-bundle-purchase-edition-modal/client-bundle-purchase-edition-modal.component";
+import {ClientPaymentModalComponent} from "../client-payment-modal/client-payment-modal.component";
 
 @Component({
   selector: 'app-client-edition-modal',
@@ -29,17 +30,14 @@ export class ClientEditionModalComponent implements OnInit {
   clientSessionPurchases: SessionPurchaseDTO[] = [];
 
   bundlePurchaseEditionRef?: BsModalRef;
+  payBillRef?: BsModalRef;
 
   constructor(private clientService: ClientService, private bundleService: BundleService,
               private acService: AestheticCareService, public bsModalRef: BsModalRef,
-              private modalService: BsModalService
-  ) {
+              private modalService: BsModalService) {
   }
 
-  ngOnInit()
-    :
-    void {
-    this.recharge();
+  ngOnInit(): void {
   }
 
   recharge() {
@@ -67,9 +65,7 @@ export class ClientEditionModalComponent implements OnInit {
     this.bsModalRef?.hide();
   }
 
-  updateChange()
-    :
-    void {
+  updateChange(): void {
     this.clientService.updateClient(this.updatedClient).then(() => {
       this.modalService.show(SuccessModalComponent, {
         initialState: {
@@ -87,33 +83,26 @@ export class ClientEditionModalComponent implements OnInit {
     })
   }
 
-  extractOnlyDay(dateTime
-                   :
-                   string
-  ):
+  extractOnlyDay(dateTime: string):
     string {
     return DateTool.extractOnlyDay(dateTime);
   }
 
-  billIsTotallyPaid(bill
-                      :
-                      BillDTO
-  ) {
+  billIsTotallyPaid(bill: BillDTO) {
     let amountPaid = 0;
     for (let payment of bill.payments) {
-      amountPaid += payment.amountPaid;
+      if (!payment.canceled)
+        amountPaid += payment.amountPaid;
     }
 
     return amountPaid == bill.purchasePrice;
   }
 
-  billPartiallyPaid(bill
-                      :
-                      BillDTO
-  ) {
+  billPartiallyPaid(bill: BillDTO) {
     let amountPaid = 0;
     for (let payment of bill.payments) {
-      amountPaid += payment.amountPaid;
+      if (!payment.canceled)
+        amountPaid += payment.amountPaid;
     }
 
     return amountPaid > 0;
@@ -125,6 +114,14 @@ export class ClientEditionModalComponent implements OnInit {
     });
     this.bundlePurchaseEditionRef.content.clientBundlePurchase = bundlePurchase;
     this.bundlePurchaseEditionRef.content.recharge();
+  }
+
+  pay(bill: BillDTO) {
+    this.payBillRef = this.modalService.show(ClientPaymentModalComponent, {
+      class: 'medium-modal'
+    });
+    this.payBillRef.content.bill = bill;
+    this.payBillRef.content.clientEditionModal = this;
   }
 
 }

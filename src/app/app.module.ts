@@ -37,6 +37,7 @@ import { CreateAppointmentModalComponent } from './administration/aganda/agenda/
 import { AppointmentSummaryModalComponent } from './administration/aganda/agenda/appointment-summary-modal/appointment-summary-modal.component';
 import { SimpleConfirmationModalComponent } from './util/modal/simple-confirmation-modal/simple-confirmation-modal.component';
 import { ClientBundlePurchaseEditionModalComponent } from './administration/client/client-administration/client-bundle-purchase-edition-modal/client-bundle-purchase-edition-modal.component';
+import { ClientPaymentModalComponent } from './administration/client/client-administration/client-payment-modal/client-payment-modal.component';
 
 const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_LOGIN_URL, component: LoginComponent},
@@ -68,7 +69,8 @@ const appRoutes: Routes = [
     CreateAppointmentModalComponent,
     AppointmentSummaryModalComponent,
     SimpleConfirmationModalComponent,
-    ClientBundlePurchaseEditionModalComponent
+    ClientBundlePurchaseEditionModalComponent,
+    ClientPaymentModalComponent
   ],
   imports: [
     TooltipModule.forRoot(),

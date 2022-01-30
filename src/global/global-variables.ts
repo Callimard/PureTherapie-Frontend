@@ -56,7 +56,6 @@ export class GlobalVariables {
   public static readonly CLIENT_ALL_BUNDLE_PURCHASES_URL = GlobalVariables.BUNDLES_URL + "/purchases";
   public static readonly ALL_BUNDLE_PURCHASE_STOCKS = "/stocks";
 
-
   public static readonly TECHNICIANS_URL = GlobalVariables.API_V1_URL + "/technicians";
 
   public static readonly AGENDA_URL = GlobalVariables.API_V1_URL + "/agenda";
@@ -66,4 +65,10 @@ export class GlobalVariables {
 
   public static readonly APPOINTMENTS_URL = GlobalVariables.API_V1_URL + "/appointments";
   public static readonly APPOINTMENTS_CANCELLATION_URL = GlobalVariables.APPOINTMENTS_URL + "/cancel";
+
+  public static readonly BILL_URL = GlobalVariables.API_V1_URL + "/bills";
+  public static readonly PAY_BILL_URL = GlobalVariables.BILL_URL + "/pay";
+  public static readonly MEANS_OF_PAYMENTS_URL = GlobalVariables.BILL_URL + "/means_of_payments";
+  public static readonly PAYMENTS_URL = GlobalVariables.BILL_URL + "/payments";
+
 }
