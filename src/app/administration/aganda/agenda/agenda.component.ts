@@ -8,6 +8,7 @@ import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {CreateAppointmentModalComponent} from "./create-appointment-modal/create-appointment-modal.component";
 import {AppointmentSummaryModalComponent} from "./appointment-summary-modal/appointment-summary-modal.component";
 import {AppointmentDTO} from "../../../../services/appointment/appointment-dto";
+import {AuthenticationService} from "../../../../services/auth/authentication.service";
 
 @Component({
   selector: 'app-agenda',
@@ -26,10 +27,11 @@ export class AgendaComponent implements OnInit {
   appointmentSummaryModal?: BsModalRef;
 
   constructor(private technicianService: TechnicianService, private agendaService: AgendaService,
-              private modalService: BsModalService) {
+              private authService: AuthenticationService, private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
+    this.authService.checkLogin();
     this.recharge()
   }
 

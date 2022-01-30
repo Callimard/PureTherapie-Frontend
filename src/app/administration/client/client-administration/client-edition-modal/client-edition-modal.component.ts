@@ -4,12 +4,13 @@ import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {ClientService} from "../../../../../services/person/client/client.service";
 import {SuccessModalComponent} from "../../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
+import {AuthenticationService} from "../../../../../services/auth/authentication.service";
 import {BundlePurchaseDTO} from "../../../../../services/product/aesthetic/bundle/bundle-purchase-dto";
-import {BundleService} from "../../../../../services/product/aesthetic/bundle/bundle.service";
-import {BillDTO} from "../../../../../services/product/bill/bill-dto";
-import {DateTool} from "../../../../../services/agenda/date-tool";
 import {SessionPurchaseDTO} from "../../../../../services/product/aesthetic/care/session-purchase-dto";
 import {AestheticCareService} from "../../../../../services/product/aesthetic/care/aesthetic-care.service";
+import {BundleService} from "../../../../../services/product/aesthetic/bundle/bundle.service";
+import {DateTool} from "../../../../../services/agenda/date-tool";
+import {BillDTO} from "../../../../../services/product/bill/bill-dto";
 import {
   ClientBundlePurchaseEditionModalComponent
 } from "../client-bundle-purchase-edition-modal/client-bundle-purchase-edition-modal.component";
@@ -32,12 +33,13 @@ export class ClientEditionModalComponent implements OnInit {
   bundlePurchaseEditionRef?: BsModalRef;
   payBillRef?: BsModalRef;
 
-  constructor(private clientService: ClientService, private bundleService: BundleService,
-              private acService: AestheticCareService, public bsModalRef: BsModalRef,
-              private modalService: BsModalService) {
+  constructor(private clientService: ClientService, private authenticationService: AuthenticationService,
+              private acService: AestheticCareService, private bundleService: BundleService,
+              public bsModalRef: BsModalRef, private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
+    this.authenticationService.checkLogin();
   }
 
   recharge() {
