@@ -30,7 +30,6 @@ export class AgendaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.recharge()
   }
 
   private chargeTechnician() {

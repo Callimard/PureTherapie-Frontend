@@ -4,6 +4,7 @@ import {BundleDTO} from "./bundle-dto";
 import {GlobalVariables} from "../../../../global/global-variables";
 import {SimpleResponseDTO} from "../../../util/simple-response-dto";
 import {BundlePurchaseDTO} from "./bundle-purchase-dto";
+import {StockDTO} from "./stock-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +50,7 @@ export class BundleService {
     return new Promise<BundlePurchaseDTO[]>(((resolve, reject) => {
       this.httpClient.get<BundlePurchaseDTO[]>(GlobalVariables.CLIENT_ALL_BUNDLE_PURCHASES_URL + "?idClient=" + idClient).subscribe({
         next: (res) => {
+          console.log("Bundle Purchase receive = ", res);
           resolve(res);
         },
         error: (err: HttpErrorResponse) => {
@@ -57,5 +59,36 @@ export class BundleService {
         }
       })
     }));
+  }
+
+  getAllStocks(idBundlePurchase: number): Promise<StockDTO[]> {
+    return new Promise<StockDTO[]>(((resolve, reject) => {
+      this.httpClient.get<StockDTO[]>(GlobalVariables.CLIENT_ALL_BUNDLE_PURCHASES_URL + "/" + idBundlePurchase
+        + GlobalVariables.ALL_BUNDLE_PURCHASE_STOCKS).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error(err.error);
+          reject(err);
+        }
+      })
+    }))
+  }
+
+  updateStock(updatedStock: StockDTO): Promise<SimpleResponseDTO> {
+    return new Promise<SimpleResponseDTO>(((resolve, reject) => {
+      this.httpClient.put<SimpleResponseDTO>(GlobalVariables.CLIENT_ALL_BUNDLE_PURCHASES_URL + "/"
+        + updatedStock.bundlePurchase.idBundlePurchase
+        + GlobalVariables.ALL_BUNDLE_PURCHASE_STOCKS, updatedStock).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to update stock, Err = ", err.error);
+          reject(err.error);
+        }
+      })
+    }))
   }
 }

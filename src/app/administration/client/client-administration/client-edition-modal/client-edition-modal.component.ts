@@ -10,6 +10,9 @@ import {BillDTO} from "../../../../../services/product/bill/bill-dto";
 import {DateTool} from "../../../../../services/agenda/date-tool";
 import {SessionPurchaseDTO} from "../../../../../services/product/aesthetic/care/session-purchase-dto";
 import {AestheticCareService} from "../../../../../services/product/aesthetic/care/aesthetic-care.service";
+import {
+  ClientBundlePurchaseEditionModalComponent
+} from "../client-bundle-purchase-edition-modal/client-bundle-purchase-edition-modal.component";
 
 @Component({
   selector: 'app-client-edition-modal',
@@ -24,6 +27,8 @@ export class ClientEditionModalComponent implements OnInit {
 
   clientBundlePurchases: BundlePurchaseDTO[] = [];
   clientSessionPurchases: SessionPurchaseDTO[] = [];
+
+  bundlePurchaseEditionRef?: BsModalRef;
 
   constructor(private clientService: ClientService, private bundleService: BundleService,
               private acService: AestheticCareService, public bsModalRef: BsModalRef,
@@ -112,6 +117,14 @@ export class ClientEditionModalComponent implements OnInit {
     }
 
     return amountPaid > 0;
+  }
+
+  openBundlePurchaseEdition(bundlePurchase: BundlePurchaseDTO) {
+    this.bundlePurchaseEditionRef = this.modalService.show(ClientBundlePurchaseEditionModalComponent, {
+      class: "medium-modal"
+    });
+    this.bundlePurchaseEditionRef.content.clientBundlePurchase = bundlePurchase;
+    this.bundlePurchaseEditionRef.content.recharge();
   }
 
 }

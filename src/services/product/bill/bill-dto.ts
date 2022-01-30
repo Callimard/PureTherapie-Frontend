@@ -13,4 +13,10 @@ export class BillDTO {
               public payments: PaymentDTO[]) {
   }
 
+  public static default(): BillDTO {
+    let billDTO = new BillDTO(-1, -1, -1, "DEFAULT_BILL", ClientDTO.default(), PaymentTypeDTO.default(), []);
+    billDTO.payments = [PaymentDTO.default(billDTO)];
+    return billDTO;
+  }
+
 }

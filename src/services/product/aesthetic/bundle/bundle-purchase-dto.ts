@@ -10,4 +10,8 @@ export class BundlePurchaseDTO {
               public bill: BillDTO) {
   }
 
+  public static default(): BundlePurchaseDTO {
+    return new BundlePurchaseDTO(-1, ClientDTO.default(), BundleDTO.default(), BillDTO.default());
+  }
+
 }
