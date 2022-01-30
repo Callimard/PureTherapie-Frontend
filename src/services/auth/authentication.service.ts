@@ -56,7 +56,7 @@ export class AuthenticationService {
     });
   }
 
-  public async checkLogin() {
+  public checkLogin() {
     this.httpClient.head<SimpleResponseDTO>(GlobalVariables.LOGIN_URL).subscribe({
       next: () => {
         this.setAuthenticated();
