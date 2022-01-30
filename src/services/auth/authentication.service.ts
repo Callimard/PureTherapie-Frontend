@@ -3,6 +3,7 @@ import {BasicCredential} from "./basic-credential";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {GlobalVariables} from "../../global/global-variables";
 import {Router} from "@angular/router";
+import {SimpleResponseDTO} from "../util/simple-response-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -55,17 +56,17 @@ export class AuthenticationService {
     });
   }
 
-  public checkLogin() {
-    this.httpClient.head<string>(GlobalVariables.LOGIN_URL).subscribe({
-      next: (res) => {
-        console.log("CHECK LOGIN GOOD ", res);
+  public async checkLogin() {
+    this.httpClient.head<SimpleResponseDTO>(GlobalVariables.LOGIN_URL).subscribe({
+      next: () => {
         this.setAuthenticated();
       },
       error: (error: HttpErrorResponse) => {
+        console.error("Fail to check login, set non authenticated, Error = ", error.error);
         this.setNotAuthenticated();
         this.router.navigate(['/' + GlobalVariables.INTERN_LOGIN_URL]);
       }
-    })
+    });
   }
 
   public isAuthenticated(): boolean {

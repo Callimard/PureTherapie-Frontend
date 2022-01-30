@@ -1,5 +1,6 @@
 <!-- Sidebar -->
-<div id="sidebar" class="d-flex flex-column flex-shrink-0 h-100 p-3" style="background-color: #eeeeee">
+<div id="sidebar" class="d-flex flex-column flex-shrink-0 h-100 p-3" style="background-color: #eeeeee"
+     *ngIf="isAuthenticated()">
   <div class="sidebar-header">
     <a routerLink="/"
        class="d-flex flex-column align-items-start text-white text-decoration-none">
