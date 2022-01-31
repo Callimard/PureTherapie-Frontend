@@ -87,4 +87,29 @@ export class AgendaComponent implements OnInit {
     this.chargeTechnician()
   }
 
+  timeSlotPassed(timeSlot: TimeSlotDTO): boolean {
+    let today = new Date(DateTool.toMySQLDateString(new Date()));
+    let tsDate = new Date(timeSlot.day);
+    if (today <= tsDate) {
+      if (today.toISOString() === tsDate.toISOString()) {
+        let now = new Date().getTime();
+        let tsTime = new Date(timeSlot.day + ' ' + timeSlot.begin + ':00').getTime();
+        return now > tsTime;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  }
+
+  extractClientIdentification(timeSlot: TimeSlotDTO): string {
+    if (!timeSlot.free && timeSlot.appointment != null) {
+      let firstName = timeSlot.appointment.client.firstName[0].toUpperCase() + timeSlot.appointment.client.firstName.slice(1);
+      let lastName = timeSlot.appointment.client.lastName.toUpperCase();
+      return firstName + " " + lastName;
+    } else
+      return "";
+  }
+
 }
