@@ -18,8 +18,10 @@ export class AppointmentDTO {
   }
 
   public static default(): AppointmentDTO {
+    let a = new AppointmentDTO(-1, AestheticCareDTO.default(), ClientDTO.default(), TechnicianDTO.default(),
+      ClientArrivalDTO.default(), false, "DEFAULT_APPOINTMENT", "DEFAULT_APPOINTMENT", []);
     return new AppointmentDTO(-1, AestheticCareDTO.default(), ClientDTO.default(), TechnicianDTO.default(),
-      ClientArrivalDTO.default(), false, "DEFAULT_APPOINTMENT", "DEFAULT_APPOINTMENT", [TimeSlotDTO.default()]);
+      ClientArrivalDTO.default(), false, "DEFAULT_APPOINTMENT", "DEFAULT_APPOINTMENT", [TimeSlotDTO.default(a)]);
   }
 
 }

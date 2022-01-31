@@ -1,0 +1,113 @@
+.waiting-room-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.waiting-room-header {
+  display: flex;
+  justify-content: flex-start;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0 1px 2px black;
+  background-color: #2dadf1;
+}
+
+.waiting-room-body {
+  flex-grow: 1;
+  display: grid;
+  grid-template: 100% / 75% 25%;
+}
+
+.appointments-waiting-room-content {
+  grid-area: 1 span 1 / 1 span 1;
+  border-right: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.appointment-client-title {
+  justify-self: center;
+  align-self: center;
+}
+
+.technician-waiting-rooms {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid black;
+}
+
+.tech-waiting-room {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  box-shadow: 0 2px 4px 0;
+  border-radius: 10px;
+}
+
+.technician-title {
+  flex-shrink: 1;
+  text-align: center;
+  background-color: #24931c;
+  border-bottom: 1px solid black;
+
+  border-radius: 10px 10px 0 0;
+}
+
+.waiting-client-list {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 150px;
+  overflow: auto;
+}
+
+.waiting-client-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  background: linear-gradient(to bottom, #ffffff, #dcdcdc);
+  box-shadow: 0 2px 4px 0;
+  border-radius: .4em;
+}
+
+.appointment-item {
+  flex-shrink: 1;
+  display: flex;
+  justify-content: start;
+}
+
+.item-title {
+  margin-right: 1.5%;
+}
+
+.vip-waiting-room-content {
+  grid-area: 1 span 1 / 2 span 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.vip-waiting-room-title {
+  justify-self: center;
+  align-self: center;
+}
+
+.vip-waiting-room {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 1px solid black;
+}

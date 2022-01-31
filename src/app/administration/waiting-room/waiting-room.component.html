@@ -1,0 +1,37 @@
+<div class="waiting-room-container m-2">
+  <div class="waiting-room-header p-2">
+    <h2 class="px-3 my-2">Salle d'attente</h2>
+  </div>
+  <div class="waiting-room-body p-2">
+    <div class="appointments-waiting-room-content p-2">
+      <h3 class="appointment-client-title text-bold p-2">Clients avec rendez-vous</h3>
+      <div class="technician-waiting-rooms p-2">
+        <div class="tech-waiting-room m-3" *ngFor="let technician of allTechnicians">
+          <h5
+            class="technician-title text-bold p-2 m-0">{{technician.firstName}} {{technician.lastName.toUpperCase()}}</h5>
+          <div class="waiting-client-list">
+            <div class="waiting-client-card m-3 p-2" *ngFor="let appointment of waitingClientAppointments">
+              <div class="appointment-item">
+                <span class="text-bold item-title">Client:</span>
+                <span>{{appointment.client.lastName.toUpperCase()}}</span>
+              </div>
+              <div class="appointment-item">
+                <span class="text-bold item-title">Arrivée:</span>
+                <span>{{appointment.clientArrival.arrivalDate}}</span>
+              </div>
+              <div class="appointment-item">
+                <span class="text-bold item-title">Passage:</span>
+                <span>{{appointment.time}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="vip-waiting-room-content p-2">
+      <h3 class="vip-waiting-room-title text-bold p-2">VIP</h3>
+      <div class="vip-waiting-room">
+      </div>
+    </div>
+  </div>
+</div>
