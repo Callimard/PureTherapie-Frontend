@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {PersonOriginDTO} from "./person-origin-dto";
 import {GlobalVariables} from "../../../global/global-variables";
 
@@ -19,11 +19,10 @@ export class ClientOriginService {
         withCredentials: false
       }).subscribe({
           next: (resp) => {
-            console.log(resp);
             resolve(resp);
           },
-          error: (err) => {
-            console.log(err);
+          error: (err: HttpErrorResponse) => {
+            console.log(err.error);
             resolve([ClientOriginService.NO_ORIGIN]);
           }
         }

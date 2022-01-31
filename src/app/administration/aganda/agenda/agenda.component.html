@@ -3,7 +3,8 @@
     <h2 class="px-3 my-2">Gestion de l'agenda</h2>
   </div>
   <div class="d-flex justify-content-start p-2 m-2">
-    <button class="add-appointment-btn btn btn-primary text-bold p-2 mx-2" type="button" (click)="createAppointment()">Créer un
+    <button class="add-appointment-btn btn btn-primary text-bold p-2 mx-2" type="button" (click)="createAppointment()">
+      Créer un
       rendez-vous
     </button>
     <button class="register-client-btn btn btn-success text-bold p-2 mx-2" type="button" (click)="registerClient()">
@@ -22,15 +23,28 @@
       </div>
       <div class="technician-agenda flex-fill d-flex justify-content-start bg-danger">
         <div class="times flex-shrink-1 d-flex flex-column justify-content-start">
-          <span class="flex-grow-1" style="font-weight: bold"
+          <span class="text-bold flex-grow-1"
                 *ngFor="let ts of technicianTimeSlotMap.get(technician.idPerson)">
             {{ts.begin}}
           </span>
         </div>
         <div class="time-slots flex-grow-1 d-flex flex-column justify-content-start">
-          <div class="technician-ts flex-grow-1" [class.ts-free]="ts.free" [class.ts-occupied]="!ts.free"
-               *ngFor="let ts of technicianTimeSlotMap.get(technician.idPerson)"
-               (click)="ts.free ? clickOnFreeTS(technician, ts.day, ts.begin) : clickOnOccupiedTS(ts.appointment)"></div>
+          <div class="technician-ts"
+               *ngFor="let ts of technicianTimeSlotMap.get(technician.idPerson)">
+            <div class="appointment-client-container text-bold"
+                 [class.ts-free]="ts.free"
+                 [class.ts-occupied]="!ts.free"
+                 (click)="ts.free ? clickOnFreeTS(technician, ts.day, ts.begin) : clickOnOccupiedTS(ts.appointment)">
+              <span class="client-identification"
+                    *ngIf="!ts.free && ts.appointment != null">{{extractClientIdentification(ts)}}</span>
+              <span style="visibility: hidden"></span>
+              <span style="visibility: hidden" *ngIf="ts.free || ts.appointment == null"></span>
+            </div>
+            <div class="ts-cache" *ngIf="timeSlotPassed(ts)">
+              <span style="visibility: hidden"></span>
+              <span style="visibility: hidden"></span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

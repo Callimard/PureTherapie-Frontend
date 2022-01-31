@@ -23,11 +23,10 @@
 }
 
 .technician-ts {
+  flex-grow: 1;
   border-bottom: 1px solid black;
-}
-
-.technician-ts:hover {
-  background-color: rgb(80, 106, 145);
+  display: grid;
+  grid-template: 100% / 100%;
 }
 
 .technician-ts:active {
@@ -48,4 +47,20 @@
 
 .ts-free:hover {
   background-color: rgba(16, 103, 217, 0.34);
+}
+
+.appointment-client-container {
+  grid-area: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.client-identification {
+  line-height: 0;
+}
+
+.ts-cache {
+  grid-area: 1 / 1;
+  background-color: rgba(0, 0, 0, 0.3);
 }

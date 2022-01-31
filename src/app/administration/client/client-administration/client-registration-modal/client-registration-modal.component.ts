@@ -44,6 +44,7 @@ export class ClientRegistrationModalComponent implements OnInit {
   private chargeAllPersonOrigins() {
     this.clientOriginService.getAllPersonOrigins().then((origins) => {
       this.personOrigins = origins;
+      this.selectedPersonOrigin = this.personOrigins[0];
     }).catch(err => {
       console.log("Fail to receive person origins");
       console.log(err);
@@ -62,28 +63,38 @@ export class ClientRegistrationModalComponent implements OnInit {
     this.confirmationModal?.hide();
   }
 
-  confirmOnlyClientRegistration() {
+  confirmClientRegistration() {
     let clientDTO: ClientDTO = new ClientDTO(-1, this.selectedFirstName, this.selectedLastName,
       this.selectedEmail, this.selectedGender, this.selectedPhone,
       this.selectedBirthday, this.selectedPersonOrigin != null ? this.selectedPersonOrigin.idPersonOrigin : -1);
 
     this.clientRegistrationService.registerClient(clientDTO).then(() => {
-      this.clear();
-      this.modalService.show(SuccessModalComponent, {
-        initialState: {
-          title: "Enregistrement de client réussie",
-          text: "L'enregistrement du client " + clientDTO.lastName + " " + clientDTO.firstName + " a réussie"
-        }
-      })
+      this.successClientRegistration(clientDTO);
     }).catch((err: ClientRegistrationFailDTO) => {
-      this.modalService.show(FailModalComponent, {
-        initialState: {
-          title: "Enregistrement de client échoué",
-          text: "L'enregistrement du client " + clientDTO.lastName + " " + clientDTO.firstName + " a échoué. Erreur = " + err
-        }
-      })
+      this.failClientRegistration(clientDTO, err);
     });
     this.confirmationModal?.hide();
+  }
+
+  private successClientRegistration(clientDTO: ClientDTO) {
+    this.clear();
+    let successModal: BsModalRef = this.modalService.show(SuccessModalComponent, {
+      initialState: {
+        title: "Enregistrement de client réussie",
+        text: "L'enregistrement du client " + clientDTO.lastName + " " + clientDTO.firstName + " a réussie"
+      }
+    });
+    successModal.content.parent = this.bsModalRef;
+  }
+
+  private failClientRegistration(clientDTO: ClientDTO, err: ClientRegistrationFailDTO) {
+    let failModal: BsModalRef = this.modalService.show(FailModalComponent, {
+      initialState: {
+        title: "Enregistrement de client échoué",
+        text: "L'enregistrement du client " + clientDTO.lastName + " " + clientDTO.firstName + " a échoué. Erreur = " + err
+      }
+    });
+    failModal.content.parent = this.bsModalRef;
   }
 
   private clear(): void {

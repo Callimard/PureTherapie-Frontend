@@ -22,7 +22,6 @@ export class ClientService {
     return new Promise<ClientDTO>(((resolve, reject) => {
       this.httpClient.post<ClientDTO>(GlobalVariables.CLIENTS_URL + "/" + client.idPerson, client).subscribe({
         next: (clientResp) => {
-          console.log("Success to update client, updated client = ", clientResp);
           resolve(clientResp);
         },
         error: (error: HttpErrorResponse) => {

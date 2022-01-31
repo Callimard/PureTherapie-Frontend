@@ -55,7 +55,9 @@ export class ClientAdministrationComponent implements OnInit {
   editClient(client: ClientDTO) {
     this.clientEditionModal = this.modalService.show(ClientEditionModalComponent, {class: 'big-modal d-flex'});
     this.clientEditionModal.content.baseClient = ClientDTO.removePhonePrefix(client);
+    this.clientEditionModal.content.baseClient.phone = this.clientEditionModal.content.baseClient.phone.replaceAll(" ", "");
     this.clientEditionModal.content.updatedClient = ClientDTO.removePhonePrefix(client);
+    this.clientEditionModal.content.updatedClient.phone = this.clientEditionModal.content.updatedClient.phone.replaceAll(" ", "");
     this.clientEditionModal.content.recharge();
   }
 
