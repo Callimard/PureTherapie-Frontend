@@ -27,7 +27,8 @@
         </div>
         <div class="client-edition-information-row">
           <label for="phone" class="client-edition-information-label">Téléphone: +33</label>
-          <input type="tel" name="phone" id="phone" class="client-edition-information-input"
+          <input type="tel" size="10" minlength="10" maxlength="10" name="phone" id="phone"
+                 class="client-edition-information-input"
                  [(ngModel)]="updatedClient.phone"/>
         </div>
         <div class="client-edition-information-row">
