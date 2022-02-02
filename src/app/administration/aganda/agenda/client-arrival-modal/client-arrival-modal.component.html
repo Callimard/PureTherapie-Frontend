@@ -1,0 +1,47 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h2 class="modal-title text-bold">Arrivée client</h2>
+    <button type="button" class="btn-close" (click)="close()"></button>
+  </div>
+  <div class="client-arrival-body modal-body">
+    <div class="client-research-container d-flex flex-column justify-content-start">
+      <label class="client-email-label flex-grow-0" for="client-email-research">E-mail du client: </label>
+      <input class="client-email-input flex-fill" type="email" name="client-email-research" id="client-email-research"
+             [(ngModel)]="clientEmail"/>
+      <div class="flex-fill d-flex justify-content-center align-items-center" *ngIf="hasSearchClient">
+        <span class="fail-search-client"
+              *ngIf="hasSearchClient && !clientFound">Aucun client associé à cet e-mail</span>
+        <span class="success-search-client" *ngIf="hasSearchClient && clientFound">Client trouvé!</span>
+      </div>
+      <div class="flex-fill d-flex justify-content-center align-items-center my-2">
+        <button type="button" class="search-client-btn btn btn-primary" (click)="searchClient()">Rechercher le client
+        </button>
+      </div>
+    </div>
+    <div class="client-arrival-summary">
+      <div class="client-appointment-summary p-2" *ngIf="hasSearchClient && clientFound && clientAppointment != null">
+        <h4>Rendez-vous client</h4>
+        <div class="d-flex justify-content-start">
+          <span class="text-bold">Jour: </span>
+          <span>Aujourd'hui</span>
+        </div>
+        <div class="d-flex justify-content-start">
+          <span class="text-bold">heure: </span>
+          <span>{{clientAppointment.time}}</span>
+        </div>
+      </div>
+      <div class="client-vip-summary p-2" *ngIf="hasSearchClient && clientFound && clientAppointment == null">
+        <h3 class="vip-title text-bold">Client VIP?</h3>
+      </div>
+      <div class="d-flex justify-content-center align-items-center" *ngIf="hasSearchClient && clientFound">
+        <button type="button" class="btn btn-danger text-bold p-2 m-2"
+                (click)="placeClientInWaitingRoom(client.idPerson)">Mettre le client en salle d'attente
+        </button>
+      </div>
+    </div>
+    <div class="modal-footer d-flex justify-content-end">
+      <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,41 @@
+.client-email-label {
+  font-weight: bold;
+}
+
+.search-client-btn {
+  font-weight: bold;
+}
+
+.fail-search-client {
+  color: red;
+}
+
+.client-arrival-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.success-search-client {
+  color: green;
+}
+
+.client-appointment-summary {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.client-vip-summary {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.vip-title {
+  color: red;
+}

@@ -10,18 +10,18 @@
           <h5
             class="technician-title text-bold p-2 m-0">{{technician.firstName}} {{technician.lastName.toUpperCase()}}</h5>
           <div class="waiting-client-list">
-            <div class="waiting-client-card m-3 p-2" *ngFor="let appointment of waitingClientAppointments">
+            <div class="waiting-client-card p-2" *ngFor="let wr of this.techWRMap.get(technician.idPerson)">
               <div class="appointment-item">
                 <span class="text-bold item-title">Client:</span>
-                <span>{{appointment.client.lastName.toUpperCase()}}</span>
+                <span>{{wr.appointment.client.lastName.toUpperCase()}}</span>
               </div>
               <div class="appointment-item">
                 <span class="text-bold item-title">Arrivée:</span>
-                <span>{{appointment.clientArrival.arrivalDate}}</span>
+                <span>{{wr.appointment.clientArrival.arrivalDate}}</span>
               </div>
               <div class="appointment-item">
                 <span class="text-bold item-title">Passage:</span>
-                <span>{{appointment.time}}</span>
+                <span>{{wr.appointment.time}}</span>
               </div>
             </div>
           </div>
@@ -31,6 +31,16 @@
     <div class="vip-waiting-room-content p-2">
       <h3 class="vip-waiting-room-title text-bold p-2">VIP</h3>
       <div class="vip-waiting-room">
+        <div class="vip-card" *ngFor="let wr of this.techWRMap.get(-1)">
+          <div class="appointment-item">
+            <span class="text-bold item-title">Client:</span>
+            <span>{{wr.client.lastName.toUpperCase()}}</span>
+          </div>
+          <div class="appointment-item">
+            <span class="text-bold item-title">Arrivée:</span>
+            <span>{{wr.arrivalDate}}</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -12,6 +12,7 @@ import {AuthenticationService} from "../../../../services/auth/authentication.se
 import {
   ClientRegistrationModalComponent
 } from "../../client/client-administration/client-registration-modal/client-registration-modal.component";
+import {ClientArrivalModalComponent} from "./client-arrival-modal/client-arrival-modal.component";
 
 @Component({
   selector: 'app-agenda',
@@ -29,6 +30,7 @@ export class AgendaComponent implements OnInit {
   createAppointmentModal?: BsModalRef;
   appointmentSummaryModal?: BsModalRef;
   registerClientModal?: BsModalRef;
+  clientArrivalModal?: BsModalRef;
 
   constructor(private technicianService: TechnicianService, private agendaService: AgendaService,
               private authService: AuthenticationService, private modalService: BsModalService) {
@@ -110,6 +112,10 @@ export class AgendaComponent implements OnInit {
       return firstName + " " + lastName;
     } else
       return "";
+  }
+
+  clientArrive() {
+    this.clientArrivalModal = this.modalService.show(ClientArrivalModalComponent);
   }
 
 }

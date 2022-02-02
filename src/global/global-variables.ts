@@ -66,10 +66,13 @@ export class GlobalVariables {
 
   public static readonly APPOINTMENTS_URL = GlobalVariables.API_V1_URL + "/appointments";
   public static readonly APPOINTMENTS_CANCELLATION_URL = GlobalVariables.APPOINTMENTS_URL + "/cancel";
+  public static readonly CLIENT_ARRIVAL_URL = GlobalVariables.APPOINTMENTS_URL + "/client_arrive";
 
   public static readonly BILL_URL = GlobalVariables.API_V1_URL + "/bills";
   public static readonly PAY_BILL_URL = GlobalVariables.BILL_URL + "/pay";
   public static readonly MEANS_OF_PAYMENTS_URL = GlobalVariables.BILL_URL + "/means_of_payments";
   public static readonly PAYMENTS_URL = GlobalVariables.BILL_URL + "/payments";
+
+  public static readonly WAITING_ROOM_URL = GlobalVariables.API_V1_URL + "/waiting_room";
 
 }
