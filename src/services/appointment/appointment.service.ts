@@ -70,4 +70,35 @@ export class AppointmentService {
       })
     }))
   }
+
+  public provisionClientWithAppointment(idClient: number): Promise<SimpleResponseDTO> {
+    return new Promise<SimpleResponseDTO>(((resolve, reject) => {
+      this.httpClient.post<SimpleResponseDTO>(GlobalVariables.PROVISION_CLIENT_WITH_APPOINTMENT_URL + "?idClient=" + idClient, null)
+        .subscribe({
+          next: (res) => {
+            resolve(res);
+          },
+          error: (err: HttpErrorResponse) => {
+            console.error("Fail to provision client with appointment, Err = ", err.error);
+            reject(err.error);
+          }
+        });
+    }));
+  }
+
+  public provisionClientWithoutAppointment(idClient: number, idTechnician: number, idAestheticCare: number): Promise<SimpleResponseDTO> {
+    return new Promise<SimpleResponseDTO>(((resolve, reject) => {
+      this.httpClient.post<SimpleResponseDTO>(GlobalVariables.PROVISION_CLIENT_WITHOUT_APPOINTMENT_URL
+        + "?idClient=" + idClient + "&idTechnician=" + idTechnician + "&idAestheticCare=" + idAestheticCare, null)
+        .subscribe({
+          next: (res) => {
+            resolve(res);
+          },
+          error: (err: HttpErrorResponse) => {
+            console.error("Fail to provision client without appointment, Err = ", err.error);
+            reject(err.error);
+          }
+        });
+    }));
+  }
 }

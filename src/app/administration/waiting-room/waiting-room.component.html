@@ -1,7 +1,8 @@
 <div class="waiting-room-container m-2">
   <div class="waiting-room-header p-2">
-    <h2 class="px-3 my-2">Salle d'attente</h2>
+    <h1 class="text-bold px-3 my-2">Salle d'attente</h1>
   </div>
+  <h2 class="day-title text-bold p-2">Jour {{today}}</h2>
   <div class="waiting-room-body p-2">
     <div class="appointments-waiting-room-content p-2">
       <h3 class="appointment-client-title text-bold p-2">Clients avec rendez-vous</h3>
@@ -10,14 +11,15 @@
           <h5
             class="technician-title text-bold p-2 m-0">{{technician.firstName}} {{technician.lastName.toUpperCase()}}</h5>
           <div class="waiting-client-list">
-            <div class="waiting-client-card p-2" *ngFor="let wr of this.techWRMap.get(technician.idPerson)">
+            <div class="waiting-client-card p-2" (click)="takeClientWithAppointment(wr.appointment)"
+                 *ngFor="let wr of this.techWRMap.get(technician.idPerson)">
               <div class="appointment-item">
                 <span class="text-bold item-title">Client:</span>
-                <span>{{wr.appointment.client.lastName.toUpperCase()}}</span>
+                <span>{{wr.appointment.client.firstName}} {{wr.appointment.client.lastName.toUpperCase()}}</span>
               </div>
               <div class="appointment-item">
                 <span class="text-bold item-title">Arrivée:</span>
-                <span>{{wr.appointment.clientArrival.arrivalDate}}</span>
+                <span>{{getOnlyTime(wr.appointment.clientArrival.arrivalDate)}}</span>
               </div>
               <div class="appointment-item">
                 <span class="text-bold item-title">Passage:</span>
@@ -38,7 +40,7 @@
           </div>
           <div class="appointment-item">
             <span class="text-bold item-title">Arrivée:</span>
-            <span>{{wr.arrivalDate}}</span>
+            <span>{{getOnlyTime(wr.arrivalDate)}}</span>
           </div>
         </div>
       </div>
