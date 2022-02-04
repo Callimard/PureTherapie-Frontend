@@ -8,6 +8,7 @@ import {AppointmentService} from "../../../../../services/appointment/appointmen
 import {SuccessModalComponent} from "../../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
 import {AgendaComponent} from "../agenda.component";
+import {ClientArrivalModalComponent} from "../client-arrival-modal/client-arrival-modal.component";
 
 @Component({
   selector: 'app-appointment-summary-modal',
@@ -21,8 +22,10 @@ export class AppointmentSummaryModalComponent implements OnInit {
   appointmentInfo?: AppointmentDTO;
 
   cancelAppointmentConfirmationModal?: BsModalRef;
+  clientArrivalModal?: BsModalRef;
 
-  constructor(private appointmentService: AppointmentService, public bsModalRef: BsModalRef, private modalService: BsModalService) {
+  constructor(private appointmentService: AppointmentService, public bsModalRef: BsModalRef,
+              private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
@@ -66,5 +69,10 @@ export class AppointmentSummaryModalComponent implements OnInit {
     let successModal: BsModalRef = this.modalService.show(FailModalComponent);
     successModal.content.title = "L'annulation de rendez-vous n'a pas réussie";
     successModal.content.text = "L'annulation du rendez-vous n'a été pris en compte.";
+  }
+
+  clientArrive(appointment: AppointmentDTO) {
+    this.clientArrivalModal = this.modalService.show(ClientArrivalModalComponent);
+    this.clientArrivalModal.content.clientAppointment = appointment;
   }
 }

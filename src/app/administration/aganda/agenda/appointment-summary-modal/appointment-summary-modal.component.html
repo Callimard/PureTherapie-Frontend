@@ -35,8 +35,12 @@
       <span class="text-bold p-2">Heure de début: </span>
       <span class="p-2">{{appointmentInfo.time}}</span>
     </div>
-    <div class="d-flex justify-content-center align-items-center">
-      <button type="button" class="btn btn-danger text-bold" (click)="demandCancelAppointment()">Annuler le rendez-vous</button>
+    <div class="appointment-summary-all-btn p-2">
+      <button type="button" class="btn btn-primary text-bold" (click)="clientArrive(appointmentInfo)">Client arrivé
+      </button>
+      <button type="button" class="btn btn-danger text-bold" (click)="demandCancelAppointment()">Annuler le
+        rendez-vous
+      </button>
     </div>
   </div>
   <div *ngIf="appointmentInfo === undefined">
