@@ -13,6 +13,20 @@ export class BillService {
   constructor(private httpClient: HttpClient) {
   }
 
+  public getBill(idBill: number): Promise<BillDTO> {
+    return new Promise<BillDTO>(((resolve, reject) => {
+      this.httpClient.get<BillDTO>(GlobalVariables.BILL_URL + "/" + idBill).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to get bill, Err = ", err.error);
+          reject(err.error);
+        }
+      })
+    }));
+  }
+
   public getAllMeansOfPayments(): Promise<MeansOfPaymentDTO[]> {
     return new Promise<MeansOfPaymentDTO[]>(((resolve, reject) => {
       this.httpClient.get<MeansOfPaymentDTO[]>(GlobalVariables.MEANS_OF_PAYMENTS_URL).subscribe({

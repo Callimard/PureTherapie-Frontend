@@ -8,4 +8,8 @@ export class DateTool {
     return dateTime.split('T')[0];
   }
 
+  public static extractOnlyTime(dateTime: string): string {
+    return dateTime.split('T')[1].split('-')[0];
+}
+
 }

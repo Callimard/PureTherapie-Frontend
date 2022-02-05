@@ -1,0 +1,29 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h2 class="modal-title text-bold">Arrivée client</h2>
+    <button type="button" class="btn-close" (click)="close()"></button>
+  </div>
+  <div class="client-arrival-body modal-body">
+    <div class="client-arrival-summary">
+      <div class="client-appointment-summary p-2">
+        <h4>Rendez-vous client</h4>
+        <div class="d-flex justify-content-start">
+          <span><strong>Jour:</strong> Aujourd'hui</span>
+        </div>
+        <div class="d-flex justify-content-start">
+          <span><strong>heure:</strong> {{clientAppointment.time}}</span>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center align-items-center">
+        <button type="button" class="btn btn-danger text-bold p-2 m-2"
+                (click)="placeClientInWaitingRoom(clientAppointment.client.idPerson, clientAppointment.idAppointment)">
+          Mettre le client en salle d'attente
+        </button>
+      </div>
+    </div>
+    <div class="modal-footer d-flex justify-content-end">
+      <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+    </div>
+  </div>
+</div>
+

@@ -28,7 +28,7 @@ export class BundleService {
     }));
   }
 
-  purchaseBundle(idBundle: number, idClient: number, customPrice?: number, idPaymentType?: number): Promise<SimpleResponseDTO> {
+  public purchaseBundle(idBundle: number, idClient: number, customPrice?: number, idPaymentType?: number): Promise<SimpleResponseDTO> {
     return new Promise<SimpleResponseDTO>(((resolve, reject) => {
       this.httpClient.post<SimpleResponseDTO>(GlobalVariables.BUNDLES_URL + "/" + idBundle
         + GlobalVariables.BUNDLE_PURCHASE + "?idClient=" + idClient
@@ -46,7 +46,7 @@ export class BundleService {
     }))
   }
 
-  getAllClientBundlePurchases(idClient: number): Promise<BundlePurchaseDTO[]> {
+  public getAllClientBundlePurchases(idClient: number): Promise<BundlePurchaseDTO[]> {
     return new Promise<BundlePurchaseDTO[]>(((resolve, reject) => {
       this.httpClient.get<BundlePurchaseDTO[]>(GlobalVariables.CLIENT_ALL_BUNDLE_PURCHASES_URL + "?idClient=" + idClient).subscribe({
         next: (res) => {
@@ -61,7 +61,7 @@ export class BundleService {
     }));
   }
 
-  getAllStocks(idBundlePurchase: number): Promise<StockDTO[]> {
+  public getAllStocks(idBundlePurchase: number): Promise<StockDTO[]> {
     return new Promise<StockDTO[]>(((resolve, reject) => {
       this.httpClient.get<StockDTO[]>(GlobalVariables.CLIENT_ALL_BUNDLE_PURCHASES_URL + "/" + idBundlePurchase
         + GlobalVariables.ALL_BUNDLE_PURCHASE_STOCKS).subscribe({
@@ -76,7 +76,7 @@ export class BundleService {
     }))
   }
 
-  updateStock(updatedStock: StockDTO): Promise<SimpleResponseDTO> {
+  public updateStock(updatedStock: StockDTO): Promise<SimpleResponseDTO> {
     return new Promise<SimpleResponseDTO>(((resolve, reject) => {
       this.httpClient.put<SimpleResponseDTO>(GlobalVariables.CLIENT_ALL_BUNDLE_PURCHASES_URL + "/"
         + updatedStock.bundlePurchase.idBundlePurchase
@@ -90,5 +90,20 @@ export class BundleService {
         }
       })
     }))
+  }
+
+  public getAllUnpaidBundlePurchases(idClient: number): Promise<BundlePurchaseDTO[]> {
+    return new Promise<BundlePurchaseDTO[]>(((resolve, reject) => {
+      this.httpClient.get<BundlePurchaseDTO[]>(GlobalVariables.UNPAID_BUNDLE_PURCHASES
+        + "?idClient=" + idClient).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to get all unpaid bundle purchases. Err = ", err.error);
+          reject(err.error);
+        }
+      });
+    }));
   }
 }
