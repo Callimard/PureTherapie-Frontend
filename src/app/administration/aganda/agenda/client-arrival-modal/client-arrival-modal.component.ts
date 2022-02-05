@@ -5,7 +5,6 @@ import {AppointmentDTO} from "../../../../../services/appointment/appointment-dt
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {ClientService} from "../../../../../services/person/client/client.service";
 import {AppointmentService} from "../../../../../services/appointment/appointment.service";
-import {DateTool} from "../../../../../services/agenda/date-tool";
 import {SuccessModalComponent} from "../../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
 
@@ -16,6 +15,8 @@ import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.c
 })
 export class ClientArrivalModalComponent implements OnInit {
   clientAppointment: AppointmentDTO = AppointmentDTO.default();
+
+  parent?: BsModalRef;
 
   constructor(private clientService: ClientService, private appointmentService: AppointmentService,
               public bsModalRef: BsModalRef, private modalService: BsModalService) {
@@ -42,6 +43,7 @@ export class ClientArrivalModalComponent implements OnInit {
     successModalRef.content.text = "L'arrivée du client a bien été prise en compte. " +
       "Il a été placé dans la salle d'attente";
     successModalRef.content.parent = this.bsModalRef;
+    this.parent?.hide();
   }
 
   private failPlaceInWaitingRoom() {

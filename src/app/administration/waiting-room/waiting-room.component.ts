@@ -6,8 +6,6 @@ import {WaitingRoomDTO} from "../../../services/waitingroom/waiting-room-dto";
 import {DateTool} from "../../../services/agenda/date-tool";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {AppointmentService} from "../../../services/appointment/appointment.service";
-import {SuccessModalComponent} from "../../util/modal/success-modal/success-modal.component";
-import {FailModalComponent} from "../../util/modal/fail-modal/fail-modal.component";
 import {
   ClientWaitingRoomInfoModalComponent
 } from "./client-waiting-room-info-modal/client-waiting-room-info-modal.component";
@@ -84,30 +82,5 @@ export class WaitingRoomComponent implements OnInit {
     this.clientWaitingRoomInfo = this.modalService.show(ClientWaitingRoomInfoModalComponent);
     this.clientWaitingRoomInfo.content.wr = wr;
     this.clientWaitingRoomInfo.content.waitingRoomComponent = this;
-    /*this.clientWaitingRoomInfo.content.title = "Envoyer le client en soin";
-    this.clientWaitingRoomInfo.content.text = "Etes-vous sûr de vouloir envoyer le client en soin? Cela réduira son stock de" +
-      " soin en fonction du soin choisit lors de son Rendez-vous. Le soin pratiqué sera enregistré pour le/la " +
-      "technicien(ne) du rendez-vous.";
-    this.clientWaitingRoomInfo.content.confirmationFunction = () => {
-      this.appointmentService.provisionClientWithAppointment(appointment.client.idPerson).then(() => {
-        this.successProvisionClient();
-      }).catch(() => {
-        this.failProvisionClient();
-      })
-    }*/
-  }
-
-  private successProvisionClient() {
-    let successModal: BsModalRef = this.modalService.show(SuccessModalComponent);
-    successModal.content.title = "Client mis en soin réussi";
-    successModal.content.text = "Le client a bien été placé en soin";
-    successModal.content.parent = this.clientWaitingRoomInfo;
-  }
-
-  private failProvisionClient() {
-    let failModal: BsModalRef = this.modalService.show(FailModalComponent);
-    failModal.content.title = "Echec de la mise en soin du client";
-    failModal.content.text = "Le client n'a pas été placé en soin";
-    failModal.content.parent = this.clientWaitingRoomInfo;
   }
 }

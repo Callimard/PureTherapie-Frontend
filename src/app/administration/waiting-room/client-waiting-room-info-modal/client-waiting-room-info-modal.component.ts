@@ -12,6 +12,10 @@ import {WaitingRoomService} from "../../../../services/waitingroom/waiting-room.
 import {SuccessModalComponent} from "../../../util/modal/success-modal/success-modal.component";
 import {WaitingRoomComponent} from "../waiting-room.component";
 import {FailModalComponent} from "../../../util/modal/fail-modal/fail-modal.component";
+import {
+  SimpleConfirmationModalComponent
+} from "../../../util/modal/simple-confirmation-modal/simple-confirmation-modal.component";
+import {AppointmentService} from "../../../../services/appointment/appointment.service";
 
 @Component({
   selector: 'app-client-waiting-room-info-modal',
@@ -34,7 +38,7 @@ export class ClientWaitingRoomInfoModalComponent implements OnInit {
   waitingRoomComponent?: WaitingRoomComponent;
 
   constructor(private technicianService: TechnicianService, private acService: AestheticCareService,
-              private wrService: WaitingRoomService,
+              private wrService: WaitingRoomService, private appointmentService: AppointmentService,
               public bsModalRef: BsModalRef, private modalService: BsModalService) {
   }
 
@@ -67,6 +71,44 @@ export class ClientWaitingRoomInfoModalComponent implements OnInit {
 
   extractOnlyTime(dateTime: string): string {
     return DateTool.extractOnlyTime(dateTime);
+  }
+
+  sendToPracticing(wr: WaitingRoomDTO) {
+    let confirmSendClientToPracticingModal: BsModalRef = this.modalService.show(SimpleConfirmationModalComponent);
+    confirmSendClientToPracticingModal.content.title = "Envoyer le client en soin";
+    confirmSendClientToPracticingModal.content.text = "Etes-vous sûr de vouloir envoyer le client en soin? Cela réduira son stock de" +
+      " soin en fonction du soin choisit lors de son Rendez-vous. Le soin pratiqué sera enregistré pour le/la " +
+      "technicien(ne) du rendez-vous.";
+    confirmSendClientToPracticingModal.content.confirmationFunction = () => {
+      if (wr.appointment != null) {
+        this.appointmentService.provisionClientWithAppointment(wr.client.idPerson).then(() => {
+          this.successProvisionClient();
+        }).catch(() => {
+          this.failProvisionClient();
+        })
+      } else {
+        this.appointmentService.provisionClientWithoutAppointment(wr.client.idPerson, this.selectedTechnician.idPerson,
+          this.selectedAC.idAestheticCare).then(() => {
+          this.successProvisionClient();
+        }).catch(() => {
+          this.failProvisionClient();
+        })
+      }
+    }
+  }
+
+  private successProvisionClient() {
+    let successModal: BsModalRef = this.modalService.show(SuccessModalComponent);
+    successModal.content.title = "Client a été mis en soin";
+    successModal.content.text = "Le client a bien été placé en soin";
+    successModal.content.parent = this.bsModalRef;
+  }
+
+  private failProvisionClient() {
+    let failModal: BsModalRef = this.modalService.show(FailModalComponent);
+    failModal.content.title = "Echec de la mise en soin du client";
+    failModal.content.text = "Le client n'a pas pu être placé en soin";
+    failModal.content.parent = this.bsModalRef;
   }
 
   clientLeaveWR(idClient: number) {

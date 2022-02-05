@@ -74,5 +74,6 @@ export class AppointmentSummaryModalComponent implements OnInit {
   clientArrive(appointment: AppointmentDTO) {
     this.clientArrivalModal = this.modalService.show(ClientArrivalModalComponent);
     this.clientArrivalModal.content.clientAppointment = appointment;
+    this.clientArrivalModal.content.parent = this.bsModalRef;
   }
 }

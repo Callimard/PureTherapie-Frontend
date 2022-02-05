@@ -36,9 +36,11 @@
       <span class="p-2">{{appointmentInfo.time}}</span>
     </div>
     <div class="appointment-summary-all-btn p-2">
-      <button type="button" class="btn btn-primary text-bold" (click)="clientArrive(appointmentInfo)">Client arrivé
+      <button type="button" class="btn btn-primary text-bold" (click)="clientArrive(appointmentInfo)"
+              [disabled]="appointmentInfo.clientArrival != null">Client arrivé
       </button>
-      <button type="button" class="btn btn-danger text-bold" (click)="demandCancelAppointment()">Annuler le
+      <button type="button" class="btn btn-danger text-bold" (click)="demandCancelAppointment()"
+              [disabled]="appointmentInfo.clientArrival != null">Annuler le
         rendez-vous
       </button>
     </div>
