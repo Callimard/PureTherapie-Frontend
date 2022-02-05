@@ -15,8 +15,6 @@ import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.c
   styleUrls: ['./client-arrival-modal.component.css']
 })
 export class ClientArrivalModalComponent implements OnInit {
-  private today = DateTool.toMySQLDateString(new Date());
-
   clientAppointment: AppointmentDTO = AppointmentDTO.default();
 
   constructor(private clientService: ClientService, private appointmentService: AppointmentService,
@@ -30,8 +28,8 @@ export class ClientArrivalModalComponent implements OnInit {
     this.bsModalRef.hide();
   }
 
-  placeClientInWaitingRoom(idClient: number) {
-    this.appointmentService.clientArrival(idClient).then(() => {
+  placeClientInWaitingRoom(idClient: number, idAppointment: number) {
+    this.appointmentService.clientArrival(idClient, idAppointment).then(() => {
       this.successPlaceInWaitingRoom();
     }).catch(() => {
       this.failPlaceInWaitingRoom();

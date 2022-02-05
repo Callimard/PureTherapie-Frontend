@@ -8,21 +8,16 @@
       <div class="client-appointment-summary p-2">
         <h4>Rendez-vous client</h4>
         <div class="d-flex justify-content-start">
-          <span class="text-bold">Jour: </span>
-          <span>Aujourd'hui</span>
+          <span><strong>Jour:</strong> Aujourd'hui</span>
         </div>
         <div class="d-flex justify-content-start">
-          <span class="text-bold">heure: </span>
-          <span>{{clientAppointment.time}}</span>
+          <span><strong>heure:</strong> {{clientAppointment.time}}</span>
         </div>
-      </div>
-      <div class="client-vip-summary p-2">
-        <h3 class="vip-title text-bold">Client VIP?</h3>
       </div>
       <div class="d-flex justify-content-center align-items-center">
         <button type="button" class="btn btn-danger text-bold p-2 m-2"
-                (click)="placeClientInWaitingRoom(clientAppointment.client.idPerson)">Mettre le client en salle
-          d'attente
+                (click)="placeClientInWaitingRoom(clientAppointment.client.idPerson, clientAppointment.idAppointment)">
+          Mettre le client en salle d'attente
         </button>
       </div>
     </div>

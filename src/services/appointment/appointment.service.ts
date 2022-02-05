@@ -57,9 +57,11 @@ export class AppointmentService {
     }));
   }
 
-  public clientArrival(idClient: number): Promise<any> {
+  public clientArrival(idClient: number, idAppointment: number): Promise<any> {
     return new Promise<any>(((resolve, reject) => {
-      this.httpClient.post(GlobalVariables.CLIENT_ARRIVAL_URL + "?idClient=" + idClient, null).subscribe({
+      this.httpClient.post(GlobalVariables.CLIENT_ARRIVAL_URL
+        + "?idClient=" + idClient
+        + "&idAppointment=" + idAppointment, null).subscribe({
         next: (res) => {
           resolve(res);
         },

@@ -47,3 +47,12 @@ hr {
 .text-fail {
   color: red;
 }
+
+.border-bottom-separator {
+  border-bottom: 1px solid #adacac;
+}
+
+.client-wr-buttons {
+  display: flex;
+  justify-content: space-between;
+}

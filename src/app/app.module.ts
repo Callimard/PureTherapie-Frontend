@@ -50,6 +50,7 @@ import {
 } from './administration/client/client-administration/client-payment-modal/client-payment-modal.component';
 import {WaitingRoomComponent} from './administration/waiting-room/waiting-room.component';
 import { ClientArrivalModalComponent } from './administration/aganda/agenda/client-arrival-modal/client-arrival-modal.component';
+import { ClientWaitingRoomInfoModalComponent } from './administration/waiting-room/client-waiting-room-info-modal/client-waiting-room-info-modal.component';
 
 const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_LOGIN_URL, component: LoginComponent},
@@ -85,7 +86,8 @@ const appRoutes: Routes = [
     ClientBundlePurchaseEditionModalComponent,
     ClientPaymentModalComponent,
     WaitingRoomComponent,
-    ClientArrivalModalComponent
+    ClientArrivalModalComponent,
+    ClientWaitingRoomInfoModalComponent
   ],
   imports: [
     TooltipModule.forRoot(),

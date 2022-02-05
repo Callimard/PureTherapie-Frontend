@@ -1,0 +1,58 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h2 class="modal-title text-bold">Client en salle d'attente</h2>
+    <button type="button" class="btn-close" (click)="close()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="appointment-summary border-bottom-separator p-3" *ngIf="wr.appointment != null">
+      <h4 class="text-bold" style="text-decoration: underline">Récapitulatif rendez-vous:</h4>
+      <div class="appointment-summary-item">
+        <span class="item-label text-bold">Client: </span>
+        <span>{{formatPersonIdentifier(wr.appointment.client)}}</span>
+      </div>
+      <div class="appointment-summary-item">
+        <span class="item-label text-bold">Heure du rendez-vous: </span>
+        <span>{{wr.appointment.time}}</span>
+      </div>
+      <div class="appointment-summary-item">
+        <span class="item-label text-bold">Soin: </span>
+        <span>{{wr.appointment.aestheticCare.name}}</span>
+      </div>
+      <div class="appointment-summary-item">
+        <span class="item-label text-bold">Technicien(ne): </span>
+        <span>{{formatPersonIdentifier(wr.appointment.technician)}}</span>
+      </div>
+    </div>
+    <div class="no-appointment-summary" *ngIf="wr.appointment == null">
+      <h4 class="text-bold" style="text-decoration: underline">Client sans rendez-vous:</h4>
+      <div class="appointment-summary-item">
+        <span class="item-label text-bold">Client: </span>
+        <span>{{formatPersonIdentifier(wr.client)}}</span>
+      </div>
+      <div class="appointment-summary-item">
+        <span class="item-label text-bold">Heure d'arrivée: </span>
+        <span>{{extractOnlyTime(wr.arrivalDate)}}</span>
+      </div>
+      <div class="appointment-summary-item">
+        <span class="item-label text-bold">Soin qui ve lui être effectué: </span>
+        <select [(ngModel)]="selectedAC">
+          <option *ngFor="let ac of allACs" [ngValue]="ac">{{ac.name}}</option>
+        </select>
+      </div>
+      <div class="appointment-summary-item">
+        <span class="item-label text-bold">Client: </span>
+        <span>{{formatPersonIdentifier(wr.client)}}</span>
+      </div>
+    </div>
+    <div class="client-wr-buttons p-1">
+      <button class="btn btn-primary text-bold flex-fill p-2 m-2">Envoyer en soin</button>
+      <button class="btn btn-danger text-bold flex-fill p-2 m-2" (click)="clientLeaveWR(wr.client.idPerson)">Sortir de
+        la salle d'attente
+      </button>
+    </div>
+  </div>
+  <div class="modal-footer d-flex justify-content-end">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+  </div>
+</div>
+
