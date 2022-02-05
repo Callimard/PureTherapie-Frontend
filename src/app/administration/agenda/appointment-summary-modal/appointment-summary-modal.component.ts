@@ -1,14 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {AppointmentDTO} from "../../../../../services/appointment/appointment-dto";
+import {AppointmentDTO} from "../../../../services/appointment/appointment-dto";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {
   SimpleConfirmationModalComponent
-} from "../../../../util/modal/simple-confirmation-modal/simple-confirmation-modal.component";
-import {AppointmentService} from "../../../../../services/appointment/appointment.service";
-import {SuccessModalComponent} from "../../../../util/modal/success-modal/success-modal.component";
-import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
+} from "../../../util/modal/simple-confirmation-modal/simple-confirmation-modal.component";
+import {AppointmentService} from "../../../../services/appointment/appointment.service";
+import {SuccessModalComponent} from "../../../util/modal/success-modal/success-modal.component";
+import {FailModalComponent} from "../../../util/modal/fail-modal/fail-modal.component";
 import {AgendaComponent} from "../agenda.component";
 import {ClientArrivalModalComponent} from "../client-arrival-modal/client-arrival-modal.component";
+import {TerminateClientModalComponent} from "../terminate-client-modal/terminate-client-modal.component";
+import {AestheticCareService} from "../../../../services/product/aesthetic/care/aesthetic-care.service";
 
 @Component({
   selector: 'app-appointment-summary-modal',
@@ -19,13 +21,13 @@ export class AppointmentSummaryModalComponent implements OnInit {
 
   agenda?: AgendaComponent;
 
-  appointmentInfo?: AppointmentDTO;
+  appointmentInfo: AppointmentDTO = AppointmentDTO.default();
 
   cancelAppointmentConfirmationModal?: BsModalRef;
   clientArrivalModal?: BsModalRef;
 
-  constructor(private appointmentService: AppointmentService, public bsModalRef: BsModalRef,
-              private modalService: BsModalService) {
+  constructor(private appointmentService: AppointmentService, private acService: AestheticCareService,
+              public bsModalRef: BsModalRef, private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
@@ -39,9 +41,9 @@ export class AppointmentSummaryModalComponent implements OnInit {
     this.cancelAppointmentConfirmationModal = this.modalService.show(SimpleConfirmationModalComponent);
     this.cancelAppointmentConfirmationModal.content.title = "Confimer l'annulation du rendez vous";
     this.cancelAppointmentConfirmationModal.content.text = "Voulez-vous vraiment annuler le rendez-vous du client "
-      + this.appointmentInfo?.client.firstName + " " + this.appointmentInfo?.client.lastName.toUpperCase()
-      + " avec " + this.appointmentInfo?.technician.firstName + " " + this.appointmentInfo?.technician.lastName.toUpperCase()
-      + " le " + this.appointmentInfo?.day + " à " + this.appointmentInfo?.time + " ?";
+      + this.appointmentInfo.client.firstName + " " + this.appointmentInfo.client.lastName.toUpperCase()
+      + " avec " + this.appointmentInfo.technician.firstName + " " + this.appointmentInfo.technician.lastName.toUpperCase()
+      + " le " + this.appointmentInfo.day + " à " + this.appointmentInfo.time + " ?";
     this.cancelAppointmentConfirmationModal.content.confirmationFunction = () => this.cancelAppointment();
     this.cancelAppointmentConfirmationModal.content.parent = this.bsModalRef;
   }
@@ -75,5 +77,17 @@ export class AppointmentSummaryModalComponent implements OnInit {
     this.clientArrivalModal = this.modalService.show(ClientArrivalModalComponent);
     this.clientArrivalModal.content.clientAppointment = appointment;
     this.clientArrivalModal.content.parent = this.bsModalRef;
+    this.clientArrivalModal.content.agenda = this.agenda;
+  }
+
+  terminateClient() {
+    let terminateClientModal: BsModalRef = this.modalService.show(TerminateClientModalComponent, {
+      class: "medium-modal"
+    });
+    terminateClientModal.content.parent = this.bsModalRef;
+    if (this.appointmentInfo != null) {
+      terminateClientModal.content.client = this.appointmentInfo.client;
+      terminateClientModal.content.recharge();
+    }
   }
 }

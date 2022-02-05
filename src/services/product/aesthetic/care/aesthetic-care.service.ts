@@ -4,6 +4,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {GlobalVariables} from "../../../../global/global-variables";
 import {SimpleResponseDTO} from "../../../util/simple-response-dto";
 import {SessionPurchaseDTO} from "./session-purchase-dto";
+import {AestheticCareProvisionDTO} from "./aesthetic-care-provision-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -58,6 +59,36 @@ export class AestheticCareService {
           }
         })
 
+    }))
+  }
+
+  public getACProvisionForAppointment(idAppointment: number): Promise<AestheticCareProvisionDTO> {
+    return new Promise<AestheticCareProvisionDTO>(((resolve, reject) => {
+      this.httpClient.get<AestheticCareProvisionDTO>(GlobalVariables.AESTHETIC_CARE_PROVISIONS_BY_APPOINTMENT
+        + "/" + idAppointment).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to get ac provision for appointment, Err = ", err.error);
+          reject(err.error);
+        }
+      })
+    }));
+  }
+
+  public getAllUnpaidACPurchases(idClient: number): Promise<SessionPurchaseDTO[]> {
+    return new Promise<SessionPurchaseDTO[]>(((resolve, reject) => {
+      this.httpClient.get<SessionPurchaseDTO[]>(GlobalVariables.UNPAID_AESTHETIC_CARE_PURCHASES
+        + "?idClient=" + idClient).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("fail to get all ac purchase unpaid. Err = ", err.error);
+          reject(err.error);
+        }
+      })
     }))
   }
 }

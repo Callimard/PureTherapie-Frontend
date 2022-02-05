@@ -32,13 +32,13 @@ import {ProductPurchaseComponent} from './administration/product/product-purchas
 import {
   ProductPurchaseModalComponent
 } from './administration/product/product-purchase/product-purchase-modal/product-purchase-modal.component';
-import {AgendaComponent} from './administration/aganda/agenda/agenda.component';
+import {AgendaComponent} from './administration/agenda/agenda.component';
 import {
   CreateAppointmentModalComponent
-} from './administration/aganda/agenda/create-appointment-modal/create-appointment-modal.component';
+} from './administration/agenda/create-appointment-modal/create-appointment-modal.component';
 import {
   AppointmentSummaryModalComponent
-} from './administration/aganda/agenda/appointment-summary-modal/appointment-summary-modal.component';
+} from './administration/agenda/appointment-summary-modal/appointment-summary-modal.component';
 import {
   SimpleConfirmationModalComponent
 } from './util/modal/simple-confirmation-modal/simple-confirmation-modal.component';
@@ -49,8 +49,9 @@ import {
   ClientPaymentModalComponent
 } from './administration/client/client-administration/client-payment-modal/client-payment-modal.component';
 import {WaitingRoomComponent} from './administration/waiting-room/waiting-room.component';
-import { ClientArrivalModalComponent } from './administration/aganda/agenda/client-arrival-modal/client-arrival-modal.component';
+import { ClientArrivalModalComponent } from './administration/agenda/client-arrival-modal/client-arrival-modal.component';
 import { ClientWaitingRoomInfoModalComponent } from './administration/waiting-room/client-waiting-room-info-modal/client-waiting-room-info-modal.component';
+import { TerminateClientModalComponent } from './administration/agenda/terminate-client-modal/terminate-client-modal.component';
 
 const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_LOGIN_URL, component: LoginComponent},
@@ -87,7 +88,8 @@ const appRoutes: Routes = [
     ClientPaymentModalComponent,
     WaitingRoomComponent,
     ClientArrivalModalComponent,
-    ClientWaitingRoomInfoModalComponent
+    ClientWaitingRoomInfoModalComponent,
+    TerminateClientModalComponent
   ],
   imports: [
     TooltipModule.forRoot(),

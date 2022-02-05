@@ -35,7 +35,7 @@
       <span class="text-bold p-2">Heure de début: </span>
       <span class="p-2">{{appointmentInfo.time}}</span>
     </div>
-    <div class="appointment-summary-all-btn p-2">
+    <div class="appointment-summary-all-btn p-2" *ngIf="appointmentInfo.clientArrival == null">
       <button type="button" class="btn btn-primary text-bold" (click)="clientArrive(appointmentInfo)"
               [disabled]="appointmentInfo.clientArrival != null">Client arrivé
       </button>
@@ -43,6 +43,9 @@
               [disabled]="appointmentInfo.clientArrival != null">Annuler le
         rendez-vous
       </button>
+    </div>
+    <div class="client-termination p-2" *ngIf="appointmentInfo.clientArrival != null">
+      <button class="btn btn-success text-bold" (click)="terminateClient()">Finaliser avec le client</button>
     </div>
   </div>
   <div *ngIf="appointmentInfo === undefined">

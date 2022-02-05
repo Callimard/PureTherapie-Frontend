@@ -123,7 +123,7 @@ export class ClientEditionModalComponent implements OnInit {
       class: 'medium-modal'
     });
     this.payBillRef.content.bill = bill;
-    this.payBillRef.content.clientEditionModal = this;
+    this.payBillRef.content.rechargeable = this;
   }
 
 }

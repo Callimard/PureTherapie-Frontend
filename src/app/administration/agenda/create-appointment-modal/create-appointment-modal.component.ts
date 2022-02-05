@@ -1,19 +1,19 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {TechnicianDTO} from "../../../../../services/person/technician/technician-dto";
-import {DateTool} from "../../../../../services/agenda/date-tool";
-import {AestheticCareDTO} from "../../../../../services/product/aesthetic/care/aesthetic-care-dto";
-import {FreeTimeSlotDTO} from "../../../../../services/agenda/free-time-slot-dto";
-import {TechnicianService} from "../../../../../services/person/technician/technician.service";
-import {AestheticCareService} from "../../../../../services/product/aesthetic/care/aesthetic-care.service";
-import {AgendaService} from "../../../../../services/agenda/agenda.service";
-import {SimpleClientInfoDTO} from "../../../../../services/person/client/simple-client-info-dto";
-import {ClientService} from "../../../../../services/person/client/client.service";
-import {ClientDTO} from "../../../../../services/person/client/client-dto";
-import {TakeAppointmentDTO} from "../../../../../services/appointment/take_appointment/take-appointment-dto";
-import {AppointmentService} from "../../../../../services/appointment/appointment.service";
-import {SuccessModalComponent} from "../../../../util/modal/success-modal/success-modal.component";
-import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
+import {TechnicianDTO} from "../../../../services/person/technician/technician-dto";
+import {DateTool} from "../../../../services/agenda/date-tool";
+import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/aesthetic-care-dto";
+import {FreeTimeSlotDTO} from "../../../../services/agenda/free-time-slot-dto";
+import {TechnicianService} from "../../../../services/person/technician/technician.service";
+import {AestheticCareService} from "../../../../services/product/aesthetic/care/aesthetic-care.service";
+import {AgendaService} from "../../../../services/agenda/agenda.service";
+import {SimpleClientInfoDTO} from "../../../../services/person/client/simple-client-info-dto";
+import {ClientService} from "../../../../services/person/client/client.service";
+import {ClientDTO} from "../../../../services/person/client/client-dto";
+import {TakeAppointmentDTO} from "../../../../services/appointment/take_appointment/take-appointment-dto";
+import {AppointmentService} from "../../../../services/appointment/appointment.service";
+import {SuccessModalComponent} from "../../../util/modal/success-modal/success-modal.component";
+import {FailModalComponent} from "../../../util/modal/fail-modal/fail-modal.component";
 import {AgendaComponent} from "../agenda.component";
 
 @Component({

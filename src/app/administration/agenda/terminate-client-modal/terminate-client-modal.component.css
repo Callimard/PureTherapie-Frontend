@@ -1,0 +1,152 @@
+.commercial-operation {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.to-paid-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.purchase-summary {
+  flex-grow: 1;
+  display: grid;
+  grid-template: 50% 50% / 100%;
+}
+
+.product-summary-title {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.purchase-item-title {
+  margin-right: 2%;
+}
+
+.bundle-purchase-summary {
+  grid-area: 1 span 1 / 1 span 1;
+  border-bottom: 1px solid rgba(175, 173, 173, 0.42);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.client-all-bundle-purchases {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 150px;
+  overflow: auto;
+  border: 1px solid #000000;
+}
+
+.client-bundle-purchase {
+  display: grid;
+  grid-template: 100% / 20% 20% 20% 20% 20%;
+  border-bottom: 1px solid #000000;
+  flex-shrink: 1;
+}
+
+.bundle-purchase-name {
+  grid-area: 1 span 1 / 1 span 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.bundle-purchase-purchase-date {
+  grid-area: 1 span 1 / 2 span 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.bundle-purchase-totally-paid {
+  grid-area: 1 span 1 / 3 span 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.bundle-purchase-partially-paid {
+  grid-area: 1 span 1 / 4 span 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.bundle-purchase-button {
+  grid-area: 1 span 1 / 5 span 1;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.ac-purchase-summary {
+  grid-area: 2 span 1 / 1 span 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.client-all-ac-purchases {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 150px;
+  overflow: auto;
+  border: 1px solid #000000;
+}
+
+.client-ac-purchase {
+  display: grid;
+  grid-template: 100% / 1fr 1fr 1fr 1fr 1fr 1fr;
+  border-bottom: 1px solid #000000;
+  flex-shrink: 1;
+}
+
+.ac-purchase-name {
+  grid-area: 1 span 1 / 1 span 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ac-purchase-used {
+  grid-area: 1 span 1 / 2 span 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ac-purchase-purchase-date {
+  grid-area: 1 span 1 / 3 span 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ac-purchase-totally-paid {
+  grid-area: 1 span 1 / 4 span 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ac-purchase-partially-paid {
+  grid-area: 1 span 1 / 5 span 1;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.ac-purchase-button {
+  grid-area: 1 span 1 / 6 span 1;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}

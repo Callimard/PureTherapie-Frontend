@@ -1,17 +1,17 @@
 import {Component, OnInit} from '@angular/core';
-import {TechnicianDTO} from "../../../../services/person/technician/technician-dto";
-import {TechnicianService} from "../../../../services/person/technician/technician.service";
-import {AgendaService} from "../../../../services/agenda/agenda.service";
-import {TimeSlotDTO} from "../../../../services/agenda/time-slot-dto";
-import {DateTool} from "../../../../services/agenda/date-tool";
+import {TechnicianDTO} from "../../../services/person/technician/technician-dto";
+import {TechnicianService} from "../../../services/person/technician/technician.service";
+import {AgendaService} from "../../../services/agenda/agenda.service";
+import {TimeSlotDTO} from "../../../services/agenda/time-slot-dto";
+import {DateTool} from "../../../services/agenda/date-tool";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {CreateAppointmentModalComponent} from "./create-appointment-modal/create-appointment-modal.component";
 import {AppointmentSummaryModalComponent} from "./appointment-summary-modal/appointment-summary-modal.component";
-import {AppointmentDTO} from "../../../../services/appointment/appointment-dto";
-import {AuthenticationService} from "../../../../services/auth/authentication.service";
+import {AppointmentDTO} from "../../../services/appointment/appointment-dto";
+import {AuthenticationService} from "../../../services/auth/authentication.service";
 import {
   ClientRegistrationModalComponent
-} from "../../client/client-administration/client-registration-modal/client-registration-modal.component";
+} from "../client/client-administration/client-registration-modal/client-registration-modal.component";
 
 @Component({
   selector: 'app-agenda',

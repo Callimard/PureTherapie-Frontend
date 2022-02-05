@@ -26,9 +26,6 @@ export class ClientWaitingRoomInfoModalComponent implements OnInit {
 
   wr: WaitingRoomDTO = WaitingRoomDTO.default();
 
-  idTechnician?: number;
-  idAestheticCare?: number;
-
   technicians: TechnicianDTO[] = [];
   allACs: AestheticCareDTO[] = [];
 
