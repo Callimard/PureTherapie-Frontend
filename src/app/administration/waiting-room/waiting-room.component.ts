@@ -48,6 +48,7 @@ export class WaitingRoomComponent implements OnInit {
   }
 
   private chargeAllWaitingRoom() {
+    this.techWRMap.clear();
     this.waitingRoom.getAllWaitingRoomRow().then((res) => {
       this.waitingRoomRows = res;
       for (let wr of this.waitingRoomRows) {

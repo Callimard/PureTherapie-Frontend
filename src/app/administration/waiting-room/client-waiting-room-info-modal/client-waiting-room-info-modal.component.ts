@@ -99,6 +99,7 @@ export class ClientWaitingRoomInfoModalComponent implements OnInit {
     successModal.content.title = "Client a été mis en soin";
     successModal.content.text = "Le client a bien été placé en soin";
     successModal.content.parent = this.bsModalRef;
+    this.waitingRoomComponent?.recharge();
   }
 
   private failProvisionClient() {
