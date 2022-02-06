@@ -91,4 +91,19 @@ export class AestheticCareService {
       })
     }))
   }
+
+  public getClientStockOfAC(idClient: number, idAC: number): Promise<number> {
+    return new Promise(((resolve, reject) => {
+      this.httpClient.get<number>(GlobalVariables.AESTHETIC_CARES_URL
+        + "/" + idClient + GlobalVariables.CLIENT_AC_STOCK + "/" + idAC).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to get all client ac stock, Err = ", err.error);
+          reject(err.error);
+        }
+      })
+    }))
+  }
 }

@@ -47,6 +47,11 @@
     <div class="client-termination p-2" *ngIf="appointmentInfo.clientArrival != null">
       <button class="btn btn-success text-bold" (click)="terminateClient()">Finaliser avec le client</button>
     </div>
+    <div class="commercial-row" *ngIf="acStock <= 2">
+      <h5 class="text-bold p-2" style="text-decoration: underline">Commerce:</h5>
+      <span
+        class="text-fail p-2">Le client n'a bientôt plus de stock pour ce soin: <strong>Essayer de lui vendre un package</strong></span>
+    </div>
   </div>
   <div *ngIf="appointmentInfo === undefined">
     <h2 style="font-weight: bold; color: red">Problème, pas de rendez-vous à afficher</h2>

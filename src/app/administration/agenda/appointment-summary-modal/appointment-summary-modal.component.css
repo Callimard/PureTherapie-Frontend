@@ -4,6 +4,12 @@
   flex-grow: 1;
 }
 
+.commercial-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 .appointment-summary-all-btn {
   display: flex;
   justify-content: space-evenly;

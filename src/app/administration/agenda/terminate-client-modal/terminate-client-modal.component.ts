@@ -13,6 +13,7 @@ import {
 import {
   ClientPaymentModalComponent
 } from "../../client/client-administration/client-payment-modal/client-payment-modal.component";
+import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/aesthetic-care-dto";
 
 @Component({
   selector: 'app-terminate-client-modal',
@@ -22,9 +23,11 @@ import {
 export class TerminateClientModalComponent implements OnInit {
 
   client: ClientDTO = ClientDTO.default();
+  appointmentAC: AestheticCareDTO = AestheticCareDTO.default();
 
   clientUnpaidBundlePurchases: BundlePurchaseDTO[] = [];
   clientUnpaidACPurchases: SessionPurchaseDTO[] = [];
+  clientACStock: number = -1;
 
   parent?: BsModalRef;
 
@@ -38,6 +41,15 @@ export class TerminateClientModalComponent implements OnInit {
   recharge() {
     this.chargeAllUnpaidBundlePurchases();
     this.chargeAllUnpaidACPurchases();
+    this.chargeACStock();
+  }
+
+  private chargeACStock() {
+    this.acService.getClientStockOfAC(this.client.idPerson, this.appointmentAC.idAestheticCare).then((res) => {
+      this.clientACStock = res;
+    }).catch(() => {
+      console.error("Fail to charge client ac stock");
+    })
   }
 
   private chargeAllUnpaidBundlePurchases() {
