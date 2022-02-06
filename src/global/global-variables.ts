@@ -21,6 +21,7 @@ export class GlobalVariables {
   public static readonly INTERN_PRODUCT_PURCHASE_URL = 'product-purchase';
   public static readonly INTERN_AGENDA_URL = 'agenda';
   public static readonly INTERN_WAITING_ROOM = 'waiting_room';
+  public static readonly OPENING_TIME = 'opening';
 
   // BACKEND Session
 

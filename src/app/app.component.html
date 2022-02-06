@@ -18,6 +18,20 @@
       </a>
     </li>
     <li class="nav-item">
+      <a routerLink="waiting_room" class="nav-link text-black d-flex justify-content-start align-items-center"
+         routerLinkActive="active">
+        <span class="material-icons mx-2">chair</span>
+        <strong>Salle d'attente</strong>
+      </a>
+    </li>
+    <li class="nav-item ">
+      <a routerLink="product-purchase" class="nav-link d-flex justify-content-start align-items-center text-black"
+         routerLinkActive="active">
+        <span class="material-icons mx-2">shopping_cart</span>
+        <strong>Ventes aux clients</strong>
+      </a>
+    </li>
+    <li class="nav-item">
       <a routerLink="administration/clients" class="nav-link text-black d-flex justify-content-start align-items-center"
          routerLinkActive="active">
         <span class="material-icons mx-2">supervisor_account</span>
@@ -31,18 +45,11 @@
         <strong>Techniciens</strong>
       </a>
     </li>
-    <li class="nav-item ">
-      <a routerLink="product-purchase" class="nav-link d-flex justify-content-start align-items-center text-black"
-         routerLinkActive="active">
-        <span class="material-icons mx-2">shopping_cart</span>
-        <strong>Ventes aux clients</strong>
-      </a>
-    </li>
     <li class="nav-item">
-      <a routerLink="waiting_room" class="nav-link text-black d-flex justify-content-start align-items-center"
+      <a routerLink="opening" class="nav-link text-black d-flex justify-content-start align-items-center"
          routerLinkActive="active">
-        <span class="material-icons mx-2">chair</span>
-        <strong>Salle d'attente</strong>
+        <span class="material-icons mx-2">more_time</span>
+        <strong>Date ouvertures</strong>
       </a>
     </li>
     <li class="nav-item" *ngIf="!isAuthenticated()">

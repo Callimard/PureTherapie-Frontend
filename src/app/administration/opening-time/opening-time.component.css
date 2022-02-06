@@ -1,0 +1,10 @@
+.opening-container {
+  border-radius: 10px;
+}
+
+.opening-header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0 1px 2px black;
+  background-color: #2dadf1;
+}
