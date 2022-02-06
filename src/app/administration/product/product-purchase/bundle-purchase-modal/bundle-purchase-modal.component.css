@@ -1,0 +1,33 @@
+.bundle-purchase-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.all-packages {
+  flex-grow: 1;
+
+  border: 1px solid black;
+
+  height: 350px;
+  overflow: auto;
+}
+
+.product-purchase-grid-package {
+  flex-shrink: 1;
+  display: grid;
+  grid-template: 100% / 80% 10% 10%;
+  border-bottom: 1px solid #adacac;
+}
+
+.product-package-name {
+  grid-area: 1 span 1 / 1 span 1;
+}
+
+.product-package-price {
+  grid-area: 1 span 1 / 2 span 1;
+}
+
+.product-package-purchase {
+  grid-area: 1 span 1 / 3 span 1;
+}

@@ -101,6 +101,7 @@ export class AppointmentSummaryModalComponent implements OnInit {
     if (this.appointmentInfo != null) {
       terminateClientModal.content.client = this.appointmentInfo.client;
       terminateClientModal.content.appointmentAC = this.appointmentInfo.aestheticCare;
+      terminateClientModal.content.rechargeable = this;
       terminateClientModal.content.recharge();
     }
   }

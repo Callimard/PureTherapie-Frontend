@@ -14,6 +14,9 @@ import {
   ClientPaymentModalComponent
 } from "../../client/client-administration/client-payment-modal/client-payment-modal.component";
 import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/aesthetic-care-dto";
+import {
+  BundlePurchaseModalComponent
+} from "../../product/product-purchase/bundle-purchase-modal/bundle-purchase-modal.component";
 
 @Component({
   selector: 'app-terminate-client-modal',
@@ -29,6 +32,8 @@ export class TerminateClientModalComponent implements OnInit {
   clientUnpaidACPurchases: SessionPurchaseDTO[] = [];
   clientACStock: number = -1;
 
+  rechargeable?: { recharge(): () => void };
+
   parent?: BsModalRef;
 
   constructor(private acService: AestheticCareService, private bundleService: BundleService,
@@ -42,6 +47,7 @@ export class TerminateClientModalComponent implements OnInit {
     this.chargeAllUnpaidBundlePurchases();
     this.chargeAllUnpaidACPurchases();
     this.chargeACStock();
+    this.rechargeable?.recharge();
   }
 
   private chargeACStock() {
@@ -111,6 +117,14 @@ export class TerminateClientModalComponent implements OnInit {
     });
     payBillRef.content.bill = bill;
     payBillRef.content.rechargeable = this;
+  }
+
+  sellBundle() {
+    let bundlePurchaseModal: BsModalRef = this.modalService.show(BundlePurchaseModalComponent, {
+      class: 'big-modal'
+    });
+    bundlePurchaseModal.content.client = this.client;
+    bundlePurchaseModal.content.rechargeable = this;
   }
 
 }

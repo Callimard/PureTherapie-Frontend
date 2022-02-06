@@ -9,6 +9,9 @@ import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.c
 import {BundleService} from "../../../../../services/product/aesthetic/bundle/bundle.service";
 import {AuthenticationService} from "../../../../../services/auth/authentication.service";
 import {SimpleClientInfoDTO} from "../../../../../services/person/client/simple-client-info-dto";
+import {ClientDTO} from "../../../../../services/person/client/client-dto";
+import {PersonTool} from "../../../../../services/util/person-tool";
+import {PersonDTO} from "../../../../../services/person/person-dto";
 
 @Component({
   selector: 'app-product-purchase-modal',
@@ -24,11 +27,15 @@ export class ProductPurchaseModalComponent implements OnInit {
 
   emailClient: string = '';
   clientFound = SimpleClientInfoDTO.default();
+  clientComplete?: ClientDTO;
   hasSearchClient = false;
   hasFoundClient = false;
+  displaySearchClient = true;
 
   bundleToPurchase: BundleDTO = BundleDTO.default();
   acToPurchase: AestheticCareDTO = AestheticCareDTO.default();
+
+  rechargeable?: { recharge(): () => void };
 
   constructor(private clientService: ClientService, private acService: AestheticCareService,
               private bundleService: BundleService, private authenticationService: AuthenticationService,
@@ -56,13 +63,13 @@ export class ProductPurchaseModalComponent implements OnInit {
 
   purchaseAC() {
     this.acService.purchaseAestheticCare(this.acToPurchase.idAestheticCare, this.clientFound.idPerson).then(() => {
-      this.sucessACPurchase();
+      this.successACPurchase();
     }).catch(() => {
       this.failACPurchase();
     });
   }
 
-  private sucessACPurchase() {
+  private successACPurchase() {
     this.modalService.show(SuccessModalComponent, {
       initialState: {
         title: "L'achat du soin ésthétique à réussie!",
@@ -96,6 +103,7 @@ export class ProductPurchaseModalComponent implements OnInit {
         text: "L'achat du package " + this.bundleToPurchase.name + " a été pris en compte."
       }
     });
+    this.rechargeable?.recharge();
     this.bsModalRef.hide();
   }
 
@@ -106,6 +114,10 @@ export class ProductPurchaseModalComponent implements OnInit {
         text: "L'achat du packages " + this.acToPurchase.name + "  N'A PAS ETE PRIS EN COMPTE."
       }
     });
+  }
+
+  getClientSimpleIdentifier(person: PersonDTO): string {
+    return PersonTool.formatPersonSimpleIdentifier(person);
   }
 
 }

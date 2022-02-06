@@ -2,6 +2,12 @@
   text-decoration: underline;
 }
 
+.client-information {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 .separator {
   width: 60%;
 }
