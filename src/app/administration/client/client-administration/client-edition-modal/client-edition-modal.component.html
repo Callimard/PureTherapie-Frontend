@@ -82,8 +82,7 @@
                 <span>{{billPartiallyPaid(bundlePurchase.bill)}}</span>
               </div>
               <div class="bundle-purchase-button">
-                <button type="button" class="text-bold btn btn-warning"
-                        [disabled]="billIsTotallyPaid(bundlePurchase.bill)" (click)="pay(bundlePurchase.bill)">Payer
+                <button type="button" class="text-bold btn btn-warning" (click)="pay(bundlePurchase.bill)">Payer
                 </button>
                 <button type="button" class="text-bold btn btn-primary m-2"
                         (click)="openBundlePurchaseEdition(bundlePurchase)">Editer
@@ -117,8 +116,7 @@
                 <span>{{billPartiallyPaid(sessionPurchase.bill)}}</span>
               </div>
               <div class="ac-purchase-button">
-                <button type="button" class="text-bold btn btn-warning"
-                        [disabled]="billIsTotallyPaid(sessionPurchase.bill)" (click)="pay(sessionPurchase.bill)">Payer
+                <button type="button" class="text-bold btn btn-warning" (click)="pay(sessionPurchase.bill)">Payer
                 </button>
               </div>
             </div>

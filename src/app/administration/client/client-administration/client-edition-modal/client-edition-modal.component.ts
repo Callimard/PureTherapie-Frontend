@@ -15,6 +15,9 @@ import {
   ClientBundlePurchaseEditionModalComponent
 } from "../client-bundle-purchase-edition-modal/client-bundle-purchase-edition-modal.component";
 import {ClientPaymentModalComponent} from "../client-payment-modal/client-payment-modal.component";
+import {
+  SimpleConfirmationModalComponent
+} from "../../../../util/modal/simple-confirmation-modal/simple-confirmation-modal.component";
 
 @Component({
   selector: 'app-client-edition-modal',
@@ -68,20 +71,35 @@ export class ClientEditionModalComponent implements OnInit {
   }
 
   updateChange(): void {
+    let confirmationModal: BsModalRef = this.modalService.show(SimpleConfirmationModalComponent);
+    confirmationModal.content.title = "Mise à jour client, confirmation"
+    confirmationModal.content.text = "Êtes-vous sûr de vouloir mettre à jour les données client?"
+    confirmationModal.content.confirmationFunction = () => this.updateClient();
+  }
+
+  private updateClient() {
     this.clientService.updateClient(this.updatedClient).then(() => {
-      this.modalService.show(SuccessModalComponent, {
-        initialState: {
-          title: "Mise à jour des données client réussie",
-          text: "Les données du client on put être mise à jour"
-        }
-      });
+      this.successUpdateClient();
     }).catch(() => {
-      this.modalService.show(FailModalComponent, {
-        initialState: {
-          title: "Mise à jour des données client non effectuée",
-          text: "La mise à jour des données client n'a pu être mise à jour"
-        }
-      })
+      this.failUpdateClient();
+    });
+  }
+
+  private successUpdateClient() {
+    this.modalService.show(SuccessModalComponent, {
+      initialState: {
+        title: "Mise à jour des données client réussie",
+        text: "Les données du client on put être mise à jour"
+      }
+    });
+  }
+
+  private failUpdateClient() {
+    this.modalService.show(FailModalComponent, {
+      initialState: {
+        title: "Mise à jour des données client non effectuée",
+        text: "La mise à jour des données client n'a pu être mise à jour"
+      }
     })
   }
 

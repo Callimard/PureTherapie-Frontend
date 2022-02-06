@@ -12,6 +12,9 @@ import {SimpleClientInfoDTO} from "../../../../../services/person/client/simple-
 import {ClientDTO} from "../../../../../services/person/client/client-dto";
 import {PersonTool} from "../../../../../services/util/person-tool";
 import {PersonDTO} from "../../../../../services/person/person-dto";
+import {
+  SimpleConfirmationModalComponent
+} from "../../../../util/modal/simple-confirmation-modal/simple-confirmation-modal.component";
 
 @Component({
   selector: 'app-product-purchase-modal',
@@ -89,7 +92,14 @@ export class ProductPurchaseModalComponent implements OnInit {
   }
 
   purchaseBundle() {
-    this.bundleService.purchaseBundle(this.bundleToPurchase.idBundle, this.clientFound.idPerson).then(() => {
+    let confirmationModal: BsModalRef = this.modalService.show(SimpleConfirmationModalComponent);
+    confirmationModal.content.title = "Confirmation de vente de package";
+    confirmationModal.content.text = "Êtes-vous sur de vouloir vendre le package " + this.bundleToPurchase.name
+    confirmationModal.content.confirmationFunction = () => this.proceedBundlePurchase();
+  }
+
+  private proceedBundlePurchase() {
+    return this.bundleService.purchaseBundle(this.bundleToPurchase.idBundle, this.clientFound.idPerson).then(() => {
       this.successBundlePurchase();
     }).catch(() => {
       this.failBundlePurchase();
