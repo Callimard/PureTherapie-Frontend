@@ -13,6 +13,10 @@ import {
 import {
   ClientPaymentModalComponent
 } from "../../client/client-administration/client-payment-modal/client-payment-modal.component";
+import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/aesthetic-care-dto";
+import {
+  BundlePurchaseModalComponent
+} from "../../product/product-purchase/bundle-purchase-modal/bundle-purchase-modal.component";
 
 @Component({
   selector: 'app-terminate-client-modal',
@@ -22,9 +26,13 @@ import {
 export class TerminateClientModalComponent implements OnInit {
 
   client: ClientDTO = ClientDTO.default();
+  appointmentAC: AestheticCareDTO = AestheticCareDTO.default();
 
   clientUnpaidBundlePurchases: BundlePurchaseDTO[] = [];
   clientUnpaidACPurchases: SessionPurchaseDTO[] = [];
+  clientACStock: number = -1;
+
+  rechargeable?: { recharge(): () => void };
 
   parent?: BsModalRef;
 
@@ -38,6 +46,16 @@ export class TerminateClientModalComponent implements OnInit {
   recharge() {
     this.chargeAllUnpaidBundlePurchases();
     this.chargeAllUnpaidACPurchases();
+    this.chargeACStock();
+    this.rechargeable?.recharge();
+  }
+
+  private chargeACStock() {
+    this.acService.getClientStockOfAC(this.client.idPerson, this.appointmentAC.idAestheticCare).then((res) => {
+      this.clientACStock = res;
+    }).catch(() => {
+      console.error("Fail to charge client ac stock");
+    })
   }
 
   private chargeAllUnpaidBundlePurchases() {
@@ -99,6 +117,14 @@ export class TerminateClientModalComponent implements OnInit {
     });
     payBillRef.content.bill = bill;
     payBillRef.content.rechargeable = this;
+  }
+
+  sellBundle() {
+    let bundlePurchaseModal: BsModalRef = this.modalService.show(BundlePurchaseModalComponent, {
+      class: 'big-modal'
+    });
+    bundlePurchaseModal.content.client = this.client;
+    bundlePurchaseModal.content.rechargeable = this;
   }
 
 }

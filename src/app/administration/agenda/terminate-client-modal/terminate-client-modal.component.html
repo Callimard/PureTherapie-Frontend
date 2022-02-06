@@ -4,10 +4,10 @@
     <button type="button" class="btn-close" (click)="close()"></button>
   </div>
   <div class="modal-body">
-    <div class="commercial-operation border-bottom-separator p-2">
+    <div class="commercial-operation border-bottom-separator p-2" *ngIf="clientACStock <= 2">
       <h3 class="text-bold" style="text-decoration: underline">Commerce:</h3>
-      <p class="text-bold text-fail" style="font-size: 150%">Vendre au client un package de soin</p>
-      <button class="text-bold btn btn-primary align-self-center">
+      <p class="text-bold text-fail" style="font-size: 150%">Essayer de vendre au client un package de soin</p>
+      <button class="text-bold btn btn-primary align-self-center" (click)="sellBundle()">
         Vendre
       </button>
     </div>

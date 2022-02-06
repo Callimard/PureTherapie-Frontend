@@ -49,7 +49,8 @@ export class GlobalVariables {
   public static readonly AESTHETIC_CARES_URL = GlobalVariables.API_V1_URL + "/aesthetic_cares";
   public static readonly CLIENT_ALL_SESSION_PURCHASES_URL = GlobalVariables.AESTHETIC_CARES_URL + "/purchases";
   public static readonly AESTHETIC_CARE_PURCHASE = "/purchase";
-  public static readonly UNPAID_AESTHETIC_CARE_PURCHASES =  GlobalVariables.CLIENT_ALL_SESSION_PURCHASES_URL + "/unpaid";
+  public static readonly UNPAID_AESTHETIC_CARE_PURCHASES = GlobalVariables.CLIENT_ALL_SESSION_PURCHASES_URL + "/unpaid";
+  public static readonly CLIENT_AC_STOCK = "/stock";
 
   public static readonly AESTHETIC_CARE_PROVISIONS = GlobalVariables.API_V1_URL + "/aesthetic_care_provisions";
   public static readonly AESTHETIC_CARE_PROVISIONS_BY_APPOINTMENT = GlobalVariables.AESTHETIC_CARE_PROVISIONS + "/appointment";
@@ -59,7 +60,7 @@ export class GlobalVariables {
   public static readonly BUNDLES_URL = GlobalVariables.API_V1_URL + "/bundles";
   public static readonly BUNDLE_PURCHASE = "/purchase";
   public static readonly CLIENT_ALL_BUNDLE_PURCHASES_URL = GlobalVariables.BUNDLES_URL + "/purchases";
-  public static readonly UNPAID_BUNDLE_PURCHASES =  GlobalVariables.CLIENT_ALL_BUNDLE_PURCHASES_URL + "/unpaid";
+  public static readonly UNPAID_BUNDLE_PURCHASES = GlobalVariables.CLIENT_ALL_BUNDLE_PURCHASES_URL + "/unpaid";
   public static readonly ALL_BUNDLE_PURCHASE_STOCKS = "/stocks";
 
   public static readonly TECHNICIANS_URL = GlobalVariables.API_V1_URL + "/technicians";

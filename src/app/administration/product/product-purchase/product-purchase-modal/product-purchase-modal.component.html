@@ -6,23 +6,27 @@
   </div>
   <div class="modal-body d-flex flex-column justify-content-start">
     <div class="research-client-container d-flex flex-column justify-content-start mt-2">
-      <div class="client-info d-flex justify-content-between">
+      <div class="client-info d-flex justify-content-between" *ngIf="displaySearchClient">
         <label for="email" class="form-label flex-grow-1 my-auto" style="font-weight: bold">E-mail client: </label>
         <input type="email" name="email" id="email" class="form-control" [(ngModel)]="emailClient"/>
       </div>
-      <div class="d-flex justify-content-center align-items-center mt-2">
+      <div class="d-flex justify-content-center align-items-center mt-2" *ngIf="displaySearchClient">
         <span class="alert text-success p-1" *ngIf="hasSearchClient && hasFoundClient">Client trouvé!</span>
         <span class="alert text-fail p-1"
               *ngIf="hasSearchClient && !hasFoundClient">Pas de client pour cet e-mail</span>
       </div>
-      <div class="d-flex justify-content-center align-items-center mt-2">
+      <div class="d-flex justify-content-center align-items-center mt-2" *ngIf="displaySearchClient">
         <button type="button" class="btn btn-primary" (click)="searchClient()">Rechercher client</button>
       </div>
     </div>
-    <div class="d-flex justify-content-center align-items-center mt-2">
+    <div class="d-flex justify-content-center align-items-center mt-2" *ngIf="displaySearchClient">
       <hr class="separator">
     </div>
-    <div class="product-purchase-info d-flex flex-column justify-content-start" *ngIf="modePackage">
+    <div class="client-information mt-2" *ngIf="clientComplete != null">
+      <h3 class="text-bold p-2">Client:</h3>
+      <span class="p-2">{{getClientSimpleIdentifier(clientComplete)}}</span>
+    </div>
+    <div class="product-purchase-info d-flex flex-column justify-content-start mt-2" *ngIf="modePackage">
       <div class="bundle-purchase-info-header flex-shrink-1">
         <div class="bundle-name d-flex justify-content-start">
           <h4 style="font-weight: bold; text-decoration: underline" class="my-auto">Package: </h4>

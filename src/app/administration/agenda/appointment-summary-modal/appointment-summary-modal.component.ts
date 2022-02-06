@@ -22,6 +22,7 @@ export class AppointmentSummaryModalComponent implements OnInit {
   agenda?: AgendaComponent;
 
   appointmentInfo: AppointmentDTO = AppointmentDTO.default();
+  acStock: number = -1;
 
   cancelAppointmentConfirmationModal?: BsModalRef;
   clientArrivalModal?: BsModalRef;
@@ -31,6 +32,18 @@ export class AppointmentSummaryModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  recharge() {
+    this.chargeACStock();
+  }
+
+  private chargeACStock() {
+    this.acService.getClientStockOfAC(this.appointmentInfo.client.idPerson, this.appointmentInfo.aestheticCare.idAestheticCare).then((res) => {
+      this.acStock = res;
+    }).catch(() => {
+      console.error("Fail to charge client ac stock");
+    })
   }
 
   close() {
@@ -87,6 +100,8 @@ export class AppointmentSummaryModalComponent implements OnInit {
     terminateClientModal.content.parent = this.bsModalRef;
     if (this.appointmentInfo != null) {
       terminateClientModal.content.client = this.appointmentInfo.client;
+      terminateClientModal.content.appointmentAC = this.appointmentInfo.aestheticCare;
+      terminateClientModal.content.rechargeable = this;
       terminateClientModal.content.recharge();
     }
   }

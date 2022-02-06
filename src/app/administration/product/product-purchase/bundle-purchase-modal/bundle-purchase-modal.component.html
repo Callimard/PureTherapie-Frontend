@@ -1,0 +1,25 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h1 class="modal-title text-bold">Vente de packages</h1>
+    <button type="button" class="btn-close" (click)="close()"></button>
+  </div>
+  <div class="modal-body bundle-purchase-body">
+    <h2>Packages</h2>
+    <div class="all-packages">
+      <div class="product-purchase-grid-package" *ngFor="let bundle of bundles">
+        <div class="d-flex justify-content-start align-items-center product-package-name">
+          <h5 class="my-0" style="margin-left: 1%">{{bundle.name}}</h5>
+        </div>
+        <div class="d-flex justify-content-start align-items-center product-package-price">
+          <h5 class="my-0">{{bundle.price}} €</h5>
+        </div>
+        <div class="d-flex justify-content-start align-items-center product-package-purchase">
+          <button class="btn btn-primary m-2" (click)="purchaseBundle(bundle)">Vendre</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer d-flex justify-content-end">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+  </div>
+</div>

@@ -78,6 +78,7 @@ export class AgendaComponent implements OnInit {
     this.appointmentSummaryModal = this.modalService.show(AppointmentSummaryModalComponent);
     this.appointmentSummaryModal.content.appointmentInfo = appointment;
     this.appointmentSummaryModal.content.agenda = this;
+    this.appointmentSummaryModal.content.recharge();
   }
 
   registerClient() {
