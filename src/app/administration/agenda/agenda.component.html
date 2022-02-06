@@ -40,7 +40,7 @@
               <span style="visibility: hidden"></span>
               <span style="visibility: hidden" *ngIf="ts.free || ts.appointment == null"></span>
             </div>
-            <div class="ts-cache" *ngIf="timeSlotPassed(ts)">
+            <div class="ts-cache" *ngIf="timeSlotPassed(ts) && ts.free">
               <span style="visibility: hidden"></span>
               <span style="visibility: hidden"></span>
             </div>

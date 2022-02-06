@@ -4,6 +4,9 @@ import {BundlePurchaseDTO} from "../../../../../services/product/aesthetic/bundl
 import {StockDTO} from "../../../../../services/product/aesthetic/bundle/stock-dto";
 import {BundleService} from "../../../../../services/product/aesthetic/bundle/bundle.service";
 import {SimpleResponseDTO} from "../../../../../services/util/simple-response-dto";
+import {
+  SimpleConfirmationModalComponent
+} from "../../../../util/modal/simple-confirmation-modal/simple-confirmation-modal.component";
 
 @Component({
   selector: 'app-client-bundle-purchase-edition-modal',
@@ -38,6 +41,14 @@ export class ClientBundlePurchaseEditionModalComponent implements OnInit {
   }
 
   updateStocks() {
+    let confirmationModal: BsModalRef = this.modalService.show(SimpleConfirmationModalComponent);
+    confirmationModal.content.title = "Confirmation mise à jour des stocks de packages de client"
+    confirmationModal.content.text = "Êtes-vous sûr de vouloir mettre à jour les stocks des soins ésthétiques contenue " +
+      "dans le package du client?";
+    confirmationModal.content.confirmationFunction = () => this.updateClientBundleStock();
+  }
+
+  private updateClientBundleStock() {
     for (let stock of this.bundlePurchaseStocks) {
       this.bundleService.updateStock(stock).then((res) => {
         console.log("Update stock success, msg = ", res.message);
