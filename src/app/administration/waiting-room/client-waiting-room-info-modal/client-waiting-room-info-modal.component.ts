@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {PersonTool} from "../../../../services/util/person-tool";
+import {PersonTool} from "../../../../tool/person-tool";
 import {ClientDTO} from "../../../../services/person/client/client-dto";
 import {TechnicianDTO} from "../../../../services/person/technician/technician-dto";
 import {TechnicianService} from "../../../../services/person/technician/technician.service";
 import {AestheticCareService} from "../../../../services/product/aesthetic/care/aesthetic-care.service";
 import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/aesthetic-care-dto";
 import {WaitingRoomDTO} from "../../../../services/waitingroom/waiting-room-dto";
-import {DateTool} from "../../../../services/agenda/date-tool";
+import {DateTool} from "../../../../tool/date-tool";
 import {WaitingRoomService} from "../../../../services/waitingroom/waiting-room.service";
 import {SuccessModalComponent} from "../../../util/modal/success-modal/success-modal.component";
 import {WaitingRoomComponent} from "../waiting-room.component";

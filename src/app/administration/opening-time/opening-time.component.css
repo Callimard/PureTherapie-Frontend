@@ -56,9 +56,40 @@
   overflow: auto;
 }
 
-.opening-row {
+.grid-row {
   flex-shrink: 1;
 
   display: grid;
   grid-template: 100% / 1fr 1fr 1fr 1fr 1fr;
+
+  padding: 2%;
+}
+
+.add-global-opening-btn {
+  font-weight: bold;
+
+  grid-area: 1 / 2 / 2 / 5;
+}
+
+.day-title {
+  font-weight: bold;
+  margin: auto;
+
+  grid-area: span 1 / 1;
+}
+
+.times {
+  grid-area: 1 / 2 / 2 / 5;
+  margin: auto;
+}
+
+.btn-edition {
+  grid-area: 1 / 5 / 2 / 6;
+}
+
+.exceptional-closing-date {
+  font-weight: bold;
+  margin: auto;
+
+  grid-area: 1 / 1 / 2 / 5;
 }

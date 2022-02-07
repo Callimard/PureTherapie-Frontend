@@ -5,7 +5,7 @@ import {BundlePurchaseDTO} from "../../../../services/product/aesthetic/bundle/b
 import {SessionPurchaseDTO} from "../../../../services/product/aesthetic/care/session-purchase-dto";
 import {AestheticCareService} from "../../../../services/product/aesthetic/care/aesthetic-care.service";
 import {BundleService} from "../../../../services/product/aesthetic/bundle/bundle.service";
-import {DateTool} from "../../../../services/agenda/date-tool";
+import {DateTool} from "../../../../tool/date-tool";
 import {BillDTO} from "../../../../services/product/bill/bill-dto";
 import {
   ClientBundlePurchaseEditionModalComponent

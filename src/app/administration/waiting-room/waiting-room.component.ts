@@ -3,7 +3,7 @@ import {TechnicianDTO} from "../../../services/person/technician/technician-dto"
 import {TechnicianService} from "../../../services/person/technician/technician.service";
 import {WaitingRoomService} from "../../../services/waitingroom/waiting-room.service";
 import {WaitingRoomDTO} from "../../../services/waitingroom/waiting-room-dto";
-import {DateTool} from "../../../services/agenda/date-tool";
+import {DateTool} from "../../../tool/date-tool";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {AppointmentService} from "../../../services/appointment/appointment.service";
 import {

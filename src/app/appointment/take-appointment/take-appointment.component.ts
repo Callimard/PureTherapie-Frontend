@@ -5,7 +5,7 @@ import {AgendaService} from "../../../services/agenda/agenda.service";
 import {AestheticCareDTO} from "../../../services/product/aesthetic/care/aesthetic-care-dto";
 import {TechnicianDTO} from "../../../services/person/technician/technician-dto";
 import {FreeTimeSlotDTO} from "../../../services/agenda/free-time-slot-dto";
-import {DateTool} from "../../../services/agenda/date-tool";
+import {DateTool} from "../../../tool/date-tool";
 import {AppointmentService} from "../../../services/appointment/appointment.service";
 import {TakeAppointmentDTO} from "../../../services/appointment/take_appointment/take-appointment-dto";
 import {ActivatedRoute, Params, Router} from "@angular/router";
