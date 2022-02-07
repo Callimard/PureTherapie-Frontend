@@ -64,7 +64,7 @@ const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_PRODUCT_PURCHASE_URL, component: ProductPurchaseComponent},
   {path: GlobalVariables.INTERN_AGENDA_URL, component: AgendaComponent},
   {path: GlobalVariables.INTERN_WAITING_ROOM, component: WaitingRoomComponent},
-  {path: GlobalVariables.OPENING_TIME, component: OpeningTimeComponent},
+  {path: GlobalVariables.INTERN_OPENING_TIME, component: OpeningTimeComponent},
   {path: '', redirectTo: GlobalVariables.INTERN_LOGIN_URL, pathMatch: 'full'}
 ];
 

@@ -21,7 +21,7 @@ export class GlobalVariables {
   public static readonly INTERN_PRODUCT_PURCHASE_URL = 'product-purchase';
   public static readonly INTERN_AGENDA_URL = 'agenda';
   public static readonly INTERN_WAITING_ROOM = 'waiting_room';
-  public static readonly OPENING_TIME = 'opening';
+  public static readonly INTERN_OPENING_TIME = 'opening';
 
   // BACKEND Session
 
@@ -83,5 +83,9 @@ export class GlobalVariables {
   public static readonly PAYMENTS_URL = GlobalVariables.BILL_URL + "/payments";
 
   public static readonly WAITING_ROOM_URL = GlobalVariables.API_V1_URL + "/waiting_room";
+
+  public static readonly GLOBAL_OPENING_TIMES_URL = GlobalVariables.API_V1_URL + "/openings";
+  public static readonly EXCEPTIONAL_OPENINGS_URL = GlobalVariables.GLOBAL_OPENING_TIMES_URL + "/exceptional_openings";
+  public static readonly EXCEPTIONAL_CLOSING_URL = GlobalVariables.GLOBAL_OPENING_TIMES_URL + "/exceptional_closings";
 
 }

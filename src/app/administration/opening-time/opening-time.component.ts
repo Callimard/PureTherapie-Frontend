@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from "../../../services/auth/authentication.service";
 
 @Component({
   selector: 'app-opening-time',
@@ -8,10 +9,11 @@ import {Component, OnInit} from '@angular/core';
 })
 export class OpeningTimeComponent implements OnInit {
 
-  constructor() {
+  constructor(private authenticationService: AuthenticationService) {
   }
 
   ngOnInit(): void {
+    this.authenticationService.checkLogin();
   }
 
 }
