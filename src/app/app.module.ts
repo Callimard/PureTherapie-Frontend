@@ -53,6 +53,7 @@ import { ClientArrivalModalComponent } from './administration/agenda/client-arri
 import { ClientWaitingRoomInfoModalComponent } from './administration/waiting-room/client-waiting-room-info-modal/client-waiting-room-info-modal.component';
 import { TerminateClientModalComponent } from './administration/agenda/terminate-client-modal/terminate-client-modal.component';
 import { BundlePurchaseModalComponent } from './administration/product/product-purchase/bundle-purchase-modal/bundle-purchase-modal.component';
+import { OpeningTimeComponent } from './administration/opening-time/opening-time.component';
 
 const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_LOGIN_URL, component: LoginComponent},
@@ -63,6 +64,7 @@ const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_PRODUCT_PURCHASE_URL, component: ProductPurchaseComponent},
   {path: GlobalVariables.INTERN_AGENDA_URL, component: AgendaComponent},
   {path: GlobalVariables.INTERN_WAITING_ROOM, component: WaitingRoomComponent},
+  {path: GlobalVariables.INTERN_OPENING_TIME, component: OpeningTimeComponent},
   {path: '', redirectTo: GlobalVariables.INTERN_LOGIN_URL, pathMatch: 'full'}
 ];
 
@@ -91,7 +93,8 @@ const appRoutes: Routes = [
     ClientArrivalModalComponent,
     ClientWaitingRoomInfoModalComponent,
     TerminateClientModalComponent,
-    BundlePurchaseModalComponent
+    BundlePurchaseModalComponent,
+    OpeningTimeComponent
   ],
   imports: [
     TooltipModule.forRoot(),

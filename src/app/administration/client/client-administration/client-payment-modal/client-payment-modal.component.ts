@@ -8,7 +8,7 @@ import {
 import {MeansOfPaymentDTO} from "../../../../../services/product/bill/means-of-payment-dto";
 import {SuccessModalComponent} from "../../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
-import {DateTool} from "../../../../../services/agenda/date-tool";
+import {DateTool} from "../../../../../tool/date-tool";
 import {PaymentDTO} from "../../../../../services/product/bill/payment-dto";
 
 @Component({

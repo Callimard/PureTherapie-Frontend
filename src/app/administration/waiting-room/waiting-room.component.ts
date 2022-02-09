@@ -3,12 +3,13 @@ import {TechnicianDTO} from "../../../services/person/technician/technician-dto"
 import {TechnicianService} from "../../../services/person/technician/technician.service";
 import {WaitingRoomService} from "../../../services/waitingroom/waiting-room.service";
 import {WaitingRoomDTO} from "../../../services/waitingroom/waiting-room-dto";
-import {DateTool} from "../../../services/agenda/date-tool";
+import {DateTool} from "../../../tool/date-tool";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {AppointmentService} from "../../../services/appointment/appointment.service";
 import {
   ClientWaitingRoomInfoModalComponent
 } from "./client-waiting-room-info-modal/client-waiting-room-info-modal.component";
+import {AuthenticationService} from "../../../services/auth/authentication.service";
 
 @Component({
   selector: 'app-waiting-room',
@@ -29,11 +30,12 @@ export class WaitingRoomComponent implements OnInit {
 
   constructor(private technicianService: TechnicianService, private waitingRoom: WaitingRoomService,
               private appointmentService: AppointmentService,
-              private modalService: BsModalService) {
+              private modalService: BsModalService, private authenticationService: AuthenticationService) {
   }
 
   ngOnInit(): void {
     this.recharge();
+    this.authenticationService.checkLogin();
   }
 
   recharge() {

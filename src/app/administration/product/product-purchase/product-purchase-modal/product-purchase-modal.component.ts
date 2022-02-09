@@ -10,7 +10,7 @@ import {BundleService} from "../../../../../services/product/aesthetic/bundle/bu
 import {AuthenticationService} from "../../../../../services/auth/authentication.service";
 import {SimpleClientInfoDTO} from "../../../../../services/person/client/simple-client-info-dto";
 import {ClientDTO} from "../../../../../services/person/client/client-dto";
-import {PersonTool} from "../../../../../services/util/person-tool";
+import {PersonTool} from "../../../../../tool/person-tool";
 import {PersonDTO} from "../../../../../services/person/person-dto";
 import {
   SimpleConfirmationModalComponent

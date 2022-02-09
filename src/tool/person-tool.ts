@@ -1,4 +1,4 @@
-import {PersonDTO} from "../person/person-dto";
+import {PersonDTO} from "../services/person/person-dto";
 
 export class PersonTool {
 
