@@ -66,3 +66,27 @@ hr {
   flex-direction: column;
   justify-content: flex-start;
 }
+
+.client-products {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.client-packages {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.client-aesthetic-cares {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.client-information {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}

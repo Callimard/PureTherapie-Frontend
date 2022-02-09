@@ -32,6 +32,8 @@ export class ClientRegistrationModalComponent implements OnInit {
 
   confirmationModal?: BsModalRef;
 
+  clientRegister?: { clientRegister(client?: ClientDTO): (client?: ClientDTO) => void };
+
   constructor(private clientOriginService: ClientOriginService, private clientRegistrationService: ClientRegistrationService,
               private authenticationService: AuthenticationService, public bsModalRef: BsModalRef, private modalService: BsModalService) {
   }
@@ -85,6 +87,7 @@ export class ClientRegistrationModalComponent implements OnInit {
       }
     });
     successModal.content.parent = this.bsModalRef;
+    this.clientRegister?.clientRegister(clientDTO);
   }
 
   private failClientRegistration(clientDTO: ClientDTO, err: ClientRegistrationFailDTO) {
@@ -95,6 +98,7 @@ export class ClientRegistrationModalComponent implements OnInit {
       }
     });
     failModal.content.parent = this.bsModalRef;
+    this.clientRegister?.clientRegister(undefined);
   }
 
   private clear(): void {

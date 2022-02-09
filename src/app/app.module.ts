@@ -55,6 +55,10 @@ import { TerminateClientModalComponent } from './administration/agenda/terminate
 import { BundlePurchaseModalComponent } from './administration/product/product-purchase/bundle-purchase-modal/bundle-purchase-modal.component';
 import { OpeningTimeComponent } from './administration/opening-time/opening-time.component';
 import { SearchClientComponent } from './client/search-client/search-client.component';
+import { ClientProductsComponent } from './administration/client/client-administration/client-edition-modal/client-products/client-products.component';
+import { ClientPackagesComponent } from './administration/client/client-administration/client-edition-modal/client-products/client-packages/client-packages.component';
+import { ClientAestheticCaresComponent } from './administration/client/client-administration/client-edition-modal/client-products/client-aesthetic-cares/client-aesthetic-cares.component';
+import { ClientInformationComponent } from './administration/client/client-administration/client-edition-modal/client-information/client-information.component';
 
 const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_LOGIN_URL, component: LoginComponent},
@@ -96,7 +100,11 @@ const appRoutes: Routes = [
     TerminateClientModalComponent,
     BundlePurchaseModalComponent,
     OpeningTimeComponent,
-    SearchClientComponent
+    SearchClientComponent,
+    ClientProductsComponent,
+    ClientPackagesComponent,
+    ClientAestheticCaresComponent,
+    ClientInformationComponent
   ],
   imports: [
     TooltipModule.forRoot(),

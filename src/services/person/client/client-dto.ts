@@ -7,6 +7,20 @@ export class ClientDTO extends PersonDTO {
     super(idPerson, firstName, lastName, email, gender, phone, birthday, idPersonOrigin);
   }
 
+  public static updateFrom(ref: ClientDTO, toUpdate: ClientDTO) {
+    ref.idPerson = toUpdate.idPerson;
+    ref.firstName = toUpdate.firstName;
+    ref.lastName = toUpdate.lastName;
+    ref.email = toUpdate.email;
+    ref.gender = toUpdate.gender;
+    ref.phone = toUpdate.phone;
+    ref.birthday = toUpdate.birthday;
+    ref.idPersonOrigin = toUpdate.idPersonOrigin;
+    ref.photo = toUpdate.photo;
+    ref.comment = toUpdate.comment;
+    ref.technicalComment = toUpdate.technicalComment;
+  }
+
   public static clone(clientDTO: ClientDTO): ClientDTO {
     return new ClientDTO(clientDTO.idPerson, clientDTO.firstName, clientDTO.lastName, clientDTO.email, clientDTO.gender,
       clientDTO.phone, clientDTO.birthday, clientDTO.idPersonOrigin, clientDTO.photo, clientDTO.comment,

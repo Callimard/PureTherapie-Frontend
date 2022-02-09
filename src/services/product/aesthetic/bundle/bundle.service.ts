@@ -50,7 +50,6 @@ export class BundleService {
     return new Promise<BundlePurchaseDTO[]>(((resolve, reject) => {
       this.httpClient.get<BundlePurchaseDTO[]>(GlobalVariables.CLIENT_ALL_BUNDLE_PURCHASES_URL + "?idClient=" + idClient).subscribe({
         next: (res) => {
-          console.log("Bundle Purchase receive = ", res);
           resolve(res);
         },
         error: (err: HttpErrorResponse) => {
