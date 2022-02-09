@@ -56,3 +56,13 @@ hr {
   display: flex;
   justify-content: space-between;
 }
+
+.modal + .modal {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.client-search-component {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}

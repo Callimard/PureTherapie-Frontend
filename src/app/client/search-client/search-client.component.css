@@ -1,0 +1,21 @@
+.search-label {
+  flex-grow: 1;
+
+  font-weight: bold;
+}
+
+.or-separator {
+  align-self: center;
+
+  font-weight: bold;
+  font-size: 1.5em;
+  text-decoration: underline;
+}
+
+.fail-search-client {
+  color: red;
+}
+
+.success-search-client {
+  color: green;
+}

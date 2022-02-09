@@ -1,0 +1,16 @@
+<label class="search-label" for="client-email-research">E-mail du client: </label>
+<input class="client-email-input flex-fill" type="email" name="client-email-research" id="client-email-research"
+       [(ngModel)]="clientEmail"/>
+<span class="or-separator p-2">OU</span>
+<label class="search-label flex-grow-0 text-bold" for="client-phone-research">Téléphone du client: </label>
+<input class="client-phone-input flex-fill" type="tel" name="client-phone-research" id="client-phone-research"
+       size="10" minlength="10" maxlength="10" [(ngModel)]="clientPhone"/>
+<div class="flex-fill d-flex justify-content-center align-items-center" *ngIf="hasSearchClient">
+  <span class="fail-search-client" *ngIf="hasSearchClient && !clientHasBeenFound">Aucun client trrouvé</span>
+  <span class="success-search-client" *ngIf="hasSearchClient && clientHasBeenFound">Client trouvé!</span>
+</div>
+<div class="flex-fill d-flex justify-content-center align-items-center my-2">
+  <button type="button" class="search-client-btn btn btn-primary" (click)="searchClient()">
+    Rechercher le client
+  </button>
+</div>

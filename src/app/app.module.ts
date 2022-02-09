@@ -54,6 +54,7 @@ import { ClientWaitingRoomInfoModalComponent } from './administration/waiting-ro
 import { TerminateClientModalComponent } from './administration/agenda/terminate-client-modal/terminate-client-modal.component';
 import { BundlePurchaseModalComponent } from './administration/product/product-purchase/bundle-purchase-modal/bundle-purchase-modal.component';
 import { OpeningTimeComponent } from './administration/opening-time/opening-time.component';
+import { SearchClientComponent } from './client/search-client/search-client.component';
 
 const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_LOGIN_URL, component: LoginComponent},
@@ -94,7 +95,8 @@ const appRoutes: Routes = [
     ClientWaitingRoomInfoModalComponent,
     TerminateClientModalComponent,
     BundlePurchaseModalComponent,
-    OpeningTimeComponent
+    OpeningTimeComponent,
+    SearchClientComponent
   ],
   imports: [
     TooltipModule.forRoot(),
