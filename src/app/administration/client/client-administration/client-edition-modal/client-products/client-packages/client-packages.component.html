@@ -1,28 +1,6 @@
 <h4 class="product-summary-title">Packages:</h4>
 <div class="client-all-bundle-purchases">
-  <div class="client-bundle-purchase p-2" *ngFor="let bundlePurchase of clientBundlePurchases">
-    <div class="bundle-purchase-name">
-      <span class="text-bold purchase-item-title">Nom:</span>
-      <span>{{bundlePurchase.bundle.name}}</span>
-    </div>
-    <div class="bundle-purchase-purchase-date">
-      <span class="text-bold purchase-item-title">Date d'achat: </span>
-      <span>{{extractOnlyDay(bundlePurchase.bill.creationDate)}}</span>
-    </div>
-    <div class="bundle-purchase-totally-paid">
-      <span class="text-bold purchase-item-title">Payée totalement: </span>
-      <span>{{billIsTotallyPaid(bundlePurchase.bill)}}</span>
-    </div>
-    <div class="bundle-purchase-partially-paid">
-      <span class="text-bold purchase-item-title">Partiellement payée: </span>
-      <span>{{billPartiallyPaid(bundlePurchase.bill)}}</span>
-    </div>
-    <div class="bundle-purchase-button">
-      <button type="button" class="text-bold btn btn-warning" (click)="pay(bundlePurchase.bill)">Payer
-      </button>
-      <button type="button" class="text-bold btn btn-primary m-2"
-              (click)="openBundlePurchaseEdition(bundlePurchase)">Editer
-      </button>
-    </div>
-  </div>
+  <app-client-bundle-row [bundlePurchase]="bundlePurchase" class="border-bottom p-2"
+                         *ngFor="let bundlePurchase of clientBundlePurchases">
+  </app-client-bundle-row>
 </div>

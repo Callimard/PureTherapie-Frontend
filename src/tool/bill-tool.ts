@@ -22,4 +22,14 @@ export class BillTool {
     return amountPaid > 0.0;
   }
 
+  public static remainingBalance(bill: BillDTO): number {
+    let amountPaid = 0.0;
+    for (let payment of bill.payments) {
+      if (!payment.canceled)
+        amountPaid += payment.amountPaid;
+    }
+
+    return bill.purchasePrice - amountPaid;
+  }
+
 }

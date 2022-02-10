@@ -79,10 +79,20 @@ hr {
   justify-content: flex-start;
 }
 
+.client-bundle-row {
+  display: grid;
+  grid-template: 100% / 20% 20% 20% 20% 20%;
+}
+
 .client-aesthetic-cares {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+
+.client-aesthetic-care-row {
+  display: grid;
+  grid-template: 100% / 1fr 1fr 1fr 1fr 1fr;
 }
 
 .client-information {

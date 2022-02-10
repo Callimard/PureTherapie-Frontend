@@ -9,7 +9,7 @@ import {BillTool} from "../../../../../../../tool/bill-tool";
 import {BundlePurchaseDTO} from "../../../../../../../services/product/aesthetic/bundle/bundle-purchase-dto";
 import {
   ClientBundlePurchaseEditionModalComponent
-} from "../../../client-bundle-purchase-edition-modal/client-bundle-purchase-edition-modal.component";
+} from "../client-packages/client-bundle-purchase-edition-modal/client-bundle-purchase-edition-modal.component";
 import {ClientPaymentModalComponent} from "../../../client-payment-modal/client-payment-modal.component";
 
 @Component({

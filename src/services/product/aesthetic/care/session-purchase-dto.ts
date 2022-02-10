@@ -11,4 +11,8 @@ export class SessionPurchaseDTO {
               public bill: BillDTO) {
   }
 
+  public static default(): SessionPurchaseDTO {
+    return new SessionPurchaseDTO(-1, false, AestheticCareDTO.default(), ClientDTO.default(), BillDTO.default());
+  }
+
 }

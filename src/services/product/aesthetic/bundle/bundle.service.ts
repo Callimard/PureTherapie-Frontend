@@ -60,6 +60,21 @@ export class BundleService {
     }));
   }
 
+  public getClientBundlePurchase(idBundlePurchase: number): Promise<BundlePurchaseDTO> {
+    return new Promise<BundlePurchaseDTO>((resolve, reject) => {
+      this.httpClient.get<BundlePurchaseDTO>(GlobalVariables.CLIENT_ALL_BUNDLE_PURCHASES_URL + "/" + idBundlePurchase)
+        .subscribe({
+          next: (res) => {
+            resolve(res);
+          },
+          error: (err: HttpErrorResponse) => {
+            console.error("Fail to get bundle purchase, Err = ", err.error);
+            reject(err.error);
+          }
+        })
+    })
+  }
+
   public getAllStocks(idBundlePurchase: number): Promise<StockDTO[]> {
     return new Promise<StockDTO[]>(((resolve, reject) => {
       this.httpClient.get<StockDTO[]>(GlobalVariables.CLIENT_ALL_BUNDLE_PURCHASES_URL + "/" + idBundlePurchase

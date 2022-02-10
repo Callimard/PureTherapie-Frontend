@@ -44,7 +44,7 @@ import {
 } from './util/modal/simple-confirmation-modal/simple-confirmation-modal.component';
 import {
   ClientBundlePurchaseEditionModalComponent
-} from './administration/client/client-administration/client-bundle-purchase-edition-modal/client-bundle-purchase-edition-modal.component';
+} from './administration/client/client-administration/client-edition-modal/client-products/client-packages/client-bundle-purchase-edition-modal/client-bundle-purchase-edition-modal.component';
 import {
   ClientPaymentModalComponent
 } from './administration/client/client-administration/client-payment-modal/client-payment-modal.component';
@@ -59,6 +59,8 @@ import { ClientProductsComponent } from './administration/client/client-administ
 import { ClientPackagesComponent } from './administration/client/client-administration/client-edition-modal/client-products/client-packages/client-packages.component';
 import { ClientAestheticCaresComponent } from './administration/client/client-administration/client-edition-modal/client-products/client-aesthetic-cares/client-aesthetic-cares.component';
 import { ClientInformationComponent } from './administration/client/client-administration/client-edition-modal/client-information/client-information.component';
+import { ClientBundleRowComponent } from './administration/client/client-administration/client-edition-modal/client-products/client-packages/client-bundle-row/client-bundle-row.component';
+import { ClientAestheticCareRowComponent } from './administration/client/client-administration/client-edition-modal/client-products/client-aesthetic-cares/client-aesthetic-care-row/client-aesthetic-care-row.component';
 
 const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_LOGIN_URL, component: LoginComponent},
@@ -104,7 +106,9 @@ const appRoutes: Routes = [
     ClientProductsComponent,
     ClientPackagesComponent,
     ClientAestheticCaresComponent,
-    ClientInformationComponent
+    ClientInformationComponent,
+    ClientBundleRowComponent,
+    ClientAestheticCareRowComponent
   ],
   imports: [
     TooltipModule.forRoot(),
