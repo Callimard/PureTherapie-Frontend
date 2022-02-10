@@ -173,7 +173,6 @@ export class CreateAppointmentModalComponent implements OnInit {
   }
 
   updateClientAppointment(client: SimpleClientInfoDTO) {
-    console.error("Client received = " + client)
     this.client = client;
   }
 

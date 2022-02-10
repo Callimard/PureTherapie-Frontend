@@ -52,6 +52,26 @@ hr {
   border-bottom: 1px solid #adacac;
 }
 
+.clean-border {
+  border: 1px solid #adacac;
+}
+
+.clean-broder-top {
+  border-top: 1px solid #adacac;
+}
+
+.clean-broder-bottom {
+  border-bottom: 1px solid #adacac;
+}
+
+.clean-broder-right {
+  border-right: 1px solid #adacac;
+}
+
+.clean-broder-left {
+  border-left: 1px solid #adacac;
+}
+
 .client-wr-buttons {
   display: flex;
   justify-content: space-between;
@@ -63,7 +83,6 @@ hr {
 
 .client-search-component {
   display: flex;
-  flex-direction: column;
   justify-content: flex-start;
 }
 

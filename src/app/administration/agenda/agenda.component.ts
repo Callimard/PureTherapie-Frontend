@@ -67,7 +67,9 @@ export class AgendaComponent implements OnInit {
   }
 
   clickOnFreeTS(proposedTechnician: TechnicianDTO, day: string, time: string) {
-    this.createAppointmentModal = this.modalService.show(CreateAppointmentModalComponent);
+    this.createAppointmentModal = this.modalService.show(CreateAppointmentModalComponent, {
+      class: 'medium-modal'
+    });
     this.createAppointmentModal.content.idParamTechnician = proposedTechnician.idPerson;
     this.createAppointmentModal.content.selectedDay = day;
     this.createAppointmentModal.content.paramTime = time;
