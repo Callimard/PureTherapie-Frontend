@@ -29,7 +29,7 @@ export class ProductPurchaseModalComponent implements OnInit {
   modePackage = true;
 
   emailClient: string = '';
-  clientFound = SimpleClientInfoDTO.default();
+  clientFound?: SimpleClientInfoDTO;
   clientComplete?: ClientDTO;
   hasSearchClient = false;
   hasFoundClient = false;
@@ -65,11 +65,12 @@ export class ProductPurchaseModalComponent implements OnInit {
   }
 
   purchaseAC() {
-    this.acService.purchaseAestheticCare(this.acToPurchase.idAestheticCare, this.clientFound.idPerson).then(() => {
-      this.successACPurchase();
-    }).catch(() => {
-      this.failACPurchase();
-    });
+    if (this.clientFound != null)
+      this.acService.purchaseAestheticCare(this.acToPurchase.idAestheticCare, this.clientFound.idPerson).then(() => {
+        this.successACPurchase();
+      }).catch(() => {
+        this.failACPurchase();
+      });
   }
 
   private successACPurchase() {
@@ -99,11 +100,12 @@ export class ProductPurchaseModalComponent implements OnInit {
   }
 
   private proceedBundlePurchase() {
-    return this.bundleService.purchaseBundle(this.bundleToPurchase.idBundle, this.clientFound.idPerson).then(() => {
-      this.successBundlePurchase();
-    }).catch(() => {
-      this.failBundlePurchase();
-    });
+    if (this.clientFound)
+      this.bundleService.purchaseBundle(this.bundleToPurchase.idBundle, this.clientFound.idPerson).then(() => {
+        this.successBundlePurchase();
+      }).catch(() => {
+        this.failBundlePurchase();
+      });
   }
 
   private successBundlePurchase() {
@@ -128,6 +130,10 @@ export class ProductPurchaseModalComponent implements OnInit {
 
   getClientSimpleIdentifier(person: PersonDTO): string {
     return PersonTool.formatPersonSimpleIdentifier(person);
+  }
+
+  foundClient(client: SimpleClientInfoDTO) {
+    this.clientFound = client;
   }
 
 }
