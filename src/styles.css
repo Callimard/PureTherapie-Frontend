@@ -53,23 +53,43 @@ hr {
 }
 
 .clean-border {
-  border: 1px solid #adacac;
+  border: 2px solid #adacac;
 }
 
 .clean-broder-top {
-  border-top: 1px solid #adacac;
+  border-top: 2px solid #adacac;
 }
 
 .clean-broder-bottom {
-  border-bottom: 1px solid #adacac;
+  border-bottom: 2px solid #adacac;
 }
 
 .clean-broder-right {
-  border-right: 1px solid #adacac;
+  border-right: 2px solid #adacac;
 }
 
 .clean-broder-left {
-  border-left: 1px solid #adacac;
+  border-left: 2px solid #adacac;
+}
+
+.clean-border-dashed {
+  border-left: 2px dashed #adacac;
+}
+
+.clean-broder-dashed-top {
+  border-top: 2px dashed #adacac;
+}
+
+.clean-broder-dashed-bottom {
+  border-bottom: 2px dashed #adacac;
+}
+
+.clean-broder-dashed-right {
+  border-right: 2px dashed #adacac;
+}
+
+.clean-broder-dashed-left {
+  border-left: 2px dashed #adacac;
 }
 
 .client-wr-buttons {
@@ -118,4 +138,14 @@ hr {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+
+.agenda-per-technician {
+  display: grid;
+  grid-template: 100%/ 5% 95%;
+}
+
+.agenda-choose-date {
+  display: grid;
+  grid-template: 100% / 5% 90% 5%;
 }

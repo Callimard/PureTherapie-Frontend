@@ -1,0 +1,16 @@
+.current-day {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.change-day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.change-day {
+  cursor: pointer;
+}

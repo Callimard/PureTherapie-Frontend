@@ -1,0 +1,87 @@
+.agenda-technicians, .agenda-times {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.technician-personal-agenda-column, .ts-times-column {
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.agenda-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 7%;
+}
+
+.technician-identifier {
+  flex-grow: 1;
+  font-weight: bold;
+  text-align: center;
+}
+
+.ts-time {
+  font-weight: bold;
+  text-align: center;
+}
+
+.ts-appointment-container {
+  flex-grow: 1;
+  justify-self: stretch;
+  align-self: stretch;
+
+  padding: 3px;
+}
+
+.ts-appointment {
+  position: relative;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.ts-text {
+  color: white;
+  font-weight: bold;
+  font-size: 1.2ex;
+}
+
+.ts {
+  border-radius: 5px;
+}
+
+.ts-occupied {
+  background-color: #2c81e8;
+}
+
+.ts-occupied:hover {
+  background-color: #2c81e863;
+}
+
+.ts-free {
+  background-color: #94949415;
+}
+
+.ts-free:hover {
+  background-color: #2c81e842;
+}
+
+.ts-cache {
+  position: relative;
+  z-index: 2;
+  top: -100%;
+  left: 0;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.23);
+}

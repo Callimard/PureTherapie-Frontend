@@ -11,42 +11,7 @@
       Enregistrer un client
     </button>
   </div>
-  <div class="d-flex justify-content-start p-2 m-2">
-    <label class="agenda-day-label mx-3" for="agenda-day">Jour: </label>
-    <input type="date" name="agenda-day" id="agenda-day" (change)="dayChange()" [(ngModel)]="today"/>
-  </div>
-  <div class="calendar-container d-flex justify-content-around flex-fill border m-2 p-2 bg-secondary">
-    <div class="d-flex flex-column justify-content-start flex-grow-1 mx-2 border"
-         *ngFor="let technician of technicians">
-      <div class="d-flex justify-content-center align-items-center bg-info">
-        <h4 class="technician-agenda-title p-3">{{technician.firstName}} {{technician.lastName.toUpperCase()}}</h4>
-      </div>
-      <div class="technician-agenda flex-fill d-flex justify-content-start bg-danger">
-        <div class="times flex-shrink-1 d-flex flex-column justify-content-start">
-          <span class="text-bold flex-grow-1"
-                *ngFor="let ts of technicianTimeSlotMap.get(technician.idPerson)">
-            {{ts.begin}}
-          </span>
-        </div>
-        <div class="time-slots flex-grow-1 d-flex flex-column justify-content-start">
-          <div class="technician-ts"
-               *ngFor="let ts of technicianTimeSlotMap.get(technician.idPerson)">
-            <div class="appointment-client-container text-bold"
-                 [class.ts-free]="ts.free"
-                 [class.ts-occupied]="!ts.free"
-                 (click)="ts.free ? clickOnFreeTS(technician, ts.day, ts.begin) : clickOnOccupiedTS(ts.appointment)">
-              <span class="client-identification"
-                    *ngIf="!ts.free && ts.appointment != null">{{extractClientIdentification(ts)}}</span>
-              <span style="visibility: hidden"></span>
-              <span style="visibility: hidden" *ngIf="ts.free || ts.appointment == null"></span>
-            </div>
-            <div class="ts-cache" *ngIf="timeSlotPassed(ts) && ts.free">
-              <span style="visibility: hidden"></span>
-              <span style="visibility: hidden"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-agenda-choose-date [chosenDay]="today" (dayChangeEvent)="dayChange($event)"
+                          class="align-self-center"></app-agenda-choose-date>
+  <app-agenda-per-technician [today]="today" class="flex-grow-1 p-2"></app-agenda-per-technician>
 </div>
