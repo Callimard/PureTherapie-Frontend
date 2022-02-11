@@ -56,19 +56,19 @@ hr {
   border: 2px solid #adacac;
 }
 
-.clean-broder-top {
+.clean-border-top {
   border-top: 2px solid #adacac;
 }
 
-.clean-broder-bottom {
+.clean-border-bottom {
   border-bottom: 2px solid #adacac;
 }
 
-.clean-broder-right {
+.clean-border-right {
   border-right: 2px solid #adacac;
 }
 
-.clean-broder-left {
+.clean-border-left {
   border-left: 2px solid #adacac;
 }
 
@@ -76,19 +76,19 @@ hr {
   border-left: 2px dashed #adacac;
 }
 
-.clean-broder-dashed-top {
+.clean-border-dashed-top {
   border-top: 2px dashed #adacac;
 }
 
-.clean-broder-dashed-bottom {
+.clean-border-dashed-bottom {
   border-bottom: 2px dashed #adacac;
 }
 
-.clean-broder-dashed-right {
+.clean-border-dashed-right {
   border-right: 2px dashed #adacac;
 }
 
-.clean-broder-dashed-left {
+.clean-border-dashed-left {
   border-left: 2px dashed #adacac;
 }
 

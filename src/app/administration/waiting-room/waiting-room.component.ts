@@ -10,6 +10,8 @@ import {
   ClientWaitingRoomInfoModalComponent
 } from "./client-waiting-room-info-modal/client-waiting-room-info-modal.component";
 import {AuthenticationService} from "../../../services/auth/authentication.service";
+import {PersonDTO} from "../../../services/person/person-dto";
+import {PersonTool} from "../../../tool/person-tool";
 
 @Component({
   selector: 'app-waiting-room',
@@ -85,5 +87,9 @@ export class WaitingRoomComponent implements OnInit {
     this.clientWaitingRoomInfo = this.modalService.show(ClientWaitingRoomInfoModalComponent);
     this.clientWaitingRoomInfo.content.wr = wr;
     this.clientWaitingRoomInfo.content.waitingRoomComponent = this;
+  }
+
+  formatPersonSimpleIdentifier(person: PersonDTO): string {
+    return PersonTool.formatPersonSimpleIdentifier(person);
   }
 }

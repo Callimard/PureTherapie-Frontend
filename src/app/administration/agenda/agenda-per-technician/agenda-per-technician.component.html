@@ -1,20 +1,20 @@
-<div class="agenda-times clean-broder-right clean-broder-left" *ngIf="allTechnicians[0] != null">
+<div class="agenda-times clean-border-right clean-border-left" *ngIf="allTechnicians[0] != null">
   <div class="ts-times-column">
-    <div class="agenda-cell clean-broder-bottom clean-broder-top">
+    <div class="agenda-cell clean-border-bottom clean-border-top">
 
     </div>
-    <div class="agenda-cell clean-broder-dashed-bottom"
+    <div class="agenda-cell clean-border-dashed-bottom"
          *ngFor="let ts of technicianTimeSlotMap.get(allTechnicians[0].idPerson)">
       <span class="ts-time">{{ts.begin}}</span>
     </div>
   </div>
 </div>
 <div class="agenda-technicians">
-  <div class="technician-personal-agenda-column clean-broder-right" *ngFor="let technician of allTechnicians">
-    <div class="agenda-cell clean-broder-bottom clean-broder-top">
+  <div class="technician-personal-agenda-column clean-border-right" *ngFor="let technician of allTechnicians">
+    <div class="agenda-cell clean-border-bottom clean-border-top">
       <span class="technician-identifier">{{formatPersonSimpleIdentifier(technician)}}</span>
     </div>
-    <div class="agenda-cell clean-broder-dashed-bottom"
+    <div class="agenda-cell clean-border-dashed-bottom"
          *ngFor="let ts of technicianTimeSlotMap.get(technician.idPerson)">
       <div class="ts-appointment-container">
         <div class="ts ts-appointment p-1"
