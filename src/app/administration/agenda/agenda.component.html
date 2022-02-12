@@ -11,7 +11,15 @@
       Enregistrer un client
     </button>
   </div>
-  <app-agenda-choose-date [chosenDay]="today" (dayChangeEvent)="dayChange($event)"
-                          class="align-self-center"></app-agenda-choose-date>
+  <div class="choose-date-content">
+    <div class="flex-shrink-1 d-flex justify-content-start p-2 m-2">
+      <label class="agenda-day-label mx-3" for="agenda-day">Jour: </label>
+      <input type="date" name="agenda-day" id="agenda-day" [(ngModel)]="today"/>
+    </div>
+    <div class="flex-grow-1 d-flex justify-content-center align-items-center">
+    <app-agenda-choose-date [chosenDay]="today" (dayChangeEvent)="dayChange($event)"
+                            style="width: 15%;"></app-agenda-choose-date>
+    </div>
+  </div>
   <app-agenda-per-technician [today]="today" class="flex-grow-1 p-2"></app-agenda-per-technician>
 </div>
