@@ -13,7 +13,7 @@
         <div class="ac-info d-flex justify-content-start my-2">
           <label class="bold-label p-2" for="ac">Soin: </label>
           <select name="ac" id="ac" class="ac-selected flex-grow-1 p-2" (change)="onChangeAC()"
-                  [(ngModel)]="selectedAC">
+                  [(ngModel)]="selectedAC" [disabled]="blocEdition">
             <option *ngFor="let ac of allACs" [ngValue]="ac">{{ac.name}}</option>
           </select>
           <span class="little-span my-auto p-2">{{selectedAC.timeExecution}} min</span>
@@ -24,7 +24,7 @@
         <label for="technicians" class="bold-label p-2">Technicien: </label>
         <select name="technicians" id="technicians" class="technician-selected flex-grow-1 p-2"
                 (change)="onChangeTechnicianChoice()"
-                [(ngModel)]="selectedTechnician">
+                [(ngModel)]="selectedTechnician" [disabled]="blocEdition">
           <option *ngFor="let tech of allTechnicians"
                   [ngValue]="tech">{{tech.lastName}} {{tech.firstName}}</option>
         </select>
@@ -32,11 +32,12 @@
       <div class="day-info d-flex justify-content-start my-2">
         <label class="bold-label p-2" for="day">Jour: </label>
         <input type="date" name="day" id="day" class="day-selected flex-grow-1" (change)="onChangeDay()"
-               [(ngModel)]="selectedDay"/>
+               [(ngModel)]="selectedDay" [disabled]="blocEdition"/>
       </div>
       <div class="time-info d-flex justify-content-start my-2">
         <label class="bold-label p-2" for="day">Horaires: </label>
-        <select name="timeSlot" id="timeSlot" class="time-selected flex-grow-1" [(ngModel)]="selectedFreeTS">
+        <select name="timeSlot" id="timeSlot" class="time-selected flex-grow-1" [(ngModel)]="selectedFreeTS"
+                [disabled]="blocEdition">
           <option *ngFor="let freeTS of allFreeTS" [ngValue]="freeTS">{{freeTS.begin}}</option>
         </select>
       </div>
