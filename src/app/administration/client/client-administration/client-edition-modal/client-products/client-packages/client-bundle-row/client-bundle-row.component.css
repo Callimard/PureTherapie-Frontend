@@ -1,0 +1,31 @@
+.bundle-purchase-name {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.bundle-purchase-purchase-date {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.bundle-purchase-remaining-balance {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.bundle-purchase-stock {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.bundle-purchase-button {
+  grid-column: 5 / span 1;
+
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}

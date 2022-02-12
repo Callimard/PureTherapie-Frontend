@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
@@ -44,16 +44,49 @@ import {
 } from './util/modal/simple-confirmation-modal/simple-confirmation-modal.component';
 import {
   ClientBundlePurchaseEditionModalComponent
-} from './administration/client/client-administration/client-bundle-purchase-edition-modal/client-bundle-purchase-edition-modal.component';
+} from './administration/client/client-administration/client-edition-modal/client-products/client-packages/client-bundle-purchase-edition-modal/client-bundle-purchase-edition-modal.component';
 import {
   ClientPaymentModalComponent
 } from './administration/client/client-administration/client-payment-modal/client-payment-modal.component';
 import {WaitingRoomComponent} from './administration/waiting-room/waiting-room.component';
-import { ClientArrivalModalComponent } from './administration/agenda/client-arrival-modal/client-arrival-modal.component';
-import { ClientWaitingRoomInfoModalComponent } from './administration/waiting-room/client-waiting-room-info-modal/client-waiting-room-info-modal.component';
-import { TerminateClientModalComponent } from './administration/agenda/terminate-client-modal/terminate-client-modal.component';
-import { BundlePurchaseModalComponent } from './administration/product/product-purchase/bundle-purchase-modal/bundle-purchase-modal.component';
-import { OpeningTimeComponent } from './administration/opening-time/opening-time.component';
+import {ClientArrivalModalComponent} from './administration/agenda/client-arrival-modal/client-arrival-modal.component';
+import {
+  ClientWaitingRoomInfoModalComponent
+} from './administration/waiting-room/client-waiting-room-info-modal/client-waiting-room-info-modal.component';
+import {
+  TerminateClientModalComponent
+} from './administration/agenda/terminate-client-modal/terminate-client-modal.component';
+import {
+  BundlePurchaseModalComponent
+} from './administration/product/product-purchase/bundle-purchase-modal/bundle-purchase-modal.component';
+import {OpeningTimeComponent} from './administration/opening-time/opening-time.component';
+import {SearchClientComponent} from './client/search-client/search-client.component';
+import {
+  ClientProductsComponent
+} from './administration/client/client-administration/client-edition-modal/client-products/client-products.component';
+import {
+  ClientPackagesComponent
+} from './administration/client/client-administration/client-edition-modal/client-products/client-packages/client-packages.component';
+import {
+  ClientAestheticCaresComponent
+} from './administration/client/client-administration/client-edition-modal/client-products/client-aesthetic-cares/client-aesthetic-cares.component';
+import {
+  ClientInformationComponent
+} from './administration/client/client-administration/client-edition-modal/client-information/client-information.component';
+import {
+  ClientBundleRowComponent
+} from './administration/client/client-administration/client-edition-modal/client-products/client-packages/client-bundle-row/client-bundle-row.component';
+import {
+  ClientAestheticCareRowComponent
+} from './administration/client/client-administration/client-edition-modal/client-products/client-aesthetic-cares/client-aesthetic-care-row/client-aesthetic-care-row.component';
+import {
+  AgendaPerTechnicianComponent
+} from './administration/agenda/agenda-per-technician/agenda-per-technician.component';
+import {AgendaChooseDateComponent} from './administration/agenda/agenda-choose-date/agenda-choose-date.component';
+import {registerLocaleData} from "@angular/common";
+
+import localeFr from '@angular/common/locales/fr'
+registerLocaleData(localeFr, 'fr');
 
 const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_LOGIN_URL, component: LoginComponent},
@@ -94,7 +127,16 @@ const appRoutes: Routes = [
     ClientWaitingRoomInfoModalComponent,
     TerminateClientModalComponent,
     BundlePurchaseModalComponent,
-    OpeningTimeComponent
+    OpeningTimeComponent,
+    SearchClientComponent,
+    ClientProductsComponent,
+    ClientPackagesComponent,
+    ClientAestheticCaresComponent,
+    ClientInformationComponent,
+    ClientBundleRowComponent,
+    ClientAestheticCareRowComponent,
+    AgendaPerTechnicianComponent,
+    AgendaChooseDateComponent
   ],
   imports: [
     TooltipModule.forRoot(),
@@ -111,7 +153,8 @@ const appRoutes: Routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: SecurityInterceptor,
       multi: true
-    }
+    },
+    {provide: LOCALE_ID, useValue: 'fr'}
   ],
   bootstrap: [AppComponent]
 })

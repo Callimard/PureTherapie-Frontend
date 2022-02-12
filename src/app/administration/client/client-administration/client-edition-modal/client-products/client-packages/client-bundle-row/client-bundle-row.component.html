@@ -1,0 +1,19 @@
+<div class="bundle-purchase-name">
+  <span class="purchase-item-title"><strong>Nom:</strong> {{bundlePurchase.bundle.name}}</span>
+</div>
+<div class="bundle-purchase-purchase-date">
+  <span class="purchase-item-title"><strong>Date d'achat:</strong> {{extractOnlyDay(bundlePurchase.bill.creationDate)}}</span>
+</div>
+<div class="bundle-purchase-remaining-balance">
+  <span class="purchase-item-title"><strong>Solde restant:</strong> {{remainingBalance(bundlePurchase.bill)}} €</span>
+</div>
+<div class="bundle-purchase-stock" *ngIf="stocks.length == 1">
+  <span class="purchase-item-title"><strong>Stock:</strong> {{stocks[0].remainingQuantity}}</span>
+</div>
+<div class="bundle-purchase-button">
+  <button type="button" class="text-bold btn btn-warning" (click)="pay(bundlePurchase.bill)">Payer
+  </button>
+  <button type="button" class="text-bold btn btn-primary m-2"
+          (click)="openBundlePurchaseEdition(bundlePurchase)">Editer
+  </button>
+</div>

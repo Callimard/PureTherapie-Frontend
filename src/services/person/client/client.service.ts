@@ -19,7 +19,7 @@ export class ClientService {
    */
   public updateClient(clientDTO: ClientDTO): Promise<ClientDTO> {
     let client = ClientDTO.formatForSend(clientDTO);
-    return new Promise<ClientDTO>(((resolve, reject) => {
+    return new Promise<ClientDTO>((resolve, reject) => {
       this.httpClient.post<ClientDTO>(GlobalVariables.CLIENTS_URL + "/" + client.idPerson, client).subscribe({
         next: (clientResp) => {
           resolve(clientResp);
@@ -29,30 +29,46 @@ export class ClientService {
           reject(error.error);
         }
       })
-    }));
+    });
   }
 
   public searchClientWithEmail(clientEmail: string): Promise<SimpleClientInfoDTO> {
-    return new Promise<SimpleClientInfoDTO>(((resolve, reject) => {
-      this.httpClient.get<SimpleClientInfoDTO>(GlobalVariables.CLIENTS_GET_WITH_EMAIL_URL + "?email=" + clientEmail).subscribe({
-        next: (client) => {
-          resolve(client);
-        },
-        error: (error: HttpErrorResponse) => {
-          console.error("Fail to find client by email, ", error.error);
-          reject(error.error);
-        }
-      })
-    }));
+    return new Promise<SimpleClientInfoDTO>((resolve, reject) => {
+      this.httpClient.get<SimpleClientInfoDTO>(GlobalVariables.CLIENTS_GET_WITH_EMAIL_URL + "?email=" + clientEmail)
+        .subscribe({
+          next: (client) => {
+            resolve(client);
+          },
+          error: (error: HttpErrorResponse) => {
+            console.error("Fail to find client by email, ", error.error);
+            reject(error.error);
+          }
+        })
+    });
+  }
+
+  public searchClientWithPhone(clientPhone: string): Promise<SimpleClientInfoDTO> {
+    return new Promise<SimpleClientInfoDTO>((resolve, reject) => {
+      this.httpClient.get<SimpleClientInfoDTO>(GlobalVariables.CLIENT_GET_WITH_PHONE_URL + "?phone=33" + clientPhone.slice(1))
+        .subscribe({
+          next: (client) => {
+            resolve(client);
+          },
+          error: (error: HttpErrorResponse) => {
+            console.error("Fail to find client by email, ", error.error);
+            reject(error.error);
+          }
+        })
+    })
   }
 
   public searchClientsWithFilter(all: boolean = false, lastName?: string, firstName?: string, email?: string, phone?: string): Promise<ClientDTO[]> {
-    return new Promise<ClientDTO[]>(((resolve, reject) => {
+    return new Promise<ClientDTO[]>((resolve, reject) => {
       this.httpClient.get<ClientDTO[]>(GlobalVariables.CLIENTS_URL + (all ? "?all=true&filter=" : ("?filter="
         + "lastName=" + (lastName ? lastName : '') + "+"
         + "firstName=" + (firstName ? firstName : '') + "+"
         + "email=" + (email ? email : '') + "+"
-        + "phone=" + (phone ? '33' + phone : '')))).subscribe({
+        + "phone=" + (phone ? '33' + phone.slice(1) : '')))).subscribe({
         next: (clients) => {
           resolve(clients);
         },
@@ -61,6 +77,6 @@ export class ClientService {
           reject(error.error);
         }
       });
-    }));
+    });
   }
 }

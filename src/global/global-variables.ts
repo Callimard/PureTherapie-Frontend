@@ -34,7 +34,7 @@ export class GlobalVariables {
 
   // BACKEND URL
 
-  public static readonly BACK_END_URL = "http://localhost:8080";
+  public static readonly BACK_END_URL = "http://62.35.81.203:8080";
 
   public static readonly API_V1_URL = GlobalVariables.BACK_END_URL + "/api/v1"
 
@@ -44,6 +44,7 @@ export class GlobalVariables {
 
   public static readonly CLIENTS_URL = GlobalVariables.API_V1_URL + "/clients";
   public static readonly CLIENTS_GET_WITH_EMAIL_URL = GlobalVariables.CLIENTS_URL + "/searchWithEmail";
+  public static readonly CLIENT_GET_WITH_PHONE_URL = GlobalVariables.CLIENTS_URL + "/searchWithPhone";
 
   public static readonly PERSON_ORIGINS_URL = GlobalVariables.CLIENTS_URL + "/person_origins";
 

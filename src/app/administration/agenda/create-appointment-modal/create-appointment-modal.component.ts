@@ -9,7 +9,6 @@ import {AestheticCareService} from "../../../../services/product/aesthetic/care/
 import {AgendaService} from "../../../../services/agenda/agenda.service";
 import {SimpleClientInfoDTO} from "../../../../services/person/client/simple-client-info-dto";
 import {ClientService} from "../../../../services/person/client/client.service";
-import {ClientDTO} from "../../../../services/person/client/client-dto";
 import {TakeAppointmentDTO} from "../../../../services/appointment/take_appointment/take-appointment-dto";
 import {AppointmentService} from "../../../../services/appointment/appointment.service";
 import {SuccessModalComponent} from "../../../util/modal/success-modal/success-modal.component";
@@ -34,10 +33,7 @@ export class CreateAppointmentModalComponent implements OnInit {
   selectedFreeTS: FreeTimeSlotDTO;
   selectedDay: string = DateTool.toMySQLDateString(new Date());
 
-  hasSearchClient = false;
-  clientFound = false;
-  client: SimpleClientInfoDTO = SimpleClientInfoDTO.default();
-  clientEmail: string = "";
+  client?: SimpleClientInfoDTO;
 
   recapAppointmentModalRef?: BsModalRef;
 
@@ -137,9 +133,12 @@ export class CreateAppointmentModalComponent implements OnInit {
   }
 
   private createAppointment() {
-    let takeAppointmentDTO = new TakeAppointmentDTO(this.client.idPerson, this.selectedTechnician.idPerson, this.selectedAC.idAestheticCare,
-      this.selectedDay, this.selectedFreeTS.begin);
-    this.demandAppointment(takeAppointmentDTO);
+    if (this.client != null) {
+      let takeAppointmentDTO = new TakeAppointmentDTO(this.client.idPerson, this.selectedTechnician.idPerson, this.selectedAC.idAestheticCare,
+        this.selectedDay, this.selectedFreeTS.begin);
+      this.demandAppointment(takeAppointmentDTO);
+    } else
+      console.error("Client is null => cannot create an appointment");
   }
 
   private demandAppointment(takeAppointmentDTO: TakeAppointmentDTO) {
@@ -173,17 +172,8 @@ export class CreateAppointmentModalComponent implements OnInit {
     });
   }
 
-  async searchClient() {
-    let client: SimpleClientInfoDTO = await this.clientService.searchClientWithEmail(this.clientEmail);
-    if (client == null) {
-      this.hasSearchClient = true;
-      this.clientFound = false;
-      this.client = ClientDTO.default();
-    } else {
-      this.hasSearchClient = true;
-      this.clientFound = true;
-      this.client = client;
-    }
+  updateClientAppointment(client: SimpleClientInfoDTO) {
+    this.client = client;
   }
 
 }

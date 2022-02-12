@@ -9,7 +9,7 @@ import {DateTool} from "../../../../tool/date-tool";
 import {BillDTO} from "../../../../services/product/bill/bill-dto";
 import {
   ClientBundlePurchaseEditionModalComponent
-} from "../../client/client-administration/client-bundle-purchase-edition-modal/client-bundle-purchase-edition-modal.component";
+} from "../../client/client-administration/client-edition-modal/client-products/client-packages/client-bundle-purchase-edition-modal/client-bundle-purchase-edition-modal.component";
 import {
   ClientPaymentModalComponent
 } from "../../client/client-administration/client-payment-modal/client-payment-modal.component";
@@ -41,6 +41,7 @@ export class TerminateClientModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Normal
   }
 
   recharge() {

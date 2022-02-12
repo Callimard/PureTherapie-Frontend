@@ -1,0 +1,20 @@
+.client-stock-title {
+  font-weight: bold;
+  color: black;
+  text-decoration: underline;
+}
+
+.purchase-summary {
+  flex-grow: 1;
+  display: grid;
+  grid-template: 50% 50% / 100%;
+}
+
+.product-summary-title {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.purchase-item-title {
+  margin-right: 2%;
+}

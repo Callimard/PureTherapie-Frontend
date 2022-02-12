@@ -1,0 +1,32 @@
+<div class="agenda-times clean-border-right clean-border-left" *ngIf="allTechnicians[0] != null">
+  <div class="ts-times-column">
+    <div class="agenda-cell clean-border-bottom clean-border-top">
+
+    </div>
+    <div class="agenda-cell clean-border-dashed-bottom"
+         *ngFor="let ts of technicianTimeSlotMap.get(allTechnicians[0].idPerson)">
+      <span class="ts-time">{{ts.begin}}</span>
+    </div>
+  </div>
+</div>
+<div class="agenda-technicians">
+  <div class="technician-personal-agenda-column clean-border-right" *ngFor="let technician of allTechnicians">
+    <div class="agenda-cell clean-border-bottom clean-border-top">
+      <span class="technician-identifier">{{formatPersonSimpleIdentifier(technician)}}</span>
+    </div>
+    <div class="agenda-cell clean-border-dashed-bottom"
+         *ngFor="let ts of technicianTimeSlotMap.get(technician.idPerson)">
+      <div class="ts-appointment-container">
+        <div class="ts ts-appointment p-1"
+             [class.ts-free]="ts.free"
+             [class.ts-occupied]="!ts.free"
+             (click)="ts.free ? clickOnFreeTS(technician, ts.day, ts.begin) : clickOnOccupiedTS(ts.appointment)">
+          <span class="ts-text" *ngIf="!ts.free">{{ts.begin}}</span>
+          <span class="ts-text"
+                *ngIf="!ts.free && ts.appointment != null">{{extractClientIdentification(ts)}}</span>
+        </div>
+        <div class="ts ts-cache" *ngIf="timeSlotPassed(ts) && ts.free"></div>
+      </div>
+    </div>
+  </div>
+</div>

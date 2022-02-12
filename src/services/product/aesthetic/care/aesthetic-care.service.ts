@@ -62,6 +62,21 @@ export class AestheticCareService {
     }))
   }
 
+  public getClientACPurchase(idSessionPurchase: number): Promise<SessionPurchaseDTO> {
+    return new Promise<SessionPurchaseDTO>((resolve, reject) => {
+      this.httpClient.get<SessionPurchaseDTO>(GlobalVariables.CLIENT_ALL_SESSION_PURCHASES_URL + "/" + idSessionPurchase)
+        .subscribe({
+          next: (res) => {
+            resolve(res);
+          },
+          error: (err: HttpErrorResponse) => {
+            console.error("Fail to get client session purchase, Err = ", err.error);
+            reject(err.error);
+          }
+        })
+    })
+  }
+
   public getACProvisionForAppointment(idAppointment: number): Promise<AestheticCareProvisionDTO> {
     return new Promise<AestheticCareProvisionDTO>(((resolve, reject) => {
       this.httpClient.get<AestheticCareProvisionDTO>(GlobalVariables.AESTHETIC_CARE_PROVISIONS_BY_APPOINTMENT

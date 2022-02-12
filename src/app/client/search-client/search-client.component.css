@@ -1,0 +1,49 @@
+.client-search-container {
+  flex-grow: 1;
+
+  display: grid;
+  grid-template: 100% / 1fr 1fr;
+}
+
+.client-search-with-info-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.search-label {
+  flex-grow: 1;
+
+  font-weight: bold;
+}
+
+.or-separator {
+  align-self: center;
+
+  font-weight: bold;
+  font-size: 1em;
+  text-decoration: underline;
+}
+
+.fail-search-client {
+  color: red;
+}
+
+.success-search-client {
+  color: green;
+}
+
+.client-search-create-client-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.create-client-btn-container {
+  flex-grow: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

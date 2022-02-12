@@ -13,6 +13,10 @@ import {SuccessModalComponent} from "../../../../util/modal/success-modal/succes
 import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
 import {AuthenticationService} from "../../../../../services/auth/authentication.service";
 
+export interface ClientRegistrationObserver {
+  clientHasBeenRegister(client?: ClientDTO): void;
+}
+
 @Component({
   selector: 'app-client-registration-modal',
   templateUrl: './client-registration-modal.component.html',
@@ -31,6 +35,8 @@ export class ClientRegistrationModalComponent implements OnInit {
   selectedPersonOrigin: PersonOriginDTO = PersonOriginDTO.default();
 
   confirmationModal?: BsModalRef;
+
+  clientRegister?: ClientRegistrationObserver;
 
   constructor(private clientOriginService: ClientOriginService, private clientRegistrationService: ClientRegistrationService,
               private authenticationService: AuthenticationService, public bsModalRef: BsModalRef, private modalService: BsModalService) {
@@ -68,7 +74,8 @@ export class ClientRegistrationModalComponent implements OnInit {
       this.selectedEmail, this.selectedGender, this.selectedPhone,
       this.selectedBirthday, this.selectedPersonOrigin != null ? this.selectedPersonOrigin.idPersonOrigin : -1);
 
-    this.clientRegistrationService.registerClient(clientDTO).then(() => {
+    this.clientRegistrationService.registerClient(clientDTO).then((res) => {
+      clientDTO.idPerson = res.idClient;
       this.successClientRegistration(clientDTO);
     }).catch((err: ClientRegistrationFailDTO) => {
       this.failClientRegistration(clientDTO, err);
@@ -85,6 +92,7 @@ export class ClientRegistrationModalComponent implements OnInit {
       }
     });
     successModal.content.parent = this.bsModalRef;
+    this.clientRegister?.clientHasBeenRegister(clientDTO);
   }
 
   private failClientRegistration(clientDTO: ClientDTO, err: ClientRegistrationFailDTO) {
@@ -95,6 +103,7 @@ export class ClientRegistrationModalComponent implements OnInit {
       }
     });
     failModal.content.parent = this.bsModalRef;
+    this.clientRegister?.clientHasBeenRegister(undefined);
   }
 
   private clear(): void {

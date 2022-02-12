@@ -1,0 +1,51 @@
+<div class="d-flex flex-column justify-content-start p-2">
+  <h3 class="client-information-title">Information client</h3>
+  <div class="client-edition-information-row">
+    <label for="lastName" class="client-edition-information-label">Nom de famille: </label>
+    <input type="text" name="lastName" id="lastName" class="client-edition-information-input"
+           [(ngModel)]="client.lastName"/>
+  </div>
+  <div class="client-edition-information-row">
+    <label for="firstName" class="client-edition-information-label">Prénom: </label>
+    <input type="text" name="firstName" id="firstName" class="client-edition-information-input"
+           [(ngModel)]="client.firstName"/>
+  </div>
+  <div class="client-edition-information-row">
+    <label for="email" class="client-edition-information-label">E-mail: </label>
+    <input type="email" name="email" id="email" class="client-edition-information-input"
+           [(ngModel)]="client.email"/>
+  </div>
+  <div class="client-edition-information-row">
+    <label for="phone" class="client-edition-information-label">Téléphone: +33</label>
+    <input type="tel" size="10" minlength="10" maxlength="10" name="phone" id="phone"
+           class="client-edition-information-input"
+           [(ngModel)]="client.phone"/>
+  </div>
+  <div class="client-edition-information-row">
+    <label for="gender" class="client-edition-information-label">Genre: </label>
+    <select class="client-edition-information-input" id="gender" name="gender" [(ngModel)]="client.gender">
+      <option [value]="true">Homme</option>
+      <option [value]="false">Femme</option>
+    </select>
+  </div>
+  <div class="client-edition-information-row">
+    <label for="birthday" class="client-edition-information-label">Date de naissance: </label>
+    <input type="date" name="birthday" id="birthday" class="client-edition-information-input"
+           [(ngModel)]="client.birthday"/>
+  </div>
+  <div class="client-edition-information-row">
+    <label for="comment" class="client-edition-information-label">Commentaire: </label>
+    <textarea type="text" name="comment" id="comment" class="client-edition-information-input" rows="3"
+              maxlength="50" style="resize: none;"
+              [(ngModel)]="client.comment"></textarea>
+  </div>
+  <div class="client-edition-information-row">
+    <label for="technical-comment" class="client-edition-information-label">Commentaire technique: </label>
+    <textarea type="textarea" name="technical-comment" id="technical-comment" rows="3"
+              maxlength="50" style="resize: none;"
+              class="client-edition-information-input" [(ngModel)]="client.technicalComment"></textarea>
+  </div>
+  <div class="d-flex justify-content-center align-items-center">
+    <button type="button" class="btn btn-success w-50 p-2" (click)="updateChange()">Mettre à jour</button>
+  </div>
+</div>

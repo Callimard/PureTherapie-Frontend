@@ -52,7 +52,100 @@ hr {
   border-bottom: 1px solid #adacac;
 }
 
+.clean-border {
+  border: 2px solid #adacac;
+}
+
+.clean-border-top {
+  border-top: 2px solid #adacac;
+}
+
+.clean-border-bottom {
+  border-bottom: 2px solid #adacac;
+}
+
+.clean-border-right {
+  border-right: 2px solid #adacac;
+}
+
+.clean-border-left {
+  border-left: 2px solid #adacac;
+}
+
+.clean-border-dashed {
+  border-left: 2px dashed #adacac;
+}
+
+.clean-border-dashed-top {
+  border-top: 2px dashed #adacac;
+}
+
+.clean-border-dashed-bottom {
+  border-bottom: 2px dashed #adacac;
+}
+
+.clean-border-dashed-right {
+  border-right: 2px dashed #adacac;
+}
+
+.clean-border-dashed-left {
+  border-left: 2px dashed #adacac;
+}
+
 .client-wr-buttons {
   display: flex;
   justify-content: space-between;
+}
+
+.modal + .modal {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.client-search-component {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.client-products {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.client-packages {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.client-bundle-row {
+  display: grid;
+  grid-template: 100% / 20% 20% 20% 20% 20%;
+}
+
+.client-aesthetic-cares {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.client-aesthetic-care-row {
+  display: grid;
+  grid-template: 100% / 1fr 1fr 1fr 1fr 1fr;
+}
+
+.client-information {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.agenda-per-technician {
+  display: grid;
+  grid-template: 100%/ 5% 95%;
+}
+
+.agenda-choose-date {
+  display: grid;
+  grid-template: 100% / 5% 90% 5%;
 }

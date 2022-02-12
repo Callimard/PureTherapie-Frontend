@@ -1,0 +1,17 @@
+<div class="ac-purchase-name">
+  <span class="purchase-item-title"><strong>Nom:</strong> {{sessionPurchase.aestheticCare.name}}</span>
+</div>
+<div class="ac-purchase-purchase-date">
+  <span class="purchase-item-title"><strong>Date d'achat:</strong> {{extractOnlyDay(sessionPurchase.bill.creationDate)}}</span>
+</div>
+<div class="ac-purchase-remaining-balance">
+  <span class="purchase-item-title"><strong>Solde restant:</strong> {{remainingBalance(sessionPurchase.bill)}} €</span>
+</div>
+<div class="ac-purchase-used">
+  <span class="purchase-item-title"><strong>Consommé:</strong> {{sessionPurchase.used}}</span>
+</div>
+<div class="ac-purchase-button">
+  <button type="button" class="text-bold btn btn-warning" (click)="pay(sessionPurchase.bill)">Payer
+  </button>
+</div>
+
