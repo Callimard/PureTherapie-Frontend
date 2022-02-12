@@ -5,7 +5,8 @@ import {GlobalVariables} from "../../../global/global-variables";
 @Component({
   selector: 'app-client-home',
   templateUrl: './client-home.component.html',
-  styleUrls: ['./client-home.component.css']
+  styleUrls: ['./client-home.component.css'],
+  host: {'class': 'client-home'}
 })
 export class ClientHomeComponent implements OnInit {
 
@@ -13,6 +14,7 @@ export class ClientHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Normal
   }
 
   alreadyClientClick() {

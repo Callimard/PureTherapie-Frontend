@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 @import '~material-icons/iconfont/material-icons.css';
+@import "styles/client-self-navigation.css";
 
 body, html {
   height: -webkit-fill-available;
@@ -99,6 +100,22 @@ hr {
 
 .modal + .modal {
   background: rgba(0, 0, 0, 0.6);
+}
+
+.client-home {
+  flex-grow: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.client-take-appointment {
+  flex-grow: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .client-search-component {

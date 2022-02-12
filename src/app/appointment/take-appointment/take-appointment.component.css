@@ -1,0 +1,42 @@
+.client-research-content {
+  align-self: stretch;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.appointment-information {
+  align-self: stretch;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.appointment-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2%;
+}
+
+
+
+.appointment-btn-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2%;
+
+  margin-top: 3%;
+}
+
+.success-appointment-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.success-appointment-text {
+  text-align: center;
+}
