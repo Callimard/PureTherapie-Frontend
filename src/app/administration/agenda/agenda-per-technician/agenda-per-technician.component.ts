@@ -66,6 +66,7 @@ export class AgendaPerTechnicianComponent implements OnInit, OnChanges {
     createAppointmentModal.content.idParamTechnician = proposedTechnician.idPerson;
     createAppointmentModal.content.selectedDay = day;
     createAppointmentModal.content.paramTime = time;
+    createAppointmentModal.content.blocEdition = true;
     createAppointmentModal.content.agenda = this;
   }
 

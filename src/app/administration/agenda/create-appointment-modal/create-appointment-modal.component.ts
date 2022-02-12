@@ -24,6 +24,8 @@ export class CreateAppointmentModalComponent implements OnInit {
   idParamTechnician?: number;
   paramTime?: string;
 
+  blocEdition: boolean = false;
+
   allACs: AestheticCareDTO[] = [];
   allTechnicians: TechnicianDTO[] = [];
   allFreeTS: FreeTimeSlotDTO[] = [];
