@@ -15,7 +15,8 @@ import {TakeAppointmentDTO} from "../../../services/appointment/take_appointment
 @Component({
   selector: 'app-client-registration',
   templateUrl: './client-registration.component.html',
-  styleUrls: ['./client-registration.component.css']
+  styleUrls: ['./client-registration.component.css'],
+  host: {'class': 'client-self-registration'}
 })
 export class ClientRegistrationComponent implements OnInit {
 

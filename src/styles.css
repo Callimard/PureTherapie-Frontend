@@ -102,15 +102,7 @@ hr {
   background: rgba(0, 0, 0, 0.6);
 }
 
-.client-home {
-  flex-grow: 1;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.client-take-appointment {
+.client-home, .client-take-appointment, .client-self-registration {
   flex-grow: 1;
 
   display: flex;

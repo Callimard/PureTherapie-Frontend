@@ -1,1 +1,25 @@
+.client-registration-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  align-self: stretch;
+}
+
+.client-registration-information {
+  display: flex;
+  flex-direction: column;
+
+  align-self: stretch;
+}
+
+.success-appointment-registration-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
 
