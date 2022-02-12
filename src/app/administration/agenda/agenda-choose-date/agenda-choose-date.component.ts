@@ -27,6 +27,15 @@ export class AgendaChooseDateComponent implements OnInit, OnChanges {
 
   changeDate(dateAdd: number): void {
     this.chosenDayDate.setDate(this.chosenDayDate.getDate() + dateAdd);
+    this.updateChosenDay();
+  }
+
+  getToCurrentDay() {
+    this.chosenDayDate = new Date();
+    this.updateChosenDay();
+  }
+
+  private updateChosenDay() {
     this.chosenDay = DateTool.toMySQLDateString(this.chosenDayDate);
     this.dayChangeEvent.emit(this.chosenDay);
   }

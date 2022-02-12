@@ -5,6 +5,10 @@
   align-items: center;
 }
 
+.calendar-icon:hover {
+  cursor: pointer;
+}
+
 .change-day {
   display: flex;
   justify-content: center;
