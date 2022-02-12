@@ -1,95 +1,101 @@
-<div class="container align-self-center justify-content-center p-3" *ngIf="(makeClientResearch === 'true' && newClient === 'false')
-&& !takingAppointmentSuccess">
-  <div class="row">
-    <label for="clientEmail">Votre e-mail: </label>
-    <input type="email" name="clientEmail" id="clientEmail" [(ngModel)]="clientEmail"/>
+<div class="client-self-navigation-card m-4">
+  <div class="client-research-content p-3"
+       *ngIf="(makeClientResearch === 'true' && newClient === 'false') && !takingAppointmentSuccess">
+    <h3 class="text-bold text-decoration-underline" style="margin-bottom: 15px">Vos informations</h3>
+    <label class="search-label text-bold" for="client-email-research">Votre email: </label>
+    <input class="client-email-input flex-fill" type="email" name="client-email-research" id="client-email-research"
+           [(ngModel)]="clientEmail"/>
+    <span class="text-bold  text-decoration-underline text-success p-2">ou</span>
+    <label class="search-label flex-grow-0 text-bold" for="client-phone-research">Votre téléphone: </label>
+    <input class="client-phone-input flex-fill" type="tel" name="client-phone-research" id="client-phone-research"
+           size="10" minlength="10" maxlength="10" [(ngModel)]="clientPhone"/>
+    <div class="flex-fill d-flex justify-content-center align-items-center" *ngIf="hasSearchClient">
+      <span class="text-fail" *ngIf="hasSearchClient && !clientHasBeenFound">Nous ne vous avons pas trouvé</span>
+      <span class="text-success" *ngIf="hasSearchClient && clientHasBeenFound">Nous vous avons trouvé!</span>
+    </div>
+    <div class="flex-fill d-flex justify-content-center align-items-center my-2">
+      <button type="button" class="search-client-btn btn btn-primary text-bold" (click)="searchClient()">
+        Rechercher le client
+      </button>
+    </div>
   </div>
-  <div class="row" *ngIf="clientNotFound">
-    <p class="text-danger m-sm-auto p-2">Aucun client trouvé avec cette email.</p>
-  </div>
-  <div class="row" *ngIf="clientFound">
-    <p class="text-success  m-sm-auto p-2">Client trouvé!</p>
-  </div>
-  <div class="row justify-content-sm-center">
-    <button class="btn btn-primary" (click)="searchClient()">Rechercher</button>
-  </div>
-</div>
 
-<div class="container align-self-center justify-content-center p-3" *ngIf="!takingAppointmentSuccess">
-  <div class="row text-center">
-    <label for="aestheticCare" class="col-sm-2 m-sm-auto">
-      Soin:
-    </label>
-    <select name="aestheticCare" id="aestheticCare" class="col-sm-7 m-sm-auto" (change)="onChangeAC()"
-            [(ngModel)]="selectedAC">
-      <option *ngFor="let ac of allACs" [ngValue]="ac">{{ac.name}}</option>
-    </select>
-    <p class="col-sm-3 m-sm-auto">Time = {{selectedAC.timeExecution}} min</p>
-  </div>
-  <div class="row">
-    <label for="technicians" class="col-sm-2 m-sm-auto">
-      Technicien:
-    </label>
-    <select name="technicians" id="technicians" class="col-sm-10 m-sm-auto" (change)="onChangeTechnicianChoice()"
-            [(ngModel)]="selectedTechnician">
-      <option *ngFor="let tech of allTechnicians"
-              [ngValue]="tech">{{tech.lastName}} {{tech.firstName}}</option>
-    </select>
-  </div>
-  <div class="row">
-    <label class="col-sm-2 m-sm-auto" for="day">
-      Horaires:
-    </label>
-    <input type="date" name="day" id="day" class="col-sm-7 m-sm-auto" (change)="onChangeDay()"
-           [(ngModel)]="selectedDay"/>
-    <select name="timeSlot" id="timeSlot" class="col-sm-2 m-sm-auto" [(ngModel)]="selectedFreeTS">
-      <option *ngFor="let freeTS of allFreeTS" [ngValue]="freeTS">{{freeTS.begin}}</option>
-    </select>
-  </div>
-  <div class="row">
-    <div class="d-flex justify-content-center col-sm-10">
-      <button class="btn btn-primary mt-sm-3" type="button"
+  <div class="appointment-information p-3" *ngIf="!takingAppointmentSuccess">
+    <div class="appointment-info-row">
+      <label for="aestheticCare" class="">
+        <strong>Soin:</strong>
+      </label>
+      <select name="aestheticCare" id="aestheticCare" class="flex-grow-1 mx-2" (change)="onChangeAC()"
+              [(ngModel)]="selectedAC">
+        <option *ngFor="let ac of allACs" [ngValue]="ac">{{ac.name}}</option>
+      </select>
+      <span class="col-sm-3 m-sm-auto"><strong>{{selectedAC.timeExecution}} minutes</strong></span>
+    </div>
+    <div class="appointment-info-row">
+      <label for="technicians" class="">
+        <strong>Technicien(ne):</strong>
+      </label>
+      <select name="technicians" id="technicians" class="flex-grow-1 mx-2" (change)="onChangeTechnicianChoice()"
+              [(ngModel)]="selectedTechnician">
+        <option *ngFor="let tech of allTechnicians"
+                [ngValue]="tech">{{tech.lastName}} {{tech.firstName}}</option>
+      </select>
+    </div>
+    <div class="appointment-info-row">
+      <label for="day" class="">
+        <strong>Horaires:</strong>
+      </label>
+      <input type="date" name="day" id="day" class="flex-shrink-1 mx-2" (change)="onChangeDay()"
+             [(ngModel)]="selectedDay"/>
+      <select name="timeSlot" id="timeSlot" class="flex-shrink-1 mx-2" [(ngModel)]="selectedFreeTS">
+        <option *ngFor="let freeTS of allFreeTS" [ngValue]="freeTS">{{freeTS.begin}}</option>
+      </select>
+    </div>
+    <div class="appointment-btn-row">
+      <button class="btn btn-primary text-bold" type="button"
               (click)="openModalTakeAppointmentConfirmation(takingAppointmentConfirmation)">
         Prendre rendez-vous !
       </button>
     </div>
+    <ng-template #takingAppointmentConfirmation>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title text-success" id="takingAppointmentConfirmation">Confirmation de pris de
+            rendez-vous</h3>
+          <button type="button" class="btn-close" (click)="declineTakingAppointment()"></button>
+        </div>
+        <div class="modal-body">
+          <h4 class="text-secondary">Récapitulatif du rendez-vous:</h4>
+          <p>
+            <strong>Jour: </strong>{{this.selectedDay}}<br/>
+            <strong>Heure: </strong>{{this.selectedFreeTS.begin}}<br/>
+            <strong>Technicien(ne): </strong> {{this.selectedTechnician.lastName}} {{this.selectedTechnician.firstName}}
+            <br/>
+            <strong>Soin pratiqué: </strong> {{this.selectedAC.name}}<br/>
+            <strong>Temps de prise en charge: </strong> {{this.selectedAC.timeExecution}} min<br/>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="text-bold btn btn-danger" (click)="declineTakingAppointment()">Annuler</button>
+          <button type="button" class="text-bold btn btn-primary" (click)="confirmTakingAppointment()">
+            Accepté{{newClient === 'true' ? " et s'enregistrer" : ''}}</button>
+        </div>
+      </div>
+    </ng-template>
   </div>
-  <ng-template #takingAppointmentConfirmation>
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title text-success" id="takingAppointmentConfirmation">Confirmation de pris de rendez-vous</h3>
-        <button type="button" class="btn-close" (click)="declineTakingAppointment()"></button>
-      </div>
-      <div class="modal-body">
-        <h4 class="text-secondary">Récapitulatif du rendez-vous:</h4>
-        <p>
-          <strong>Jour: </strong>{{this.selectedDay}}<br/>
-          <strong>Heure: </strong>{{this.selectedFreeTS.begin}}<br/>
-          <strong>Technicien(ne): </strong> {{this.selectedTechnician.lastName}} {{this.selectedTechnician.firstName}}
-          <br/>
-          <strong>Soin pratiqué: </strong> {{this.selectedAC.name}}<br/>
-          <strong>Temps de prise en charge: </strong> {{this.selectedAC.timeExecution}} min<br/>
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" (click)="declineTakingAppointment()">Annuler</button>
-        <button type="button" class="btn btn-primary" (click)="confirmTakingAppointment()">
-          Accepté{{newClient === 'true' ? " et s'enregistrer" : ''}}</button>
-      </div>
-    </div>
-  </ng-template>
-</div>
-<div class="d-flex flex-column justify-content-center align-items-start w-50 p-3"
-     *ngIf="takingAppointmentSuccess">
-  <h2 class="text-success">Félicitation, votre rendez-vous à été validé!</h2>
-  <h3>Récapitulatif du rendez-vous</h3>
-  <p>
-    <strong>Jour: </strong>{{this.selectedDay}}<br/>
-    <strong>Heure: </strong>{{this.selectedFreeTS.begin}}<br/>
-    <strong>Technicien(ne): </strong> {{this.selectedTechnician.lastName}} {{this.selectedTechnician.firstName}}
-    <br/>
-    <strong>Soin pratiqué: </strong> {{this.selectedAC.name}}<br/>
-    <strong>Temps de prise en charge: </strong> {{this.selectedAC.timeExecution}} min<br/>
-  </p>
-  <a href="https://puretherapie.com/" class="btn btn-primary">Retour à l'acceuil PureTherapie</a>
+  <div class="success-appointment-content p-3"
+       *ngIf="takingAppointmentSuccess">
+    <h2 class="text-success success-appointment-text">Félicitation, votre rendez-vous à été validé!</h2>
+    <h3 class="success-appointment-text text-decoration-underline">Récapitulatif du rendez-vous</h3>
+    <p class="success-appointment-text">
+      <strong>Jour: </strong>{{this.selectedDay}}<br/>
+      <strong>Heure: </strong>{{this.selectedFreeTS.begin}}<br/>
+      <strong>Technicien(ne): </strong> {{this.selectedTechnician.lastName}} {{this.selectedTechnician.firstName}}
+      <br/>
+      <strong>Soin pratiqué: </strong> {{this.selectedAC.name}}<br/>
+      <strong>Temps de prise en charge: </strong> {{this.selectedAC.timeExecution}} min<br/>
+    </p>
+    <a href="https://puretherapie.com/" class="btn btn-primary success-appointment-text text-bold">Retour à l'acceuil
+      PureTherapie</a>
+  </div>
 </div>

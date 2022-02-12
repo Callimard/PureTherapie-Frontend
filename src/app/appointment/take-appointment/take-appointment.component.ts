@@ -20,7 +20,8 @@ import {SimpleClientInfoDTO} from "../../../services/person/client/simple-client
 @Component({
   selector: 'app-take-appointment',
   templateUrl: './take-appointment.component.html',
-  styleUrls: ['./take-appointment.component.css']
+  styleUrls: ['./take-appointment.component.css'],
+  host: {'class': 'client-take-appointment'}
 })
 export class TakeAppointmentComponent implements OnInit {
 
@@ -43,8 +44,9 @@ export class TakeAppointmentComponent implements OnInit {
   newClient: string = GlobalVariables.FALSE_STRING;
 
   clientEmail: string = "";
-  clientNotFound: boolean = false;
-  clientFound: boolean = false;
+  clientPhone: string = "";
+  hasSearchClient: boolean = false;
+  clientHasBeenFound: boolean = false;
 
   modalRef?: BsModalRef;
 
@@ -163,17 +165,39 @@ export class TakeAppointmentComponent implements OnInit {
   }
 
   async searchClient() {
-    this.clientNotFound = false;
-    this.clientFound = false;
+    this.hasSearchClient = false;
+    this.clientHasBeenFound = false;
 
-    let client: SimpleClientInfoDTO = await this.clientService.searchClientWithEmail(this.clientEmail);
-    if (client == null) {
-      this.clientNotFound = true;
-      this.client = ClientDTO.default();
-    } else {
-      this.clientFound = true;
-      this.client = client;
+    let client = null;
+
+    try {
+      if (this.clientEmail != null)
+        client = await this.clientService.searchClientWithEmail(this.clientEmail);
+
+      if (client == null)
+        client = await this.clientService.searchClientWithPhone(this.clientPhone);
+
+      if (client != null) {
+        this.successToFoundClient(client);
+      } else {
+        this.failToFoundClient();
+      }
+    } catch (error) {
+      this.failToFoundClient();
     }
+
+  }
+
+  private successToFoundClient(client: SimpleClientInfoDTO) {
+    this.hasSearchClient = true;
+    this.clientHasBeenFound = true;
+    this.client = client;
+  }
+
+  private failToFoundClient() {
+    this.hasSearchClient = true;
+    this.clientHasBeenFound = false;
+    this.client = ClientDTO.default();
   }
 
   onChangeAC() {

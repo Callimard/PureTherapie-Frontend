@@ -1,0 +1,22 @@
+.client-home-logo {
+  min-width: 85%;
+}
+
+.client-home-text {
+  text-align: center;
+
+  font-size: 1.5em;
+}
+
+.client-home-choice {
+  display: flex;
+  justify-content: space-evenly;
+
+  min-width: 100%;
+}
+
+.client-choice-btn {
+  font-weight: bold;
+
+  font-size: 1.5em;
+}
