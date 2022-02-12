@@ -4,7 +4,7 @@
     <button type="button" class="btn-close" (click)="close()"></button>
   </div>
   <div class="modal-body">
-    <p>{{text}}</p>
+    <p [innerHTML]="text"></p>
   </div>
   <div class="modal-footer d-flex justify-content-end">
     <button type="button" class="btn btn-primary" (click)="confirmation()">Confirmer</button>
