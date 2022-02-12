@@ -96,13 +96,13 @@ export class ClientRegistrationModalComponent implements OnInit {
   }
 
   private failClientRegistration(clientDTO: ClientDTO, err: ClientRegistrationFailDTO) {
-    let failModal: BsModalRef = this.modalService.show(FailModalComponent, {
+    this.modalService.show(FailModalComponent, {
       initialState: {
         title: "Enregistrement de client échoué",
-        text: "L'enregistrement du client " + clientDTO.lastName + " " + clientDTO.firstName + " a échoué. Erreur = " + err
+        text: "L'enregistrement du client " + clientDTO.lastName + " " + clientDTO.firstName + " a échoué. Erreur ="
+          + ClientRegistrationFailDTO.extractAllErrors(err)
       }
     });
-    failModal.content.parent = this.bsModalRef;
     this.clientRegister?.clientHasBeenRegister(undefined);
   }
 
