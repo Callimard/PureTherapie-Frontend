@@ -1,10 +1,10 @@
 <div class="waiting-room-container m-2">
-  <div class="waiting-room-header">
-    <h1 class="text-bold px-3 my-2">Salle d'attente</h1>
+  <div class="waiting-room-header title-bar">
+    <h1 class="px-3 my-2">Salle d'attente</h1>
   </div>
-  <h2 class="day-title text-bold p-2">Jour {{today}}</h2>
   <div class="waiting-room-body p-2">
     <div class="appointments-waiting-room-content p-2">
+      <h2 class="day-title text-bold p-2">{{today}}</h2>
       <h3 class="appointment-client-title text-bold p-2">Clients avec rendez-vous</h3>
       <div class="technician-waiting-rooms clean-border-left clean-border-top clean-border-bottom">
         <div class="tech-waiting-room clean-border-right" *ngFor="let technician of allTechnicians">

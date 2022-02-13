@@ -2,6 +2,11 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import '~material-icons/iconfont/material-icons.css';
 @import "styles/client-self-navigation.css";
+@import "styles/color-pallette.css";
+
+* {
+  font-family: Roboto, sans-serif;
+}
 
 body, html {
   height: -webkit-fill-available;

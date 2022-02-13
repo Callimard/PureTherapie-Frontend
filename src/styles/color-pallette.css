@@ -1,0 +1,40 @@
+.header-side-bar {
+  background-color: rgba(78, 94, 122, 0.16);
+}
+
+.active {
+  background-color: #FCDDA2 !important;
+}
+
+.main-card {
+  background-color: rgba(162, 193, 252, 0.05);
+}
+
+.technician-name-title {
+  background-color: rgba(78, 94, 122, 0.16);
+}
+
+.ts-time-title {
+  background-color: rgba(78, 94, 122, 0.16);
+}
+
+.title-bar {
+  background-color: #A2C1FC;
+  box-shadow: 0 1px 2px black;
+}
+
+.simple-btn {
+  background-color: #FCDDA2;
+}
+
+.simple-btn:hover {
+  background-color: #DEC28E;
+}
+
+.new-client-appointment {
+  background-color: #9EBDF7;
+}
+
+.old-client-appointment {
+  background-color: #D5F786;
+}
