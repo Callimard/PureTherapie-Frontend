@@ -10,6 +10,7 @@ import {SuccessModalComponent} from "../../../../util/modal/success-modal/succes
 import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
 import {DateTool} from "../../../../../tool/date-tool";
 import {PaymentDTO} from "../../../../../services/product/bill/payment-dto";
+import {BillTool} from "../../../../../tool/bill-tool";
 
 @Component({
   selector: 'app-client-payment-modal',
@@ -21,7 +22,6 @@ export class ClientPaymentModalComponent implements OnInit {
   allMeansOfPayment: MeansOfPaymentDTO[] = [];
 
   bill: BillDTO = BillDTO.default();
-  amountToPaid: number = 0.0;
 
   selectMeansOfPayment: MeansOfPaymentDTO = MeansOfPaymentDTO.default();
 
@@ -62,28 +62,45 @@ export class ClientPaymentModalComponent implements OnInit {
     this.bsModalRef.hide();
   }
 
-  getAlreadyAmountPaid(): number {
-    return this.billService.alreadyPayAmount(this.bill);
+  amountPaid(bill: BillDTO): number {
+    return BillTool.amountPaid(bill);
   }
 
-  pay() {
+  remainingBalance(bill: BillDTO): number {
+    return BillTool.remainingBalance(bill);
+  }
+
+  isTotallyPaid(bill: BillDTO): boolean {
+    return BillTool.totallyPaid(bill);
+  }
+
+  pay(amountToPaid: number) {
     this.confirmationModalRef = this.modalService.show(SimpleConfirmationModalComponent);
     this.confirmationModalRef.content.title = "Confirmation de paiement";
-    this.confirmationModalRef.content.text = "Êtes-vous sur de vouloir faire payer " + this.amountToPaid + " €?";
+    this.confirmationModalRef.content.text = "Êtes-vous sur de vouloir faire payer " + amountToPaid + " €?";
     this.confirmationModalRef.content.confirmationFunction = () => this.payConfirmed();
   }
 
-  payConfirmed() {
-    if (this.amountToPaid >= 0.01 || (MeansOfPaymentDTO.isGrouponPayment(this.selectMeansOfPayment) && this.amountToPaid == 0.0)) {
-      this.billService.payBill(this.bill.idBill, this.amountToPaid, this.selectMeansOfPayment.idMeansOfPayment).then(() => {
-        this.paymentSuccess();
-      }).catch((err) => {
-          this.paymentFail(err);
-        }
-      )
+  computedAmountToPaid(): number {
+    if (!MeansOfPaymentDTO.isGrouponPayment(this.selectMeansOfPayment)) {
+      let remainingBalance = BillTool.remainingBalance(this.bill);
+      if (remainingBalance >= 130.0) {
+        return 130.0;
+      } else {
+        return remainingBalance;
+      }
     } else {
-      this.blockPayment();
+      return 0.0;
     }
+  }
+
+  payConfirmed() {
+    this.billService.payBill(this.bill.idBill, this.computedAmountToPaid(), this.selectMeansOfPayment.idMeansOfPayment).then(() => {
+      this.paymentSuccess();
+    }).catch((err) => {
+        this.paymentFail(err);
+      }
+    );
   }
 
   private paymentSuccess() {
@@ -100,14 +117,6 @@ export class ClientPaymentModalComponent implements OnInit {
     let failModal: BsModalRef = this.modalService.show(FailModalComponent);
     failModal.content.title = "Paiement échoué";
     failModal.content.text = "Le paiment n'a pas réussie";
-    failModal.content.parent = this.confirmationModalRef;
-    this.rechargeable?.recharge();
-  }
-
-  private blockPayment() {
-    let failModal: BsModalRef = this.modalService.show(FailModalComponent);
-    failModal.content.title = "Paiement non effectué";
-    failModal.content.text = "Le paiment n'a pas été effectué car le montant est négatif ou en desous de 0.01 euros";
     failModal.content.parent = this.confirmationModalRef;
     this.rechargeable?.recharge();
   }

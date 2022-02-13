@@ -12,37 +12,38 @@
         </div>
         <div class="bill-info-row">
           <span class="text-bold">Montant déjà payé:</span>
-          <span>{{getAlreadyAmountPaid()}} €</span>
+          <span>{{amountPaid(bill)}} €</span>
         </div>
         <div class="bill-info-row">
           <span class="text-bold">Reste à payer:</span>
-          <span>{{bill.purchasePrice - getAlreadyAmountPaid()}}€</span>
+          <span>{{remainingBalance(bill)}}€</span>
         </div>
       </div>
       <div class="do-payment-row p-2">
         <span class="text-bold my-auto" style="line-height: 0">Montant</span>
         <div class="amount-to-paid-item">
-          <input type="number" [(ngModel)]="amountToPaid"/>
-          <span class="text-bold my-auto" style="line-height: 0">€</span>
+          <span class="text-bold my-auto" style="line-height: 0">{{computedAmountToPaid()}} €</span>
         </div>
         <select class="select-means-of-payment" [(ngModel)]="selectMeansOfPayment">
           <option *ngFor="let meansOfPayment of allMeansOfPayment"
                   [ngValue]="meansOfPayment">{{meansOfPayment.name}}</option>
         </select>
-        <button type="button" class="btn btn-warning text-bold" (click)="pay()">Payer</button>
+        <button type="button" class="btn btn-warning text-bold" (click)="pay(computedAmountToPaid())"
+                [disabled]="isTotallyPaid(bill)">Payer
+        </button>
       </div>
       <div class="all-payments-content p-2">
         <div class="all-payments p-2" *ngIf="bill.payments.length > 0">
           <div class="payment-row" *ngFor="let payment of bill.payments">
-            <div class="payment-date">
+            <div class="payment-date my-auto">
               <span class="text-bold">Date: </span>
               <span>{{extractOnlyDay(payment.paymentDate)}}</span>
             </div>
-            <div class="payment-amount">
+            <div class="payment-amount my-auto">
               <span class="text-bold">Montant payé: </span>
-              <span>{{payment.amountPaid}}</span>
+              <span>{{payment.amountPaid}} €</span>
             </div>
-            <div class="payment-means-of-payment">
+            <div class="payment-means-of-payment my-auto">
               <span class="text-bold">Moyen de paiement: </span>
               <span>{{payment.meansOfPayment.name}}</span>
             </div>

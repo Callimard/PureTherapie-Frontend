@@ -3,9 +3,7 @@ import {ClientDTO} from "../../../../../../../services/person/client/client-dto"
 import {SessionPurchaseDTO} from "../../../../../../../services/product/aesthetic/care/session-purchase-dto";
 import {AestheticCareService} from "../../../../../../../services/product/aesthetic/care/aesthetic-care.service";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {DateTool} from "../../../../../../../tool/date-tool";
 import {BillDTO} from "../../../../../../../services/product/bill/bill-dto";
-import {BillTool} from "../../../../../../../tool/bill-tool";
 import {BundlePurchaseDTO} from "../../../../../../../services/product/aesthetic/bundle/bundle-purchase-dto";
 import {
   ClientBundlePurchaseEditionModalComponent
@@ -47,18 +45,6 @@ export class ClientAestheticCaresComponent implements OnInit, OnChanges {
         console.error("Fail to charge all client ac purchases");
       });
     }
-  }
-
-  extractOnlyDay(dateTime: string): string {
-    return DateTool.extractOnlyDay(dateTime);
-  }
-
-  billIsTotallyPaid(bill: BillDTO): boolean {
-    return BillTool.totallyPaid(bill);
-  }
-
-  billPartiallyPaid(bill: BillDTO): boolean {
-    return BillTool.partiallyPaid(bill);
   }
 
   openBundlePurchaseEdition(bundlePurchase: BundlePurchaseDTO) {

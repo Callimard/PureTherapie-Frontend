@@ -69,13 +69,4 @@ export class BillService {
       })
     }));
   }
-
-  public alreadyPayAmount(bill: BillDTO): number {
-    let amountAlreadyPaid = 0.0;
-    for (let payment of bill.payments) {
-      if (!payment.canceled)
-        amountAlreadyPaid += payment.amountPaid;
-    }
-    return amountAlreadyPaid;
-  }
 }
