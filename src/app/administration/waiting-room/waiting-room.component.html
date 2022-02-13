@@ -1,4 +1,4 @@
-<div class="waiting-room-container m-2">
+<div class="waiting-room-container main-card m-2">
   <div class="waiting-room-header title-bar">
     <h1 class="px-3 my-2">Salle d'attente</h1>
   </div>
@@ -6,12 +6,12 @@
     <div class="appointments-waiting-room-content p-2">
       <h2 class="day-title text-bold p-2">{{today}}</h2>
       <h3 class="appointment-client-title text-bold p-2">Clients avec rendez-vous</h3>
-      <div class="technician-waiting-rooms clean-border-left clean-border-top clean-border-bottom">
+      <div class="technician-waiting-rooms generic-card">
         <div class="tech-waiting-room clean-border-right" *ngFor="let technician of allTechnicians">
           <h5
-            class="technician-title text-bold p-2 m-0">{{formatPersonSimpleIdentifier(technician)}}</h5>
+            class="technician-title text-bold p-2 m-0 technician-name-title">{{formatPersonSimpleIdentifier(technician)}}</h5>
           <div class="waiting-client-list">
-            <div class="waiting-client-card p-2" (click)="takeClient(wr)"
+            <div class="waiting-client-card waiting-room-card p-2" (click)="takeClient(wr)"
                  *ngFor="let wr of this.techWRMap.get(technician.idPerson)">
               <div class="appointment-item">
                 <span class="text-bold item-title">Client:</span>
@@ -27,8 +27,8 @@
     </div>
     <div class="vip-waiting-room-content p-2">
       <h3 class="vip-waiting-room-title text-bold p-2">VIP</h3>
-      <div class="vip-waiting-room">
-        <div class="vip-card" *ngFor="let wr of this.techWRMap.get(-1)"
+      <div class="vip-waiting-room generic-card">
+        <div class="vip-card waiting-room-card" *ngFor="let wr of this.techWRMap.get(-1)"
              (click)="takeClient(wr)">
           <div class="appointment-item">
             <span class="text-bold item-title">Client:</span>

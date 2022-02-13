@@ -1,14 +1,14 @@
-<div class="client-administration-container d-flex flex-column justify-content-start flex-fill border m-2">
-  <div class="client-administration-header d-flex flex-row justify-content-start">
+<div class="client-administration-container d-flex flex-column justify-content-start flex-fill border main-card m-2">
+  <div class="client-administration-header title-bar d-flex flex-row justify-content-start">
     <h1 class="text-bold px-3 my-2">Gestion des clients</h1>
   </div>
   <div class="d-flex flex-row justify-content-start p-2 m-sm-2">
-    <button class="add-client-btn btn btn-primary text-bold p-2 mx-2" type="button" (click)="registerClient()">Ajouter
+    <button class="add-client-btn btn btn-simple text-bold p-2 mx-2" type="button" (click)="registerClient()">Ajouter
       client
     </button>
   </div>
   <div class="d-flex flex-column flex-fill overflow-auto p-2">
-    <div class="client-edition-row text-bold p-3" style="background-color: #eeeeee">
+    <div class="client-edition-row text-bold secondary-bar p-3">
       <div class="client-label-1 d-flex justify-content-start flex-grow-1">Nom</div>
       <div class="client-label-2 d-flex justify-content-start flex-grow-1">Prénom</div>
       <div class="client-label-3 d-flex justify-content-start flex-grow-1">E-mail</div>
@@ -33,15 +33,15 @@
           <input class="me-sm-2" type="checkbox" [(ngModel)]="selectAll"/>
           <span class="text-bold">Tous</span>
         </div>
-        <button type="button" class="btn text-bold" style="background-color: #2cf111" (click)="search()">Appliquer
+        <button type="button" class="btn btn-simple text-bold" (click)="search()">Appliquer
         </button>
-        <button type="button" class="btn btn-warning text-bold" style="margin-left: 2%" (click)="cleanFilter()">
+        <button type="button" class="btn btn-simple text-bold" style="margin-left: 2%" (click)="cleanFilter()">
           Effacer
         </button>
       </div>
     </div>
     <div class="clients-tab d-flex flex-column flex-fill">
-      <div class="client-edition-row p-3" *ngFor="let client of foundClients">
+      <div class="client-edition-row clean-border-bottom p-3" *ngFor="let client of foundClients">
         <div class="client-label-1 client-info-item">
           <strong class="client-item">{{client.lastName}}</strong></div>
         <div class="client-label-2 client-info-item">
@@ -51,7 +51,7 @@
         <div class="client-label-4 client-info-item">
           <strong class="client-item">{{client.phone}}</strong></div>
         <div class="client-label-5 client-edition-btn">
-          <button type="button" class="btn btn-primary" (click)="editClient(client)">Editer</button>
+          <button type="button" class="btn btn-simple" (click)="editClient(client)">Editer</button>
         </div>
       </div>
     </div>

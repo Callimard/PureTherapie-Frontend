@@ -36,7 +36,7 @@
       <span class="p-2">{{appointmentInfo.time}}</span>
     </div>
     <div class="appointment-summary-all-btn p-2" *ngIf="appointmentInfo.clientArrival == null">
-      <button type="button" class="btn btn-primary text-bold" (click)="clientArrive(appointmentInfo)"
+      <button type="button" class="btn btn-validation text-bold" (click)="clientArrive(appointmentInfo)"
               [disabled]="appointmentInfo.clientArrival != null">Client arrivé
       </button>
       <button type="button" class="btn btn-danger text-bold" (click)="demandCancelAppointment()"
@@ -45,7 +45,7 @@
       </button>
     </div>
     <div class="client-termination p-2" *ngIf="appointmentInfo.clientArrival != null">
-      <button class="btn btn-success text-bold" (click)="terminateClient()" [disabled]="appointmentInfo.finalized">
+      <button class="btn btn-validation text-bold" (click)="terminateClient()" [disabled]="appointmentInfo.finalized">
         Finaliser avec le client
       </button>
     </div>
@@ -59,6 +59,6 @@
     <h2 style="font-weight: bold; color: red">Problème, pas de rendez-vous à afficher</h2>
   </div>
   <div class="modal-footer d-flex justify-content-end">
-    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+    <button type="button" class="btn btn-validation" (click)="close()">Fermer</button>
   </div>
 </div>

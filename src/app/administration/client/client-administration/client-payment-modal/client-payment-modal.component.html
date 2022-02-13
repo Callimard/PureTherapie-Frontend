@@ -1,5 +1,5 @@
 <div class="modal-content">
-  <div class="modal-header">
+  <div class="modal-header title-bar">
     <h2 class="modal-title success-title">Payer</h2>
     <button type="button" class="btn-close" (click)="close()"></button>
   </div>
@@ -28,7 +28,7 @@
           <option *ngFor="let meansOfPayment of allMeansOfPayment"
                   [ngValue]="meansOfPayment">{{meansOfPayment.name}}</option>
         </select>
-        <button type="button" class="btn btn-warning text-bold" (click)="pay(computedAmountToPaid())"
+        <button type="button" class="btn btn-simple text-bold" (click)="pay(computedAmountToPaid())"
                 [disabled]="isTotallyPaid(bill)">Payer
         </button>
       </div>
@@ -47,7 +47,7 @@
               <span class="text-bold">Moyen de paiement: </span>
               <span>{{payment.meansOfPayment.name}}</span>
             </div>
-            <button class="cancel-payment btn btn-danger text-bold m-2" (click)="cancelPayment(payment)"
+            <button class="cancel-payment btn btn-cancel text-bold m-2" (click)="cancelPayment(payment)"
                     *ngIf="!payment.canceled">Annuler Paiement
             </button>
             <span class="cancel-payment payment-canceled-text my-auto" style="" *ngIf="payment.canceled">

@@ -41,7 +41,7 @@
 </div>
 <div class="modal-footer d-flex justify-content-end">
   <button class="btn btn-secondary mt-sm-3" type="button" (click)="close()">Fermer</button>
-  <button class="btn btn-primary mt-sm-3" type="button"
+  <button class="btn btn-validation mt-sm-3" type="button"
           (click)="openModalClientRegistrationSuccess(clientRegistrationConfirmation)">Enregistrement
   </button>
 </div>
@@ -65,8 +65,8 @@
       </p>
     </div>
     <div class="modal-footer d-flex justify-content-end">
-      <button type="button" class="btn btn-danger" (click)="declineClientRegistration()">Annuler</button>
-      <button type="button" class="btn btn-primary"
+      <button type="button" class="btn btn-cancel" (click)="declineClientRegistration()">Annuler</button>
+      <button type="button" class="btn btn-validation"
               (click)="confirmClientRegistration()">S'enregistrer
       </button>
     </div>
