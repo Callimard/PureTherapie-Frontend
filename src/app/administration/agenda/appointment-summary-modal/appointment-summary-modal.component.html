@@ -45,9 +45,11 @@
       </button>
     </div>
     <div class="client-termination p-2" *ngIf="appointmentInfo.clientArrival != null">
-      <button class="btn btn-success text-bold" (click)="terminateClient()">Finaliser avec le client</button>
+      <button class="btn btn-success text-bold" (click)="terminateClient()" [disabled]="appointmentInfo.finalized">
+        Finaliser avec le client
+      </button>
     </div>
-    <div class="commercial-row" *ngIf="acStock <= 2">
+    <div class="commercial-row" *ngIf="acStock <= 2 && !appointmentInfo.finalized">
       <h5 class="text-bold p-2" style="text-decoration: underline">Commerce:</h5>
       <span
         class="text-fail p-2">Le client n'a bientôt plus de stock pour ce soin: <strong>Essayer de lui vendre un package</strong></span>

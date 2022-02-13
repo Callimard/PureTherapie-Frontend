@@ -19,7 +19,8 @@
       <div class="ts-appointment-container">
         <div class="ts ts-appointment p-1"
              [class.ts-free]="ts.free"
-             [class.ts-occupied]="!ts.free"
+             [class.ts-occupied]="!ts.free && !ts.appointment.finalized"
+             [class.ts-appointment-finalize]="!ts.free && ts.appointment.finalized"
              (click)="ts.free ? clickOnFreeTS(technician, ts.day, ts.begin) : clickOnOccupiedTS(ts.appointment)">
           <span class="ts-text" *ngIf="!ts.free">{{ts.begin}}</span>
           <span class="ts-text"

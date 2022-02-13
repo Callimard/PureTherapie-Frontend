@@ -27,15 +27,28 @@ export class AppointmentSummaryModalComponent implements OnInit {
   cancelAppointmentConfirmationModal?: BsModalRef;
   clientArrivalModal?: BsModalRef;
 
+  rechargeable?: { recharge(): () => void };
+
   constructor(private appointmentService: AppointmentService, private acService: AestheticCareService,
               public bsModalRef: BsModalRef, private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
+    // Normal
   }
 
   recharge() {
-    this.chargeACStock();
+    this.chargeAppointmentInfo();
+  }
+
+  private chargeAppointmentInfo() {
+    this.appointmentService.getAppointment(this.appointmentInfo.idAppointment).then((res) => {
+      this.appointmentInfo = res;
+      this.chargeACStock();
+      this.rechargeable?.recharge();
+    }).catch(() => {
+      console.error("Cannot get appointment");
+    })
   }
 
   private chargeACStock() {
@@ -100,6 +113,7 @@ export class AppointmentSummaryModalComponent implements OnInit {
     terminateClientModal.content.parent = this.bsModalRef;
     if (this.appointmentInfo != null) {
       terminateClientModal.content.client = this.appointmentInfo.client;
+      terminateClientModal.content.appointment = this.appointmentInfo;
       terminateClientModal.content.appointmentAC = this.appointmentInfo.aestheticCare;
       terminateClientModal.content.rechargeable = this;
       terminateClientModal.content.recharge();

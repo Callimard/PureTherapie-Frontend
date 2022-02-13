@@ -17,6 +17,13 @@ import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/aest
 import {
   BundlePurchaseModalComponent
 } from "../../product/product-purchase/bundle-purchase-modal/bundle-purchase-modal.component";
+import {
+  SimpleConfirmationModalComponent
+} from "../../../util/modal/simple-confirmation-modal/simple-confirmation-modal.component";
+import {AppointmentService} from "../../../../services/appointment/appointment.service";
+import {AppointmentDTO} from "../../../../services/appointment/appointment-dto";
+import {SuccessModalComponent} from "../../../util/modal/success-modal/success-modal.component";
+import {FailModalComponent} from "../../../util/modal/fail-modal/fail-modal.component";
 
 @Component({
   selector: 'app-terminate-client-modal',
@@ -26,6 +33,7 @@ import {
 export class TerminateClientModalComponent implements OnInit {
 
   client: ClientDTO = ClientDTO.default();
+  appointment: AppointmentDTO = AppointmentDTO.default();
   appointmentAC: AestheticCareDTO = AestheticCareDTO.default();
 
   clientUnpaidBundlePurchases: BundlePurchaseDTO[] = [];
@@ -37,6 +45,7 @@ export class TerminateClientModalComponent implements OnInit {
   parent?: BsModalRef;
 
   constructor(private acService: AestheticCareService, private bundleService: BundleService,
+              private appointmentService: AppointmentService,
               public bsModalRef: BsModalRef, private modalService: BsModalService) {
   }
 
@@ -75,7 +84,40 @@ export class TerminateClientModalComponent implements OnInit {
     });
   }
 
+
   close() {
+    this.bsModalRef.hide();
+  }
+
+  finalize() {
+    let confirmationModal: BsModalRef = this.modalService.show(SimpleConfirmationModalComponent);
+    confirmationModal.content.title = "Finalisation du client";
+    confirmationModal.content.text = "Vous êtes sur le point de finiliser le client, êtes-vous sûr?";
+    confirmationModal.content.confirmationFunction = () => this.finalizeAppointment();
+  }
+
+  finalizeAppointment(): void {
+    this.appointmentService.finalizeAppointment(this.appointment.idAppointment).then(() => {
+      this.successFinalizeAppointment();
+    }).catch(() => {
+      this.failFinalizeAppointment();
+    });
+  }
+
+  private successFinalizeAppointment() {
+    let successModal: BsModalRef = this.modalService.show(SuccessModalComponent);
+    successModal.content.title = "Finalisation du client réussie";
+    successModal.content.text = "La finalisation du client a réussie";
+    this.rechargeable?.recharge();
+    this.bsModalRef.hide();
+    this.parent?.hide();
+  }
+
+  private failFinalizeAppointment() {
+    let failModal: BsModalRef = this.modalService.show(FailModalComponent);
+    failModal.content.title = "Finalisation du client a échouée";
+    failModal.content.text = "La finalisation du client n'a pas fonctionnée";
+    this.rechargeable?.recharge();
     this.bsModalRef.hide();
   }
 

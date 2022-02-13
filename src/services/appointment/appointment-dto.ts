@@ -14,14 +14,15 @@ export class AppointmentDTO {
               public canceled: boolean,
               public day: string,
               public time: string,
+              public finalized: boolean,
               public timeSlots: TimeSlotDTO[]) {
   }
 
   public static default(): AppointmentDTO {
     let a = new AppointmentDTO(-1, AestheticCareDTO.default(), ClientDTO.default(), TechnicianDTO.default(),
-      ClientArrivalDTO.default(), false, "DEFAULT_APPOINTMENT", "DEFAULT_APPOINTMENT", []);
+      ClientArrivalDTO.default(), false, "DEFAULT_APPOINTMENT", "DEFAULT_APPOINTMENT", false, []);
     return new AppointmentDTO(-1, AestheticCareDTO.default(), ClientDTO.default(), TechnicianDTO.default(),
-      ClientArrivalDTO.default(), false, "DEFAULT_APPOINTMENT", "DEFAULT_APPOINTMENT", [TimeSlotDTO.default(a)]);
+      ClientArrivalDTO.default(), false, "DEFAULT_APPOINTMENT", "DEFAULT_APPOINTMENT", false, [TimeSlotDTO.default(a)]);
   }
 
 }
