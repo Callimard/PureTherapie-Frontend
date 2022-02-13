@@ -8,6 +8,7 @@ import {AppointmentService} from "../../../../services/appointment/appointment.s
 import {SuccessModalComponent} from "../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../util/modal/fail-modal/fail-modal.component";
 import {AgendaComponent} from "../agenda.component";
+import {SimpleResponseDTO} from "../../../../services/util/simple-response-dto";
 
 @Component({
   selector: 'app-client-arrival-modal',
@@ -26,6 +27,7 @@ export class ClientArrivalModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Normal
   }
 
   close() {
@@ -35,8 +37,8 @@ export class ClientArrivalModalComponent implements OnInit {
   placeClientInWaitingRoom(idClient: number, idAppointment: number) {
     this.appointmentService.clientArrival(idClient, idAppointment).then(() => {
       this.successPlaceInWaitingRoom();
-    }).catch(() => {
-      this.failPlaceInWaitingRoom();
+    }).catch((err) => {
+      this.failPlaceInWaitingRoom(err);
     })
   }
 
@@ -50,10 +52,10 @@ export class ClientArrivalModalComponent implements OnInit {
     this.parent?.hide();
   }
 
-  private failPlaceInWaitingRoom() {
+  private failPlaceInWaitingRoom(err: SimpleResponseDTO) {
     let failModal: BsModalRef = this.modalService.show(FailModalComponent);
     failModal.content.title = "Arrivée client non prise en compte";
-    failModal.content.text = "L'arrivée du client n'a pas été prise en compte.";
+    failModal.content.text = "L'arrivée du client n'a pas été prise en compte. Erreur = <strong>" + err.message + "</strong>";
     failModal.content.parent = this.bsModalRef;
   }
 }

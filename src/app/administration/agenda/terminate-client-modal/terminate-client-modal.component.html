@@ -3,84 +3,57 @@
     <h2 class="modal-title success-title">Finaliser avec le client</h2>
     <button type="button" class="btn-close" (click)="close()"></button>
   </div>
-  <div class="modal-body">
-    <div class="commercial-operation border-bottom-separator p-2" *ngIf="clientACStock <= 2">
-      <h3 class="text-bold" style="text-decoration: underline">Commerce:</h3>
-      <p class="text-bold text-fail" style="font-size: 150%">Essayer de vendre au client un package de soin</p>
-      <button class="text-bold btn btn-primary align-self-center" (click)="sellBundle()">
-        Vendre
-      </button>
-    </div>
-    <div class="to-paid-content p-2">
-      <h3 class="text-bold" style="text-decoration: underline; text-align: center">A payer</h3>
-      <div class="purchase-summary">
-        <div class="bundle-purchase-summary p-2">
-          <h4 class="product-summary-title">Packages:</h4>
-          <div class="client-all-bundle-purchases">
-            <div class="client-bundle-purchase p-2" *ngFor="let bundlePurchase of clientUnpaidBundlePurchases">
-              <div class="bundle-purchase-name">
-                <span class="text-bold purchase-item-title">Nom:</span>
-                <span>{{bundlePurchase.bundle.name}}</span>
-              </div>
-              <div class="bundle-purchase-purchase-date">
-                <span class="text-bold purchase-item-title">Date d'achat: </span>
-                <span>{{extractOnlyDay(bundlePurchase.bill.creationDate)}}</span>
-              </div>
-              <div class="bundle-purchase-totally-paid">
-                <span class="text-bold purchase-item-title">Payée totalement: </span>
-                <span>{{billIsTotallyPaid(bundlePurchase.bill)}}</span>
-              </div>
-              <div class="bundle-purchase-partially-paid">
-                <span class="text-bold purchase-item-title">Partiellement payée: </span>
-                <span>{{billPartiallyPaid(bundlePurchase.bill)}}</span>
-              </div>
-              <div class="bundle-purchase-button">
-                <button type="button" class="text-bold btn btn-warning"
-                        [disabled]="billIsTotallyPaid(bundlePurchase.bill)" (click)="pay(bundlePurchase.bill)">Payer
-                </button>
-                <button type="button" class="text-bold btn btn-primary m-2"
-                        (click)="openBundlePurchaseEdition(bundlePurchase)">Editer
-                </button>
-              </div>
+  <div class="modal-body terminate-client-content">
+    <div class="client-commercial-content clean-border-right p-2">
+      <div class="commercial-operation border-bottom-separator p-2" *ngIf="clientACStock <= 2">
+        <h3 class="text-bold" style="text-decoration: underline">Commerce:</h3>
+        <p class="text-bold text-fail" style="font-size: 150%">Essayer de vendre au client un package de soin</p>
+        <button class="text-bold btn btn-primary align-self-center" (click)="sellBundle()">
+          Vendre
+        </button>
+      </div>
+      <div class="to-paid-content p-2">
+        <h3 class="text-bold" style="text-decoration: underline; text-align: center">A payer</h3>
+        <div class="purchase-summary">
+          <div class="bundle-purchase-summary p-2">
+            <h4 class="product-summary-title">Packages:</h4>
+            <div class="client-all-bundle-purchases">
+              <app-client-bundle-row class="p-2" [bundlePurchase]="bundlePurchase"
+                                     (paymentSuccessOccurred)="paymentSuccessOccurred($event)"
+                                     *ngFor="let bundlePurchase of clientUnpaidBundlePurchases"></app-client-bundle-row>
             </div>
           </div>
-        </div>
-        <div class="ac-purchase-summary p-2">
-          <h4 class="product-summary-title">Soin ésthétiques:</h4>
-          <div class="client-all-ac-purchases">
-            <div class="client-ac-purchase p-2" *ngFor="let sessionPurchase of clientUnpaidACPurchases">
-              <div class="ac-purchase-name">
-                <span class="text-bold purchase-item-title">Nom:</span>
-                <span>{{sessionPurchase.aestheticCare.name}}</span>
-              </div>
-              <div class="ac-purchase-used">
-                <span class="text-bold purchase-item-title">Consommé:</span>
-                <span>{{sessionPurchase.used}}</span>
-              </div>
-              <div class="ac-purchase-purchase-date">
-                <span class="text-bold purchase-item-title">Date d'achat: </span>
-                <span>{{extractOnlyDay(sessionPurchase.bill.creationDate)}}</span>
-              </div>
-              <div class="ac-purchase-totally-paid">
-                <span class="text-bold purchase-item-title">Payée totalement: </span>
-                <span>{{billIsTotallyPaid(sessionPurchase.bill)}}</span>
-              </div>
-              <div class="ac-purchase-partially-paid">
-                <span class="text-bold purchase-item-title">Partiellement payée: </span>
-                <span>{{billPartiallyPaid(sessionPurchase.bill)}}</span>
-              </div>
-              <div class="ac-purchase-button">
-                <button type="button" class="text-bold btn btn-warning"
-                        [disabled]="billIsTotallyPaid(sessionPurchase.bill)" (click)="pay(sessionPurchase.bill)">Payer
-                </button>
-              </div>
+          <div class="ac-purchase-summary p-2">
+            <h4 class="product-summary-title">Soin ésthétiques:</h4>
+            <div class="client-all-ac-purchases">
+              <app-client-aesthetic-care-row class="p-2" [sessionPurchase]="sessionPurchase"
+                                             (paymentSuccessOccurred)="paymentSuccessOccurred($event)"
+                                             *ngFor="let sessionPurchase of clientUnpaidACPurchases"></app-client-aesthetic-care-row>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="next-client-appointment-content">
+      <h3 class="text-bold text-decoration-underline">Prochain RDV</h3>
+      <app-agenda-choose-date class="p-2" [chosenDay]="nextOneMonthDay()"
+                              [defaultChosenDay]="nextOneMonthDay()"
+                              (dayChangeEvent)="nextAppointmentDayChange($event)"
+                              style="width: 50%"></app-agenda-choose-date>
+      <div class="technician-all-ts">
+        <span class="next-free-ts p-2" *ngFor="let ts of technicianFreeTS"
+              (click)="takeNextAppointment(ts)">{{ts.begin}}</span>
+      </div>
+      <button class="btn btn-danger text-bold" (click)="chooseAppointmentLater()">
+        Choisir un RDV plus tard
+      </button>
+    </div>
   </div>
-  <div class="modal-footer d-flex justify-content-end">
-    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+  <div class="modal-footer d-flex justify-content-center">
+    <button type="button" class="btn btn-primary" (click)="finalize()"
+            [disabled]="!newAppointmentChosen
+             || (!this.clientHasPaidToday && (this.clientUnpaidBundlePurchases.length != 0 || this.clientUnpaidACPurchases.length != 0))">
+      Finaliser
+    </button>
   </div>
 </div>

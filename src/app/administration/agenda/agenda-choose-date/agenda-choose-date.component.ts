@@ -11,6 +11,7 @@ export class AgendaChooseDateComponent implements OnInit, OnChanges {
 
   private chosenDayDate: Date = new Date();
   @Input() chosenDay: string = DateTool.toMySQLDateString(this.chosenDayDate);
+  @Input() defaultChosenDay?: string;
   @Output() dayChangeEvent = new EventEmitter<string>();
 
   constructor() {
@@ -30,8 +31,12 @@ export class AgendaChooseDateComponent implements OnInit, OnChanges {
     this.updateChosenDay();
   }
 
-  getToCurrentDay() {
-    this.chosenDayDate = new Date();
+  returnToDefaultDate() {
+    if (this.defaultChosenDay == null) {
+      this.chosenDayDate = new Date();
+    } else {
+      this.chosenDayDate = new Date(this.defaultChosenDay);
+    }
     this.updateChosenDay();
   }
 

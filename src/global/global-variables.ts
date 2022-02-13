@@ -73,15 +73,18 @@ export class GlobalVariables {
   public static readonly DAY_ALL_TECHNICIAN_TIME_SLOTS_URL = GlobalVariables.AGENDA_URL + "/technician/time_slots";
 
   public static readonly APPOINTMENTS_URL = GlobalVariables.API_V1_URL + "/appointments";
+  public static readonly CLIENT_APPOINTMENT_URL = GlobalVariables.APPOINTMENTS_URL + "/clients";
   public static readonly APPOINTMENTS_CANCELLATION_URL = GlobalVariables.APPOINTMENTS_URL + "/cancel";
   public static readonly CLIENT_ARRIVAL_URL = GlobalVariables.APPOINTMENTS_URL + "/client_arrive";
   public static readonly PROVISION_CLIENT_WITH_APPOINTMENT_URL = GlobalVariables.APPOINTMENTS_URL + "/provision_client_with_appointment";
   public static readonly PROVISION_CLIENT_WITHOUT_APPOINTMENT_URL = GlobalVariables.APPOINTMENTS_URL + "/provision_client_without_appointment";
+  public static readonly FINALIZE_APPOINTMENT_URL = GlobalVariables.APPOINTMENTS_URL + "/finalize";
 
   public static readonly BILL_URL = GlobalVariables.API_V1_URL + "/bills";
   public static readonly PAY_BILL_URL = GlobalVariables.BILL_URL + "/pay";
   public static readonly MEANS_OF_PAYMENTS_URL = GlobalVariables.BILL_URL + "/means_of_payments";
   public static readonly PAYMENTS_URL = GlobalVariables.BILL_URL + "/payments";
+  public static readonly CLIENT_MAKE_PAYMENT_TODAY = "/makePaymentToday";
 
   public static readonly WAITING_ROOM_URL = GlobalVariables.API_V1_URL + "/waiting_room";
 

@@ -75,6 +75,7 @@ export class AgendaPerTechnicianComponent implements OnInit, OnChanges {
     appointmentSummaryModal.content.appointmentInfo = appointment;
     appointmentSummaryModal.content.agenda = this;
     appointmentSummaryModal.content.recharge();
+    appointmentSummaryModal.content.rechargeable = this;
   }
 
   timeSlotPassed(timeSlot: TimeSlotDTO): boolean {

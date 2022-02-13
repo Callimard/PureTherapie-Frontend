@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {DateTool} from "../../../../../../../../tool/date-tool";
 import {BundlePurchaseDTO} from "../../../../../../../../services/product/aesthetic/bundle/bundle-purchase-dto";
 import {BillDTO} from "../../../../../../../../services/product/bill/bill-dto";
@@ -7,7 +7,10 @@ import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {
   ClientBundlePurchaseEditionModalComponent
 } from "../client-bundle-purchase-edition-modal/client-bundle-purchase-edition-modal.component";
-import {ClientPaymentModalComponent} from "../../../../client-payment-modal/client-payment-modal.component";
+import {
+  ClientPaymentModalComponent,
+  PaymentObserver
+} from "../../../../client-payment-modal/client-payment-modal.component";
 import {StockDTO} from "../../../../../../../../services/product/aesthetic/bundle/stock-dto";
 import {BundleService} from "../../../../../../../../services/product/aesthetic/bundle/bundle.service";
 
@@ -17,9 +20,10 @@ import {BundleService} from "../../../../../../../../services/product/aesthetic/
   styleUrls: ['./client-bundle-row.component.css'],
   host: {'class': 'client-bundle-row'}
 })
-export class ClientBundleRowComponent implements OnInit, OnChanges {
+export class ClientBundleRowComponent implements OnInit, OnChanges, PaymentObserver {
 
   @Input() bundlePurchase: BundlePurchaseDTO = BundlePurchaseDTO.default();
+  @Output() paymentSuccessOccurred = new EventEmitter<boolean>();
 
   stocks: StockDTO[] = [];
 
@@ -69,6 +73,7 @@ export class ClientBundleRowComponent implements OnInit, OnChanges {
     });
     payBillRef.content.bill = bill;
     payBillRef.content.rechargeable = this;
+    payBillRef.content.paymentObserver = this;
   }
 
 
@@ -78,6 +83,10 @@ export class ClientBundleRowComponent implements OnInit, OnChanges {
     });
     bundlePurchaseEditionRef.content.clientBundlePurchase = bundlePurchase;
     bundlePurchaseEditionRef.content.recharge();
+  }
+
+  paymentSuccess(): void {
+    this.paymentSuccessOccurred.emit(true);
   }
 
 }

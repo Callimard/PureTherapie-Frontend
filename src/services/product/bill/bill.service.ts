@@ -69,4 +69,19 @@ export class BillService {
       })
     }));
   }
+
+  public clientMakePaymentToday(idClient: number): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      this.httpClient.get<boolean>(GlobalVariables.BILL_URL + "/" + idClient + GlobalVariables.CLIENT_MAKE_PAYMENT_TODAY)
+        .subscribe({
+          next: (res) => {
+            resolve(res);
+          },
+          error: (err: HttpErrorResponse) => {
+            console.error("Fail to get if client make payment today, Err = ", err.error);
+            reject(err.error);
+          }
+        })
+    });
+  }
 }
