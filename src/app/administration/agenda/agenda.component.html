@@ -1,18 +1,18 @@
-<div class="agenda-container d-flex flex-column  justify-content-start flex-fill border m-2">
-  <div class="agenda-header d-flex flex-row justify-content-start">
-    <h1 class="px-3 my-2 text-bold">Gestion de l'agenda</h1>
+<div class="agenda-container main-card d-flex flex-column  justify-content-start flex-fill border m-2">
+  <div class="agenda-header title-bar d-flex flex-row justify-content-start">
+    <h1 class="px-3 my-2">Agenda</h1>
   </div>
   <div class="d-flex justify-content-start p-2 m-2">
-    <button class="add-appointment-btn btn btn-primary text-bold p-2 mx-2" type="button" (click)="createAppointment()">
+    <button class="add-appointment-btn btn simple-btn text-bold p-2 mx-2" type="button" (click)="createAppointment()">
       Créer un
       rendez-vous
     </button>
-    <button class="register-client-btn btn btn-success text-bold p-2 mx-2" type="button" (click)="registerClient()">
+    <button class="register-client-btn btn simple-btn text-bold p-2 mx-2" type="button" (click)="registerClient()">
       Enregistrer un client
     </button>
   </div>
   <div class="choose-date-content">
-    <div class="flex-shrink-1 d-flex justify-content-start p-2 m-2">
+    <div class="flex-shrink-1 d-flex justify-content-start p-2 m-2" style="position: absolute">
       <label class="agenda-day-label mx-3" for="agenda-day">Jour: </label>
       <input type="date" name="agenda-day" id="agenda-day" [(ngModel)]="today"/>
     </div>
