@@ -12,6 +12,10 @@ import {DateTool} from "../../../../../tool/date-tool";
 import {PaymentDTO} from "../../../../../services/product/bill/payment-dto";
 import {BillTool} from "../../../../../tool/bill-tool";
 
+export interface PaymentObserver {
+  paymentSuccess(): void;
+}
+
 @Component({
   selector: 'app-client-payment-modal',
   templateUrl: './client-payment-modal.component.html',
@@ -28,6 +32,7 @@ export class ClientPaymentModalComponent implements OnInit {
   confirmationModalRef?: BsModalRef;
 
   rechargeable?: { recharge(): () => void };
+  paymentObserver?: PaymentObserver;
 
   constructor(private billService: BillService, public bsModalRef: BsModalRef, private modalService: BsModalService) {
   }
@@ -110,6 +115,7 @@ export class ClientPaymentModalComponent implements OnInit {
     successModal.content.parent = this.confirmationModalRef;
     this.recharge();
     this.rechargeable?.recharge();
+    this.paymentObserver?.paymentSuccess();
   }
 
   private paymentFail(err: any) {

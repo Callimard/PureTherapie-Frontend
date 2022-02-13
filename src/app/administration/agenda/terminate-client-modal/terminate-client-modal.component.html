@@ -19,6 +19,7 @@
             <h4 class="product-summary-title">Packages:</h4>
             <div class="client-all-bundle-purchases">
               <app-client-bundle-row class="p-2" [bundlePurchase]="bundlePurchase"
+                                     (paymentSuccessOccurred)="paymentSuccessOccurred($event)"
                                      *ngFor="let bundlePurchase of clientUnpaidBundlePurchases"></app-client-bundle-row>
             </div>
           </div>
@@ -26,6 +27,7 @@
             <h4 class="product-summary-title">Soin ésthétiques:</h4>
             <div class="client-all-ac-purchases">
               <app-client-aesthetic-care-row class="p-2" [sessionPurchase]="sessionPurchase"
+                                             (paymentSuccessOccurred)="paymentSuccessOccurred($event)"
                                              *ngFor="let sessionPurchase of clientUnpaidACPurchases"></app-client-aesthetic-care-row>
             </div>
           </div>
@@ -42,12 +44,16 @@
         <span class="next-free-ts p-2" *ngFor="let ts of technicianFreeTS"
               (click)="takeNextAppointment(ts)">{{ts.begin}}</span>
       </div>
-      <button class="btn btn-danger text-bold">
+      <button class="btn btn-danger text-bold" (click)="chooseAppointmentLater()">
         Choisir un RDV plus tard
       </button>
     </div>
   </div>
   <div class="modal-footer d-flex justify-content-center">
-    <button type="button" class="btn btn-primary" (click)="finalize()">Finaliser</button>
+    <button type="button" class="btn btn-primary" (click)="finalize()"
+            [disabled]="!newAppointmentChosen
+             || (!this.clientHasPaidToday && (this.clientUnpaidBundlePurchases.length != 0 || this.clientUnpaidACPurchases.length != 0))">
+      Finaliser
+    </button>
   </div>
 </div>

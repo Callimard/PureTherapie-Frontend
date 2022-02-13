@@ -13,7 +13,10 @@ import {TakeAppointmentDTO} from "../../../../services/appointment/take_appointm
 import {AppointmentService} from "../../../../services/appointment/appointment.service";
 import {SuccessModalComponent} from "../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../util/modal/fail-modal/fail-modal.component";
-import {AgendaComponent} from "../agenda.component";
+
+export interface AppointmentCreationObserver {
+  appointmentCreationSuccess(): void;
+}
 
 @Component({
   selector: 'app-create-appointment-modal',
@@ -40,7 +43,9 @@ export class CreateAppointmentModalComponent implements OnInit {
 
   recapAppointmentModalRef?: BsModalRef;
 
-  agenda?: AgendaComponent;
+  agenda?: { recharge(): () => void };
+
+  creationAppointmentObserver?: AppointmentCreationObserver;
 
   constructor(private clientService: ClientService, private appointmentService: AppointmentService,
               private acService: AestheticCareService, private technicianService: TechnicianService,
@@ -161,6 +166,7 @@ export class CreateAppointmentModalComponent implements OnInit {
       }
     });
     this.agenda?.recharge();
+    this.creationAppointmentObserver?.appointmentCreationSuccess();
     this.bsModalRef.hide();
   }
 

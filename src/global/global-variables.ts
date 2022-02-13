@@ -84,6 +84,7 @@ export class GlobalVariables {
   public static readonly PAY_BILL_URL = GlobalVariables.BILL_URL + "/pay";
   public static readonly MEANS_OF_PAYMENTS_URL = GlobalVariables.BILL_URL + "/means_of_payments";
   public static readonly PAYMENTS_URL = GlobalVariables.BILL_URL + "/payments";
+  public static readonly CLIENT_MAKE_PAYMENT_TODAY = "/makePaymentToday";
 
   public static readonly WAITING_ROOM_URL = GlobalVariables.API_V1_URL + "/waiting_room";
 

@@ -11,7 +11,8 @@ import {
   ClientBundlePurchaseEditionModalComponent
 } from "../../client/client-administration/client-edition-modal/client-products/client-packages/client-bundle-purchase-edition-modal/client-bundle-purchase-edition-modal.component";
 import {
-  ClientPaymentModalComponent
+  ClientPaymentModalComponent,
+  PaymentObserver
 } from "../../client/client-administration/client-payment-modal/client-payment-modal.component";
 import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/aesthetic-care-dto";
 import {
@@ -27,14 +28,18 @@ import {FailModalComponent} from "../../../util/modal/fail-modal/fail-modal.comp
 import {SimpleResponseDTO} from "../../../../services/util/simple-response-dto";
 import {AgendaService} from "../../../../services/agenda/agenda.service";
 import {TimeSlotDTO} from "../../../../services/agenda/time-slot-dto";
-import {CreateAppointmentModalComponent} from "../create-appointment-modal/create-appointment-modal.component";
+import {
+  AppointmentCreationObserver,
+  CreateAppointmentModalComponent
+} from "../create-appointment-modal/create-appointment-modal.component";
+import {BillService} from "../../../../services/product/bill/bill.service";
 
 @Component({
   selector: 'app-terminate-client-modal',
   templateUrl: './terminate-client-modal.component.html',
   styleUrls: ['./terminate-client-modal.component.css']
 })
-export class TerminateClientModalComponent implements OnInit {
+export class TerminateClientModalComponent implements OnInit, AppointmentCreationObserver, PaymentObserver {
 
   client: ClientDTO = ClientDTO.default();
   appointment: AppointmentDTO = AppointmentDTO.default();
@@ -51,8 +56,12 @@ export class TerminateClientModalComponent implements OnInit {
 
   parent?: BsModalRef;
 
+  newAppointmentChosen: boolean = false;
+  clientHasPaidToday: boolean = false;
+
   constructor(private acService: AestheticCareService, private bundleService: BundleService,
               private appointmentService: AppointmentService, private agendaService: AgendaService,
+              private billService: BillService,
               public bsModalRef: BsModalRef, private modalService: BsModalService) {
   }
 
@@ -76,6 +85,7 @@ export class TerminateClientModalComponent implements OnInit {
     this.chargeAllUnpaidACPurchases();
     this.chargeACStock();
     this.chargeAllTimeSlots(this.appointment.technician.idPerson, this.nextSelectedDay);
+    this.verifyClientHasPaidToday();
     this.rechargeable?.recharge();
   }
 
@@ -188,7 +198,36 @@ export class TerminateClientModalComponent implements OnInit {
     createAppointmentModal.content.blocEdition = true;
     createAppointmentModal.content.displaySearchClient = false;
     createAppointmentModal.content.client = this.client;
+    createAppointmentModal.content.creationAppointmentObserver = this;
     createAppointmentModal.content.agenda = this;
+  }
+
+  appointmentCreationSuccess(): void {
+    this.newAppointmentChosen = true;
+  }
+
+  paymentSuccess(): void {
+    this.clientHasPaidToday = true;
+  }
+
+  paymentSuccessOccurred(success: boolean) {
+    this.verifyClientHasPaidToday();
+  }
+
+  chooseAppointmentLater(): void {
+    let confirmationModal: BsModalRef = this.modalService.show(SimpleConfirmationModalComponent);
+    confirmationModal.content.title = "Ne pas prendre de rdv pour le prochain client";
+    confirmationModal.content.text = "Êtes-vous sûr de ne pas prendre un prochain rendez-vous pour le client?";
+    confirmationModal.content.confirmationFunction = () => this.newAppointmentChosen = true;
+  }
+
+  verifyClientHasPaidToday(): void {
+    this.billService.clientMakePaymentToday(this.client.idPerson).then((res) => {
+      this.clientHasPaidToday = res;
+    }).catch(() => {
+      console.error("Fail to verify id client has paid today");
+      this.clientHasPaidToday = false;
+    });
   }
 
 }
