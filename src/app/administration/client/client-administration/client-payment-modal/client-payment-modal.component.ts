@@ -74,7 +74,7 @@ export class ClientPaymentModalComponent implements OnInit {
   }
 
   payConfirmed() {
-    if (this.amountToPaid >= 0.01) {
+    if (this.amountToPaid >= 0.01 || (MeansOfPaymentDTO.isGrouponPayment(this.selectMeansOfPayment) && this.amountToPaid == 0.0)) {
       this.billService.payBill(this.bill.idBill, this.amountToPaid, this.selectMeansOfPayment.idMeansOfPayment).then(() => {
         this.paymentSuccess();
       }).catch((err) => {
