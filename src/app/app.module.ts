@@ -85,7 +85,8 @@ import {
 import {AgendaChooseDateComponent} from './administration/agenda/agenda-choose-date/agenda-choose-date.component';
 import {registerLocaleData} from "@angular/common";
 
-import localeFr from '@angular/common/locales/fr'
+import localeFr from '@angular/common/locales/fr';
+import { NotificationsComponent } from './administration/notifications/notifications.component'
 registerLocaleData(localeFr, 'fr');
 
 const appRoutes: Routes = [
@@ -98,6 +99,7 @@ const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_AGENDA_URL, component: AgendaComponent},
   {path: GlobalVariables.INTERN_WAITING_ROOM, component: WaitingRoomComponent},
   {path: GlobalVariables.INTERN_OPENING_TIME, component: OpeningTimeComponent},
+  {path: GlobalVariables.INTER_NOTIFICATIONS, component: NotificationsComponent},
   {path: '', redirectTo: GlobalVariables.INTERN_LOGIN_URL, pathMatch: 'full'}
 ];
 
@@ -136,7 +138,8 @@ const appRoutes: Routes = [
     ClientBundleRowComponent,
     ClientAestheticCareRowComponent,
     AgendaPerTechnicianComponent,
-    AgendaChooseDateComponent
+    AgendaChooseDateComponent,
+    NotificationsComponent
   ],
   imports: [
     TooltipModule.forRoot(),

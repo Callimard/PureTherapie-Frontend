@@ -163,3 +163,7 @@ hr {
   display: grid;
   grid-template: 100% / 5% 90% 5%;
 }
+
+.notifications {
+
+}
