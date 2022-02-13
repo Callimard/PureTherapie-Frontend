@@ -1,20 +1,20 @@
-<div class="opening-container d-flex flex-column  justify-content-start flex-fill border m-2">
-  <div class="opening-header d-flex flex-row justify-content-start">
+<div class="opening-container d-flex flex-column  justify-content-start flex-fill border m-2 main-card">
+  <div class="opening-header d-flex flex-row justify-content-start title-bar">
     <h1 class="px-3 my-2 text-bold">Gestion des horaires d'ouvertures et de fermeture</h1>
   </div>
   <div class="opening-body mt-5">
     <div class="global-opening-column opening-column p-3">
       <h3 class="opening-column-title">Ouvertures gloables:</h3>
-      <div class="opening-content">
+      <div class="opening-content generic-card">
         <div class="grid-row border-bottom-separator" *ngFor="let globalOpening of globalOpeningsTimes">
           <span class="day-title">{{getDay(globalOpening.day)}}</span>
           <span class="times">De {{globalOpening.openingTime}} à {{globalOpening.closeTime}}</span>
-          <button class="btn-edition btn btn-primary">
+          <button class="btn-edition btn btn-simple">
             Editer
           </button>
         </div>
         <div class="grid-row">
-          <button class="add-global-opening-btn btn btn-success">
+          <button class="add-global-opening-btn btn btn-add">
             Ajouter
           </button>
         </div>
@@ -22,11 +22,11 @@
     </div>
     <div class="exceptional-opening opening-column p-3">
       <h3 class="opening-column-title">Ouvertures exceptionnelles:</h3>
-      <div class="opening-content">
+      <div class="opening-content generic-card">
         <div class="grid-row border-bottom-separator " *ngFor="let exceptionalOpening of exceptionalOpenings">
           <span class="day-title">{{exceptionalOpening.day}}:</span>
           <span class="times">De {{exceptionalOpening.openingTime}} à {{exceptionalOpening.closeTime}}</span>
-          <button class="btn-edition btn btn-primary">
+          <button class="btn-edition btn btn-simple">
             Editer
           </button>
         </div>
@@ -34,10 +34,10 @@
     </div>
     <div class="exceptional-close opening-column p-3">
       <h3 class="opening-column-title">Fermetures exceptionnelles:</h3>
-      <div class="opening-content">
+      <div class="opening-content generic-card">
         <div class="grid-row border-bottom-separator" *ngFor="let exceptionalClose of exceptionalClosings">
           <span class="exceptional-closing-date">{{exceptionalClose.day}}</span>
-          <button class="btn-edition btn btn-primary">
+          <button class="btn-edition btn btn-simple">
             Editer
           </button>
         </div>

@@ -1,9 +1,9 @@
-<div class="product-purchase-container d-flex flex-column justify-content-start flex-fill border m-2">
-  <div class="product-purchase-header d-flex justify-content-start">
+<div class="product-purchase-container d-flex flex-column justify-content-start flex-fill border main-card m-2">
+  <div class="product-purchase-header d-flex justify-content-start title-bar">
     <h1 class="text-bold px-3 my-2">Ventes de produits aux clients</h1>
   </div>
   <div class="product-purchase-body">
-    <div class="product-purchase-tab-header">
+    <div class="product-purchase-tab-header secondary-bar">
       <h4 class="product-purchase-tab p-2 m-0" (click)="changeTab('packages')">Packages</h4>
       <h4 class="product-purchase-tab p-2 m-0" (click)="changeTab('ac')">Soins ésthétiques</h4>
     </div>
@@ -11,7 +11,7 @@
          style="display: flex">
       <h4 class="p-2 my-2">Packages</h4>
       <div class="product-purchase-grid-container flex-fill m-3 border">
-        <div class="product-purchase-package-grid-header flex-shrink-1">
+        <div class="product-purchase-package-grid-header flex-shrink-1 secondary-bar">
           <div
             class="product-p-item-title-name d-flex justify-content-start align-items-center">
             <h5 class="my-0" style="margin-left: 1%">Nom</h5>
@@ -34,7 +34,7 @@
               <h5 class="my-0">{{bundle.price}} €</h5>
             </div>
             <div class="d-flex justify-content-start align-items-center product-package-purchase">
-              <button class="btn btn-primary m-2" (click)="purchaseBundle(bundle)">Vendre</button>
+              <button class="btn btn-simple m-2" (click)="purchaseBundle(bundle)">Vendre</button>
             </div>
           </div>
         </div>
@@ -43,7 +43,7 @@
     <div id="ac" class="product-purchase-tab-content justify-content-start flex-column flex-fill" style="display: none">
       <h4 class="p-2 my-2">Soins ésthétiques</h4>
       <div class="product-purchase-grid-container flex-fill m-3 border">
-        <div class="product-purchase-ac-grid-header flex-shrink-1">
+        <div class="product-purchase-ac-grid-header flex-shrink-1 secondary-bar">
           <div
             class="product-ac-item-title-name d-flex justify-content-start align-items-center">
             <h5 class="my-0" style="margin-left: 1%">Nom</h5>
@@ -73,7 +73,7 @@
               <h5 class="my-0">{{ac.timeExecution}} min</h5>
             </div>
             <div class="d-flex justify-content-start align-items-center product-ac-purchase">
-              <button class="btn btn-primary m-2" (click)="purchaseAestheticCare(ac)">Vendre</button>
+              <button class="btn btn-simple m-2" (click)="purchaseAestheticCare(ac)">Vendre</button>
             </div>
           </div>
         </div>

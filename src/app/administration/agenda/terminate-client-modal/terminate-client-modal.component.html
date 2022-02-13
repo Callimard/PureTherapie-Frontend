@@ -8,7 +8,7 @@
       <div class="commercial-operation border-bottom-separator p-2" *ngIf="clientACStock <= 2">
         <h3 class="text-bold" style="text-decoration: underline">Commerce:</h3>
         <p class="text-bold text-fail" style="font-size: 150%">Essayer de vendre au client un package de soin</p>
-        <button class="text-bold btn btn-primary align-self-center" (click)="sellBundle()">
+        <button class="text-bold btn btn-validation align-self-center" (click)="sellBundle()">
           Vendre
         </button>
       </div>
@@ -44,13 +44,13 @@
         <span class="next-free-ts p-2" *ngFor="let ts of technicianFreeTS"
               (click)="takeNextAppointment(ts)">{{ts.begin}}</span>
       </div>
-      <button class="btn btn-danger text-bold" (click)="chooseAppointmentLater()">
+      <button class="btn btn-cancel text-bold" (click)="chooseAppointmentLater()">
         Choisir un RDV plus tard
       </button>
     </div>
   </div>
   <div class="modal-footer d-flex justify-content-center">
-    <button type="button" class="btn btn-primary" (click)="finalize()"
+    <button type="button" class="btn btn-validation" (click)="finalize()"
             [disabled]="!newAppointmentChosen
              || (!this.clientHasPaidToday && (this.clientUnpaidBundlePurchases.length != 0 || this.clientUnpaidACPurchases.length != 0))">
       Finaliser
