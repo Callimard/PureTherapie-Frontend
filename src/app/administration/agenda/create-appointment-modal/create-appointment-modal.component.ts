@@ -35,6 +35,7 @@ export class CreateAppointmentModalComponent implements OnInit {
   selectedFreeTS: FreeTimeSlotDTO;
   selectedDay: string = DateTool.toMySQLDateString(new Date());
 
+  displaySearchClient: boolean = true;
   client?: SimpleClientInfoDTO;
 
   recapAppointmentModalRef?: BsModalRef;

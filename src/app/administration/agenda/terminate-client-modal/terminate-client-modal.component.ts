@@ -24,6 +24,10 @@ import {AppointmentService} from "../../../../services/appointment/appointment.s
 import {AppointmentDTO} from "../../../../services/appointment/appointment-dto";
 import {SuccessModalComponent} from "../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../util/modal/fail-modal/fail-modal.component";
+import {SimpleResponseDTO} from "../../../../services/util/simple-response-dto";
+import {AgendaService} from "../../../../services/agenda/agenda.service";
+import {TimeSlotDTO} from "../../../../services/agenda/time-slot-dto";
+import {CreateAppointmentModalComponent} from "../create-appointment-modal/create-appointment-modal.component";
 
 @Component({
   selector: 'app-terminate-client-modal',
@@ -40,12 +44,15 @@ export class TerminateClientModalComponent implements OnInit {
   clientUnpaidACPurchases: SessionPurchaseDTO[] = [];
   clientACStock: number = -1;
 
+  technicianFreeTS: TimeSlotDTO[] = [];
+  nextSelectedDay: string = TerminateClientModalComponent.getNextOneMonthDay();
+
   rechargeable?: { recharge(): () => void };
 
   parent?: BsModalRef;
 
   constructor(private acService: AestheticCareService, private bundleService: BundleService,
-              private appointmentService: AppointmentService,
+              private appointmentService: AppointmentService, private agendaService: AgendaService,
               public bsModalRef: BsModalRef, private modalService: BsModalService) {
   }
 
@@ -53,10 +60,22 @@ export class TerminateClientModalComponent implements OnInit {
     // Normal
   }
 
+  private static getNextOneMonthDay(): string {
+    let today = new Date();
+    let oneMonthLater = new Date();
+    oneMonthLater.setDate(today.getDate() + 30);
+    return DateTool.toMySQLDateString(oneMonthLater);
+  }
+
+  nextOneMonthDay(): string {
+    return TerminateClientModalComponent.getNextOneMonthDay()
+  }
+
   recharge() {
     this.chargeAllUnpaidBundlePurchases();
     this.chargeAllUnpaidACPurchases();
     this.chargeACStock();
+    this.chargeAllTimeSlots(this.appointment.technician.idPerson, this.nextSelectedDay);
     this.rechargeable?.recharge();
   }
 
@@ -84,6 +103,16 @@ export class TerminateClientModalComponent implements OnInit {
     });
   }
 
+  private chargeAllTimeSlots(idTechnician: number, day: string) {
+    this.technicianFreeTS = [];
+    this.agendaService.getAllTimeSlotsOfTechnician(idTechnician, day).then((res) => {
+      for (let ts of res) {
+        if (ts.free) {
+          this.technicianFreeTS.push(ts);
+        }
+      }
+    });
+  }
 
   close() {
     this.bsModalRef.hide();
@@ -99,8 +128,8 @@ export class TerminateClientModalComponent implements OnInit {
   finalizeAppointment(): void {
     this.appointmentService.finalizeAppointment(this.appointment.idAppointment).then(() => {
       this.successFinalizeAppointment();
-    }).catch(() => {
-      this.failFinalizeAppointment();
+    }).catch((err) => {
+      this.failFinalizeAppointment(err);
     });
   }
 
@@ -113,37 +142,11 @@ export class TerminateClientModalComponent implements OnInit {
     this.parent?.hide();
   }
 
-  private failFinalizeAppointment() {
+  private failFinalizeAppointment(err: SimpleResponseDTO) {
     let failModal: BsModalRef = this.modalService.show(FailModalComponent);
     failModal.content.title = "Finalisation du client a échouée";
-    failModal.content.text = "La finalisation du client n'a pas fonctionnée";
+    failModal.content.text = "La finalisation du client n'a pas fonctionnée, Erreur : <strong>" + err.message + "</strong>";
     this.rechargeable?.recharge();
-    this.bsModalRef.hide();
-  }
-
-  extractOnlyDay(dateTime: string):
-    string {
-    return DateTool.extractOnlyDay(dateTime);
-  }
-
-  billIsTotallyPaid(bill: BillDTO) {
-    let amountPaid = 0;
-    for (let payment of bill.payments) {
-      if (!payment.canceled)
-        amountPaid += payment.amountPaid;
-    }
-
-    return amountPaid == bill.purchasePrice;
-  }
-
-  billPartiallyPaid(bill: BillDTO) {
-    let amountPaid = 0;
-    for (let payment of bill.payments) {
-      if (!payment.canceled)
-        amountPaid += payment.amountPaid;
-    }
-
-    return amountPaid > 0;
   }
 
   openBundlePurchaseEdition(bundlePurchase: BundlePurchaseDTO) {
@@ -168,6 +171,24 @@ export class TerminateClientModalComponent implements OnInit {
     });
     bundlePurchaseModal.content.client = this.client;
     bundlePurchaseModal.content.rechargeable = this;
+  }
+
+  nextAppointmentDayChange(day: string): void {
+    this.nextSelectedDay = day;
+    this.chargeAllTimeSlots(this.appointment.technician.idPerson, this.nextSelectedDay);
+  }
+
+  takeNextAppointment(ts: TimeSlotDTO): void {
+    let createAppointmentModal: BsModalRef = this.modalService.show(CreateAppointmentModalComponent, {
+      class: 'medium-modal'
+    });
+    createAppointmentModal.content.idParamTechnician = this.appointment.technician.idPerson;
+    createAppointmentModal.content.selectedDay = this.nextSelectedDay;
+    createAppointmentModal.content.paramTime = ts.begin;
+    createAppointmentModal.content.blocEdition = true;
+    createAppointmentModal.content.displaySearchClient = false;
+    createAppointmentModal.content.client = this.client;
+    createAppointmentModal.content.agenda = this;
   }
 
 }

@@ -4,9 +4,9 @@
     <button type="button" class="btn-close" (click)="closeCreateAppointmentModal()"></button>
   </div>
   <div class="create-appointment-body modal-body">
-    <app-search-client (clientEvent)="updateClientAppointment($event)"></app-search-client>
+    <app-search-client (clientEvent)="updateClientAppointment($event)" *ngIf="displaySearchClient"></app-search-client>
     <div class="flex-grow-1 d-flex flex-column justify-content-start p-3" *ngIf="client != null">
-      <div class="d-flex justify-content-center align-items-center mt-2">
+      <div class="d-flex justify-content-center align-items-center mt-2" *ngIf="displaySearchClient">
         <hr class="separator">
       </div>
       <div>

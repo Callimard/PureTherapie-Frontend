@@ -108,7 +108,7 @@ export class AppointmentSummaryModalComponent implements OnInit {
 
   terminateClient() {
     let terminateClientModal: BsModalRef = this.modalService.show(TerminateClientModalComponent, {
-      class: "medium-modal"
+      class: "big-modal"
     });
     terminateClientModal.content.parent = this.bsModalRef;
     if (this.appointmentInfo != null) {
