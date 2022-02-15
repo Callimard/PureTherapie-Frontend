@@ -79,3 +79,26 @@
   flex-grow: 0;
   flex-shrink: 0;
 }
+
+.page-selection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-input {
+  flex-shrink: 1;
+  width: 30px;
+  text-align: center;
+}
+
+input.page-input::-webkit-outer-spin-button,
+input.page-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input.page-input [type=number] {
+  -moz-appearance: textfield;
+}

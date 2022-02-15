@@ -14,13 +14,14 @@ import {AuthenticationService} from "../../../../services/auth/authentication.se
 })
 export class ClientAdministrationComponent implements OnInit {
 
+  selectedPage: number = 1;
+
   foundClients: ClientDTO[] = [];
 
   selectedLastName?: string;
   selectedFirstName?: string;
   selectedEmail?: string;
   selectPhone?: string;
-  selectAll: boolean = false;
 
   constructor(private clientService: ClientService, private modalService: BsModalService,
               private authenticationService: AuthenticationService) {
@@ -28,11 +29,17 @@ export class ClientAdministrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.authenticationService.checkLogin();
+    this.search();
+  }
+
+  updateFilter() {
+    this.selectedPage = 1;
+    this.search();
   }
 
   search() {
     this.foundClients = [];
-    this.clientService.searchClientsWithFilter(this.selectAll, this.selectedLastName, this.selectedFirstName,
+    this.clientService.searchClientsWithFilter(this.selectedPage, this.selectedLastName, this.selectedFirstName,
       this.selectedEmail, this.selectPhone).then((clients) => {
       this.foundClients = clients;
     }).catch((err) => {
@@ -46,7 +53,6 @@ export class ClientAdministrationComponent implements OnInit {
     this.selectedFirstName = '';
     this.selectedEmail = '';
     this.selectPhone = '';
-    this.selectAll = false;
   }
 
   editClient(client: ClientDTO) {
@@ -60,5 +66,10 @@ export class ClientAdministrationComponent implements OnInit {
 
   registerClient() {
     this.modalService.show(ClientRegistrationModalComponent);
+  }
+
+  changePage(add: number) {
+    this.selectedPage += add;
+    this.search();
   }
 }

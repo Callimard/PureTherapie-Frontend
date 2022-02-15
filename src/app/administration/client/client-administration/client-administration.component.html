@@ -17,22 +17,22 @@
     </div>
     <div class="client-edition-row p-3" style="box-shadow: 0 3px 2px #adacac;">
       <div class="client-label-1 filter-input">
-        <input class="client_research_field" type="text" [disabled]="selectAll" [(ngModel)]="selectedLastName"/>
+        <input class="client_research_field" type="text" [(ngModel)]="selectedLastName"
+               (input)="updateFilter()"/>
       </div>
       <div class="client-label-2 filter-input">
-        <input class="client_research_field" type="text" [disabled]="selectAll" [(ngModel)]="selectedFirstName"/>
+        <input class="client_research_field" type="text" [(ngModel)]="selectedFirstName"
+               (input)="updateFilter()"/>
       </div>
       <div class="client-label-3 filter-input">
-        <input class="client_research_field" type="text" [disabled]="selectAll" [(ngModel)]="selectedEmail"/>
+        <input class="client_research_field" type="text" [(ngModel)]="selectedEmail"
+               (input)="updateFilter()"/>
       </div>
       <div class="client-label-4 filter-input">
-        <input class="client_research_field" type="text" [disabled]="selectAll" [(ngModel)]="selectPhone"/>
+        <input class="client_research_field" type="text" [(ngModel)]="selectPhone"
+               (input)="updateFilter()"/>
       </div>
       <div class="client-label-5 filter-btn">
-        <div class="filter-all">
-          <input class="me-sm-2" type="checkbox" [(ngModel)]="selectAll"/>
-          <span class="text-bold">Tous</span>
-        </div>
         <button type="button" class="btn btn-simple text-bold" (click)="search()">Appliquer
         </button>
         <button type="button" class="btn btn-simple text-bold" style="margin-left: 2%" (click)="cleanFilter()">
@@ -54,6 +54,11 @@
           <button type="button" class="btn btn-simple" (click)="editClient(client)">Editer</button>
         </div>
       </div>
+    </div>
+    <div class="page-selection">
+        <span class="material-icons" (click)="changePage(-1)">arrow_back_ios</span>
+        <input type="number" class="page-input" min="1" (input)="changePage(0)" [(ngModel)]="selectedPage"/>
+        <span class="material-icons" (click)="changePage(1)">arrow_forward_ios</span>
     </div>
   </div>
 </div>
