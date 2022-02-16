@@ -16,7 +16,7 @@
            [(ngModel)]="client.email"/>
   </div>
   <div class="client-edition-information-row">
-    <label for="phone" class="client-edition-information-label">Téléphone: +33</label>
+    <label for="phone" class="client-edition-information-label">Téléphone: +33 <strong style="color: red" *ngIf="wrongPhoneNumber()">(defaut)</strong></label>
     <input type="tel" size="10" minlength="10" maxlength="10" name="phone" id="phone"
            class="client-edition-information-input"
            [(ngModel)]="client.phone"/>

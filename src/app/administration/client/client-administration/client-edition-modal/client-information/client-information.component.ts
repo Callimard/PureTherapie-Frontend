@@ -63,4 +63,11 @@ export class ClientInformationComponent implements OnInit {
     })
   }
 
+  wrongPhoneNumber(): boolean {
+    if (this.client != null) {
+      return this.client.phone[1] === '0';
+    } else
+      return false;
+  }
+
 }

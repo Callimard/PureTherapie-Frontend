@@ -48,11 +48,11 @@ export class ClientAdministrationComponent implements OnInit {
   }
 
   cleanFilter() {
-    this.foundClients = [];
     this.selectedLastName = '';
     this.selectedFirstName = '';
     this.selectedEmail = '';
     this.selectPhone = '';
+    this.search();
   }
 
   editClient(client: ClientDTO) {

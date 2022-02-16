@@ -44,4 +44,14 @@ export class ClientEditionModalComponent implements OnInit {
       ClientDTO.updateFrom(this.clientToUpdateRef, client);
   }
 
+  clientMustBeUpdate(): boolean {
+    if (this.clientToUpdateRef != null) {
+      return this.clientToUpdateRef.email.includes('default.fr')
+        || this.clientToUpdateRef.firstName.toLowerCase().includes('default')
+        || this.clientToUpdateRef.lastName.toLowerCase().includes('default');
+    } else {
+      return false;
+    }
+  }
+
 }
