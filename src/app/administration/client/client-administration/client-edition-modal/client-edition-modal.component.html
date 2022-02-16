@@ -1,11 +1,12 @@
 <div class="modal-content">
   <div class="modal-header client-edition-header title-bar">
-    <h2 class="modal-title"><strong>Edition de client</strong></h2>
+    <h2 class="modal-title"><strong>Edition de client </strong></h2>
     <button type="button" class="btn-close" (click)="closeClientEditionModal()"></button>
   </div>
   <div class="client-edition-body modal-body">
     <h3 class="client-edition-title">
-      <strong>{{formatSimpleClientIdentifier()}}</strong>
+      <strong>{{formatSimpleClientIdentifier()}} </strong><strong style="color: red" *ngIf="clientMustBeUpdate()">CLIENT
+      A EDITER</strong>
     </h3>
     <app-client-information [client]="baseClient != null ? baseClient : defaultClient"
                             (clientUpdateEvent)="clientHasBeenUpdated($event)"></app-client-information>

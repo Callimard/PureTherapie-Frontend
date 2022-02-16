@@ -62,13 +62,15 @@ export class ClientService {
     })
   }
 
-  public searchClientsWithFilter(all: boolean = false, lastName?: string, firstName?: string, email?: string, phone?: string): Promise<ClientDTO[]> {
+  public searchClientsWithFilter(page?: number, lastName?: string, firstName?: string, email?: string, phone?: string): Promise<ClientDTO[]> {
     return new Promise<ClientDTO[]>((resolve, reject) => {
-      this.httpClient.get<ClientDTO[]>(GlobalVariables.CLIENTS_URL + (all ? "?all=true&filter=" : ("?filter="
+      this.httpClient.get<ClientDTO[]>(GlobalVariables.CLIENTS_URL
+        + (page != null ? "?page=" + (page - 1) + "&" : "?")
+        + "filter="
         + "lastName=" + (lastName ? lastName : '') + "+"
         + "firstName=" + (firstName ? firstName : '') + "+"
         + "email=" + (email ? email : '') + "+"
-        + "phone=" + (phone ? '33' + phone.slice(1) : '')))).subscribe({
+        + "phone=" + (phone ? '33' + phone.slice(1) : '')).subscribe({
         next: (clients) => {
           resolve(clients);
         },
