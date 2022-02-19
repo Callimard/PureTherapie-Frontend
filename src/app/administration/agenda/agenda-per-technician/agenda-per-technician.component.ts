@@ -20,10 +20,17 @@ import {AppointmentSummaryModalComponent} from "../appointment-summary-modal/app
 })
 export class AgendaPerTechnicianComponent implements OnInit, OnChanges {
 
+  private tsColumnSize: string = "5%";
+
   allTechnicians: TechnicianDTO[] = [];
-  technicianTimeSlotMap: Map<number, TimeSlotDTO[]> = new Map<number, TimeSlotDTO[]>();
 
   @Input() today: string = DateTool.toMySQLDateString(new Date());
+
+  agendaRowColumn: string = "5% 1fr 1fr 1fr 1fr";
+
+  allTS: TimeSlotDTO[] = [];
+
+  technicianTSMap: Map<number, Map<string, TimeSlotDTO>> = new Map<number, Map<string, TimeSlotDTO>>();
 
   constructor(private technicianService: TechnicianService, private agendaService: AgendaService,
               private authService: AuthenticationService, private modalService: BsModalService) {
@@ -41,18 +48,50 @@ export class AgendaPerTechnicianComponent implements OnInit, OnChanges {
     this.chargeTechnician();
   }
 
+  public updateAgendaRowColumn() {
+    if (this.allTechnicians != null && this.allTechnicians.length > 0) {
+      let columns = this.tsColumnSize;
+      let count = this.allTechnicians.length;
+      for (let i = 0; i < count; i++) {
+        columns = columns + " 1fr";
+      }
+      this.agendaRowColumn = columns;
+    }
+  }
+
   private chargeTechnician() {
     this.technicianService.getAllTechnicians().then(res => {
       this.allTechnicians = res;
       for (let tech of this.allTechnicians)
         this.chargeAllTimeSlots(tech.idPerson);
+
+      this.updateAgendaRowColumn();
     });
   }
 
   private chargeAllTimeSlots(idTechnician: number) {
+    this.allTS = [];
     this.agendaService.getAllTimeSlotsOfTechnician(idTechnician, this.today).then((res) => {
-      this.technicianTimeSlotMap.set(idTechnician, res);
+      if (this.allTS.length == 0)
+        this.allTS = res;
+
+      let tsMap: Map<string, TimeSlotDTO> = new Map<string, TimeSlotDTO>();
+      for (let ts of res) {
+        tsMap.set(ts.begin, ts);
+      }
+      this.technicianTSMap.set(idTechnician, tsMap);
     });
+  }
+
+  getTechnicianTs(idTechnician: number, begin: string): TimeSlotDTO {
+    let mapTechTS = this.technicianTSMap.get(idTechnician);
+
+    if (mapTechTS != null) {
+      let ts = mapTechTS.get(begin);
+      return ts != null ? ts : TimeSlotDTO.default();
+    } else {
+      return TimeSlotDTO.default();
+    }
   }
 
   formatPersonSimpleIdentifier(person: PersonDTO): string {

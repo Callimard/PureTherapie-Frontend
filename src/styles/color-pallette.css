@@ -65,7 +65,7 @@
 }
 
 .ts-free {
-  background-color: #94949415;
+  background-color: rgba(175, 175, 175, 0.1);
 }
 
 .ts-free:hover {

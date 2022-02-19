@@ -156,7 +156,7 @@ hr {
 
 .agenda-per-technician {
   display: grid;
-  grid-template: 100%/ 5% 95%;
+  grid-template: 5% 95%/ 100%;
 }
 
 .agenda-choose-date {

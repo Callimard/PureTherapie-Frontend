@@ -1,41 +1,56 @@
-.agenda-technicians, .agenda-times {
-  display: flex;
-  justify-content: flex-start;
+.agenda-row {
+  display: grid;
 }
 
-.technician-personal-agenda-column, .ts-times-column {
-  flex-grow: 1;
-
+.agenda-content {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+
+  overflow: overlay;
 }
 
-.agenda-cell {
+.agenda-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.agenda-content::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.4);
+  border-radius: 10rem;
+}
+
+.agenda-content::-webkit-scrollbar-track-piece:start {
+  background: transparent;
+}
+
+.agenda-content::-webkit-scrollbar-track-piece:end {
+  background: transparent;
+}
+
+.agenda-technician-title {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  height: 7%;
 }
 
-.technician-identifier {
-  flex-grow: 1;
-  font-weight: bold;
-  text-align: center;
+.ts-line {
+  min-height: 7%;
+  max-height: 7%;
+}
+
+.ts-technician {
+  padding: 5px;
 }
 
 .ts-time {
-  font-weight: bold;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.ts-appointment-container {
-  flex-grow: 1;
-  justify-self: stretch;
-  align-self: stretch;
-
-  padding: 3px;
+.ts-time-text {
+  font-weight: bold;
+  text-align: center;
 }
 
 .ts-appointment {
