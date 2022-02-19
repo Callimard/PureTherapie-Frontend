@@ -12,6 +12,20 @@ export class ClientService {
   constructor(private httpClient: HttpClient) {
   }
 
+  public isNewClient(idClient: number): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      this.httpClient.get<boolean>(GlobalVariables.CLIENT_IS_NEW + "?idClient=" + idClient).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to no if the client is new, Err = ", err.error);
+          reject(err.error);
+        }
+      });
+    });
+  }
+
   /**
    * NO +33 for the phone just 06 00 00 00 00
    *

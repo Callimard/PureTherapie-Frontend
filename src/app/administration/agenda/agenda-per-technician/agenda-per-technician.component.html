@@ -1,33 +1,32 @@
-<div class="agenda-times clean-border-right clean-border-left" *ngIf="allTechnicians[0] != null">
-  <div class="ts-times-column">
-    <div class="agenda-cell clean-border-bottom clean-border-top ts-time-title">
-
-    </div>
-    <div class="agenda-cell clean-border-dashed-bottom ts-time-title"
-         *ngFor="let ts of technicianTimeSlotMap.get(allTechnicians[0].idPerson)">
-      <span class="ts-time">{{ts.begin}}</span>
-    </div>
+<div class="agenda-header agenda-row card-top-left-radius card-top-right-radius clean-border-bottom"
+     [style.grid-template-columns]="agendaRowColumn">
+  <div class="offset-div technician-name-title agenda-row card-top-left-radius clean-border-right"></div>
+  <div class="agenda-technician-title technician-name-title clean-border-right"
+       [class.card-top-right-radius]="allTechnicians.indexOf(technician) == allTechnicians.length -1"
+       *ngFor="let technician of allTechnicians">
+    <span class="technician-identifier">{{formatPersonSimpleIdentifier(technician)}}</span>
   </div>
 </div>
-<div class="agenda-technicians">
-  <div class="technician-personal-agenda-column clean-border-right" *ngFor="let technician of allTechnicians">
-    <div class="agenda-cell clean-border-bottom clean-border-top technician-name-title">
-      <span class="technician-identifier">{{formatPersonSimpleIdentifier(technician)}}</span>
+<div class="agenda-content">
+  <div class="agenda-row ts-line" [style.grid-template-columns]="agendaRowColumn"
+       *ngFor="let ts of allTS">
+    <div class="ts-time ts-time-title clean-border-right clean-border-dashed-bottom">
+      <span class="ts-time-text">{{ts.begin}}</span>
     </div>
-    <div class="agenda-cell clean-border-dashed-bottom"
-         *ngFor="let ts of technicianTimeSlotMap.get(technician.idPerson)">
-      <div class="ts-appointment-container">
-        <div class="ts ts-appointment p-1"
-             [class.ts-free]="ts.free"
-             [class.ts-new-client]="!ts.free && !ts.appointment.finalized"
-             [class.ts-not-finalize]="!ts.free && ts.appointment.finalized"
-             (click)="ts.free ? clickOnFreeTS(technician, ts.day, ts.begin) : clickOnOccupiedTS(ts.appointment)">
-          <span class="ts-text" *ngIf="!ts.free">{{ts.begin}}</span>
-          <span class="ts-text"
-                *ngIf="!ts.free && ts.appointment != null">{{extractClientIdentification(ts)}}</span>
-        </div>
-        <div class="ts ts-cache" *ngIf="timeSlotPassed(ts) && ts.free"></div>
+    <div class="ts-technician clean-border-right clean-border-dashed-bottom" *ngFor="let technician of allTechnicians">
+      <div class="ts ts-appointment p-1"
+           [class.ts-free]="tsIsFree(technician.idPerson, ts.begin)"
+           [class.ts-new-client]="tsNewClient(technician.idPerson, ts.begin)"
+           [class.ts-old-client]="!tsNewClient(technician.idPerson, ts.begin)"
+           [class.ts-finalized]="tsFinalized(technician.idPerson, ts.begin)"
+           (click)="clickOnTs(technician, ts.begin)">
+        <span class="ts-text"
+              *ngIf="!getTechnicianTs(technician.idPerson, ts.begin).free">{{getTechnicianTs(technician.idPerson, ts.begin).begin}}</span>
+        <span class="ts-text"
+              *ngIf="!getTechnicianTs(technician.idPerson, ts.begin).free && getTechnicianTs(technician.idPerson, ts.begin).appointment != null">{{extractClientIdentification(getTechnicianTs(technician.idPerson, ts.begin))}}</span>
       </div>
+      <div class="ts ts-cache"
+           *ngIf="timeSlotPassed(getTechnicianTs(technician.idPerson, ts.begin)) && getTechnicianTs(technician.idPerson, ts.begin).free"></div>
     </div>
   </div>
 </div>
