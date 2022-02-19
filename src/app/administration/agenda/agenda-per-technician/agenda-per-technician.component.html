@@ -15,10 +15,11 @@
     </div>
     <div class="ts-technician clean-border-right clean-border-dashed-bottom" *ngFor="let technician of allTechnicians">
       <div class="ts ts-appointment p-1"
-           [class.ts-free]="getTechnicianTs(technician.idPerson, ts.begin).free"
-           [class.ts-new-client]="!getTechnicianTs(technician.idPerson, ts.begin).free && !getTechnicianTs(technician.idPerson, ts.begin).appointment.finalized"
-           [class.ts-not-finalize]="!getTechnicianTs(technician.idPerson, ts.begin).free && getTechnicianTs(technician.idPerson, ts.begin).appointment.finalized"
-           (click)="getTechnicianTs(technician.idPerson, ts.begin).free ? clickOnFreeTS(technician, getTechnicianTs(technician.idPerson, ts.begin).day, getTechnicianTs(technician.idPerson, ts.begin).begin) : clickOnOccupiedTS(getTechnicianTs(technician.idPerson, ts.begin).appointment)">
+           [class.ts-free]="tsIsFree(technician.idPerson, ts.begin)"
+           [class.ts-new-client]="tsNewClient(technician.idPerson, ts.begin)"
+           [class.ts-old-client]="!tsNewClient(technician.idPerson, ts.begin)"
+           [class.ts-finalized]="tsFinalized(technician.idPerson, ts.begin)"
+           (click)="clickOnTs(technician, ts.begin)">
         <span class="ts-text"
               *ngIf="!getTechnicianTs(technician.idPerson, ts.begin).free">{{getTechnicianTs(technician.idPerson, ts.begin).begin}}</span>
         <span class="ts-text"

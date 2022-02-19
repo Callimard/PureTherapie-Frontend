@@ -11,6 +11,7 @@ import {PersonDTO} from "../../../../services/person/person-dto";
 import {CreateAppointmentModalComponent} from "../create-appointment-modal/create-appointment-modal.component";
 import {AppointmentDTO} from "../../../../services/appointment/appointment-dto";
 import {AppointmentSummaryModalComponent} from "../appointment-summary-modal/appointment-summary-modal.component";
+import {ClientService} from "../../../../services/person/client/client.service";
 
 @Component({
   selector: 'app-agenda-per-technician',
@@ -32,7 +33,11 @@ export class AgendaPerTechnicianComponent implements OnInit, OnChanges {
 
   technicianTSMap: Map<number, Map<string, TimeSlotDTO>> = new Map<number, Map<string, TimeSlotDTO>>();
 
+  newClientCallMap: Map<number, boolean> = new Map<number, boolean>();
+  newClientMap: Map<number, boolean> = new Map<number, boolean>();
+
   constructor(private technicianService: TechnicianService, private agendaService: AgendaService,
+              private clientService: ClientService,
               private authService: AuthenticationService, private modalService: BsModalService) {
   }
 
@@ -46,6 +51,7 @@ export class AgendaPerTechnicianComponent implements OnInit, OnChanges {
 
   public recharge() {
     this.chargeTechnician();
+    this.clearNewClientMap();
   }
 
   public updateAgendaRowColumn() {
@@ -67,6 +73,12 @@ export class AgendaPerTechnicianComponent implements OnInit, OnChanges {
 
       this.updateAgendaRowColumn();
     });
+  }
+
+  private clearNewClientMap() {
+    // Order important.
+    this.newClientMap.clear();
+    this.newClientCallMap.clear();
   }
 
   private chargeAllTimeSlots(idTechnician: number) {
@@ -98,25 +110,6 @@ export class AgendaPerTechnicianComponent implements OnInit, OnChanges {
     return PersonTool.formatPersonSimpleIdentifier(person);
   }
 
-  clickOnFreeTS(proposedTechnician: TechnicianDTO, day: string, time: string) {
-    let createAppointmentModal: BsModalRef = this.modalService.show(CreateAppointmentModalComponent, {
-      class: 'medium-modal'
-    });
-    createAppointmentModal.content.idParamTechnician = proposedTechnician.idPerson;
-    createAppointmentModal.content.selectedDay = day;
-    createAppointmentModal.content.paramTime = time;
-    createAppointmentModal.content.blocEdition = true;
-    createAppointmentModal.content.agenda = this;
-  }
-
-  clickOnOccupiedTS(appointment: AppointmentDTO) {
-    let appointmentSummaryModal: BsModalRef = this.modalService.show(AppointmentSummaryModalComponent);
-    appointmentSummaryModal.content.appointmentInfo = appointment;
-    appointmentSummaryModal.content.agenda = this;
-    appointmentSummaryModal.content.recharge();
-    appointmentSummaryModal.content.rechargeable = this;
-  }
-
   timeSlotPassed(timeSlot: TimeSlotDTO): boolean {
     let today = new Date(DateTool.toMySQLDateString(new Date()));
     let tsDate = new Date(timeSlot.day);
@@ -140,6 +133,67 @@ export class AgendaPerTechnicianComponent implements OnInit, OnChanges {
       return firstName + " " + lastName;
     } else
       return "";
+  }
+
+  tsIsFree(idTech: number, tsBegin: string): boolean {
+    return this.getTechnicianTs(idTech, tsBegin).free;
+  }
+
+  tsNewClient(idTech: number, tsBegin: string): boolean {
+    let ts = this.getTechnicianTs(idTech, tsBegin);
+
+    if (!ts.free) {
+      let idClient = ts.appointment.client.idPerson;
+      let alreadyCall = this.newClientCallMap.get(idClient);
+      if (alreadyCall != null && alreadyCall) {
+        let newC = this.newClientMap.get(idClient);
+        return newC != null ? newC : false;
+      } else {
+        this.newClientCallMap.set(idClient, true);
+        this.newClientMap.set(idClient, false);
+        this.clientService.isNewClient(idClient).then((res) => {
+          this.newClientMap.set(idClient, res);
+        });
+
+        let newC = this.newClientMap.get(idClient);
+        return newC != null ? newC : false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  tsFinalized(idTech: number, tsBegin: string): boolean {
+    return !this.getTechnicianTs(idTech, tsBegin).free && this.getTechnicianTs(idTech, tsBegin).appointment.finalized;
+  }
+
+  clickOnTs(technician: TechnicianDTO, tsBegin: string): void {
+    let ts = this.getTechnicianTs(technician.idPerson, tsBegin);
+
+    if (ts.free)
+      this.clickOnFreeTS(technician, ts.day, ts.begin);
+    else
+      this.clickOnOccupiedTS(ts.appointment);
+
+  }
+
+  private clickOnFreeTS(proposedTechnician: TechnicianDTO, day: string, time: string) {
+    let createAppointmentModal: BsModalRef = this.modalService.show(CreateAppointmentModalComponent, {
+      class: 'medium-modal'
+    });
+    createAppointmentModal.content.idParamTechnician = proposedTechnician.idPerson;
+    createAppointmentModal.content.selectedDay = day;
+    createAppointmentModal.content.paramTime = time;
+    createAppointmentModal.content.blocEdition = true;
+    createAppointmentModal.content.agenda = this;
+  }
+
+  private clickOnOccupiedTS(appointment: AppointmentDTO) {
+    let appointmentSummaryModal: BsModalRef = this.modalService.show(AppointmentSummaryModalComponent);
+    appointmentSummaryModal.content.appointmentInfo = appointment;
+    appointmentSummaryModal.content.agenda = this;
+    appointmentSummaryModal.content.recharge();
+    appointmentSummaryModal.content.rechargeable = this;
   }
 
 }

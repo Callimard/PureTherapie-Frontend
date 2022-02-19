@@ -56,11 +56,11 @@
   background-color: #80d781;
 }
 
-.ts-not-finalize {
+.ts-finalized {
   background-color: #F7C3BA;
 }
 
-.ts-not-finalize:hover {
+.ts-finalized:hover {
   background-color: #d9a9a3;
 }
 
