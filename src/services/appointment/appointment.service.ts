@@ -14,6 +14,21 @@ export class AppointmentService {
   constructor(private httpClient: HttpClient) {
   }
 
+  public isFirstAppointment(idAppointment: number): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      this.httpClient.get<boolean>(GlobalVariables.APPOINTMENTS_URL + "/" + idAppointment
+        + GlobalVariables.IS_FIRST_APPOINTMENT).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to know if the appointment is first, Err = ", err.error);
+          reject(err.error);
+        }
+      })
+    })
+  }
+
   public getAppointment(idAppointment: number): Promise<AppointmentDTO> {
     return new Promise<AppointmentDTO>((resolve, reject) => {
       this.httpClient.get<AppointmentDTO>(GlobalVariables.APPOINTMENTS_URL + "/" + idAppointment).subscribe({
