@@ -3,9 +3,8 @@
 }
 
 .agenda-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  display: grid;
+  /*grid-template: repeat(18, 7%) / 100%;*/
 
   overflow: overlay;
 }
@@ -33,13 +32,8 @@
   align-items: center;
 }
 
-.ts-line {
-  min-height: 7%;
-  max-height: 7%;
-}
-
 .ts-technician {
-  padding: 5px;
+  height: 100%;
 }
 
 .ts-time {

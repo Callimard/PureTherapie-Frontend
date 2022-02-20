@@ -22,12 +22,14 @@ import {ClientService} from "../../../../services/person/client/client.service";
 export class AgendaPerTechnicianComponent implements OnInit, OnChanges {
 
   private tsColumnSize: string = "5%";
+  agendaRowColumn: string = "5% 1fr 1fr 1fr 1fr";
+
+  private agendaLineHeight: string = "7%";
+  agendaContentGrid: string = "repeat(18, " + this.agendaLineHeight + ") / 100%";
 
   allTechnicians: TechnicianDTO[] = [];
 
   @Input() today: string = DateTool.toMySQLDateString(new Date());
-
-  agendaRowColumn: string = "5% 1fr 1fr 1fr 1fr";
 
   allTS: TimeSlotDTO[] = [];
 
@@ -84,8 +86,10 @@ export class AgendaPerTechnicianComponent implements OnInit, OnChanges {
   private chargeAllTimeSlots(idTechnician: number) {
     this.allTS = [];
     this.agendaService.getAllTimeSlotsOfTechnician(idTechnician, this.today).then((res) => {
-      if (this.allTS.length == 0)
+      if (this.allTS.length == 0) {
         this.allTS = res;
+        this.agendaContentGrid = "repeat("+ this.allTS.length +", " + this.agendaLineHeight + ") / 100%;"
+      }
 
       let tsMap: Map<string, TimeSlotDTO> = new Map<string, TimeSlotDTO>();
       for (let ts of res) {
@@ -142,7 +146,7 @@ export class AgendaPerTechnicianComponent implements OnInit, OnChanges {
   tsNewClient(idTech: number, tsBegin: string): boolean {
     let ts = this.getTechnicianTs(idTech, tsBegin);
 
-    if (!ts.free) {
+    if (this.clientNotWaitingFinalization(idTech, tsBegin)) {
       let idClient = ts.appointment.client.idPerson;
       let alreadyCall = this.newClientCallMap.get(idClient);
       if (alreadyCall != null && alreadyCall) {
@@ -161,6 +165,11 @@ export class AgendaPerTechnicianComponent implements OnInit, OnChanges {
     } else {
       return false;
     }
+  }
+
+  clientNotWaitingFinalization(idTech: number, tsBegin: string): boolean {
+    let ts = this.getTechnicianTs(idTech, tsBegin);
+    return !ts.free && (ts.appointment.clientArrival == null || ts.appointment.finalized);
   }
 
   tsFinalized(idTech: number, tsBegin: string): boolean {
