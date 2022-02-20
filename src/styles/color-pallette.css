@@ -40,19 +40,19 @@
   background-color: #2c81e863;
 }
 
-.ts-new-client {
+.ts-first-appointment {
   background-color: #558EF9;
 }
 
-.ts-new-client:hover {
+.ts-first-appointment:hover {
   background-color: #4b81e5;
 }
 
-.ts-old-client {
+.ts-not-first-appointment {
   background-color: #94F795;
 }
 
-.ts-old-client:hover {
+.ts-not-first-appointment:hover {
   background-color: #80d781;
 }
 

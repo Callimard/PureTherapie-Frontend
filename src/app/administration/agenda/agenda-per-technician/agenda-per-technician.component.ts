@@ -11,7 +11,7 @@ import {PersonDTO} from "../../../../services/person/person-dto";
 import {CreateAppointmentModalComponent} from "../create-appointment-modal/create-appointment-modal.component";
 import {AppointmentDTO} from "../../../../services/appointment/appointment-dto";
 import {AppointmentSummaryModalComponent} from "../appointment-summary-modal/appointment-summary-modal.component";
-import {ClientService} from "../../../../services/person/client/client.service";
+import {AppointmentService} from "../../../../services/appointment/appointment.service";
 
 @Component({
   selector: 'app-agenda-per-technician',
@@ -25,7 +25,7 @@ export class AgendaPerTechnicianComponent implements OnInit, OnChanges {
   agendaRowColumn: string = "5% 1fr 1fr 1fr 1fr";
 
   private agendaLineHeight: string = "7%";
-  agendaContentGrid: string = "repeat(18, " + this.agendaLineHeight + ") / 100%";
+  agendaContentGrid: string = "repeat(18, " + this.agendaLineHeight + ")";
 
   allTechnicians: TechnicianDTO[] = [];
 
@@ -35,11 +35,11 @@ export class AgendaPerTechnicianComponent implements OnInit, OnChanges {
 
   technicianTSMap: Map<number, Map<string, TimeSlotDTO>> = new Map<number, Map<string, TimeSlotDTO>>();
 
-  newClientCallMap: Map<number, boolean> = new Map<number, boolean>();
-  newClientMap: Map<number, boolean> = new Map<number, boolean>();
+  isFirstAppointmentCall: Map<number, boolean> = new Map<number, boolean>();
+  fistAppointmentMap: Map<number, boolean> = new Map<number, boolean>();
 
   constructor(private technicianService: TechnicianService, private agendaService: AgendaService,
-              private clientService: ClientService,
+              private appointmentService: AppointmentService,
               private authService: AuthenticationService, private modalService: BsModalService) {
   }
 
@@ -79,8 +79,8 @@ export class AgendaPerTechnicianComponent implements OnInit, OnChanges {
 
   private clearNewClientMap() {
     // Order important.
-    this.newClientMap.clear();
-    this.newClientCallMap.clear();
+    this.fistAppointmentMap.clear();
+    this.isFirstAppointmentCall.clear();
   }
 
   private chargeAllTimeSlots(idTechnician: number) {
@@ -88,7 +88,7 @@ export class AgendaPerTechnicianComponent implements OnInit, OnChanges {
     this.agendaService.getAllTimeSlotsOfTechnician(idTechnician, this.today).then((res) => {
       if (this.allTS.length == 0) {
         this.allTS = res;
-        this.agendaContentGrid = "repeat("+ this.allTS.length +", " + this.agendaLineHeight + ") / 100%;"
+        this.agendaContentGrid = "repeat(" + this.allTS.length + ", " + this.agendaLineHeight + ")";
       }
 
       let tsMap: Map<string, TimeSlotDTO> = new Map<string, TimeSlotDTO>();
@@ -143,24 +143,24 @@ export class AgendaPerTechnicianComponent implements OnInit, OnChanges {
     return this.getTechnicianTs(idTech, tsBegin).free;
   }
 
-  tsNewClient(idTech: number, tsBegin: string): boolean {
+  isFirstAppointment(idTech: number, tsBegin: string): boolean {
     let ts = this.getTechnicianTs(idTech, tsBegin);
 
     if (this.clientNotWaitingFinalization(idTech, tsBegin)) {
-      let idClient = ts.appointment.client.idPerson;
-      let alreadyCall = this.newClientCallMap.get(idClient);
+      let idAppointment = ts.appointment.idAppointment;
+      let alreadyCall = this.isFirstAppointmentCall.get(idAppointment);
       if (alreadyCall != null && alreadyCall) {
-        let newC = this.newClientMap.get(idClient);
-        return newC != null ? newC : false;
+        let isFirstAppointment = this.fistAppointmentMap.get(idAppointment);
+        return isFirstAppointment != null ? isFirstAppointment : false;
       } else {
-        this.newClientCallMap.set(idClient, true);
-        this.newClientMap.set(idClient, false);
-        this.clientService.isNewClient(idClient).then((res) => {
-          this.newClientMap.set(idClient, res);
+        this.isFirstAppointmentCall.set(idAppointment, true);
+        this.fistAppointmentMap.set(idAppointment, false);
+        this.appointmentService.isFirstAppointment(ts.appointment.idAppointment).then((res) => {
+          this.fistAppointmentMap.set(idAppointment, res);
         });
 
-        let newC = this.newClientMap.get(idClient);
-        return newC != null ? newC : false;
+        let isFirstAppointment = this.fistAppointmentMap.get(idAppointment);
+        return isFirstAppointment != null ? isFirstAppointment : false;
       }
     } else {
       return false;

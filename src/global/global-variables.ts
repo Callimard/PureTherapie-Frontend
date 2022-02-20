@@ -81,6 +81,7 @@ export class GlobalVariables {
   public static readonly PROVISION_CLIENT_WITH_APPOINTMENT_URL = GlobalVariables.APPOINTMENTS_URL + "/provision_client_with_appointment";
   public static readonly PROVISION_CLIENT_WITHOUT_APPOINTMENT_URL = GlobalVariables.APPOINTMENTS_URL + "/provision_client_without_appointment";
   public static readonly FINALIZE_APPOINTMENT_URL = GlobalVariables.APPOINTMENTS_URL + "/finalize";
+  public static readonly IS_FIRST_APPOINTMENT = "/isFirstAppointment";
 
   public static readonly BILL_URL = GlobalVariables.API_V1_URL + "/bills";
   public static readonly PAY_BILL_URL = GlobalVariables.BILL_URL + "/pay";

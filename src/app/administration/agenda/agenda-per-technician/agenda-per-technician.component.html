@@ -7,7 +7,7 @@
     <span class="technician-identifier">{{formatPersonSimpleIdentifier(technician)}}</span>
   </div>
 </div>
-<div class="agenda-content" [style.grid-template]="agendaContentGrid">
+<div class="agenda-content" [style.grid-template-rows]="agendaContentGrid">
   <div class="agenda-row ts-line" [style.grid-template-columns]="agendaRowColumn"
        *ngFor="let ts of allTS">
     <div class="ts-time ts-time-title clean-border-right clean-border-dashed-bottom">
@@ -16,8 +16,8 @@
     <div class="ts-technician clean-border-right clean-border-dashed-bottom" *ngFor="let technician of allTechnicians">
       <div class="ts ts-appointment p-1"
            [class.ts-free]="tsIsFree(technician.idPerson, ts.begin)"
-           [class.ts-new-client]="tsNewClient(technician.idPerson, ts.begin)"
-           [class.ts-old-client]="!tsNewClient(technician.idPerson, ts.begin)"
+           [class.ts-first-appointment]="isFirstAppointment(technician.idPerson, ts.begin)"
+           [class.ts-not-first-appointment]="!isFirstAppointment(technician.idPerson, ts.begin)"
            [class.ts-waiting-finalization]="!clientNotWaitingFinalization(technician.idPerson, ts.begin)"
            (click)="clickOnTs(technician, ts.begin)">
         <span class="ts-text"
