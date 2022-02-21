@@ -16,9 +16,11 @@ export class SimpleConfirmationModalComponent implements OnInit {
   };
 
   constructor(public bsModalRef: BsModalRef) {
+    // Normal
   }
 
   ngOnInit(): void {
+    // Normal
   }
 
   close() {

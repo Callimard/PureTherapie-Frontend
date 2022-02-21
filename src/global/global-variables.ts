@@ -95,6 +95,9 @@ export class GlobalVariables {
   public static readonly EXCEPTIONAL_OPENINGS_URL = GlobalVariables.GLOBAL_OPENING_TIMES_URL + "/exceptional_openings";
   public static readonly EXCEPTIONAL_CLOSING_URL = GlobalVariables.GLOBAL_OPENING_TIMES_URL + "/exceptional_closings";
 
+  public static readonly NOTIFICATIONS_URL = GlobalVariables.API_V1_URL + "/notifications";
+  public static readonly NOTIFICATIONS_SET_VIEWED = "/setViewed";
+
   // BACK END CONSTANTS;
 
   public static readonly GROUPON_PAYMENT = "Groupon";

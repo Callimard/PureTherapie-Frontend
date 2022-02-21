@@ -4,12 +4,16 @@ export class DateTool {
     return date.toISOString().split('T')[0];
   }
 
-  public static extractOnlyDay(dateTime: string): string {
+  public static extractOnlyDate(dateTime: string): string {
     return dateTime.split('T')[0];
   }
 
   public static extractOnlyTime(dateTime: string): string {
     return dateTime.split('T')[1].split('-')[0];
+  }
+
+  public static readableDateTime(dateTime: string): string {
+    return DateTool.extractOnlyDate(dateTime) + " " + DateTool.extractOnlyTime(dateTime);
   }
 
   public static getDay(dayNumber: number): string {

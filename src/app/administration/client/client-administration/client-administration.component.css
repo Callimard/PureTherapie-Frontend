@@ -45,7 +45,7 @@
 
 .clients-tab {
   height: 150px;
-  overflow: auto;
+  overflow: overlay;
 }
 
 .client-info-item {

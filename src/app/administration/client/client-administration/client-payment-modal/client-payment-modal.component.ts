@@ -164,6 +164,6 @@ export class ClientPaymentModalComponent implements OnInit {
   }
 
   extractOnlyDay(dateTime: string): string {
-    return DateTool.extractOnlyDay(dateTime);
+    return DateTool.extractOnlyDate(dateTime);
   }
 }
