@@ -1,0 +1,18 @@
+<div class="notification-tab-container">
+  <div class="tab-header clean-border-bottom p-2">
+    <div class="tab-header-cell">
+      <span class="text-bold">Titre</span>
+    </div>
+    <div class="tab-header-cell">
+      <span class="text-bold">Text</span>
+    </div>
+    <div class="tab-header-cell">
+      <span class="text-bold">Date de création</span>
+    </div>
+  </div>
+  <div class="tab-rows">
+    <app-notification-tab-row class="clean-border-bottom" [notificationView]="notificationView"
+                              (notificationUpdated)="notificationUpdated()"
+                              *ngFor="let notificationView of notificationViews"></app-notification-tab-row>
+  </div>
+</div>

@@ -164,6 +164,12 @@ hr {
   grid-template: 100% / 5% 90% 5%;
 }
 
-.notifications {
+.notification-simple-filter {
+  display: flex;
+  justify-content: flex-start;
+}
 
+.notification-tab {
+  display: flex;
+  justify-content: flex-start;
 }

@@ -155,3 +155,20 @@
   border-bottom-right-radius: .4em;
 }
 
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.4);
+  border-radius: 10rem;
+}
+
+*::-webkit-scrollbar-track-piece:start {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-track-piece:end {
+  background: transparent;
+}
+

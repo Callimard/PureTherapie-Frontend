@@ -42,7 +42,7 @@ export class ClientAestheticCareRowComponent implements OnInit, PaymentObserver 
   }
 
   extractOnlyDay(dateTime: string): string {
-    return DateTool.extractOnlyDay(dateTime);
+    return DateTool.extractOnlyDate(dateTime);
   }
 
   remainingBalance(bill: BillDTO): number {

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from "../../../services/auth/authentication.service";
 
 @Component({
   selector: 'app-notifications',
@@ -8,12 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotificationsComponent implements OnInit {
 
-  constructor() {
-    // Normal
+  currentFilter: number = 0;
+
+  constructor(private authenticationService: AuthenticationService) {
+    this.authenticationService.checkLogin();
   }
 
   ngOnInit(): void {
     // Normal
+  }
+
+  filterChange(filter: number) {
+    this.currentFilter = filter;
   }
 
 }

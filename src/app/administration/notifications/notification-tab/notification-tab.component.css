@@ -1,0 +1,28 @@
+.notification-tab-container {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.tab-header {
+  display: grid;
+  grid-template: 100% / 3fr 3fr 3fr;
+}
+
+.tab-header-cell {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.tab-rows {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  overflow: overlay;
+}
