@@ -54,4 +54,46 @@ export class OpeningAndCloseService {
       })
     });
   }
+
+  public addGlobalOpeningTime(globalOpeningTime: GlobalOpeningTimeDTO): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.post(GlobalVariables.GLOBAL_OPENING_TIMES_URL, globalOpeningTime).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to add global opening time, Err = ", err.error);
+          reject(err.error)
+        }
+      })
+    })
+  }
+
+  public addExceptionalOpeningTime(exceptionalOpening: ExceptionalOpeningDTO): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.post(GlobalVariables.EXCEPTIONAL_OPENINGS_URL, exceptionalOpening).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to add exceptional opening time, Err = ", err.error);
+          reject(err.error)
+        }
+      })
+    })
+  }
+
+  public addExceptionalClose(exceptionalClose: ExceptionalCloseDTO): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.post(GlobalVariables.EXCEPTIONAL_CLOSING_URL, exceptionalClose).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to add exceptional close, Err = ", err.error);
+          reject(err.error)
+        }
+      })
+    })
+  }
 }

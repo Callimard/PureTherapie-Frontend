@@ -5,6 +5,12 @@ import {ExceptionalOpeningDTO} from "../../../services/agenda/exceptional-openin
 import {ExceptionalCloseDTO} from "../../../services/agenda/exceptional-close-dto";
 import {OpeningAndCloseService} from "../../../services/agenda/opening-and-close.service";
 import {DateTool} from "../../../tool/date-tool";
+import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
+import {GlobalOpeningTimeModalComponent} from "./global-opening-time-modal/global-opening-time-modal.component";
+import {
+  ExceptionalOpeningTimeModalComponent
+} from "./exceptional-opening-time-modal/exceptional-opening-time-modal.component";
+import {ExceptionalCloseModalComponent} from "./exceptional-close-modal/exceptional-close-modal.component";
 
 @Component({
   selector: 'app-opening-time',
@@ -19,7 +25,8 @@ export class OpeningTimeComponent implements OnInit {
   exceptionalClosings: ExceptionalCloseDTO[] = [];
 
   constructor(private openingAndCloseService: OpeningAndCloseService,
-              private authenticationService: AuthenticationService) {
+              private authenticationService: AuthenticationService,
+              private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
@@ -35,7 +42,9 @@ export class OpeningTimeComponent implements OnInit {
 
   private chargeGlobalOpenings() {
     this.openingAndCloseService.getAllGlobalOpeningTimes().then((res) => {
-      this.globalOpeningsTimes = res;
+      this.globalOpeningsTimes = [...res].sort((got1, got2) => {
+        return got1.day - got2.day;
+      });
     }).catch(() => {
       console.error("Fail to charge global openings");
     });
@@ -59,6 +68,21 @@ export class OpeningTimeComponent implements OnInit {
 
   getDay(dayNumber: number): string {
     return DateTool.getDay(dayNumber);
+  }
+
+  addGlobalOpeningTime() {
+    let bsRef:BsModalRef = this.modalService.show(GlobalOpeningTimeModalComponent);
+    bsRef.content.rechargeable = this;
+  }
+
+  addExceptionalOpening() {
+    let bsRef:BsModalRef = this.modalService.show(ExceptionalOpeningTimeModalComponent);
+    bsRef.content.rechargeable = this;
+  }
+
+  addExceptionalClose() {
+    let bsRef:BsModalRef = this.modalService.show(ExceptionalCloseModalComponent);
+    bsRef.content.rechargeable = this;
   }
 
 }

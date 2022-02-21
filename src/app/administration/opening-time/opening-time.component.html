@@ -4,7 +4,7 @@
   </div>
   <div class="opening-body mt-5">
     <div class="global-opening-column opening-column p-3">
-      <h3 class="opening-column-title">Ouvertures gloables:</h3>
+      <h3 class="opening-column-title">Ouvertures globales:</h3>
       <div class="opening-content generic-card">
         <div class="grid-row border-bottom-separator" *ngFor="let globalOpening of globalOpeningsTimes">
           <span class="day-title">{{getDay(globalOpening.day)}}</span>
@@ -14,7 +14,7 @@
           </button>
         </div>
         <div class="grid-row">
-          <button class="add-global-opening-btn btn btn-add">
+          <button class="add-global-opening-btn btn btn-add" (click)="addGlobalOpeningTime()">
             Ajouter
           </button>
         </div>
@@ -26,8 +26,10 @@
         <div class="grid-row border-bottom-separator " *ngFor="let exceptionalOpening of exceptionalOpenings">
           <span class="day-title">{{exceptionalOpening.day}}:</span>
           <span class="times">De {{exceptionalOpening.openingTime}} à {{exceptionalOpening.closeTime}}</span>
-          <button class="btn-edition btn btn-simple">
-            Editer
+        </div>
+        <div class="grid-row">
+          <button class="add-global-opening-btn btn btn-add" (click)="addExceptionalOpening()">
+            Ajouter
           </button>
         </div>
       </div>
@@ -36,9 +38,12 @@
       <h3 class="opening-column-title">Fermetures exceptionnelles:</h3>
       <div class="opening-content generic-card">
         <div class="grid-row border-bottom-separator" *ngFor="let exceptionalClose of exceptionalClosings">
+          <span class="text-bold">Date:</span>
           <span class="exceptional-closing-date">{{exceptionalClose.day}}</span>
-          <button class="btn-edition btn btn-simple">
-            Editer
+        </div>
+        <div class="grid-row">
+          <button class="add-global-opening-btn btn btn-add" (click)="addExceptionalClose()">
+            Ajouter
           </button>
         </div>
       </div>

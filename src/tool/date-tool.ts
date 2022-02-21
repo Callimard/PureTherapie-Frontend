@@ -17,7 +17,7 @@ export class DateTool {
   }
 
   public static getDay(dayNumber: number): string {
-    let day = (dayNumber % 7);
+    let day = (dayNumber % 8);
     switch (day) {
       case 1:
         return 'Lundi'
