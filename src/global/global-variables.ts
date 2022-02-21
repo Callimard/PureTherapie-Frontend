@@ -35,7 +35,7 @@ export class GlobalVariables {
 
   // BACKEND URL
 
-  public static readonly BACK_END_URL = "https://localhost:8080";
+  public static readonly BACK_END_URL = "http://localhost:8080";
 
   public static readonly API_V1_URL = GlobalVariables.BACK_END_URL + "/api/v1"
 
