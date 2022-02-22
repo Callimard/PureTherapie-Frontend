@@ -90,7 +90,12 @@ import { NotificationsComponent } from './administration/notifications/notificat
 import { NotificationsSimpleFilterComponent } from './administration/notifications/notifications-simple-filter/notifications-simple-filter.component';
 import { NotificationTabComponent } from './administration/notifications/notification-tab/notification-tab.component';
 import { NotificationTabRowComponent } from './administration/notifications/notification-tab/notification-tab-row/notification-tab-row.component';
-import { NotificationModalComponent } from './administration/notifications/notification-tab/notification-modal/notification-modal.component'
+import { NotificationModalComponent } from './administration/notifications/notification-tab/notification-modal/notification-modal.component';
+import { GlobalOpeningTimeModalComponent } from './administration/opening-time/global-opening-time-modal/global-opening-time-modal.component';
+import { ExceptionalOpeningTimeModalComponent } from './administration/opening-time/exceptional-opening-time-modal/exceptional-opening-time-modal.component';
+import { ExceptionalCloseModalComponent } from './administration/opening-time/exceptional-close-modal/exceptional-close-modal.component';
+import { EditGlobalOpeningTimeModalComponent } from './administration/opening-time/edit-global-opening-time-modal/edit-global-opening-time-modal.component';
+import { EditExceptionalOpeningModalComponent } from './administration/opening-time/edit-exceptional-opening-modal/edit-exceptional-opening-modal.component'
 registerLocaleData(localeFr, 'fr');
 
 const appRoutes: Routes = [
@@ -147,7 +152,12 @@ const appRoutes: Routes = [
     NotificationsSimpleFilterComponent,
     NotificationTabComponent,
     NotificationTabRowComponent,
-    NotificationModalComponent
+    NotificationModalComponent,
+    GlobalOpeningTimeModalComponent,
+    ExceptionalOpeningTimeModalComponent,
+    ExceptionalCloseModalComponent,
+    EditGlobalOpeningTimeModalComponent,
+    EditExceptionalOpeningModalComponent
   ],
   imports: [
     TooltipModule.forRoot(),

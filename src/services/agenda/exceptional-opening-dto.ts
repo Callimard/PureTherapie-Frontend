@@ -6,4 +6,8 @@ export class ExceptionalOpeningDTO {
               public closeTime: string) {
   }
 
+  public static default(): ExceptionalOpeningDTO {
+    return new ExceptionalOpeningDTO(-1, "1996-01-01", "00:00:00", "00:00:00");
+  }
+
 }
