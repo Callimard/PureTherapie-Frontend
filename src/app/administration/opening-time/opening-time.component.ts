@@ -11,6 +11,17 @@ import {
   ExceptionalOpeningTimeModalComponent
 } from "./exceptional-opening-time-modal/exceptional-opening-time-modal.component";
 import {ExceptionalCloseModalComponent} from "./exceptional-close-modal/exceptional-close-modal.component";
+import {
+  EditGlobalOpeningTimeModalComponent
+} from "./edit-global-opening-time-modal/edit-global-opening-time-modal.component";
+import {
+  SimpleConfirmationModalComponent
+} from "../../util/modal/simple-confirmation-modal/simple-confirmation-modal.component";
+import {SuccessModalComponent} from "../../util/modal/success-modal/success-modal.component";
+import {FailModalComponent} from "../../util/modal/fail-modal/fail-modal.component";
+import {
+  EditExceptionalOpeningModalComponent
+} from "./edit-exceptional-opening-modal/edit-exceptional-opening-modal.component";
 
 @Component({
   selector: 'app-opening-time',
@@ -71,18 +82,108 @@ export class OpeningTimeComponent implements OnInit {
   }
 
   addGlobalOpeningTime() {
-    let bsRef:BsModalRef = this.modalService.show(GlobalOpeningTimeModalComponent);
+    let bsRef: BsModalRef = this.modalService.show(GlobalOpeningTimeModalComponent);
     bsRef.content.rechargeable = this;
+  }
+
+  updateGlobalOpeningTime(globalOpening: GlobalOpeningTimeDTO) {
+    let bsRef: BsModalRef = this.modalService.show(EditGlobalOpeningTimeModalComponent);
+    bsRef.content.globalOpening = globalOpening;
+    bsRef.content.rechargeable = this;
+  }
+
+  deleteGlobalOpeningTime(globalOpening: GlobalOpeningTimeDTO) {
+    let bsRef: BsModalRef = this.modalService.show(SimpleConfirmationModalComponent);
+    bsRef.content.title = "Suppression heure d'ouverture globale";
+    bsRef.content.text = "Êtes-vous sûr de vouloir supprimer ces heure d'ouverture globales?";
+    bsRef.content.confirmationFunction = () => {
+      this.openingAndCloseService.deleteGlobalOpeningTime(globalOpening.idGlobalOpeningTime).then(() => {
+        this.successDeleteGlobalOpening();
+      }).catch(() => {
+        this.failDeleteGlobalOpening();
+      });
+    }
+  }
+
+  private successDeleteGlobalOpening() {
+    let bsRef: BsModalRef = this.modalService.show(SuccessModalComponent);
+    bsRef.content.title = "Suppression réussie";
+    bsRef.content.text = "Suppression des heures d'ouvertures globales réussie";
+    this.recharge();
+  }
+
+  private failDeleteGlobalOpening() {
+    let bsRef: BsModalRef = this.modalService.show(FailModalComponent);
+    bsRef.content.title = "Suppression échouée";
+    bsRef.content.text = "La suppression des heures d'ouvertures globales a échouée";
   }
 
   addExceptionalOpening() {
-    let bsRef:BsModalRef = this.modalService.show(ExceptionalOpeningTimeModalComponent);
+    let bsRef: BsModalRef = this.modalService.show(ExceptionalOpeningTimeModalComponent);
     bsRef.content.rechargeable = this;
   }
 
-  addExceptionalClose() {
-    let bsRef:BsModalRef = this.modalService.show(ExceptionalCloseModalComponent);
+  updateExceptionalOpening(exceptionalOpening: ExceptionalOpeningDTO) {
+    let bsRef: BsModalRef = this.modalService.show(EditExceptionalOpeningModalComponent);
+    bsRef.content.exceptionalOpening = exceptionalOpening;
     bsRef.content.rechargeable = this;
+  }
+
+  deleteExceptionalOpeningTime(exceptionalOpening: ExceptionalOpeningDTO) {
+    let bsRef: BsModalRef = this.modalService.show(SimpleConfirmationModalComponent);
+    bsRef.content.title = "Suppression heure d'ouverture exceptionnelle";
+    bsRef.content.text = "Êtes-vous sûr de vouloir supprimer ces heure d'ouverture exceptionnelle?";
+    bsRef.content.confirmationFunction = () => {
+      this.openingAndCloseService.deleteExceptionalOpeningTime(exceptionalOpening.idExceptionalOpening).then(() => {
+        this.successDeleteExceptionalOpening();
+      }).catch(() => {
+        this.failDeleteExceptionalOpening();
+      });
+    }
+  }
+
+  private successDeleteExceptionalOpening() {
+    let bsRef: BsModalRef = this.modalService.show(SuccessModalComponent);
+    bsRef.content.title = "Suppression réussie";
+    bsRef.content.text = "Suppression des heures d'ouvertures exceptionnelle réussie";
+    this.recharge();
+  }
+
+  private failDeleteExceptionalOpening() {
+    let bsRef: BsModalRef = this.modalService.show(FailModalComponent);
+    bsRef.content.title = "Suppression échouée";
+    bsRef.content.text = "La suppression des heures d'ouvertures exceptionnelle a échouée";
+  }
+
+  addExceptionalClose() {
+    let bsRef: BsModalRef = this.modalService.show(ExceptionalCloseModalComponent);
+    bsRef.content.rechargeable = this;
+  }
+
+  deleteExceptionalClose(exceptionalClose: ExceptionalCloseDTO) {
+    let bsRef: BsModalRef = this.modalService.show(SimpleConfirmationModalComponent);
+    bsRef.content.title = "Suppression de fermeture exceptionnelle";
+    bsRef.content.text = "Êtes-vous sûr de vouloir supprimer cette fermeture exceptionnelle?";
+    bsRef.content.confirmationFunction = () => {
+      this.openingAndCloseService.deleteExceptionalClose(exceptionalClose.idExceptionalClose).then(() => {
+        this.successDeleteExceptionalClose();
+      }).catch(() => {
+        this.failDeleteExceptionalClose();
+      });
+    }
+  }
+
+  private successDeleteExceptionalClose() {
+    let bsRef: BsModalRef = this.modalService.show(SuccessModalComponent);
+    bsRef.content.title = "Suppression réussie";
+    bsRef.content.text = "Suppression de fermeture exceptionnelle réussie";
+    this.recharge();
+  }
+
+  private failDeleteExceptionalClose() {
+    let bsRef: BsModalRef = this.modalService.show(FailModalComponent);
+    bsRef.content.title = "Suppression échouée";
+    bsRef.content.text = "La suppression de fermeture exceptionnelle a échouée";
   }
 
 }

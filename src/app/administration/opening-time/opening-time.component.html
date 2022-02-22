@@ -9,9 +9,14 @@
         <div class="grid-row border-bottom-separator" *ngFor="let globalOpening of globalOpeningsTimes">
           <span class="day-title">{{getDay(globalOpening.day)}}</span>
           <span class="times">De {{globalOpening.openingTime}} à {{globalOpening.closeTime}}</span>
-          <button class="btn-edition btn btn-simple">
-            Editer
-          </button>
+          <div class="btn-container">
+            <button class="btn-edition btn btn-simple my-1" (click)="updateGlobalOpeningTime(globalOpening)">
+              Editer
+            </button>
+            <button class="btn-edition btn btn-cancel my-1" (click)="deleteGlobalOpeningTime(globalOpening)">
+              Supprimer
+            </button>
+          </div>
         </div>
         <div class="grid-row">
           <button class="add-global-opening-btn btn btn-add" (click)="addGlobalOpeningTime()">
@@ -26,6 +31,14 @@
         <div class="grid-row border-bottom-separator " *ngFor="let exceptionalOpening of exceptionalOpenings">
           <span class="day-title">{{exceptionalOpening.day}}:</span>
           <span class="times">De {{exceptionalOpening.openingTime}} à {{exceptionalOpening.closeTime}}</span>
+          <div class="btn-container">
+            <button class="btn-edition btn btn-simple my-1" (click)="updateExceptionalOpening(exceptionalOpening)">
+              Editer
+            </button>
+            <button class="btn-edition btn btn-cancel my-1" (click)="deleteExceptionalOpeningTime(exceptionalOpening)">
+              Supprimer
+            </button>
+          </div>
         </div>
         <div class="grid-row">
           <button class="add-global-opening-btn btn btn-add" (click)="addExceptionalOpening()">
@@ -40,6 +53,9 @@
         <div class="grid-row border-bottom-separator" *ngFor="let exceptionalClose of exceptionalClosings">
           <span class="text-bold">Date:</span>
           <span class="exceptional-closing-date">{{exceptionalClose.day}}</span>
+          <button class="btn-edition btn btn-cancel my-1" (click)="deleteExceptionalClose(exceptionalClose)">
+            Supprimer
+          </button>
         </div>
         <div class="grid-row">
           <button class="add-global-opening-btn btn btn-add" (click)="addExceptionalClose()">

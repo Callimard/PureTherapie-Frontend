@@ -6,4 +6,8 @@ export class GlobalOpeningTimeDTO {
               public closeTime: string) {
   }
 
+  public static default(): GlobalOpeningTimeDTO {
+    return new GlobalOpeningTimeDTO(-1, 1, "00:00:00", "00:00:00");
+  }
+
 }

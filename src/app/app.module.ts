@@ -93,7 +93,9 @@ import { NotificationTabRowComponent } from './administration/notifications/noti
 import { NotificationModalComponent } from './administration/notifications/notification-tab/notification-modal/notification-modal.component';
 import { GlobalOpeningTimeModalComponent } from './administration/opening-time/global-opening-time-modal/global-opening-time-modal.component';
 import { ExceptionalOpeningTimeModalComponent } from './administration/opening-time/exceptional-opening-time-modal/exceptional-opening-time-modal.component';
-import { ExceptionalCloseModalComponent } from './administration/opening-time/exceptional-close-modal/exceptional-close-modal.component'
+import { ExceptionalCloseModalComponent } from './administration/opening-time/exceptional-close-modal/exceptional-close-modal.component';
+import { EditGlobalOpeningTimeModalComponent } from './administration/opening-time/edit-global-opening-time-modal/edit-global-opening-time-modal.component';
+import { EditExceptionalOpeningModalComponent } from './administration/opening-time/edit-exceptional-opening-modal/edit-exceptional-opening-modal.component'
 registerLocaleData(localeFr, 'fr');
 
 const appRoutes: Routes = [
@@ -153,7 +155,9 @@ const appRoutes: Routes = [
     NotificationModalComponent,
     GlobalOpeningTimeModalComponent,
     ExceptionalOpeningTimeModalComponent,
-    ExceptionalCloseModalComponent
+    ExceptionalCloseModalComponent,
+    EditGlobalOpeningTimeModalComponent,
+    EditExceptionalOpeningModalComponent
   ],
   imports: [
     TooltipModule.forRoot(),
