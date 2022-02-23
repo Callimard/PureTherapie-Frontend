@@ -1,0 +1,8 @@
+<div class="notifications-simple-filter-container secondary-bar p-3">
+  <span type="btn" class="filter-title left-title p-2" [class.filter-active]="activeFilter == 0"
+        (click)="changeActiveFilter(0)">Toutes</span>
+  <span type="btn" class="filter-title left-title right-title p-2" [class.filter-active]="activeFilter == 1"
+        (click)="changeActiveFilter(1)">Lues</span>
+  <span type="btn" class="filter-title right-title p-2" [class.filter-active]="activeFilter == 2"
+        (click)="changeActiveFilter(2)">Non Lues</span>
+</div>

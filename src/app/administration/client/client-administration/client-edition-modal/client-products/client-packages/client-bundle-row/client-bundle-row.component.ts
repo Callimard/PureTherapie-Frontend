@@ -60,7 +60,7 @@ export class ClientBundleRowComponent implements OnInit, OnChanges, PaymentObser
   }
 
   extractOnlyDay(dateTime: string): string {
-    return DateTool.extractOnlyDay(dateTime);
+    return DateTool.extractOnlyDate(dateTime);
   }
 
   remainingBalance(bill: BillDTO): number {

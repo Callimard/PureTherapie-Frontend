@@ -1,0 +1,38 @@
+.notifications-simple-filter-container {
+  flex: 1;
+
+  display: flex;
+  justify-content: flex-start;
+}
+
+.filter-title {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+
+  background-color: #fdfcfc;
+}
+
+.filter-title:hover {
+  cursor: pointer;
+
+  background-color: #FCDDA2;
+}
+
+.filter-title:active {
+  background-color: #efd597;
+}
+
+.filter-active {
+  background-color: #FCDDA2;
+}
+
+.left-title {
+  border-left: 1px solid black;
+}
+
+.right-title {
+  border-right: 1px solid black;
+}
+
+
+

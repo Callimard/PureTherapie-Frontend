@@ -1,0 +1,22 @@
+.tab-row-container {
+  display: grid;
+  grid-template: 100% / 3fr 3fr 3fr;
+}
+
+.tab-row-container:hover {
+  background-color: rgba(162, 193, 252, 0.66);
+}
+
+.tab-row-container:active {
+  background-color: rgba(162, 193, 252, 0.87);
+}
+
+.tab-row-cell {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.alter-title {
+  color: red;
+}

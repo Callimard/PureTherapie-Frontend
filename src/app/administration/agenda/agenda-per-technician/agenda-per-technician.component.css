@@ -8,23 +8,6 @@
   overflow: overlay;
 }
 
-.agenda-content::-webkit-scrollbar {
-  width: 5px;
-}
-
-.agenda-content::-webkit-scrollbar-thumb {
-  background-color: rgba(0,0,0,0.4);
-  border-radius: 10rem;
-}
-
-.agenda-content::-webkit-scrollbar-track-piece:start {
-  background: transparent;
-}
-
-.agenda-content::-webkit-scrollbar-track-piece:end {
-  background: transparent;
-}
-
 .agenda-technician-title {
   display: flex;
   justify-content: center;

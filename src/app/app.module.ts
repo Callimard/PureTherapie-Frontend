@@ -86,7 +86,11 @@ import {AgendaChooseDateComponent} from './administration/agenda/agenda-choose-d
 import {registerLocaleData} from "@angular/common";
 
 import localeFr from '@angular/common/locales/fr';
-import { NotificationsComponent } from './administration/notifications/notifications.component'
+import { NotificationsComponent } from './administration/notifications/notifications.component';
+import { NotificationsSimpleFilterComponent } from './administration/notifications/notifications-simple-filter/notifications-simple-filter.component';
+import { NotificationTabComponent } from './administration/notifications/notification-tab/notification-tab.component';
+import { NotificationTabRowComponent } from './administration/notifications/notification-tab/notification-tab-row/notification-tab-row.component';
+import { NotificationModalComponent } from './administration/notifications/notification-tab/notification-modal/notification-modal.component'
 registerLocaleData(localeFr, 'fr');
 
 const appRoutes: Routes = [
@@ -139,7 +143,11 @@ const appRoutes: Routes = [
     ClientAestheticCareRowComponent,
     AgendaPerTechnicianComponent,
     AgendaChooseDateComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    NotificationsSimpleFilterComponent,
+    NotificationTabComponent,
+    NotificationTabRowComponent,
+    NotificationModalComponent
   ],
   imports: [
     TooltipModule.forRoot(),

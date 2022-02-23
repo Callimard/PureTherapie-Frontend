@@ -1,0 +1,13 @@
+<div class="modal-content">
+  <div class="modal-header title-bar">
+    <h2 class="modal-title">{{notification.type ? 'Alert' : 'Notification'}}</h2>
+    <button type="button" class="btn-close" (click)="close()"></button>
+  </div>
+  <div class="modal-body">
+    <h3>{{notification.notificationTitle}}</h3>
+    <p [class.text-alert]="notification.type">{{notification.text}}</p>
+  </div>
+  <div class="modal-footer d-flex justify-content-end">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+  </div>
+</div>
