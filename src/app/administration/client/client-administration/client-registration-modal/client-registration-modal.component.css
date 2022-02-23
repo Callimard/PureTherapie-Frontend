@@ -2,3 +2,15 @@
   font-weight: bold;
   color: black;
 }
+
+.client-registration-information {
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.btn-register {
+  align-self: center;
+}

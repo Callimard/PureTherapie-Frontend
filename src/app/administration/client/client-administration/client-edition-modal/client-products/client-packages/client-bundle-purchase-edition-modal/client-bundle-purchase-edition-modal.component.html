@@ -3,7 +3,7 @@
     <h2 class="modal-title success-title">Edition de package achété par un client</h2>
     <button type="button" class="btn-close" (click)="close()"></button>
   </div>
-  <div class="modal-body">
+  <form class="modal-body" (ngSubmit)="updateStocks()" >
     <div class="bundle-purchase-edition-container">
       <h4 class="bundle-purchase-title">{{clientBundlePurchase.bundle.name}}</h4>
       <div class="bundle-purchase-ac-content">
@@ -14,15 +14,15 @@
           </div>
           <div class="bundle-ac-stock">
             <span class="bundle-ac-stock-title text-bold">Stock:</span>
-            <input type="number" class="stock-number" [(ngModel)]="stock.remainingQuantity"/>
+            <input type="number" class="stock-number" [(ngModel)]="stock.remainingQuantity" [ngModelOptions]="{standalone: true}"/>
           </div>
         </div>
       </div>
       <div class="bundle-purchase-edition-validation p-2">
-        <button type="button" class="text-bold btn btn-validation" (click)="updateStocks()">Mettre à jour</button>
+        <button type="submit" class="text-bold btn btn-validation">Mettre à jour</button>
       </div>
     </div>
-  </div>
+  </form>
   <div class="modal-footer d-flex justify-content-end">
     <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
   </div>
