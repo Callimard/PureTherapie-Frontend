@@ -13,6 +13,7 @@ import {
   PaymentObserver
 } from "../../../../client-payment-modal/client-payment-modal.component";
 import {AestheticCareService} from "../../../../../../../../services/product/aesthetic/care/aesthetic-care.service";
+import {GlobalVariables} from "../../../../../../../../global/global-variables";
 
 @Component({
   selector: 'app-client-aesthetic-care-row',
@@ -64,6 +65,9 @@ export class ClientAestheticCareRowComponent implements OnInit, PaymentObserver 
     payBillRef.content.bill = bill;
     payBillRef.content.rechargeable = this;
     payBillRef.content.paymentObserver = this;
+    if (this.sessionPurchase.aestheticCare.name === GlobalVariables.DISCOVERY_AESTHETIC_CARE) {
+      payBillRef.content.allowGrouponPayment = true;
+    }
   }
 
   paymentSuccess(): void {

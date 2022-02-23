@@ -11,6 +11,7 @@ import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.c
 import {DateTool} from "../../../../../tool/date-tool";
 import {PaymentDTO} from "../../../../../services/product/bill/payment-dto";
 import {BillTool} from "../../../../../tool/bill-tool";
+import {GlobalVariables} from "../../../../../global/global-variables";
 
 export interface PaymentObserver {
   paymentSuccess(): void;
@@ -34,6 +35,8 @@ export class ClientPaymentModalComponent implements OnInit {
   rechargeable?: { recharge(): () => void };
   paymentObserver?: PaymentObserver;
 
+  allowGrouponPayment: boolean = false;
+
   constructor(private billService: BillService, public bsModalRef: BsModalRef, private modalService: BsModalService) {
   }
 
@@ -48,7 +51,12 @@ export class ClientPaymentModalComponent implements OnInit {
 
   private chargeAllMeansOfPayments() {
     this.billService.getAllMeansOfPayments().then((res) => {
-      this.allMeansOfPayment = res;
+      this.allMeansOfPayment = [...res].filter((e) => {
+        if (!this.allowGrouponPayment) {
+          return e.name !== GlobalVariables.GROUPON_PAYMENT;
+        } else
+          return true;
+      });
       this.selectMeansOfPayment = this.allMeansOfPayment[0];
     }).catch((err) => {
       console.error("Fail to charge all means of payments, Err = ", err);
