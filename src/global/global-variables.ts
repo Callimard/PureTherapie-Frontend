@@ -101,5 +101,6 @@ export class GlobalVariables {
   // BACK END CONSTANTS;
 
   public static readonly GROUPON_PAYMENT = "Groupon";
+  public static readonly DISCOVERY_AESTHETIC_CARE = "Soin découverte";
 
 }
