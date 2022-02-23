@@ -12,6 +12,7 @@ import {
 import {SuccessModalComponent} from "../../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
 import {AuthenticationService} from "../../../../../services/auth/authentication.service";
+import {tap} from "rxjs";
 
 export interface ClientRegistrationObserver {
   clientHasBeenRegister(client?: ClientDTO): void;
@@ -59,6 +60,7 @@ export class ClientRegistrationModalComponent implements OnInit {
 
   openModalClientRegistrationSuccess(template: TemplateRef<any>) {
     this.confirmationModal = this.modalService.show(template, {class: "modal-lg"});
+    this.modalService.onShown.pipe(tap(() => (document.querySelector('[autofocus]') as HTMLElement).focus())).subscribe();
   }
 
   close() {
