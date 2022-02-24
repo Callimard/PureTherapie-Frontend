@@ -174,7 +174,7 @@ hr {
   justify-content: flex-start;
 }
 
-.client-specific-info {
+.client-specific-info, .client-general-info, .client-payments, .client-appointments, .client-purchases {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

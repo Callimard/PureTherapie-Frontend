@@ -114,6 +114,9 @@ import {
 } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-specific-information.component';
 import { ClientProductsComponent } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-products/client-products.component';
 import { ClientGeneralInfoComponent } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-general-info.component';
+import { ClientPaymentsComponent } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-payments/client-payments.component';
+import { ClientAppointmentsComponent } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-appointments/client-appointments.component';
+import { ClientPurchasesComponent } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-purchases/client-purchases.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -178,7 +181,10 @@ const appRoutes: Routes = [
     EditExceptionalOpeningModalComponent,
     ClientSpecificInformationComponent,
     ClientProductsComponent,
-    ClientGeneralInfoComponent
+    ClientGeneralInfoComponent,
+    ClientPaymentsComponent,
+    ClientAppointmentsComponent,
+    ClientPurchasesComponent
   ],
   imports: [
     TooltipModule.forRoot(),

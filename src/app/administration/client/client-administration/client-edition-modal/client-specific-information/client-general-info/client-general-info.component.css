@@ -1,0 +1,56 @@
+.client-general-info-container {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.general-info-choice {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.general-info-title {
+  border-top: 1px solid black;
+
+  background-color: #fdfcfc;
+}
+
+.general-info-title:hover {
+  cursor: pointer;
+
+  background-color: #FCDDA2;
+}
+
+.general-info-title:active {
+  background-color: #efd597;
+}
+
+.general-info-active {
+  background-color: #FCDDA2;
+}
+
+.left-general-info-choice {
+  border-left: 1px solid black;
+}
+
+.right-general-info-choice {
+  border-right: 1px solid black;
+}
+
+.general-info-container {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid black;
+}
+
+.client-all-payments, .client-all-appointments, .client-all-purchases {
+  flex-grow: 1;
+
+  height: 150px;
+}

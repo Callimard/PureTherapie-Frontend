@@ -1,0 +1,23 @@
+.all-purchases-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  overflow: overlay;
+}
+
+.purchase-row {
+  flex-shrink: 1;
+
+  display: grid;
+  grid-template: 100% / 1fr 1fr 1fr 1fr;
+
+  padding: 1%;
+
+  border-bottom: 1px solid black;
+}
+
+.purchase-field {
+  display: flex;
+  justify-content: flex-start;
+}

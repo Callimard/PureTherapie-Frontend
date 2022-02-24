@@ -1,0 +1,17 @@
+<div class="all-purchases-container">
+  <div class="purchase-row" *ngFor="let purchase of clientPurchases">
+    <div class="purchase-field">
+      <span><strong>Date:</strong> {{formatDateTime(purchase.date)}}</span>
+    </div>
+    <div class="purchase-field">
+      <span><strong>Type:</strong> {{purchase.type}}</span>
+    </div>
+    <div class="purchase-field">
+      <span><strong>Prix:</strong> {{purchase.price}} €</span>
+    </div>
+    <div class="purchase-field">
+      <span><strong>Totallement payé:</strong> <span
+        [style.color]="purchase.totallyPaid ? 'red' : 'black'">{{purchase.totallyPaid ? 'oui' : 'non'}}</span></span>
+    </div>
+  </div>
+</div>

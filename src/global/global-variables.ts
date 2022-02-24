@@ -85,12 +85,15 @@ export class GlobalVariables {
   public static readonly PROVISION_CLIENT_WITHOUT_APPOINTMENT_URL = GlobalVariables.APPOINTMENTS_URL + "/provision_client_without_appointment";
   public static readonly FINALIZE_APPOINTMENT_URL = GlobalVariables.APPOINTMENTS_URL + "/finalize";
   public static readonly IS_FIRST_APPOINTMENT = "/isFirstAppointment";
+  public static readonly APPOINTMENT_CLIENT = "/client";
+  public static readonly APPOINTMENT_CLIENT_URL = GlobalVariables.APPOINTMENTS_URL + GlobalVariables.APPOINTMENT_CLIENT;
 
   public static readonly BILL_URL = GlobalVariables.API_V1_URL + "/bills";
   public static readonly PAY_BILL_URL = GlobalVariables.BILL_URL + "/pay";
   public static readonly MEANS_OF_PAYMENTS_URL = GlobalVariables.BILL_URL + "/means_of_payments";
   public static readonly PAYMENTS_URL = GlobalVariables.BILL_URL + "/payments";
   public static readonly CLIENT_MAKE_PAYMENT_TODAY = "/makePaymentToday";
+  public static readonly PURCHASES_URL = GlobalVariables.BILL_URL + "/purchases";
 
   public static readonly WAITING_ROOM_URL = GlobalVariables.API_V1_URL + "/waiting_room";
 
