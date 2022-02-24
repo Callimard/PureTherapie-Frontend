@@ -8,8 +8,8 @@ import {BundleService} from "../../../../services/product/aesthetic/bundle/bundl
 import {DateTool} from "../../../../tool/date-tool";
 import {BillDTO} from "../../../../services/product/bill/bill-dto";
 import {
-  ClientBundlePurchaseEditionModalComponent
-} from "../../client/client-administration/client-edition-modal/client-products/client-packages/client-bundle-purchase-edition-modal/client-bundle-purchase-edition-modal.component";
+  ClientBundlePurchaseComponent
+} from "../../client/client-administration/client-edition-modal/client-specific-information/client-products/client-packages/client-bundle-purchase/client-bundle-purchase.component";
 import {
   ClientPaymentModalComponent,
   PaymentObserver
@@ -160,7 +160,7 @@ export class TerminateClientModalComponent implements OnInit, AppointmentCreatio
   }
 
   openBundlePurchaseEdition(bundlePurchase: BundlePurchaseDTO) {
-    let bundlePurchaseEditionRef: BsModalRef = this.modalService.show(ClientBundlePurchaseEditionModalComponent, {
+    let bundlePurchaseEditionRef: BsModalRef = this.modalService.show(ClientBundlePurchaseComponent, {
       class: "medium-modal"
     });
     bundlePurchaseEditionRef.content.clientBundlePurchase = bundlePurchase;

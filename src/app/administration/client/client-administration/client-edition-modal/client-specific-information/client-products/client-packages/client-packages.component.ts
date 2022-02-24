@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {BundlePurchaseDTO} from "../../../../../../../services/product/aesthetic/bundle/bundle-purchase-dto";
-import {ClientDTO} from "../../../../../../../services/person/client/client-dto";
-import {BundleService} from "../../../../../../../services/product/aesthetic/bundle/bundle.service";
+import {BundlePurchaseDTO} from "../../../../../../../../services/product/aesthetic/bundle/bundle-purchase-dto";
+import {ClientDTO} from "../../../../../../../../services/person/client/client-dto";
+import {BundleService} from "../../../../../../../../services/product/aesthetic/bundle/bundle.service";
 
 @Component({
   selector: 'app-client-packages',

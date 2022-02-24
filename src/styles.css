@@ -173,3 +173,9 @@ hr {
   display: flex;
   justify-content: flex-start;
 }
+
+.client-specific-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}

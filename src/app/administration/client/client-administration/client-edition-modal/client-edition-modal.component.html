@@ -10,7 +10,7 @@
     </h3>
     <app-client-information [client]="baseClient != null ? baseClient : defaultClient"
                             (clientUpdateEvent)="clientHasBeenUpdated($event)"></app-client-information>
-    <app-client-products [client]="baseClient" class="p-2"></app-client-products>
+    <app-client-specific-information [client]="baseClient" class="p-2"></app-client-specific-information>
   </div>
   <div class=" modal-footer d-flex justify-content-end
                 ">
