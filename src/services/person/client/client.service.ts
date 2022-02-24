@@ -3,6 +3,9 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {ClientDTO} from "./client-dto";
 import {GlobalVariables} from "../../../global/global-variables";
 import {SimpleClientInfoDTO} from "./simple-client-info-dto";
+import {ClientAbsenceDelayDTO} from "./client-absence-delay-dto";
+import {ClientBasicAppointmentDTO} from "./client-basic-appointment-dto";
+import {ClientRemainingStockPayDTO} from "./client-remaining-stock-pay-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +13,50 @@ import {SimpleClientInfoDTO} from "./simple-client-info-dto";
 export class ClientService {
 
   constructor(private httpClient: HttpClient) {
+  }
+
+  public getClientRemainingStockAndPay(idClient: number): Promise<ClientRemainingStockPayDTO> {
+    return new Promise<ClientRemainingStockPayDTO>((resolve, reject) => {
+      this.httpClient.get<ClientRemainingStockPayDTO>(GlobalVariables.CLIENTS_URL +
+        "/" + idClient + GlobalVariables.CLIENT_REMAINING_STOCKS_PAY).subscribe({
+        next: (res) => {
+          resolve(res);
+        }, error: (err: HttpErrorResponse) => {
+          console.error("Fail to get clietn remaing stock and pay, Err = ", err.error);
+          reject(err.error);
+        }
+      })
+    })
+  }
+
+  public getClientBasicAppointments(idClient: number): Promise<ClientBasicAppointmentDTO> {
+    return new Promise<ClientBasicAppointmentDTO>((resolve, reject) => {
+      this.httpClient.get<ClientBasicAppointmentDTO>(GlobalVariables.CLIENTS_URL +
+        "/" + idClient + GlobalVariables.CLIENT_BASIC_APPOINTMENTS).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to get client basic appointments, Err = ", err.error);
+          reject(err.error);
+        }
+      })
+    })
+  }
+
+  public getClientAbsencesDelays(idClient: number): Promise<ClientAbsenceDelayDTO> {
+    return new Promise<ClientAbsenceDelayDTO>((resolve, reject) => {
+      this.httpClient.get<ClientAbsenceDelayDTO>(GlobalVariables.CLIENTS_URL +
+        "/" + idClient + GlobalVariables.CLIENT_ABSENCES_DELAYS).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to get client absences and delays, Err = ", err.error);
+          reject(err.error);
+        }
+      })
+    });
   }
 
   public isNewClient(idClient: number): Promise<boolean> {

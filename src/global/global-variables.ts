@@ -47,6 +47,9 @@ export class GlobalVariables {
   public static readonly CLIENTS_GET_WITH_EMAIL_URL = GlobalVariables.CLIENTS_URL + "/searchWithEmail";
   public static readonly CLIENT_GET_WITH_PHONE_URL = GlobalVariables.CLIENTS_URL + "/searchWithPhone";
   public static readonly CLIENT_IS_NEW = GlobalVariables.CLIENTS_URL + "/isNew";
+  public static readonly CLIENT_ABSENCES_DELAYS = "/absencesDelays";
+  public static readonly CLIENT_BASIC_APPOINTMENTS = "/basicAppointments";
+  public static readonly CLIENT_REMAINING_STOCKS_PAY = "/remainingStocksPay";
 
   public static readonly PERSON_ORIGINS_URL = GlobalVariables.CLIENTS_URL + "/person_origins";
 

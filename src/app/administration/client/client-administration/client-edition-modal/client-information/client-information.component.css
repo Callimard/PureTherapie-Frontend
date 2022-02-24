@@ -1,3 +1,10 @@
+.client-edition-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
 .client-information-title {
   color: #000000;
   text-decoration: underline;
@@ -6,16 +13,31 @@
 
 .client-edition-information-row {
   display: flex;
-  justify-content: space-between;
-  padding: 2% 2% 2% 0;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+}
+
+.client-input-container {
+  flex-grow: 1;
+
+  display: flex;
+  justify-content: flex-start;
+  align-self: center;
+
+  gap: 5px;
 }
 
 .client-edition-information-label {
-  flex-grow: 1;
+  flex-shrink: 1;
   font-weight: bold;
 }
 
 .client-edition-information-input {
   flex-grow: 1;
-  margin-left: 3%;
+}
+
+.margin-separator-right {
+  margin-right: 2%;
 }
