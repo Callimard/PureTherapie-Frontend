@@ -1,14 +1,14 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {ClientDTO} from "../../../../../../../services/person/client/client-dto";
-import {SessionPurchaseDTO} from "../../../../../../../services/product/aesthetic/care/session-purchase-dto";
-import {AestheticCareService} from "../../../../../../../services/product/aesthetic/care/aesthetic-care.service";
+import {ClientDTO} from "../../../../../../../../services/person/client/client-dto";
+import {SessionPurchaseDTO} from "../../../../../../../../services/product/aesthetic/care/session-purchase-dto";
+import {AestheticCareService} from "../../../../../../../../services/product/aesthetic/care/aesthetic-care.service";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {BillDTO} from "../../../../../../../services/product/bill/bill-dto";
-import {BundlePurchaseDTO} from "../../../../../../../services/product/aesthetic/bundle/bundle-purchase-dto";
+import {BillDTO} from "../../../../../../../../services/product/bill/bill-dto";
+import {BundlePurchaseDTO} from "../../../../../../../../services/product/aesthetic/bundle/bundle-purchase-dto";
 import {
-  ClientBundlePurchaseEditionModalComponent
-} from "../client-packages/client-bundle-purchase-edition-modal/client-bundle-purchase-edition-modal.component";
-import {ClientPaymentModalComponent} from "../../../client-payment-modal/client-payment-modal.component";
+  ClientBundlePurchaseComponent
+} from "../client-packages/client-bundle-purchase/client-bundle-purchase.component";
+import {ClientPaymentModalComponent} from "../../../../client-payment-modal/client-payment-modal.component";
 
 @Component({
   selector: 'app-client-aesthetic-cares',
@@ -48,7 +48,7 @@ export class ClientAestheticCaresComponent implements OnInit, OnChanges {
   }
 
   openBundlePurchaseEdition(bundlePurchase: BundlePurchaseDTO) {
-    let bundlePurchaseEditionRef: BsModalRef = this.modalService.show(ClientBundlePurchaseEditionModalComponent, {
+    let bundlePurchaseEditionRef: BsModalRef = this.modalService.show(ClientBundlePurchaseComponent, {
       class: "medium-modal"
     });
     bundlePurchaseEditionRef.content.clientBundlePurchase = bundlePurchase;

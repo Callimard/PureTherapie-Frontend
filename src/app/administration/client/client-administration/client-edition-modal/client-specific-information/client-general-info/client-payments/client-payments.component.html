@@ -1,0 +1,17 @@
+<div class="all-payments-container">
+  <div class="payment-row border-bottom" *ngFor="let payment of clientsPayments">
+    <div class="payment-field">
+      <span><strong>Date:</strong> {{payment.paymentDate}}</span>
+    </div>
+    <div class="payment-field">
+      <span><strong>Montant:</strong> {{payment.amountPaid}} €</span>
+    </div>
+    <div class="payment-field">
+      <span><strong>Moyen de paiement:</strong> {{payment.meansOfPayment.name}}</span>
+    </div>
+    <div class="payment-field">
+      <span><strong>Annulé:</strong> <span
+        [style.color]="payment.canceled ? 'red' : 'black'">{{payment.canceled ? 'oui' : 'non'}}</span></span>
+    </div>
+  </div>
+</div>

@@ -1,19 +1,19 @@
 import {Component, OnInit} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {BundlePurchaseDTO} from "../../../../../../../../services/product/aesthetic/bundle/bundle-purchase-dto";
-import {StockDTO} from "../../../../../../../../services/product/aesthetic/bundle/stock-dto";
-import {BundleService} from "../../../../../../../../services/product/aesthetic/bundle/bundle.service";
-import {SimpleResponseDTO} from "../../../../../../../../services/util/simple-response-dto";
+import {BundlePurchaseDTO} from "../../../../../../../../../services/product/aesthetic/bundle/bundle-purchase-dto";
+import {StockDTO} from "../../../../../../../../../services/product/aesthetic/bundle/stock-dto";
+import {BundleService} from "../../../../../../../../../services/product/aesthetic/bundle/bundle.service";
+import {SimpleResponseDTO} from "../../../../../../../../../services/util/simple-response-dto";
 import {
   SimpleConfirmationModalComponent
-} from "../../../../../../../util/modal/simple-confirmation-modal/simple-confirmation-modal.component";
+} from "../../../../../../../../util/modal/simple-confirmation-modal/simple-confirmation-modal.component";
 
 @Component({
-  selector: 'app-client-bundle-purchase-edition-modal',
-  templateUrl: './client-bundle-purchase-edition-modal.component.html',
-  styleUrls: ['./client-bundle-purchase-edition-modal.component.css']
+  selector: 'app-client-bundle-purchase',
+  templateUrl: './client-bundle-purchase.component.html',
+  styleUrls: ['./client-bundle-purchase.component.css']
 })
-export class ClientBundlePurchaseEditionModalComponent implements OnInit {
+export class ClientBundlePurchaseComponent implements OnInit {
 
   clientBundlePurchase: BundlePurchaseDTO = BundlePurchaseDTO.default();
   bundlePurchaseStocks: StockDTO[] = [];

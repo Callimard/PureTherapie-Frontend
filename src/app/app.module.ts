@@ -43,8 +43,8 @@ import {
   SimpleConfirmationModalComponent
 } from './util/modal/simple-confirmation-modal/simple-confirmation-modal.component';
 import {
-  ClientBundlePurchaseEditionModalComponent
-} from './administration/client/client-administration/client-edition-modal/client-products/client-packages/client-bundle-purchase-edition-modal/client-bundle-purchase-edition-modal.component';
+  ClientBundlePurchaseComponent
+} from './administration/client/client-administration/client-edition-modal/client-specific-information/client-products/client-packages/client-bundle-purchase/client-bundle-purchase.component';
 import {
   ClientPaymentModalComponent
 } from './administration/client/client-administration/client-payment-modal/client-payment-modal.component';
@@ -62,23 +62,20 @@ import {
 import {OpeningTimeComponent} from './administration/opening-time/opening-time.component';
 import {SearchClientComponent} from './client/search-client/search-client.component';
 import {
-  ClientProductsComponent
-} from './administration/client/client-administration/client-edition-modal/client-products/client-products.component';
-import {
   ClientPackagesComponent
-} from './administration/client/client-administration/client-edition-modal/client-products/client-packages/client-packages.component';
+} from './administration/client/client-administration/client-edition-modal/client-specific-information/client-products/client-packages/client-packages.component';
 import {
   ClientAestheticCaresComponent
-} from './administration/client/client-administration/client-edition-modal/client-products/client-aesthetic-cares/client-aesthetic-cares.component';
+} from './administration/client/client-administration/client-edition-modal/client-specific-information/client-products/client-aesthetic-cares/client-aesthetic-cares.component';
 import {
   ClientInformationComponent
 } from './administration/client/client-administration/client-edition-modal/client-information/client-information.component';
 import {
   ClientBundleRowComponent
-} from './administration/client/client-administration/client-edition-modal/client-products/client-packages/client-bundle-row/client-bundle-row.component';
+} from './administration/client/client-administration/client-edition-modal/client-specific-information/client-products/client-packages/client-bundle-row/client-bundle-row.component';
 import {
   ClientAestheticCareRowComponent
-} from './administration/client/client-administration/client-edition-modal/client-products/client-aesthetic-cares/client-aesthetic-care-row/client-aesthetic-care-row.component';
+} from './administration/client/client-administration/client-edition-modal/client-specific-information/client-products/client-aesthetic-cares/client-aesthetic-care-row/client-aesthetic-care-row.component';
 import {
   AgendaPerTechnicianComponent
 } from './administration/agenda/agenda-per-technician/agenda-per-technician.component';
@@ -86,16 +83,41 @@ import {AgendaChooseDateComponent} from './administration/agenda/agenda-choose-d
 import {registerLocaleData} from "@angular/common";
 
 import localeFr from '@angular/common/locales/fr';
-import { NotificationsComponent } from './administration/notifications/notifications.component';
-import { NotificationsSimpleFilterComponent } from './administration/notifications/notifications-simple-filter/notifications-simple-filter.component';
-import { NotificationTabComponent } from './administration/notifications/notification-tab/notification-tab.component';
-import { NotificationTabRowComponent } from './administration/notifications/notification-tab/notification-tab-row/notification-tab-row.component';
-import { NotificationModalComponent } from './administration/notifications/notification-tab/notification-modal/notification-modal.component';
-import { GlobalOpeningTimeModalComponent } from './administration/opening-time/global-opening-time-modal/global-opening-time-modal.component';
-import { ExceptionalOpeningTimeModalComponent } from './administration/opening-time/exceptional-opening-time-modal/exceptional-opening-time-modal.component';
-import { ExceptionalCloseModalComponent } from './administration/opening-time/exceptional-close-modal/exceptional-close-modal.component';
-import { EditGlobalOpeningTimeModalComponent } from './administration/opening-time/edit-global-opening-time-modal/edit-global-opening-time-modal.component';
-import { EditExceptionalOpeningModalComponent } from './administration/opening-time/edit-exceptional-opening-modal/edit-exceptional-opening-modal.component';
+import {NotificationsComponent} from './administration/notifications/notifications.component';
+import {
+  NotificationsSimpleFilterComponent
+} from './administration/notifications/notifications-simple-filter/notifications-simple-filter.component';
+import {NotificationTabComponent} from './administration/notifications/notification-tab/notification-tab.component';
+import {
+  NotificationTabRowComponent
+} from './administration/notifications/notification-tab/notification-tab-row/notification-tab-row.component';
+import {
+  NotificationModalComponent
+} from './administration/notifications/notification-tab/notification-modal/notification-modal.component';
+import {
+  GlobalOpeningTimeModalComponent
+} from './administration/opening-time/global-opening-time-modal/global-opening-time-modal.component';
+import {
+  ExceptionalOpeningTimeModalComponent
+} from './administration/opening-time/exceptional-opening-time-modal/exceptional-opening-time-modal.component';
+import {
+  ExceptionalCloseModalComponent
+} from './administration/opening-time/exceptional-close-modal/exceptional-close-modal.component';
+import {
+  EditGlobalOpeningTimeModalComponent
+} from './administration/opening-time/edit-global-opening-time-modal/edit-global-opening-time-modal.component';
+import {
+  EditExceptionalOpeningModalComponent
+} from './administration/opening-time/edit-exceptional-opening-modal/edit-exceptional-opening-modal.component';
+import {
+  ClientSpecificInformationComponent
+} from './administration/client/client-administration/client-edition-modal/client-specific-information/client-specific-information.component';
+import { ClientProductsComponent } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-products/client-products.component';
+import { ClientGeneralInfoComponent } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-general-info.component';
+import { ClientPaymentsComponent } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-payments/client-payments.component';
+import { ClientAppointmentsComponent } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-appointments/client-appointments.component';
+import { ClientPurchasesComponent } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-purchases/client-purchases.component';
+
 registerLocaleData(localeFr, 'fr');
 
 const appRoutes: Routes = [
@@ -131,7 +153,7 @@ const appRoutes: Routes = [
     CreateAppointmentModalComponent,
     AppointmentSummaryModalComponent,
     SimpleConfirmationModalComponent,
-    ClientBundlePurchaseEditionModalComponent,
+    ClientBundlePurchaseComponent,
     ClientPaymentModalComponent,
     WaitingRoomComponent,
     ClientArrivalModalComponent,
@@ -140,7 +162,6 @@ const appRoutes: Routes = [
     BundlePurchaseModalComponent,
     OpeningTimeComponent,
     SearchClientComponent,
-    ClientProductsComponent,
     ClientPackagesComponent,
     ClientAestheticCaresComponent,
     ClientInformationComponent,
@@ -157,7 +178,13 @@ const appRoutes: Routes = [
     ExceptionalOpeningTimeModalComponent,
     ExceptionalCloseModalComponent,
     EditGlobalOpeningTimeModalComponent,
-    EditExceptionalOpeningModalComponent
+    EditExceptionalOpeningModalComponent,
+    ClientSpecificInformationComponent,
+    ClientProductsComponent,
+    ClientGeneralInfoComponent,
+    ClientPaymentsComponent,
+    ClientAppointmentsComponent,
+    ClientPurchasesComponent
   ],
   imports: [
     TooltipModule.forRoot(),

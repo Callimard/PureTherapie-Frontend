@@ -3,7 +3,7 @@
 
 .client-edition-body {
   display: grid;
-  grid-template: 5% 95% / 30% 70%;
+  grid-template: 5% 95% / 35% 65%;
 }
 
 .client-edition-title {
