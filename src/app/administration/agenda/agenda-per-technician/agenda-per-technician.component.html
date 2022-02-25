@@ -26,7 +26,13 @@
               *ngIf="!getTechnicianTs(technician.idPerson, ts.begin).free && getTechnicianTs(technician.idPerson, ts.begin).appointment != null">{{extractClientIdentification(getTechnicianTs(technician.idPerson, ts.begin))}}</span>
       </div>
       <div class="ts ts-cache"
-           *ngIf="(timeSlotPassed(getTechnicianTs(technician.idPerson, ts.begin)) || getTechnicianTs(technician.idPerson, ts.begin).absence) && getTechnicianTs(technician.idPerson, ts.begin).free"></div>
+           *ngIf="(timeSlotPassed(getTechnicianTs(technician.idPerson, ts.begin))
+           || getTechnicianTs(technician.idPerson, ts.begin).absence
+           || getTechnicianTs(technician.idPerson, ts.begin).launchBreak)
+           && getTechnicianTs(technician.idPerson, ts.begin).free"
+           [class.ts-cache-passed]="timeSlotPassed(getTechnicianTs(technician.idPerson, ts.begin))"
+           [class.ts-cache-absence]="getTechnicianTs(technician.idPerson, ts.begin).absence"
+           [class.ts-cache-launch-break]="getTechnicianTs(technician.idPerson, ts.begin).launchBreak"></div>
     </div>
   </div>
 </div>
