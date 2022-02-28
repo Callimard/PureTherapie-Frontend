@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {BundleDTO} from "../../../../../services/product/aesthetic/bundle/bundle-dto";
-import {BundleService} from "../../../../../services/product/aesthetic/bundle/bundle.service";
+import {BundleDTO} from "../../../../services/product/aesthetic/bundle/dto/bundle-dto";
+import {BundleService} from "../../../../services/product/aesthetic/bundle/bundle.service";
 import {ProductPurchaseModalComponent} from "../product-purchase-modal/product-purchase-modal.component";
-import {ClientDTO} from "../../../../../services/person/client/client-dto";
+import {ClientDTO} from "../../../../services/person/client/client-dto";
 
 @Component({
   selector: 'app-bundle-purchase-modal',

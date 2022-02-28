@@ -2,7 +2,7 @@ import {Component, OnInit, TemplateRef} from '@angular/core';
 import {AestheticCareService} from "../../../services/product/aesthetic/care/aesthetic-care.service";
 import {TechnicianService} from "../../../services/person/technician/technician.service";
 import {AgendaService} from "../../../services/agenda/agenda.service";
-import {AestheticCareDTO} from "../../../services/product/aesthetic/care/aesthetic-care-dto";
+import {AestheticCareDTO} from "../../../services/product/aesthetic/care/dto/aesthetic-care-dto";
 import {TechnicianDTO} from "../../../services/person/technician/technician-dto";
 import {FreeTimeSlotDTO} from "../../../services/agenda/free-time-slot-dto";
 import {DateTool} from "../../../tool/date-tool";

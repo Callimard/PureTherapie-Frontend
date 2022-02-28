@@ -1,0 +1,63 @@
+<div class="modal-content">
+  <div class="modal-header title-bar">
+    <h2 class="modal-title success-title">Créer un package</h2>
+    <button type="button" class="btn-close" (click)="close()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="bundle-edition-content p-2">
+      <div class="bundle-edition-container clean-border-right p-3">
+        <h3 class="bundle-edition-title">Package</h3>
+        <form class="bundle-edition-form" (ngSubmit)="confirmBundleCreation()">
+          <div class="bundle-input">
+            <input type="text" placeholder="Nom du package" class="form-control" [ngModelOptions]="{standalone: true}"
+                   [(ngModel)]="selectedBundleName"/>
+          </div>
+          <div class="bundle-input">
+            <input type="text" placeholder="Prix du package" class="form-control" [ngModelOptions]="{standalone: true}"
+                   [(ngModel)]="selectedBundlePrice"/>
+            <span>€</span>
+          </div>
+          <h4 class="bundle-edition-title">Soins contenus dans le package:</h4>
+          <div class="bundle-acs-content border">
+            <div class="bundle-ac-row border-bottom p-2" *ngFor="let acP of bundleACPs">
+              <div class="d-flex justify-content-start align-items-center">
+                <span class="text-bold">{{acP.ac.name}}</span>
+              </div>
+              <div class="d-flex justify-content-center align-items-center">
+                <input type="number" class="flex-shrink-1 w-100" min="1" [ngModelOptions]="{standalone: true}"
+                       [(ngModel)]="acP.quantity" (change)="quantityChange()"/>
+              </div>
+              <div class="d-flex justify-content-end align-items-center">
+                <button type="button" class="btn btn-cancel" (click)="removeACFromBundle(acP)">Retirer</button>
+              </div>
+            </div>
+          </div>
+          <div class="bundle-validate-btn-content">
+            <button type="submit" class="btn btn-add">Créer le package</button>
+          </div>
+        </form>
+      </div>
+      <div class="all-acs p-3">
+        <h3 class="bundle-edition-title">Tous les Soins</h3>
+        <div class="acs-content border">
+          <div class="ac-row header-shadow p-2">
+            <span class="text-bold" style="text-align: left">Nom</span>
+            <span class="text-bold" style="text-align: center">Prix</span>
+            <span class="text-bold" style="text-align: right">Durée</span>
+          </div>
+          <div class="all-ac-rows">
+            <div class="ac-row basic-row border-bottom p-2" *ngFor="let ac of allAcs" (click)="addACIntoBundle(ac)">
+              <span class="text-bold" style="text-align: left">{{ac.name}}</span>
+              <span style="text-align: center">{{ac.price}} €</span>
+              <span style="text-align: right">{{ac.timeExecution}} minutes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer d-flex justify-content-end">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+  </div>
+</div>
+

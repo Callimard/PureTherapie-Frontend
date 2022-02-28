@@ -1,6 +1,6 @@
 import {AestheticCareDTO} from "./aesthetic-care-dto";
-import {ClientDTO} from "../../../person/client/client-dto";
-import {BillDTO} from "../../bill/bill-dto";
+import {ClientDTO} from "../../../../person/client/client-dto";
+import {BillDTO} from "../../../bill/bill-dto";
 
 export class SessionPurchaseDTO {
 

@@ -1,4 +1,4 @@
-import {AestheticCarePackageDTO} from "../care/aesthetic-care-package-dto";
+import {AestheticCarePackageDTO} from "../../care/dto/aesthetic-care-package-dto";
 
 export class BundleDTO {
   constructor(public idBundle: number,

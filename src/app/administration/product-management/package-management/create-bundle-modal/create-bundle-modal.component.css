@@ -1,0 +1,85 @@
+.bundle-edition-content {
+  flex: 1 0 auto;
+
+  display: grid;
+  grid-template: 100% / 1fr 1fr;
+}
+
+.bundle-edition-container, .all-acs {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.bundle-edition-title {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.bundle-edition-form {
+  flex: 1 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 13px;
+}
+
+.bundle-input {
+  flex: 1 0 auto;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 13px;
+}
+
+.bundle-acs-content {
+  flex: 1 0 200px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  overflow: overlay;
+}
+
+.bundle-ac-row {
+  flex: 0 1 auto;
+
+  display: grid;
+  grid-template: 100% / 45% 10% 45%;
+}
+
+.bundle-validate-btn-content {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.acs-content {
+  flex: 1 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.ac-row {
+  flex: 0 1 auto;
+
+  display: grid;
+  grid-template: 100% / 1fr 1fr 1fr;
+}
+
+.all-ac-rows {
+  flex: 1 0 200px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  overflow: overlay;
+}

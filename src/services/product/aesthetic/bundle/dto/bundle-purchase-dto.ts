@@ -1,6 +1,6 @@
-import {ClientDTO} from "../../../person/client/client-dto";
+import {ClientDTO} from "../../../../person/client/client-dto";
 import {BundleDTO} from "./bundle-dto";
-import {BillDTO} from "../../bill/bill-dto";
+import {BillDTO} from "../../../bill/bill-dto";
 
 export class BundlePurchaseDTO {
 

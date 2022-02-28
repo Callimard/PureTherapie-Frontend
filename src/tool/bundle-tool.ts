@@ -1,4 +1,4 @@
-import {BundleDTO} from "../services/product/aesthetic/bundle/bundle-dto";
+import {BundleDTO} from "../services/product/aesthetic/bundle/dto/bundle-dto";
 
 export class BundleTool {
 

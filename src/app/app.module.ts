@@ -28,10 +28,10 @@ import {
   ClientRegistrationModalComponent
 } from './administration/client/client-administration/client-registration-modal/client-registration-modal.component';
 import {FailModalComponent} from './util/modal/fail-modal/fail-modal.component';
-import {ProductPurchaseComponent} from './administration/product/product-purchase/product-purchase.component';
+import {ProductPurchaseComponent} from './administration/product-purchase/product-purchase.component';
 import {
   ProductPurchaseModalComponent
-} from './administration/product/product-purchase/product-purchase-modal/product-purchase-modal.component';
+} from './administration/product-purchase/product-purchase-modal/product-purchase-modal.component';
 import {AgendaComponent} from './administration/agenda/agenda.component';
 import {
   CreateAppointmentModalComponent
@@ -58,7 +58,7 @@ import {
 } from './administration/agenda/terminate-client-modal/terminate-client-modal.component';
 import {
   BundlePurchaseModalComponent
-} from './administration/product/product-purchase/bundle-purchase-modal/bundle-purchase-modal.component';
+} from './administration/product-purchase/bundle-purchase-modal/bundle-purchase-modal.component';
 import {OpeningTimeComponent} from './administration/opening-time/opening-time.component';
 import {SearchClientComponent} from './client/search-client/search-client.component';
 import {
@@ -117,6 +117,12 @@ import { ClientGeneralInfoComponent } from './administration/client/client-admin
 import { ClientPaymentsComponent } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-payments/client-payments.component';
 import { ClientAppointmentsComponent } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-appointments/client-appointments.component';
 import { ClientPurchasesComponent } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-purchases/client-purchases.component';
+import { ProductManagementComponent } from './administration/product-management/product-management.component';
+import { PackageManagementComponent } from './administration/product-management/package-management/package-management.component';
+import { AestheticCareManagementComponent } from './administration/product-management/aesthetic-care-management/aesthetic-care-management.component';
+import { CreateUpdateAcModalComponent } from './administration/product-management/aesthetic-care-management/create-update-ac-modal/create-update-ac-modal.component';
+import { CreateBundleModalComponent } from './administration/product-management/package-management/create-bundle-modal/create-bundle-modal.component';
+import { UpdateBundleModalComponent } from './administration/product-management/package-management/update-bundle-modal/update-bundle-modal.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -130,7 +136,8 @@ const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_AGENDA_URL, component: AgendaComponent},
   {path: GlobalVariables.INTERN_WAITING_ROOM, component: WaitingRoomComponent},
   {path: GlobalVariables.INTERN_OPENING_TIME, component: OpeningTimeComponent},
-  {path: GlobalVariables.INTER_NOTIFICATIONS, component: NotificationsComponent},
+  {path: GlobalVariables.INTERN_NOTIFICATIONS, component: NotificationsComponent},
+  {path: GlobalVariables.INTERN_ADMINISTRATION_PRODUCTS_URL, component: ProductManagementComponent},
   {path: '', redirectTo: GlobalVariables.INTERN_LOGIN_URL, pathMatch: 'full'}
 ];
 
@@ -184,7 +191,13 @@ const appRoutes: Routes = [
     ClientGeneralInfoComponent,
     ClientPaymentsComponent,
     ClientAppointmentsComponent,
-    ClientPurchasesComponent
+    ClientPurchasesComponent,
+    ProductManagementComponent,
+    PackageManagementComponent,
+    AestheticCareManagementComponent,
+    CreateUpdateAcModalComponent,
+    CreateBundleModalComponent,
+    UpdateBundleModalComponent
   ],
   imports: [
     TooltipModule.forRoot(),

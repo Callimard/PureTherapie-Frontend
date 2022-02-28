@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
-import {AestheticCareDTO} from "./aesthetic-care-dto";
+import {AestheticCareDTO} from "./dto/aesthetic-care-dto";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {GlobalVariables} from "../../../../global/global-variables";
 import {SimpleResponseDTO} from "../../../util/simple-response-dto";
-import {SessionPurchaseDTO} from "./session-purchase-dto";
-import {AestheticCareProvisionDTO} from "./aesthetic-care-provision-dto";
+import {SessionPurchaseDTO} from "./dto/session-purchase-dto";
+import {AestheticCareProvisionDTO} from "./dto/aesthetic-care-provision-dto";
+import {AestheticCareCreationParameter} from "./parameter/aesthetic-care-creation-parameter";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,32 @@ import {AestheticCareProvisionDTO} from "./aesthetic-care-provision-dto";
 export class AestheticCareService {
 
   constructor(private httpClient: HttpClient) {
+  }
+
+  public createAC(acName: string, acPrice: number, acDuration: number): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.post<any>(GlobalVariables.AESTHETIC_CARES_URL,
+        new AestheticCareCreationParameter(acName, acPrice, acDuration)).subscribe({
+        next: (res) => resolve(res),
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to create a new ac, Err = ", err.error);
+          reject(err.error);
+        }
+      });
+    });
+  }
+
+  public updateAC(idAC: number, acName: string, acPrice: number, acDuration: number): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.put<any>(GlobalVariables.AESTHETIC_CARES_URL + '/' + idAC,
+        new AestheticCareCreationParameter(acName, acPrice, acDuration)).subscribe({
+        next: (res) => resolve(res),
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to update a new ac, Err = ", err.error);
+          reject(err.error);
+        }
+      });
+    });
   }
 
   public getAllAestheticCare(): Promise<AestheticCareDTO[]> {

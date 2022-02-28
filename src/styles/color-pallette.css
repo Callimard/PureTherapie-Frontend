@@ -180,3 +180,15 @@
   background: transparent;
 }
 
+.header-shadow {
+  box-shadow: 0 3px 5px 0 #b1b1b1;
+}
+
+.basic-row:hover {
+  background-color: rgba(162, 193, 252, 0.66);
+}
+
+.basic-row:active {
+  background-color: rgba(162, 193, 252, 0.87);
+}
+
