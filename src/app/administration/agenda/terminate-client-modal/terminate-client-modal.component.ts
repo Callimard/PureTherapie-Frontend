@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {ClientDTO} from "../../../../services/person/client/client-dto";
 import {BundlePurchaseDTO} from "../../../../services/product/aesthetic/bundle/bundle-purchase-dto";
-import {SessionPurchaseDTO} from "../../../../services/product/aesthetic/care/session-purchase-dto";
+import {SessionPurchaseDTO} from "../../../../services/product/aesthetic/care/dto/session-purchase-dto";
 import {AestheticCareService} from "../../../../services/product/aesthetic/care/aesthetic-care.service";
 import {BundleService} from "../../../../services/product/aesthetic/bundle/bundle.service";
 import {DateTool} from "../../../../tool/date-tool";
@@ -14,7 +14,7 @@ import {
   ClientPaymentModalComponent,
   PaymentObserver
 } from "../../client/client-administration/client-payment-modal/client-payment-modal.component";
-import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/aesthetic-care-dto";
+import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/dto/aesthetic-care-dto";
 import {
   BundlePurchaseModalComponent
 } from "../../product-purchase/bundle-purchase-modal/bundle-purchase-modal.component";

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {SessionPurchaseDTO} from "../../../../../../../../../services/product/aesthetic/care/session-purchase-dto";
+import {SessionPurchaseDTO} from "../../../../../../../../../services/product/aesthetic/care/dto/session-purchase-dto";
 import {DateTool} from "../../../../../../../../../tool/date-tool";
 import {BillDTO} from "../../../../../../../../../services/product/bill/bill-dto";
 import {BillTool} from "../../../../../../../../../tool/bill-tool";

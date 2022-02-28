@@ -2,7 +2,7 @@ import {Component, OnInit, TemplateRef} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {TechnicianDTO} from "../../../../services/person/technician/technician-dto";
 import {DateTool} from "../../../../tool/date-tool";
-import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/aesthetic-care-dto";
+import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/dto/aesthetic-care-dto";
 import {FreeTimeSlotDTO} from "../../../../services/agenda/free-time-slot-dto";
 import {TechnicianService} from "../../../../services/person/technician/technician.service";
 import {AestheticCareService} from "../../../../services/product/aesthetic/care/aesthetic-care.service";

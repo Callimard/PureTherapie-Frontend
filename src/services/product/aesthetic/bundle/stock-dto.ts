@@ -1,4 +1,4 @@
-import {AestheticCareDTO} from "../care/aesthetic-care-dto";
+import {AestheticCareDTO} from "../care/dto/aesthetic-care-dto";
 import {BundlePurchaseDTO} from "./bundle-purchase-dto";
 
 export class StockDTO {

@@ -1,0 +1,27 @@
+.ac-creation-form {
+  flex: 1 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  gap: 13px;
+}
+
+.input-container {
+  flex: 1 0 auto;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 13px;
+}
+
+
+.btn-container {
+  flex: 1 0 auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

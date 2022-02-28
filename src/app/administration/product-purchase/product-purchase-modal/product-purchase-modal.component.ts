@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {BundleDTO} from "../../../../services/product/aesthetic/bundle/bundle-dto";
 import {ClientService} from "../../../../services/person/client/client.service";
-import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/aesthetic-care-dto";
+import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/dto/aesthetic-care-dto";
 import {AestheticCareService} from "../../../../services/product/aesthetic/care/aesthetic-care.service";
 import {SuccessModalComponent} from "../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../util/modal/fail-modal/fail-modal.component";

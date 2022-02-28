@@ -1,5 +1,5 @@
 import {TechnicianDTO} from "../../person/technician/technician-dto";
-import {AestheticCareDTO} from "../../product/aesthetic/care/aesthetic-care-dto";
+import {AestheticCareDTO} from "../../product/aesthetic/care/dto/aesthetic-care-dto";
 
 export class AppointmentData {
   constructor(public clientId: number, public technician: TechnicianDTO,

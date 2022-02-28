@@ -1,0 +1,30 @@
+<div class="modal-content ">
+  <div class="modal-header title-bar">
+    <h2 class="modal-title success-title">Créer un Soin</h2>
+    <button type="button" class="btn-close" (click)="close()"></button>
+  </div>
+  <div class="modal-body">
+    <form class="ac-creation-form" (ngSubmit)="confirmCreation()">
+      <div class="input-container">
+        <input type="text" placeholder="Nom du soin" class="form-control" [ngModelOptions]="{standalone: true}"
+               [(ngModel)]="this.ac.name"/>
+      </div>
+      <div class="input-container">
+        <input type="number" min="1" placeholder="Durée" class="form-control" [ngModelOptions]="{standalone: true}"
+               [(ngModel)]="this.ac.timeExecution"/>
+        <span>minutes</span>
+      </div>
+      <div class="input-container">
+        <input type="number" min="1.0" placeholder="Prix" class="form-control" [ngModelOptions]="{standalone: true}"
+               [(ngModel)]="this.ac.price"/>
+        <span>€</span>
+      </div>
+      <div class="btn-container">
+        <button type="submit" class="btn btn-add">Créer le soin</button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer d-flex justify-content-end">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+  </div>
+</div>

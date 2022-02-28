@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/aesthetic-care-dto";
+import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/dto/aesthetic-care-dto";
+import {AestheticCareService} from "../../../../services/product/aesthetic/care/aesthetic-care.service";
+import {Rechargeable} from "../../../../tool/rechargeable";
+import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
+import {CreateAestheticCareModalComponent} from "./create-aesthetic-care-modal/create-aesthetic-care-modal.component";
 
 @Component({
   selector: 'app-aesthetic-care-management',
@@ -7,18 +11,35 @@ import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/aest
   styleUrls: ['./aesthetic-care-management.component.css'],
   host: {'class': 'aesthetic-care-management'}
 })
-export class AestheticCareManagementComponent implements OnInit {
+export class AestheticCareManagementComponent implements OnInit, Rechargeable {
 
   acs: AestheticCareDTO[] = [];
 
-  constructor() {
+  constructor(private acService: AestheticCareService, private modalService: BsModalService) {
     // Normal
   }
 
   ngOnInit(): void {
-    for (let i = 0; i < 100; i++) {
-      this.acs.push(AestheticCareDTO.default());
-    }
+    this.chargeAllACs();
   }
 
+  recharge(): void {
+    this.chargeAllACs();
+  }
+
+  private chargeAllACs() {
+    this.acService.getAllAestheticCare().then(res => this.acs = res);
+  }
+
+  createAC() {
+    let modal: BsModalRef = this.modalService.show(CreateAestheticCareModalComponent);
+    modal.content.rechargeable = this;
+  }
+
+  updateAC(ac: AestheticCareDTO) {
+    let modal: BsModalRef = this.modalService.show(CreateAestheticCareModalComponent);
+    modal.content.ac = ac;
+    modal.content.updatedMode = true;
+    modal.content.rechargeable = this;
+  }
 }

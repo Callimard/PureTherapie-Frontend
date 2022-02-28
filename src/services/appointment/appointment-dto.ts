@@ -1,5 +1,5 @@
 import {TimeSlotDTO} from "../agenda/time-slot-dto";
-import {AestheticCareDTO} from "../product/aesthetic/care/aesthetic-care-dto";
+import {AestheticCareDTO} from "../product/aesthetic/care/dto/aesthetic-care-dto";
 import {ClientDTO} from "../person/client/client-dto";
 import {TechnicianDTO} from "../person/technician/technician-dto";
 import {ClientArrivalDTO} from "./client-arrival-dto";
