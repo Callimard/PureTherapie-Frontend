@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="all-packages">
-      <div class="package-row border-bottom basic-row p-2" *ngFor="let bundle of bundles">
+      <div class="package-row border-bottom basic-row p-2" *ngFor="let bundle of bundles" (click)="updateBundle(bundle)">
         <div style="text-align: left">
           <span class="text-bold">{{bundle.name}}</span>
         </div>

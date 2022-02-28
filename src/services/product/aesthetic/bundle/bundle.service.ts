@@ -28,6 +28,19 @@ export class BundleService {
     });
   }
 
+  public updateBundle(bundle: BundleDTO): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.put<any>(GlobalVariables.BUNDLES_URL + "/" + bundle.idBundle, bundle)
+        .subscribe({
+          next: res => resolve(res),
+          error: (err: HttpErrorResponse) => {
+            console.error("Fail to update new bundle, Err = ", err.error);
+            reject(err.error);
+          }
+        });
+    });
+  }
+
   public getAllBundles(): Promise<BundleDTO[]> {
     return new Promise<BundleDTO[]>(((resolve, reject) => {
       this.httpClient.get<BundleDTO[]>(GlobalVariables.BUNDLES_URL).subscribe({

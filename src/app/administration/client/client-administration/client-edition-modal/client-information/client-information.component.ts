@@ -44,7 +44,8 @@ export class ClientInformationComponent implements OnInit, OnChanges {
         this.clientAbsenceDelay = res;
       });
       this.clientService.getClientBasicAppointments(this.client.idPerson).then((res) => {
-        this.clientBasicAppointment = res;
+        if (res != null)
+          this.clientBasicAppointment = res;
       });
       this.clientService.getClientRemainingStockAndPay(this.client.idPerson).then((res) => {
         this.clientRemainingStock = res;

@@ -11,12 +11,12 @@ import {SuccessModalComponent} from "../../../../util/modal/success-modal/succes
 import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
 
 @Component({
-  selector: 'app-create-update-bundle-modal',
-  templateUrl: './create-update-bundle-modal.component.html',
-  styleUrls: ['./create-update-bundle-modal.component.css'],
+  selector: 'app-create-bundle-modal',
+  templateUrl: './create-bundle-modal.component.html',
+  styleUrls: ['./create-bundle-modal.component.css'],
   host: {'class': 'd-flex flex-fill'}
 })
-export class CreateUpdateBundleModalComponent implements OnInit {
+export class CreateBundleModalComponent implements OnInit {
 
   allAcs: AestheticCareDTO[] = [];
 
@@ -91,16 +91,16 @@ export class CreateUpdateBundleModalComponent implements OnInit {
 
   private successCreateBundle() {
     let successModal: BsModalRef = this.modalService.show(SuccessModalComponent);
-    successModal.content.title = "Création de bundle réussie";
-    successModal.content.text = "La création du nouveau bundle a été prise en compte";
+    successModal.content.title = "Création de package réussie";
+    successModal.content.text = "La création du nouveau package a été prise en compte";
     this.rechargeable?.recharge();
     this.bsRef.hide();
   }
 
   private failCreateBundle(err: any) {
     let failModal: BsModalRef = this.modalService.show(FailModalComponent);
-    failModal.content.title = "Création de bundle échouée";
-    failModal.content.text = "La création du nouveau bundle n'a pas été prise en compte. Err = " + err;
+    failModal.content.title = "Création de package échouée";
+    failModal.content.text = "La création du nouveau package n'a pas été prise en compte. Err = " + err;
   }
 }
 
