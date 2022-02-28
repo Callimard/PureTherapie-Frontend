@@ -120,7 +120,7 @@ import { ClientPurchasesComponent } from './administration/client/client-adminis
 import { ProductManagementComponent } from './administration/product-management/product-management.component';
 import { PackageManagementComponent } from './administration/product-management/package-management/package-management.component';
 import { AestheticCareManagementComponent } from './administration/product-management/aesthetic-care-management/aesthetic-care-management.component';
-import { CreateAestheticCareModalComponent } from './administration/product-management/aesthetic-care-management/create-aesthetic-care-modal/create-aesthetic-care-modal.component';
+import { CreateUpdateAcModalComponent } from './administration/product-management/aesthetic-care-management/create-update-ac-modal/create-update-ac-modal.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -193,7 +193,7 @@ const appRoutes: Routes = [
     ProductManagementComponent,
     PackageManagementComponent,
     AestheticCareManagementComponent,
-    CreateAestheticCareModalComponent
+    CreateUpdateAcModalComponent
   ],
   imports: [
     TooltipModule.forRoot(),

@@ -3,7 +3,7 @@ import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/dto/
 import {AestheticCareService} from "../../../../services/product/aesthetic/care/aesthetic-care.service";
 import {Rechargeable} from "../../../../tool/rechargeable";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {CreateAestheticCareModalComponent} from "./create-aesthetic-care-modal/create-aesthetic-care-modal.component";
+import {CreateUpdateAcModalComponent} from "./create-update-ac-modal/create-update-ac-modal.component";
 
 @Component({
   selector: 'app-aesthetic-care-management',
@@ -32,12 +32,12 @@ export class AestheticCareManagementComponent implements OnInit, Rechargeable {
   }
 
   createAC() {
-    let modal: BsModalRef = this.modalService.show(CreateAestheticCareModalComponent);
+    let modal: BsModalRef = this.modalService.show(CreateUpdateAcModalComponent);
     modal.content.rechargeable = this;
   }
 
   updateAC(ac: AestheticCareDTO) {
-    let modal: BsModalRef = this.modalService.show(CreateAestheticCareModalComponent);
+    let modal: BsModalRef = this.modalService.show(CreateUpdateAcModalComponent);
     modal.content.ac = ac;
     modal.content.updatedMode = true;
     modal.content.rechargeable = this;

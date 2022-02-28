@@ -10,11 +10,11 @@ import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.c
 import {AestheticCareDTO} from "../../../../../services/product/aesthetic/care/dto/aesthetic-care-dto";
 
 @Component({
-  selector: 'app-create-aesthetic-care-modal',
-  templateUrl: './create-aesthetic-care-modal.component.html',
-  styleUrls: ['./create-aesthetic-care-modal.component.css']
+  selector: 'app-create-update-ac-modal',
+  templateUrl: './create-update-ac-modal.component.html',
+  styleUrls: ['./create-update-ac-modal.component.css']
 })
-export class CreateAestheticCareModalComponent implements OnInit {
+export class CreateUpdateAcModalComponent implements OnInit {
 
   rechargeable?: Rechargeable;
 
