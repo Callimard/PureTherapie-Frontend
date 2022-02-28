@@ -1,20 +1,20 @@
 import {Component, OnInit} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {BundleDTO} from "../../../../../services/product/aesthetic/bundle/bundle-dto";
-import {ClientService} from "../../../../../services/person/client/client.service";
-import {AestheticCareDTO} from "../../../../../services/product/aesthetic/care/aesthetic-care-dto";
-import {AestheticCareService} from "../../../../../services/product/aesthetic/care/aesthetic-care.service";
-import {SuccessModalComponent} from "../../../../util/modal/success-modal/success-modal.component";
-import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
-import {BundleService} from "../../../../../services/product/aesthetic/bundle/bundle.service";
-import {AuthenticationService} from "../../../../../services/auth/authentication.service";
-import {SimpleClientInfoDTO} from "../../../../../services/person/client/simple-client-info-dto";
-import {ClientDTO} from "../../../../../services/person/client/client-dto";
-import {PersonTool} from "../../../../../tool/person-tool";
-import {PersonDTO} from "../../../../../services/person/person-dto";
+import {BundleDTO} from "../../../../services/product/aesthetic/bundle/bundle-dto";
+import {ClientService} from "../../../../services/person/client/client.service";
+import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/aesthetic-care-dto";
+import {AestheticCareService} from "../../../../services/product/aesthetic/care/aesthetic-care.service";
+import {SuccessModalComponent} from "../../../util/modal/success-modal/success-modal.component";
+import {FailModalComponent} from "../../../util/modal/fail-modal/fail-modal.component";
+import {BundleService} from "../../../../services/product/aesthetic/bundle/bundle.service";
+import {AuthenticationService} from "../../../../services/auth/authentication.service";
+import {SimpleClientInfoDTO} from "../../../../services/person/client/simple-client-info-dto";
+import {ClientDTO} from "../../../../services/person/client/client-dto";
+import {PersonTool} from "../../../../tool/person-tool";
+import {PersonDTO} from "../../../../services/person/person-dto";
 import {
   SimpleConfirmationModalComponent
-} from "../../../../util/modal/simple-confirmation-modal/simple-confirmation-modal.component";
+} from "../../../util/modal/simple-confirmation-modal/simple-confirmation-modal.component";
 
 @Component({
   selector: 'app-product-purchase-modal',

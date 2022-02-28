@@ -17,7 +17,7 @@ import {
 import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/aesthetic-care-dto";
 import {
   BundlePurchaseModalComponent
-} from "../../product/product-purchase/bundle-purchase-modal/bundle-purchase-modal.component";
+} from "../../product-purchase/bundle-purchase-modal/bundle-purchase-modal.component";
 import {
   SimpleConfirmationModalComponent
 } from "../../../util/modal/simple-confirmation-modal/simple-confirmation-modal.component";
