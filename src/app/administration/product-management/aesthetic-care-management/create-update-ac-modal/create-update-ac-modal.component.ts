@@ -33,7 +33,7 @@ export class CreateUpdateAcModalComponent implements OnInit {
   private initACValue() {
     this.ac.name = "";
     this.ac.price = 39.99;
-    this.ac.timeExecution = 30;
+    this.ac.executionTime = 30;
   }
 
   close() {
@@ -53,7 +53,7 @@ export class CreateUpdateAcModalComponent implements OnInit {
   }
 
   private createNewAC() {
-    this.acService.createAC(this.ac.name, this.ac.price, this.ac.timeExecution).then(() => {
+    this.acService.createAC(this.ac.name, this.ac.price, this.ac.executionTime).then(() => {
       this.acCreationSuccess();
     }).catch((err) => this.acCreationFail(err))
   }
@@ -73,7 +73,7 @@ export class CreateUpdateAcModalComponent implements OnInit {
   }
 
   private updateAC() {
-    this.acService.updateAC(this.ac.idAestheticCare, this.ac.name, this.ac.price, this.ac.timeExecution).then(() => {
+    this.acService.updateAC(this.ac.idAestheticCare, this.ac.name, this.ac.price, this.ac.executionTime).then(() => {
       this.acUpdateSuccess();
     }).catch((err) => this.acUpdateFail(err));
   }

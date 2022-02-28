@@ -54,7 +54,7 @@ export class OpeningTimeComponent implements OnInit {
   private chargeGlobalOpenings() {
     this.openingAndCloseService.getAllGlobalOpeningTimes().then((res) => {
       this.globalOpeningsTimes = [...res].sort((got1, got2) => {
-        return got1.day - got2.day;
+        return got1.dayNumber - got2.dayNumber;
       });
     }).catch(() => {
       console.error("Fail to charge global openings");

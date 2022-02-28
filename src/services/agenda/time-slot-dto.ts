@@ -5,7 +5,7 @@ export class TimeSlotDTO {
   constructor(public idTimeSlot: number,
               public day: string,
               public begin: string,
-              public time: number,
+              public duration: number,
               public free: boolean,
               public launchBreak: boolean,
               public absence: boolean,
