@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AppointmentDTO} from "../../../../services/appointment/appointment-dto";
+import {AppointmentDTO} from "../../../../services/appointment/dto/appointment-dto";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {
   SimpleConfirmationModalComponent

@@ -123,6 +123,8 @@ import { AestheticCareManagementComponent } from './administration/product-manag
 import { CreateUpdateAcModalComponent } from './administration/product-management/aesthetic-care-management/create-update-ac-modal/create-update-ac-modal.component';
 import { CreateBundleModalComponent } from './administration/product-management/package-management/create-bundle-modal/create-bundle-modal.component';
 import { UpdateBundleModalComponent } from './administration/product-management/package-management/update-bundle-modal/update-bundle-modal.component';
+import { SurbookingModalComponent } from './administration/agenda/surbooking-modal/surbooking-modal.component';
+import { CreateSurbookingModalComponent } from './administration/agenda/surbooking-modal/create-surbooking-modal/create-surbooking-modal.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -197,7 +199,9 @@ const appRoutes: Routes = [
     AestheticCareManagementComponent,
     CreateUpdateAcModalComponent,
     CreateBundleModalComponent,
-    UpdateBundleModalComponent
+    UpdateBundleModalComponent,
+    SurbookingModalComponent,
+    CreateSurbookingModalComponent
   ],
   imports: [
     TooltipModule.forRoot(),

@@ -1,5 +1,5 @@
 import {TechnicianDTO} from "../person/technician/technician-dto";
-import {AppointmentDTO} from "../appointment/appointment-dto";
+import {AppointmentDTO} from "../appointment/dto/appointment-dto";
 
 export class TimeSlotDTO {
   constructor(public idTimeSlot: number,

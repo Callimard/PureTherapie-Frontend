@@ -9,7 +9,7 @@ import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {PersonTool} from "../../../../tool/person-tool";
 import {PersonDTO} from "../../../../services/person/person-dto";
 import {CreateAppointmentModalComponent} from "../create-appointment-modal/create-appointment-modal.component";
-import {AppointmentDTO} from "../../../../services/appointment/appointment-dto";
+import {AppointmentDTO} from "../../../../services/appointment/dto/appointment-dto";
 import {AppointmentSummaryModalComponent} from "../appointment-summary-modal/appointment-summary-modal.component";
 import {AppointmentService} from "../../../../services/appointment/appointment.service";
 import {Rechargeable} from "../../../../tool/rechargeable";

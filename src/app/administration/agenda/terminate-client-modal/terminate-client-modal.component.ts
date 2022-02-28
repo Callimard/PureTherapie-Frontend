@@ -22,7 +22,7 @@ import {
   SimpleConfirmationModalComponent
 } from "../../../util/modal/simple-confirmation-modal/simple-confirmation-modal.component";
 import {AppointmentService} from "../../../../services/appointment/appointment.service";
-import {AppointmentDTO} from "../../../../services/appointment/appointment-dto";
+import {AppointmentDTO} from "../../../../services/appointment/dto/appointment-dto";
 import {SuccessModalComponent} from "../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../util/modal/fail-modal/fail-modal.component";
 import {SimpleResponseDTO} from "../../../../services/util/simple-response-dto";

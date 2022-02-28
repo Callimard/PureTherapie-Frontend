@@ -1,7 +1,7 @@
 // noinspection DuplicatedCode
 
 import {Component, OnInit} from '@angular/core';
-import {AppointmentDTO} from "../../../../services/appointment/appointment-dto";
+import {AppointmentDTO} from "../../../../services/appointment/dto/appointment-dto";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {ClientService} from "../../../../services/person/client/client.service";
 import {AppointmentService} from "../../../../services/appointment/appointment.service";
