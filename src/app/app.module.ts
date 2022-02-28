@@ -118,6 +118,8 @@ import { ClientPaymentsComponent } from './administration/client/client-administ
 import { ClientAppointmentsComponent } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-appointments/client-appointments.component';
 import { ClientPurchasesComponent } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-purchases/client-purchases.component';
 import { ProductManagementComponent } from './administration/product-management/product-management.component';
+import { PackageManagementComponent } from './administration/product-management/package-management/package-management.component';
+import { AestheticCareManagementComponent } from './administration/product-management/aesthetic-care-management/aesthetic-care-management.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -187,7 +189,9 @@ const appRoutes: Routes = [
     ClientPaymentsComponent,
     ClientAppointmentsComponent,
     ClientPurchasesComponent,
-    ProductManagementComponent
+    ProductManagementComponent,
+    PackageManagementComponent,
+    AestheticCareManagementComponent
   ],
   imports: [
     TooltipModule.forRoot(),
