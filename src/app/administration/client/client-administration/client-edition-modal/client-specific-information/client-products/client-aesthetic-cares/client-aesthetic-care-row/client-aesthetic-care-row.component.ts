@@ -3,7 +3,7 @@ import {SessionPurchaseDTO} from "../../../../../../../../../services/product/ae
 import {DateTool} from "../../../../../../../../../tool/date-tool";
 import {BillDTO} from "../../../../../../../../../services/product/bill/bill-dto";
 import {BillTool} from "../../../../../../../../../tool/bill-tool";
-import {BundlePurchaseDTO} from "../../../../../../../../../services/product/aesthetic/bundle/bundle-purchase-dto";
+import {BundlePurchaseDTO} from "../../../../../../../../../services/product/aesthetic/bundle/dto/bundle-purchase-dto";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {
   ClientBundlePurchaseComponent

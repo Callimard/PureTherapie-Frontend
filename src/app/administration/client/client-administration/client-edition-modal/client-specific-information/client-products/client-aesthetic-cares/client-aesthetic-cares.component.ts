@@ -4,7 +4,7 @@ import {SessionPurchaseDTO} from "../../../../../../../../services/product/aesth
 import {AestheticCareService} from "../../../../../../../../services/product/aesthetic/care/aesthetic-care.service";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {BillDTO} from "../../../../../../../../services/product/bill/bill-dto";
-import {BundlePurchaseDTO} from "../../../../../../../../services/product/aesthetic/bundle/bundle-purchase-dto";
+import {BundlePurchaseDTO} from "../../../../../../../../services/product/aesthetic/bundle/dto/bundle-purchase-dto";
 import {
   ClientBundlePurchaseComponent
 } from "../client-packages/client-bundle-purchase/client-bundle-purchase.component";

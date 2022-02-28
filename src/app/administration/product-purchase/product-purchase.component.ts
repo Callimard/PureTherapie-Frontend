@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {BundleDTO} from "../../../services/product/aesthetic/bundle/bundle-dto";
+import {BundleDTO} from "../../../services/product/aesthetic/bundle/dto/bundle-dto";
 import {AestheticCareDTO} from "../../../services/product/aesthetic/care/dto/aesthetic-care-dto";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {ProductPurchaseModalComponent} from "./product-purchase-modal/product-purchase-modal.component";

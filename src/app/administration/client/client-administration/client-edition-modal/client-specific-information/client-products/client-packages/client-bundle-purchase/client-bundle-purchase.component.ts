@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {BundlePurchaseDTO} from "../../../../../../../../../services/product/aesthetic/bundle/bundle-purchase-dto";
-import {StockDTO} from "../../../../../../../../../services/product/aesthetic/bundle/stock-dto";
+import {BundlePurchaseDTO} from "../../../../../../../../../services/product/aesthetic/bundle/dto/bundle-purchase-dto";
+import {StockDTO} from "../../../../../../../../../services/product/aesthetic/bundle/dto/stock-dto";
 import {BundleService} from "../../../../../../../../../services/product/aesthetic/bundle/bundle.service";
 import {SimpleResponseDTO} from "../../../../../../../../../services/util/simple-response-dto";
 import {

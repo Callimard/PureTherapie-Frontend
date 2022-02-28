@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {ClientDTO} from "../../../../services/person/client/client-dto";
-import {BundlePurchaseDTO} from "../../../../services/product/aesthetic/bundle/bundle-purchase-dto";
+import {BundlePurchaseDTO} from "../../../../services/product/aesthetic/bundle/dto/bundle-purchase-dto";
 import {SessionPurchaseDTO} from "../../../../services/product/aesthetic/care/dto/session-purchase-dto";
 import {AestheticCareService} from "../../../../services/product/aesthetic/care/aesthetic-care.service";
 import {BundleService} from "../../../../services/product/aesthetic/bundle/bundle.service";

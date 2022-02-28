@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {DateTool} from "../../../../../../../../../tool/date-tool";
-import {BundlePurchaseDTO} from "../../../../../../../../../services/product/aesthetic/bundle/bundle-purchase-dto";
+import {BundlePurchaseDTO} from "../../../../../../../../../services/product/aesthetic/bundle/dto/bundle-purchase-dto";
 import {BillDTO} from "../../../../../../../../../services/product/bill/bill-dto";
 import {BillTool} from "../../../../../../../../../tool/bill-tool";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
@@ -11,7 +11,7 @@ import {
   ClientPaymentModalComponent,
   PaymentObserver
 } from "../../../../../client-payment-modal/client-payment-modal.component";
-import {StockDTO} from "../../../../../../../../../services/product/aesthetic/bundle/stock-dto";
+import {StockDTO} from "../../../../../../../../../services/product/aesthetic/bundle/dto/stock-dto";
 import {BundleService} from "../../../../../../../../../services/product/aesthetic/bundle/bundle.service";
 
 @Component({

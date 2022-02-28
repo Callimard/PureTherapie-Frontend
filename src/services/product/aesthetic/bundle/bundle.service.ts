@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {BundleDTO} from "./bundle-dto";
+import {BundleDTO} from "./dto/bundle-dto";
 import {GlobalVariables} from "../../../../global/global-variables";
 import {SimpleResponseDTO} from "../../../util/simple-response-dto";
-import {BundlePurchaseDTO} from "./bundle-purchase-dto";
-import {StockDTO} from "./stock-dto";
+import {BundlePurchaseDTO} from "./dto/bundle-purchase-dto";
+import {StockDTO} from "./dto/stock-dto";
+import {BundleCreationParameter} from "./parameter/bundle-creation-parameter";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,19 @@ import {StockDTO} from "./stock-dto";
 export class BundleService {
 
   constructor(private httpClient: HttpClient) {
+  }
+
+  public createBundle(bundleName: string, bundlePrice: number, bundleStock: number[][]): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.post<any>(GlobalVariables.BUNDLES_URL, new BundleCreationParameter(bundleName, bundlePrice, bundleStock))
+        .subscribe({
+          next: res => resolve(res),
+          error: (err: HttpErrorResponse) => {
+            console.error("Fail to create new bundle, Err = ", err.error);
+            reject(err.error);
+          }
+        });
+    });
   }
 
   public getAllBundles(): Promise<BundleDTO[]> {
