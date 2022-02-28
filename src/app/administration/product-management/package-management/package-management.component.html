@@ -1,0 +1,26 @@
+<div class="package-management-container">
+  <h3 class="package-management-title">Packages</h3>
+  <div class="btn-container">
+    <button class="create-package-btn btn btn-simple">Créer un package</button>
+  </div>
+  <div class="packages-container generic-card">
+    <div class="header-shadow package-row border-bottom p-2">
+      <div style="text-align: left">
+        <span class="text-bold">Nom</span>
+      </div>
+      <div style="text-align: right">
+        <span class="text-bold">Prix</span>
+      </div>
+    </div>
+    <div class="all-packages">
+      <div class="package-row border-bottom basic-row p-2" *ngFor="let bundle of bundles">
+        <div style="text-align: left">
+          <span class="text-bold">{{bundle.name}}</span>
+        </div>
+        <div style="text-align: right">
+          <span>{{bundle.price}} €</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

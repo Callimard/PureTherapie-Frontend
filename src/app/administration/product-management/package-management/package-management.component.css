@@ -1,0 +1,49 @@
+.package-management-container {
+  flex: 1 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.package-management-title {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.btn-container {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: flex-start;
+}
+
+.create-package-btn {
+  flex: 0 1 auto;
+}
+
+.packages-container {
+  flex: 1 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.all-packages {
+  flex: 1 0 150px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  overflow: overlay;
+}
+
+.package-row {
+  flex: 0 1 auto;
+
+  display: grid;
+  grid-template: 100% / 70% 30%;
+}

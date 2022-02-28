@@ -1,0 +1,49 @@
+.ac-management-container {
+  flex: 1 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.ac-management-title {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.btn-container {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: flex-start;
+}
+
+.create-ac-btn {
+  flex: 0 1 auto;
+}
+
+.acs-container {
+  flex: 1 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.all-acs {
+  flex: 1 0 150px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  overflow: overlay;
+}
+
+.ac-row {
+  flex: 0 1 auto;
+
+  display: grid;
+  grid-template: 100% / 1fr 1fr 1fr;
+}
