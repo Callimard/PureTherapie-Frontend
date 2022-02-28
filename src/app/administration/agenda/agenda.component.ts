@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {TechnicianService} from "../../../services/person/technician/technician.service";
 import {AgendaService} from "../../../services/agenda/agenda.service";
 import {DateTool} from "../../../tool/date-tool";
@@ -8,6 +8,8 @@ import {AuthenticationService} from "../../../services/auth/authentication.servi
 import {
   ClientRegistrationModalComponent
 } from "../client/client-administration/client-registration-modal/client-registration-modal.component";
+import {Rechargeable} from "../../../tool/rechargeable";
+import {AgendaPerTechnicianComponent} from "./agenda-per-technician/agenda-per-technician.component";
 
 @Component({
   selector: 'app-agenda',
@@ -15,7 +17,9 @@ import {
   styleUrls: ['./agenda.component.css'],
   host: {'class': 'd-flex flex-column flex-grow-1'}
 })
-export class AgendaComponent implements OnInit {
+export class AgendaComponent implements OnInit, Rechargeable {
+
+  @ViewChild(AgendaPerTechnicianComponent) aPerTech?: AgendaPerTechnicianComponent;
 
   today: string = DateTool.toMySQLDateString(new Date());
 
@@ -32,14 +36,14 @@ export class AgendaComponent implements OnInit {
   }
 
   recharge() {
-    // Normal
+    this.aPerTech?.recharge();
   }
 
   createAppointment() {
     this.createAppointmentModal = this.modalService.show(CreateAppointmentModalComponent, {
       class: 'medium-modal'
     });
-    this.createAppointmentModal.content.agenda = this;
+    this.createAppointmentModal.content.rechargeable = this;
   }
 
   registerClient() {

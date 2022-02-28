@@ -13,6 +13,7 @@ import {TakeAppointmentDTO} from "../../../../services/appointment/take_appointm
 import {AppointmentService} from "../../../../services/appointment/appointment.service";
 import {SuccessModalComponent} from "../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../util/modal/fail-modal/fail-modal.component";
+import {Rechargeable} from "../../../../tool/rechargeable";
 
 export interface AppointmentCreationObserver {
   appointmentCreationSuccess(): void;
@@ -43,7 +44,7 @@ export class CreateAppointmentModalComponent implements OnInit {
 
   recapAppointmentModalRef?: BsModalRef;
 
-  agenda?: { recharge(): () => void };
+  rechargeable?: Rechargeable;
 
   creationAppointmentObserver?: AppointmentCreationObserver;
 
@@ -165,7 +166,7 @@ export class CreateAppointmentModalComponent implements OnInit {
         text: "La création du rendez-vous a réussie!"
       }
     });
-    this.agenda?.recharge();
+    this.rechargeable?.recharge();
     this.creationAppointmentObserver?.appointmentCreationSuccess();
     this.bsModalRef.hide();
   }

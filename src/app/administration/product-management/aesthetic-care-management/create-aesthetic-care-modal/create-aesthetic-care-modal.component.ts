@@ -63,6 +63,7 @@ export class CreateAestheticCareModalComponent implements OnInit {
     successModal.content.title = "Création du soin ésthétique réussie";
     successModal.content.text = "La création du soin ésthétique a été prise en compte";
     this.rechargeable?.recharge();
+    this.bsRef.hide();
   }
 
   private acCreationFail(err: any) {
@@ -82,6 +83,7 @@ export class CreateAestheticCareModalComponent implements OnInit {
     successModal.content.title = "Mise à jour du soin ésthétique réussie";
     successModal.content.text = "La mise à jour du soin ésthétique a été prise en compte";
     this.rechargeable?.recharge();
+    this.bsRef.hide();
   }
 
   private acUpdateFail(err: any) {

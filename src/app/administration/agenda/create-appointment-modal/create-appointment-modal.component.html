@@ -14,7 +14,7 @@
         <div class="ac-info d-flex justify-content-start my-2">
           <label class="bold-label p-2" for="ac">Soin: </label>
           <select name="ac" id="ac" class="ac-selected flex-grow-1 p-2" (change)="onChangeAC()"
-                  [(ngModel)]="selectedAC" [disabled]="blocEdition">
+                  [(ngModel)]="selectedAC">
             <option *ngFor="let ac of allACs" [ngValue]="ac">{{ac.name}}</option>
           </select>
           <span class="little-span my-auto p-2">{{selectedAC.timeExecution}} min</span>
@@ -37,8 +37,7 @@
       </div>
       <div class="time-info d-flex justify-content-start my-2">
         <label class="bold-label p-2" for="day">Horaires: </label>
-        <select name="timeSlot" id="timeSlot" class="time-selected flex-grow-1" [(ngModel)]="selectedFreeTS"
-                [disabled]="blocEdition">
+        <select name="timeSlot" id="timeSlot" class="time-selected flex-grow-1" [(ngModel)]="selectedFreeTS">
           <option *ngFor="let freeTS of allFreeTS" [ngValue]="freeTS">{{freeTS.begin}}</option>
         </select>
       </div>
