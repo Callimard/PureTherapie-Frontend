@@ -86,7 +86,7 @@
 
 .title-bar {
   background-color: #A2C1FC;
-  box-shadow: 0 1px 2px black;
+  box-shadow: 0 3px 8px 0 #abababad;;
 }
 
 .btn-simple {

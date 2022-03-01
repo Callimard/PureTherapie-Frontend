@@ -19,6 +19,7 @@ export class GlobalVariables {
   public static readonly INTERN_ADMINISTRATION_URL = 'administration';
   public static readonly INTERN_ADMINISTRATION_CLIENT_URL = GlobalVariables.INTERN_ADMINISTRATION_URL + '/clients';
   public static readonly INTERN_ADMINISTRATION_PRODUCTS_URL = GlobalVariables.INTERN_ADMINISTRATION_URL + '/products';
+  public static readonly INTERN_ADMINISTRATION_TECHNICIAN_URL = GlobalVariables.INTERN_ADMINISTRATION_URL + '/technicians';
   public static readonly INTERN_NOTIFICATIONS = 'notifications';
   public static readonly INTERN_PRODUCT_PURCHASE_URL = 'product-purchase';
   public static readonly INTERN_AGENDA_URL = 'agenda';
