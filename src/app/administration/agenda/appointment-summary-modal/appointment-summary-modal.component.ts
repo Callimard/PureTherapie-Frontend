@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AppointmentDTO} from "../../../../services/appointment/appointment-dto";
+import {AppointmentDTO} from "../../../../services/appointment/dto/appointment-dto";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {
   SimpleConfirmationModalComponent
@@ -11,13 +11,14 @@ import {AgendaComponent} from "../agenda.component";
 import {ClientArrivalModalComponent} from "../client-arrival-modal/client-arrival-modal.component";
 import {TerminateClientModalComponent} from "../terminate-client-modal/terminate-client-modal.component";
 import {AestheticCareService} from "../../../../services/product/aesthetic/care/aesthetic-care.service";
+import {Rechargeable} from "../../../../tool/rechargeable";
 
 @Component({
   selector: 'app-appointment-summary-modal',
   templateUrl: './appointment-summary-modal.component.html',
   styleUrls: ['./appointment-summary-modal.component.css']
 })
-export class AppointmentSummaryModalComponent implements OnInit {
+export class AppointmentSummaryModalComponent implements OnInit, Rechargeable {
 
   agenda?: AgendaComponent;
 
@@ -27,7 +28,7 @@ export class AppointmentSummaryModalComponent implements OnInit {
   cancelAppointmentConfirmationModal?: BsModalRef;
   clientArrivalModal?: BsModalRef;
 
-  rechargeable?: { recharge(): () => void };
+  rechargeable?: Rechargeable;
 
   constructor(private appointmentService: AppointmentService, private acService: AestheticCareService,
               public bsModalRef: BsModalRef, private modalService: BsModalService) {

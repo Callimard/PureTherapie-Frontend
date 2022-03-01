@@ -54,4 +54,116 @@ export class OpeningAndCloseService {
       })
     });
   }
+
+  public addGlobalOpeningTime(globalOpeningTime: GlobalOpeningTimeDTO): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.post(GlobalVariables.GLOBAL_OPENING_TIMES_URL, globalOpeningTime).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to add global opening time, Err = ", err.error);
+          reject(err.error)
+        }
+      })
+    })
+  }
+
+  public updateGlobalOpeningTime(globalOpeningTime: GlobalOpeningTimeDTO): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.put(GlobalVariables.GLOBAL_OPENING_TIMES_URL, globalOpeningTime).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to update global opening time, Err = ", err.error);
+          reject(err.error)
+        }
+      })
+    })
+  }
+
+  public deleteGlobalOpeningTime(idGlobalOpeningTime: number): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.delete(GlobalVariables.GLOBAL_OPENING_TIMES_URL + "/" + idGlobalOpeningTime).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to delete global opening time, Err = ", err.error);
+          reject(err.error)
+        }
+      })
+    })
+  }
+
+  public addExceptionalOpeningTime(exceptionalOpening: ExceptionalOpeningDTO): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.post(GlobalVariables.EXCEPTIONAL_OPENINGS_URL, exceptionalOpening).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to add exceptional opening time, Err = ", err.error);
+          reject(err.error)
+        }
+      })
+    })
+  }
+
+  public updateExceptionalOpeningTime(exceptionalOpening: ExceptionalOpeningDTO): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.put(GlobalVariables.EXCEPTIONAL_OPENINGS_URL, exceptionalOpening).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to update exceptional opening time, Err = ", err.error);
+          reject(err.error)
+        }
+      })
+    })
+  }
+
+  public deleteExceptionalOpeningTime(idExceptionalOpening: number): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.delete(GlobalVariables.EXCEPTIONAL_OPENINGS_URL + "/" + idExceptionalOpening).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to delete exceptional opening time, Err = ", err.error);
+          reject(err.error)
+        }
+      })
+    })
+  }
+
+  public addExceptionalClose(exceptionalClose: ExceptionalCloseDTO): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.post(GlobalVariables.EXCEPTIONAL_CLOSING_URL, exceptionalClose).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to add exceptional close, Err = ", err.error);
+          reject(err.error)
+        }
+      })
+    })
+  }
+
+  public deleteExceptionalClose(idExceptionalClose: number): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.delete(GlobalVariables.EXCEPTIONAL_CLOSING_URL + "/" + idExceptionalClose).subscribe({
+        next: (res) => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to delete exceptional close, Err = ", err.error);
+          reject(err.error)
+        }
+      })
+    })
+  }
 }

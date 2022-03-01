@@ -1,0 +1,26 @@
+<div class="client-general-info-container">
+  <div class="general-info-choice">
+    <span class="general-info-title left-general-info-choice p-2"
+          [class.general-info-active]="selectedFilter === 0" (click)="choseFilter(0)">
+      Paiements</span>
+    <span class="general-info-title left-general-info-choice right-general-info-choice p-2"
+          [class.general-info-active]="selectedFilter === 1" (click)="choseFilter(1)">
+      RDV</span>
+    <span class="general-info-title right-general-info-choice p-2"
+          [class.general-info-active]="selectedFilter === 2"
+          (click)="choseFilter(2)">
+      Achats</span>
+    <span class="general-info-title right-general-info-choice p-2"
+          [class.general-info-active]="selectedFilter === 3"
+          (click)="choseFilter(3)">
+      Parainage</span>
+  </div>
+  <div class="general-info-container">
+    <app-client-payments [client]="client" *ngIf="selectedFilter === 0"
+                         class="client-all-payments"></app-client-payments>
+    <app-client-appointments [client]="client" *ngIf="selectedFilter === 1"
+                             class="client-all-appointments"></app-client-appointments>
+    <app-client-purchases [client]="client" *ngIf="selectedFilter === 2"
+                          class="client-all-purchases"></app-client-purchases>
+  </div>
+</div>

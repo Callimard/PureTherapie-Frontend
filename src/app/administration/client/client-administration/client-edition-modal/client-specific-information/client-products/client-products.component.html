@@ -1,0 +1,21 @@
+<div class="client-products-container">
+  <div class="product-choice">
+    <span class="product-choice-title left-product-choice p-2"
+          [class.product-choice-active]="selectedFilter === 0" (click)="choseFilter(0)">
+      Packages</span>
+    <span class="product-choice-title left-product-choice right-product-choice p-2"
+          [class.product-choice-active]="selectedFilter === 1" (click)="choseFilter(1)">Soins</span>
+    <span class="product-choice-title right-product-choice p-2" [class.product-choice-active]="selectedFilter === 2"
+          (click)="choseFilter(2)">
+      Produits</span>
+  </div>
+  <div class="product-container">
+    <app-client-packages [client]="client" *ngIf="selectedFilter === 0"
+                         class="all-client-packages"></app-client-packages>
+    <app-client-aesthetic-cares [client]="client" *ngIf="selectedFilter === 1"
+                                class="all-client-acs"></app-client-aesthetic-cares>
+    <div class="all-products" *ngIf="selectedFilter === 2">
+
+    </div>
+  </div>
+</div>

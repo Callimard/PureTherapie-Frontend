@@ -18,7 +18,8 @@ export class GlobalVariables {
   public static readonly INTERN_APPOINTMENTS_URL = 'appointments';
   public static readonly INTERN_ADMINISTRATION_URL = 'administration';
   public static readonly INTERN_ADMINISTRATION_CLIENT_URL = GlobalVariables.INTERN_ADMINISTRATION_URL + '/clients';
-  public static readonly INTER_NOTIFICATIONS = 'notifications';
+  public static readonly INTERN_ADMINISTRATION_PRODUCTS_URL = GlobalVariables.INTERN_ADMINISTRATION_URL + '/products';
+  public static readonly INTERN_NOTIFICATIONS = 'notifications';
   public static readonly INTERN_PRODUCT_PURCHASE_URL = 'product-purchase';
   public static readonly INTERN_AGENDA_URL = 'agenda';
   public static readonly INTERN_WAITING_ROOM = 'waiting_room';
@@ -47,6 +48,9 @@ export class GlobalVariables {
   public static readonly CLIENTS_GET_WITH_EMAIL_URL = GlobalVariables.CLIENTS_URL + "/searchWithEmail";
   public static readonly CLIENT_GET_WITH_PHONE_URL = GlobalVariables.CLIENTS_URL + "/searchWithPhone";
   public static readonly CLIENT_IS_NEW = GlobalVariables.CLIENTS_URL + "/isNew";
+  public static readonly CLIENT_ABSENCES_DELAYS = "/absencesDelays";
+  public static readonly CLIENT_BASIC_APPOINTMENTS = "/basicAppointments";
+  public static readonly CLIENT_REMAINING_STOCKS_PAY = "/remainingStocksPay";
 
   public static readonly PERSON_ORIGINS_URL = GlobalVariables.CLIENTS_URL + "/person_origins";
 
@@ -82,12 +86,19 @@ export class GlobalVariables {
   public static readonly PROVISION_CLIENT_WITHOUT_APPOINTMENT_URL = GlobalVariables.APPOINTMENTS_URL + "/provision_client_without_appointment";
   public static readonly FINALIZE_APPOINTMENT_URL = GlobalVariables.APPOINTMENTS_URL + "/finalize";
   public static readonly IS_FIRST_APPOINTMENT = "/isFirstAppointment";
+  public static readonly APPOINTMENT_CLIENT = "/client";
+  public static readonly APPOINTMENT_CLIENT_URL = GlobalVariables.APPOINTMENTS_URL + GlobalVariables.APPOINTMENT_CLIENT;
+
+  public static readonly SURBOOKINGS_URL = GlobalVariables.API_V1_URL + "/surbookings";
+  public static readonly SURBOOKING_CLIENT_ARRIVE ="/clientArrive";
+  public static readonly SURBOOKING_FINALIZE = "/finalize";
 
   public static readonly BILL_URL = GlobalVariables.API_V1_URL + "/bills";
   public static readonly PAY_BILL_URL = GlobalVariables.BILL_URL + "/pay";
   public static readonly MEANS_OF_PAYMENTS_URL = GlobalVariables.BILL_URL + "/means_of_payments";
   public static readonly PAYMENTS_URL = GlobalVariables.BILL_URL + "/payments";
   public static readonly CLIENT_MAKE_PAYMENT_TODAY = "/makePaymentToday";
+  public static readonly PURCHASES_URL = GlobalVariables.BILL_URL + "/purchases";
 
   public static readonly WAITING_ROOM_URL = GlobalVariables.API_V1_URL + "/waiting_room";
 
@@ -101,5 +112,6 @@ export class GlobalVariables {
   // BACK END CONSTANTS;
 
   public static readonly GROUPON_PAYMENT = "Groupon";
+  public static readonly DISCOVERY_AESTHETIC_CARE = "Soin découverte";
 
 }

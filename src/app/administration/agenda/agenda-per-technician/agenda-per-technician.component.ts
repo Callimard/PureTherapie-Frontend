@@ -9,9 +9,10 @@ import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {PersonTool} from "../../../../tool/person-tool";
 import {PersonDTO} from "../../../../services/person/person-dto";
 import {CreateAppointmentModalComponent} from "../create-appointment-modal/create-appointment-modal.component";
-import {AppointmentDTO} from "../../../../services/appointment/appointment-dto";
+import {AppointmentDTO} from "../../../../services/appointment/dto/appointment-dto";
 import {AppointmentSummaryModalComponent} from "../appointment-summary-modal/appointment-summary-modal.component";
 import {AppointmentService} from "../../../../services/appointment/appointment.service";
+import {Rechargeable} from "../../../../tool/rechargeable";
 
 @Component({
   selector: 'app-agenda-per-technician',
@@ -19,7 +20,7 @@ import {AppointmentService} from "../../../../services/appointment/appointment.s
   styleUrls: ['./agenda-per-technician.component.css'],
   host: {'class': 'agenda-per-technician'}
 })
-export class AgendaPerTechnicianComponent implements OnInit, OnChanges {
+export class AgendaPerTechnicianComponent implements OnInit, OnChanges, Rechargeable {
 
   private tsColumnSize: string = "5%";
   agendaRowColumn: string = "5% 1fr 1fr 1fr 1fr";
@@ -194,7 +195,7 @@ export class AgendaPerTechnicianComponent implements OnInit, OnChanges {
     createAppointmentModal.content.selectedDay = day;
     createAppointmentModal.content.paramTime = time;
     createAppointmentModal.content.blocEdition = true;
-    createAppointmentModal.content.agenda = this;
+    createAppointmentModal.content.rechargeable = this;
   }
 
   private clickOnOccupiedTS(appointment: AppointmentDTO) {

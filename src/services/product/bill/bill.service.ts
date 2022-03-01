@@ -4,6 +4,8 @@ import {MeansOfPaymentDTO} from "./means-of-payment-dto";
 import {GlobalVariables} from "../../../global/global-variables";
 import {SimpleResponseDTO} from "../../util/simple-response-dto";
 import {BillDTO} from "./bill-dto";
+import {PaymentDTO} from "./payment-dto";
+import {PurchaseDTO} from "./purchase-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,33 @@ import {BillDTO} from "./bill-dto";
 export class BillService {
 
   constructor(private httpClient: HttpClient) {
+  }
+
+  public getAllClientPurchases(idClient: number): Promise<PurchaseDTO[]> {
+    return new Promise<PurchaseDTO[]>((resolve, reject) => {
+      this.httpClient.get<PurchaseDTO[]>(GlobalVariables.PURCHASES_URL + "/" + idClient).subscribe({
+        next: (res) => {
+          resolve(res);
+        }, error: (err: HttpErrorResponse) => {
+          console.error("Fail to get all client puchases, Err = ", err.error);
+          reject(err.error);
+        }
+      })
+    })
+  }
+
+  public getAllClientPayments(idClient: number): Promise<PaymentDTO[]> {
+    return new Promise<PaymentDTO[]>((resolve, reject) => {
+      this.httpClient.get<PaymentDTO[]>(GlobalVariables.PAYMENTS_URL + "/" + idClient).subscribe({
+        next: res => {
+          resolve(res);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to get all client payments, Err = ", err.error);
+          reject(err.error);
+        }
+      })
+    })
   }
 
   public getBill(idBill: number): Promise<BillDTO> {

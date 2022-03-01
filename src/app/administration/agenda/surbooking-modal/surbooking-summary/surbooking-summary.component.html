@@ -1,0 +1,58 @@
+<div class="modal-content">
+  <div class="modal-header title-bar">
+    <h2 class="modal-title">Récapitulatif surbooking</h2>
+    <button type="button" class="btn-close" (click)="close()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="surbooking-summary-container">
+      <div class="d-flex flex-column flex-fill">
+        <div class="surbooking-summary-row-info">
+          <span class="text-bold p-2">Client: </span>
+          <span
+            class="p-2">{{personSimpleIdentifier(surbooking.client)}}</span>
+        </div>
+      </div>
+      <div class="surbooking-summary-row-info">
+        <span class="text-bold p-2">Soin: </span>
+        <span class="p-2">{{surbooking.aestheticCare.name}}</span>
+        <span class="text-bold p-2">temps:</span>
+        <span class="p-2">{{surbooking.aestheticCare.executionTime}} min</span>
+      </div>
+      <div class="surbooking-summary-row-info">
+        <span class="text-bold p-2">Arrivée client: </span>
+        <span
+          class="p-2">{{surbooking.clientArrival == null ? 'Client pas encore arrivé' : 'Arrivée à ' + surbooking.clientArrival.arrivalDate}}</span>
+      </div>
+      <div class="surbooking-summary-row-info">
+        <span class="text-bold p-2">Jour: </span>
+        <span class="p-2">{{surbooking.day}}</span>
+      </div>
+      <div class="surbooking-summary-row-info">
+        <span class="text-bold p-2">Heure de début: </span>
+        <span class="p-2">{{surbooking.time}}</span>
+      </div>
+      <div class="surbooking-summary-all-btn p-2" *ngIf="surbooking.clientArrival == null">
+        <button type="button" class="btn btn-validation text-bold" (click)="clientArrive()"
+                [disabled]="surbooking.clientArrival != null">Client arrivé
+        </button>
+        <button type="button" class="btn btn-danger text-bold" (click)="confirmCancelSurbooking()"
+                [disabled]="surbooking.clientArrival != null">Annuler le
+          surbooking
+        </button>
+      </div>
+      <div class="client-termination p-2" *ngIf="surbooking.clientArrival != null">
+        <button class="btn btn-validation text-bold" (click)="terminateClient()" [disabled]="surbooking.finalized">
+          Finaliser avec le client
+        </button>
+      </div>
+      <div class="commercial-row" *ngIf="acStock <= 2 && !surbooking.finalized">
+        <h5 class="text-bold p-2" style="text-decoration: underline">Commerce:</h5>
+        <span
+          class="text-fail p-2">Le client n'a bientôt plus de stock pour ce soin: <strong>Essayer de lui vendre un package</strong></span>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer d-flex justify-content-end">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+  </div>
+</div>

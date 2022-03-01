@@ -1,0 +1,6 @@
+.client-all-bundle-purchases {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: auto;
+}

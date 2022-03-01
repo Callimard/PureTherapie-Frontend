@@ -1,28 +1,28 @@
 import {Component, OnInit} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {ClientDTO} from "../../../../services/person/client/client-dto";
-import {BundlePurchaseDTO} from "../../../../services/product/aesthetic/bundle/bundle-purchase-dto";
-import {SessionPurchaseDTO} from "../../../../services/product/aesthetic/care/session-purchase-dto";
+import {BundlePurchaseDTO} from "../../../../services/product/aesthetic/bundle/dto/bundle-purchase-dto";
+import {SessionPurchaseDTO} from "../../../../services/product/aesthetic/care/dto/session-purchase-dto";
 import {AestheticCareService} from "../../../../services/product/aesthetic/care/aesthetic-care.service";
 import {BundleService} from "../../../../services/product/aesthetic/bundle/bundle.service";
 import {DateTool} from "../../../../tool/date-tool";
 import {BillDTO} from "../../../../services/product/bill/bill-dto";
 import {
-  ClientBundlePurchaseEditionModalComponent
-} from "../../client/client-administration/client-edition-modal/client-products/client-packages/client-bundle-purchase-edition-modal/client-bundle-purchase-edition-modal.component";
+  ClientBundlePurchaseComponent
+} from "../../client/client-administration/client-edition-modal/client-specific-information/client-products/client-packages/client-bundle-purchase/client-bundle-purchase.component";
 import {
   ClientPaymentModalComponent,
   PaymentObserver
 } from "../../client/client-administration/client-payment-modal/client-payment-modal.component";
-import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/aesthetic-care-dto";
+import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/dto/aesthetic-care-dto";
 import {
   BundlePurchaseModalComponent
-} from "../../product/product-purchase/bundle-purchase-modal/bundle-purchase-modal.component";
+} from "../../product-purchase/bundle-purchase-modal/bundle-purchase-modal.component";
 import {
   SimpleConfirmationModalComponent
 } from "../../../util/modal/simple-confirmation-modal/simple-confirmation-modal.component";
 import {AppointmentService} from "../../../../services/appointment/appointment.service";
-import {AppointmentDTO} from "../../../../services/appointment/appointment-dto";
+import {AppointmentDTO} from "../../../../services/appointment/dto/appointment-dto";
 import {SuccessModalComponent} from "../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../util/modal/fail-modal/fail-modal.component";
 import {SimpleResponseDTO} from "../../../../services/util/simple-response-dto";
@@ -33,13 +33,14 @@ import {
   CreateAppointmentModalComponent
 } from "../create-appointment-modal/create-appointment-modal.component";
 import {BillService} from "../../../../services/product/bill/bill.service";
+import {Rechargeable} from "../../../../tool/rechargeable";
 
 @Component({
   selector: 'app-terminate-client-modal',
   templateUrl: './terminate-client-modal.component.html',
   styleUrls: ['./terminate-client-modal.component.css']
 })
-export class TerminateClientModalComponent implements OnInit, AppointmentCreationObserver, PaymentObserver {
+export class TerminateClientModalComponent implements OnInit, AppointmentCreationObserver, PaymentObserver, Rechargeable {
 
   client: ClientDTO = ClientDTO.default();
   appointment: AppointmentDTO = AppointmentDTO.default();
@@ -160,7 +161,7 @@ export class TerminateClientModalComponent implements OnInit, AppointmentCreatio
   }
 
   openBundlePurchaseEdition(bundlePurchase: BundlePurchaseDTO) {
-    let bundlePurchaseEditionRef: BsModalRef = this.modalService.show(ClientBundlePurchaseEditionModalComponent, {
+    let bundlePurchaseEditionRef: BsModalRef = this.modalService.show(ClientBundlePurchaseComponent, {
       class: "medium-modal"
     });
     bundlePurchaseEditionRef.content.clientBundlePurchase = bundlePurchase;
@@ -214,13 +215,6 @@ export class TerminateClientModalComponent implements OnInit, AppointmentCreatio
     this.verifyClientHasPaidToday();
   }
 
-  chooseAppointmentLater(): void {
-    let confirmationModal: BsModalRef = this.modalService.show(SimpleConfirmationModalComponent);
-    confirmationModal.content.title = "Ne pas prendre de rdv pour le prochain client";
-    confirmationModal.content.text = "Êtes-vous sûr de ne pas prendre un prochain rendez-vous pour le client?";
-    confirmationModal.content.confirmationFunction = () => this.newAppointmentChosen = true;
-  }
-
   verifyClientHasPaidToday(): void {
     this.billService.clientMakePaymentToday(this.client.idPerson).then((res) => {
       this.clientHasPaidToday = res;
@@ -228,6 +222,13 @@ export class TerminateClientModalComponent implements OnInit, AppointmentCreatio
       console.error("Fail to verify id client has paid today");
       this.clientHasPaidToday = false;
     });
+  }
+
+  chooseAppointmentLater(): void {
+    let confirmationModal: BsModalRef = this.modalService.show(SimpleConfirmationModalComponent);
+    confirmationModal.content.title = "Ne pas prendre de rdv pour le prochain client";
+    confirmationModal.content.text = "Êtes-vous sûr de ne pas prendre un prochain rendez-vous pour le client?";
+    confirmationModal.content.confirmationFunction = () => this.newAppointmentChosen = true;
   }
 
 }

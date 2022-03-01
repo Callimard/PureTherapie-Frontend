@@ -2,7 +2,7 @@ import {Component, OnInit, TemplateRef} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {TechnicianDTO} from "../../../../services/person/technician/technician-dto";
 import {DateTool} from "../../../../tool/date-tool";
-import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/aesthetic-care-dto";
+import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/dto/aesthetic-care-dto";
 import {FreeTimeSlotDTO} from "../../../../services/agenda/free-time-slot-dto";
 import {TechnicianService} from "../../../../services/person/technician/technician.service";
 import {AestheticCareService} from "../../../../services/product/aesthetic/care/aesthetic-care.service";
@@ -13,6 +13,7 @@ import {TakeAppointmentDTO} from "../../../../services/appointment/take_appointm
 import {AppointmentService} from "../../../../services/appointment/appointment.service";
 import {SuccessModalComponent} from "../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../util/modal/fail-modal/fail-modal.component";
+import {Rechargeable} from "../../../../tool/rechargeable";
 
 export interface AppointmentCreationObserver {
   appointmentCreationSuccess(): void;
@@ -43,7 +44,7 @@ export class CreateAppointmentModalComponent implements OnInit {
 
   recapAppointmentModalRef?: BsModalRef;
 
-  agenda?: { recharge(): () => void };
+  rechargeable?: Rechargeable;
 
   creationAppointmentObserver?: AppointmentCreationObserver;
 
@@ -95,7 +96,7 @@ export class CreateAppointmentModalComponent implements OnInit {
   }
 
   private chargeFreeTimeSlots() {
-    this.agendaService.getFreeTimeSlots(this.selectedTechnician.idPerson, this.selectedDay, this.selectedAC.timeExecution).then(res => {
+    this.agendaService.getFreeTimeSlots(this.selectedTechnician.idPerson, this.selectedDay, this.selectedAC.executionTime).then(res => {
       this.allFreeTS = res;
       if (this.paramTime !== undefined) {
         let found = false;
@@ -165,7 +166,7 @@ export class CreateAppointmentModalComponent implements OnInit {
         text: "La création du rendez-vous a réussie!"
       }
     });
-    this.agenda?.recharge();
+    this.rechargeable?.recharge();
     this.creationAppointmentObserver?.appointmentCreationSuccess();
     this.bsModalRef.hide();
   }

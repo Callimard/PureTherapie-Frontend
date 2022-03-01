@@ -72,8 +72,16 @@
   background-color: #2c81e842;
 }
 
-.ts-cache {
+.ts-cache-passed {
   background-color: rgba(0, 0, 0, 0.23);
+}
+
+.ts-cache-absence {
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.ts-cache-launch-break {
+  background-color: rgba(208, 145, 9, 0.87);
 }
 
 .title-bar {
@@ -170,5 +178,17 @@
 
 *::-webkit-scrollbar-track-piece:end {
   background: transparent;
+}
+
+.header-shadow {
+  box-shadow: 0 3px 5px 0 #b1b1b1;
+}
+
+.basic-row:hover {
+  background-color: rgba(162, 193, 252, 0.66);
+}
+
+.basic-row:active {
+  background-color: rgba(162, 193, 252, 0.87);
 }
 

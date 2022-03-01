@@ -4,7 +4,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {GlobalVariables} from "../../global/global-variables";
 import {TakeAppointmentSuccessDTO} from "./take_appointment/take-appointment-success-dto";
 import {SimpleResponseDTO} from "../util/simple-response-dto";
-import {AppointmentDTO} from "./appointment-dto";
+import {AppointmentDTO} from "./dto/appointment-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,20 @@ import {AppointmentDTO} from "./appointment-dto";
 export class AppointmentService {
 
   constructor(private httpClient: HttpClient) {
+    // Normal
+  }
+
+  public getAllClientAppointments(idClient: number): Promise<AppointmentDTO[]> {
+    return new Promise<AppointmentDTO[]>((resolve, reject) => {
+      this.httpClient.get<AppointmentDTO[]>(GlobalVariables.APPOINTMENT_CLIENT_URL + "/" + idClient).subscribe({
+        next: res => {
+          resolve(res);
+        }, error: (err: HttpErrorResponse) => {
+          console.error("Fail to get all client appointment, Err = ", err.error);
+          reject(err.error);
+        }
+      })
+    })
   }
 
   public isFirstAppointment(idAppointment: number): Promise<boolean> {

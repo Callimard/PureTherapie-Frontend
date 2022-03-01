@@ -3,7 +3,8 @@
     <h2 class="modal-title" style="font-weight: bold">Créer un Rendez-vous</h2>
     <button type="button" class="btn-close" (click)="closeCreateAppointmentModal()"></button>
   </div>
-  <div class="create-appointment-body modal-body">
+  <form class="create-appointment-body modal-body"
+        (ngSubmit)="openCreateAppointmentConfirmationModal(CreateAppointmentConfirmationModal)">
     <app-search-client (clientEvent)="updateClientAppointment($event)" *ngIf="displaySearchClient"></app-search-client>
     <div class="flex-grow-1 d-flex flex-column justify-content-start p-3" *ngIf="client != null">
       <div class="d-flex justify-content-center align-items-center mt-2" *ngIf="displaySearchClient">
@@ -13,10 +14,10 @@
         <div class="ac-info d-flex justify-content-start my-2">
           <label class="bold-label p-2" for="ac">Soin: </label>
           <select name="ac" id="ac" class="ac-selected flex-grow-1 p-2" (change)="onChangeAC()"
-                  [(ngModel)]="selectedAC" [disabled]="blocEdition">
+                  [(ngModel)]="selectedAC">
             <option *ngFor="let ac of allACs" [ngValue]="ac">{{ac.name}}</option>
           </select>
-          <span class="little-span my-auto p-2">{{selectedAC.timeExecution}} min</span>
+          <span class="little-span my-auto p-2">{{selectedAC.executionTime}} min</span>
           <span class="little-span my-auto p-2">prix: {{selectedAC.price}} €</span>
         </div>
       </div>
@@ -36,14 +37,12 @@
       </div>
       <div class="time-info d-flex justify-content-start my-2">
         <label class="bold-label p-2" for="day">Horaires: </label>
-        <select name="timeSlot" id="timeSlot" class="time-selected flex-grow-1" [(ngModel)]="selectedFreeTS"
-                [disabled]="blocEdition">
+        <select name="timeSlot" id="timeSlot" class="time-selected flex-grow-1" [(ngModel)]="selectedFreeTS">
           <option *ngFor="let freeTS of allFreeTS" [ngValue]="freeTS">{{freeTS.begin}}</option>
         </select>
       </div>
       <div class="d-flex justify-content-center align-items-center">
-        <button type="button" class="create-appointment-btn btn btn-validation"
-                (click)="openCreateAppointmentConfirmationModal(CreateAppointmentConfirmationModal)">Créer le
+        <button type="submit" class="create-appointment-btn btn btn-validation">Créer le
           rendez-vous
         </button>
       </div>
@@ -67,14 +66,15 @@
             <strong>Technicien(ne): </strong> {{this.selectedTechnician.lastName}} {{this.selectedTechnician.firstName}}
             <br/>
             <strong>Soin pratiqué: </strong> {{this.selectedAC.name}}<br/>
-            <strong>Temps de prise en charge: </strong> {{this.selectedAC.timeExecution}} min<br/>
+            <strong>Temps de prise en charge: </strong> {{this.selectedAC.executionTime}} min<br/>
           </p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn-bold btn btn-validation" (click)="confirmCreateAppointment()">Accepter</button>
+          <button type="button" class="btn-bold btn btn-validation" (click)="confirmCreateAppointment()">Accepter
+          </button>
           <button type="button" class="btn-bold btn btn-cancel" (click)="declineCreateAppointment()">Annuler</button>
         </div>
       </div>
     </ng-template>
-  </div>
+  </form>
 </div>

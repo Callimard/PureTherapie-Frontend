@@ -1,0 +1,25 @@
+<div class="all-appointments-container">
+  <div class="appointment-row border-bottom" *ngFor="let appointment of clientAppointments">
+    <div class="appointment-field">
+      <span><strong>Date:</strong> {{appointment.day}} {{appointment.time}}</span>
+    </div>
+    <div class="payment-field">
+      <span><strong>Client:</strong> {{simpleIdentifier(appointment.client)}}</span>
+    </div>
+    <div class="payment-field">
+      <span><strong>Tech:</strong> {{simpleIdentifier(appointment.technician)}}</span>
+    </div>
+    <div class="payment-field">
+      <span><strong>Soin:</strong> {{appointment.aestheticCare.name}}</span>
+    </div>
+    <div class="payment-field">
+      <span><strong>Annulé: </strong><span
+        [style.color]="appointment.canceled ? 'red' : 'black'">{{appointment.canceled ? 'oui' : 'non'}}</span></span>
+    </div>
+    <div class="payment-field">
+      <span><strong>Finalisé: </strong><span
+        [style.color]="appointment.finalized ? 'black' : 'red'">{{appointment.finalized ? 'oui' : 'non'}}</span></span>
+    </div>
+  </div>
+</div>
+

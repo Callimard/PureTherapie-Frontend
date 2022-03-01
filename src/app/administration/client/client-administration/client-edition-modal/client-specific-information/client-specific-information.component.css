@@ -1,0 +1,6 @@
+.purchase-summary {
+  flex: 1;
+
+  display: grid;
+  grid-template: 50% 50% / 100%;
+}

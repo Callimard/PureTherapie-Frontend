@@ -19,19 +19,19 @@
           <span>{{remainingBalance(bill)}}€</span>
         </div>
       </div>
-      <div class="do-payment-row p-2">
+      <form class="do-payment-row p-2" (ngSubmit)="pay(computedAmountToPaid())">
         <span class="text-bold my-auto" style="line-height: 0">Montant</span>
         <div class="amount-to-paid-item">
           <span class="text-bold my-auto" style="line-height: 0">{{computedAmountToPaid()}} €</span>
         </div>
-        <select class="select-means-of-payment" [(ngModel)]="selectMeansOfPayment">
+        <select class="select-means-of-payment" [(ngModel)]="selectMeansOfPayment" [ngModelOptions]="{standalone: true}">
           <option *ngFor="let meansOfPayment of allMeansOfPayment"
                   [ngValue]="meansOfPayment">{{meansOfPayment.name}}</option>
         </select>
-        <button type="button" class="btn btn-simple text-bold" (click)="pay(computedAmountToPaid())"
+        <button type="submit" class="btn btn-simple text-bold"
                 [disabled]="isTotallyPaid(bill)">Payer
         </button>
-      </div>
+      </form>
       <div class="all-payments-content p-2">
         <div class="all-payments p-2" *ngIf="bill.payments.length > 0">
           <div class="payment-row" *ngFor="let payment of bill.payments">

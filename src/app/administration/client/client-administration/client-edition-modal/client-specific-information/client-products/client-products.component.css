@@ -1,0 +1,57 @@
+.client-products-container {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.product-choice {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.product-choice-title {
+  border-top: 1px solid black;
+
+  background-color: #fdfcfc;
+}
+
+.product-choice-title:hover {
+  cursor: pointer;
+
+  background-color: #FCDDA2;
+}
+
+.product-choice-title:active {
+  background-color: #efd597;
+}
+
+.product-choice-active {
+  background-color: #FCDDA2;
+}
+
+.left-product-choice {
+  border-left: 1px solid black;
+}
+
+.right-product-choice {
+  border-right: 1px solid black;
+}
+
+.product-container {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid black;
+}
+
+.all-client-packages, .all-client-acs {
+  flex-grow: 1;
+
+  height: 150px;
+}
+

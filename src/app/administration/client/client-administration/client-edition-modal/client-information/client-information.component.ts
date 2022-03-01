@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {ClientDTO} from "../../../../../../services/person/client/client-dto";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {
@@ -7,6 +7,9 @@ import {
 import {SuccessModalComponent} from "../../../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../../../util/modal/fail-modal/fail-modal.component";
 import {ClientService} from "../../../../../../services/person/client/client.service";
+import {ClientAbsenceDelayDTO} from "../../../../../../services/person/client/client-absence-delay-dto";
+import {ClientBasicAppointmentDTO} from "../../../../../../services/person/client/client-basic-appointment-dto";
+import {ClientRemainingStockPayDTO} from "../../../../../../services/person/client/client-remaining-stock-pay-dto";
 
 @Component({
   selector: 'app-client-information',
@@ -14,17 +17,40 @@ import {ClientService} from "../../../../../../services/person/client/client.ser
   styleUrls: ['./client-information.component.css'],
   host: {'class': 'client-information'}
 })
-export class ClientInformationComponent implements OnInit {
+export class ClientInformationComponent implements OnInit, OnChanges {
 
   @Input() client: ClientDTO = ClientDTO.default();
 
   @Output() clientUpdateEvent = new EventEmitter<ClientDTO>();
+
+  clientAbsenceDelay: ClientAbsenceDelayDTO = ClientAbsenceDelayDTO.default();
+  clientBasicAppointment: ClientBasicAppointmentDTO = ClientBasicAppointmentDTO.default();
+  clientRemainingStock: ClientRemainingStockPayDTO = ClientRemainingStockPayDTO.default();
 
   constructor(private clientService: ClientService, private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
     // This is normal
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.chargeClientAdditionalInfo();
+  }
+
+  private chargeClientAdditionalInfo() {
+    if (this.client.idPerson > 0) {
+      this.clientService.getClientAbsencesDelays(this.client.idPerson).then((res) => {
+        this.clientAbsenceDelay = res;
+      });
+      this.clientService.getClientBasicAppointments(this.client.idPerson).then((res) => {
+        if (res != null)
+          this.clientBasicAppointment = res;
+      });
+      this.clientService.getClientRemainingStockAndPay(this.client.idPerson).then((res) => {
+        this.clientRemainingStock = res;
+      });
+    }
   }
 
   updateChange(): void {

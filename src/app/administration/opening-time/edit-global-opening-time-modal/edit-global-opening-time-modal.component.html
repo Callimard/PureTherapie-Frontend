@@ -1,0 +1,35 @@
+<div class="modal-content">
+  <div class="modal-header title-bar">
+    <h2 class="modal-title">Ajouter une heure d'ouverture globale</h2>
+    <button type="button" class="btn-close" (click)="close()"></button>
+  </div>
+  <div class="modal-body global-times-content">
+    <form class="global-opening-day-form" (ngSubmit)="onSubmit()">
+      <label for="global-opening-day" class="my-2">Jours: <select id="global-opening-day" name="global-opening-day"
+                                                                  [(ngModel)]="globalOpening.dayNumber" [disabled]="true">
+        <option [value]="1">Lundi</option>
+        <option [value]="2">Mardi</option>
+        <option [value]="3">Mercredi</option>
+        <option [value]="4">Jeudi</option>
+        <option [value]="5">Vendredi</option>
+        <option [value]="6">Samedi</option>
+        <option [value]="7">Dimanche</option>
+      </select>
+      </label>
+      <div class="global-times my-2">
+        <label for="opening-time" style="margin-right: 10px">De: <input type="time" id="opening-time"
+                                                                        name="opening-time"
+                                                                        min="00:00" max="23:00"
+                                                                        [(ngModel)]="this.globalOpening.openingTime"/></label>
+        <label for="closing-time"> à: <input type="time" id="closing-time" name="closing-time"
+                                             min="00:00" max="23:00" [(ngModel)]="this.globalOpening.closeTime"/></label>
+      </div>
+      <button class="btn-submit btn btn-simple my-2" type="submit">
+        Ajouter
+      </button>
+    </form>
+  </div>
+  <div class="modal-footer d-flex justify-content-end">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+  </div>
+</div>
