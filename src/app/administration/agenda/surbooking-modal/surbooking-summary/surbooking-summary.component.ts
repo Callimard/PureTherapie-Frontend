@@ -12,6 +12,7 @@ import {
 import {SuccessModalComponent} from "../../../../util/modal/success-modal/success-modal.component";
 import {SurbookingService} from "../../../../../services/appointment/surbooking.service";
 import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
+import {TerminateSurbookingModalComponent} from "../terminate-surbooking-modal/terminate-surbooking-modal.component";
 
 @Component({
   selector: 'app-surbooking-summary',
@@ -37,6 +38,7 @@ export class SurbookingSummaryComponent implements OnInit, Rechargeable {
 
   recharge() {
     this.chargeACStock();
+    this.rechargeable?.recharge();
   }
 
   private chargeACStock() {
@@ -94,6 +96,13 @@ export class SurbookingSummaryComponent implements OnInit, Rechargeable {
   }
 
   terminateClient() {
-    // TODO
+    this.modalService.show(TerminateSurbookingModalComponent, {
+      class: 'medium-modal',
+      initialState: {
+        surbooking: this.surbooking,
+        parent: this.bsRef,
+        rechargeable: this
+      }
+    })
   }
 }

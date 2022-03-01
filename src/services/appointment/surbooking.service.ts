@@ -62,4 +62,17 @@ export class SurbookingService {
       })
     });
   }
+
+  public finalize(idSurbooking: number): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.post<any>(GlobalVariables.SURBOOKINGS_URL
+        + "/" + idSurbooking + GlobalVariables.SURBOOKING_FINALIZE, null).subscribe({
+        next: (res) => resolve(res),
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to finalize the surbooking, Err = ", err.error);
+          reject(err.error);
+        }
+      })
+    })
+  }
 }

@@ -126,6 +126,7 @@ import { UpdateBundleModalComponent } from './administration/product-management/
 import { SurbookingModalComponent } from './administration/agenda/surbooking-modal/surbooking-modal.component';
 import { CreateSurbookingModalComponent } from './administration/agenda/surbooking-modal/create-surbooking-modal/create-surbooking-modal.component';
 import { SurbookingSummaryComponent } from './administration/agenda/surbooking-modal/surbooking-summary/surbooking-summary.component';
+import { TerminateSurbookingModalComponent } from './administration/agenda/surbooking-modal/terminate-surbooking-modal/terminate-surbooking-modal.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -203,7 +204,8 @@ const appRoutes: Routes = [
     UpdateBundleModalComponent,
     SurbookingModalComponent,
     CreateSurbookingModalComponent,
-    SurbookingSummaryComponent
+    SurbookingSummaryComponent,
+    TerminateSurbookingModalComponent
   ],
   imports: [
     TooltipModule.forRoot(),
