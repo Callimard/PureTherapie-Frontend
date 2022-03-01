@@ -89,6 +89,10 @@ export class GlobalVariables {
   public static readonly APPOINTMENT_CLIENT = "/client";
   public static readonly APPOINTMENT_CLIENT_URL = GlobalVariables.APPOINTMENTS_URL + GlobalVariables.APPOINTMENT_CLIENT;
 
+  public static readonly SURBOOKINGS_URL = GlobalVariables.API_V1_URL + "/surbookings";
+  public static readonly SURBOOKING_CLIENT_ARRIVE ="/clientArrive";
+  public static readonly SURBOOKING_FINALIZE = "/finalize";
+
   public static readonly BILL_URL = GlobalVariables.API_V1_URL + "/bills";
   public static readonly PAY_BILL_URL = GlobalVariables.BILL_URL + "/pay";
   public static readonly MEANS_OF_PAYMENTS_URL = GlobalVariables.BILL_URL + "/means_of_payments";

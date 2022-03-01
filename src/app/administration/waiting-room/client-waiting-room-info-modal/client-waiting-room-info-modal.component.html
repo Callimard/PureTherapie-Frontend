@@ -1,5 +1,5 @@
 <div class="modal-content">
-  <div class="modal-header">
+  <div class="modal-header title-bar">
     <h2 class="modal-title text-bold">Client en salle d'attente</h2>
     <button type="button" class="btn-close" (click)="close()"></button>
   </div>
@@ -34,18 +34,22 @@
         <span>{{extractOnlyTime(wr.arrivalDate)}}</span>
       </div>
       <div class="appointment-summary-item">
-        <span class="item-label text-bold">Soin qui ve lui être effectué: </span>
+        <span class="item-label text-bold">Soin qui va lui être effectué: </span>
         <select [(ngModel)]="selectedAC">
           <option *ngFor="let ac of allACs" [ngValue]="ac">{{ac.name}}</option>
         </select>
       </div>
       <div class="appointment-summary-item">
-        <span class="item-label text-bold">Client: </span>
-        <span>{{formatPersonIdentifier(wr.client)}}</span>
+        <span class="item-label text-bold">Technicien(ne): </span>
+        <select [(ngModel)]="selectedTechnician">
+          <option *ngFor="let technician of technicians"
+                  [ngValue]="technician">{{formatPersonIdentifier(technician)}}</option>
+        </select>
       </div>
     </div>
     <div class="client-wr-buttons p-1">
-      <button class="btn btn-validation text-bold flex-fill p-2 m-2" (click)="sendToPracticing(wr)">Envoyer en soin</button>
+      <button class="btn btn-validation text-bold flex-fill p-2 m-2" (click)="sendToPracticing(wr)">Envoyer en soin
+      </button>
       <button class="btn btn-cancel text-bold flex-fill p-2 m-2" (click)="clientLeaveWR(wr.client.idPerson)">Sortir de
         la salle d'attente
       </button>

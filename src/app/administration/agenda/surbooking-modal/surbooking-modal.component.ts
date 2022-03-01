@@ -4,26 +4,38 @@ import {SurbookingDTO} from "../../../../services/appointment/dto/surbooking-dto
 import {PersonDTO} from "../../../../services/person/person-dto";
 import {PersonTool} from "../../../../tool/person-tool";
 import {CreateSurbookingModalComponent} from "./create-surbooking-modal/create-surbooking-modal.component";
+import {SurbookingService} from "../../../../services/appointment/surbooking.service";
+import {Rechargeable} from "../../../../tool/rechargeable";
+import {SurbookingSummaryComponent} from "./surbooking-summary/surbooking-summary.component";
 
 @Component({
   selector: 'app-surbooking-modal',
   templateUrl: './surbooking-modal.component.html',
   styleUrls: ['./surbooking-modal.component.css']
 })
-export class SurbookingModalComponent implements OnInit {
+export class SurbookingModalComponent implements OnInit, Rechargeable {
 
-  day: string = "1996-01-01";
+  day: string = "";
 
   surbookings: SurbookingDTO[] = [];
 
-  constructor(public bsRef: BsModalRef, private modalService: BsModalService) {
+  constructor(private surbookingService: SurbookingService,
+              public bsRef: BsModalRef, private modalService: BsModalService) {
     // Normal
   }
 
   ngOnInit(): void {
-    for (let i = 0; i < 100; i++) {
-      this.surbookings.push(SurbookingDTO.default());
-    }
+    this.recharge();
+  }
+
+  recharge(): void {
+    this.chargeAllSurbookings();
+  }
+
+  private chargeAllSurbookings() {
+    this.surbookingService.getAllSurbookings(this.day).then((res) => {
+      this.surbookings = res;
+    })
   }
 
   close() {
@@ -39,6 +51,14 @@ export class SurbookingModalComponent implements OnInit {
       class: 'medium-modal'
     });
     createSurbookingModal.content.selectedDay = this.day;
+    createSurbookingModal.content.rechargeable = this;
   }
 
+  surbookingSummary(surbooking: SurbookingDTO) {
+    this.modalService.show(SurbookingSummaryComponent, {
+      initialState: {
+        surbooking: surbooking
+      }
+    });
+  }
 }

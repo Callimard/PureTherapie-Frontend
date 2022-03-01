@@ -11,7 +11,7 @@ export class SurbookingDTO {
               public canceled: boolean,
               public day: string,
               public time: string,
-              protected finalized: boolean) {
+              public finalized: boolean) {
   }
 
   public static default() {

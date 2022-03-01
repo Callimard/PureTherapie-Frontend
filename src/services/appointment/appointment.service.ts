@@ -12,6 +12,7 @@ import {AppointmentDTO} from "./dto/appointment-dto";
 export class AppointmentService {
 
   constructor(private httpClient: HttpClient) {
+    // Normal
   }
 
   public getAllClientAppointments(idClient: number): Promise<AppointmentDTO[]> {

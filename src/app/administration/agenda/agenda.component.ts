@@ -56,10 +56,12 @@ export class AgendaComponent implements OnInit, Rechargeable {
   }
 
   surbooking() {
-    let surbookingModal: BsModalRef = this.modalService.show(SurbookingModalComponent, {
+    this.modalService.show(SurbookingModalComponent, {
+      initialState: {
+        day: this.today
+      },
       class: 'medium-modal'
     });
-    surbookingModal.content.day = this.today;
   }
 
 }

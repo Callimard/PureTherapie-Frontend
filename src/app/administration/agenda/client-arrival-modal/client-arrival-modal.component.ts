@@ -9,6 +9,8 @@ import {SuccessModalComponent} from "../../../util/modal/success-modal/success-m
 import {FailModalComponent} from "../../../util/modal/fail-modal/fail-modal.component";
 import {AgendaComponent} from "../agenda.component";
 import {SimpleResponseDTO} from "../../../../services/util/simple-response-dto";
+import {SurbookingService} from "../../../../services/appointment/surbooking.service";
+import {SurbookingDTO} from "../../../../services/appointment/dto/surbooking-dto";
 
 @Component({
   selector: 'app-client-arrival-modal',
@@ -18,11 +20,15 @@ import {SimpleResponseDTO} from "../../../../services/util/simple-response-dto";
 export class ClientArrivalModalComponent implements OnInit {
   clientAppointment: AppointmentDTO = AppointmentDTO.default();
 
+  modeSurbooking: boolean = false;
+  surbooking?: SurbookingDTO;
+
   parent?: BsModalRef;
 
   agenda?: AgendaComponent;
 
   constructor(private clientService: ClientService, private appointmentService: AppointmentService,
+              private surbookingService: SurbookingService,
               public bsModalRef: BsModalRef, private modalService: BsModalService) {
   }
 
@@ -35,11 +41,21 @@ export class ClientArrivalModalComponent implements OnInit {
   }
 
   placeClientInWaitingRoom(idClient: number, idAppointment: number) {
-    this.appointmentService.clientArrival(idClient, idAppointment).then(() => {
-      this.successPlaceInWaitingRoom();
-    }).catch((err) => {
-      this.failPlaceInWaitingRoom(err);
-    })
+    if (!this.modeSurbooking) {
+      this.appointmentService.clientArrival(idClient, idAppointment).then(() => {
+        this.successPlaceInWaitingRoom();
+      }).catch((err) => {
+        this.failPlaceInWaitingRoom(err);
+      });
+    } else {
+      if (this.surbooking != null) {
+        this.surbookingService.clientArrive(this.surbooking.idSurbooking).then(() => {
+          this.successPlaceInWaitingRoom();
+        }).catch((err) => {
+          this.failPlaceInWaitingRoom(err);
+        });
+      }
+    }
   }
 
   private successPlaceInWaitingRoom() {
