@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {PersonTool} from "../../../../tool/person-tool";
 import {ClientDTO} from "../../../../services/person/client/client-dto";
-import {TechnicianDTO} from "../../../../services/person/technician/technician-dto";
+import {TechnicianDTO} from "../../../../services/person/technician/dto/technician-dto";
 import {TechnicianService} from "../../../../services/person/technician/technician.service";
 import {AestheticCareService} from "../../../../services/product/aesthetic/care/aesthetic-care.service";
 import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/dto/aesthetic-care-dto";

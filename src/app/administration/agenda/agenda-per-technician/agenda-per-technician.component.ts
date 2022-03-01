@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {TechnicianDTO} from "../../../../services/person/technician/technician-dto";
+import {TechnicianDTO} from "../../../../services/person/technician/dto/technician-dto";
 import {TimeSlotDTO} from "../../../../services/agenda/time-slot-dto";
 import {DateTool} from "../../../../tool/date-tool";
 import {TechnicianService} from "../../../../services/person/technician/technician.service";

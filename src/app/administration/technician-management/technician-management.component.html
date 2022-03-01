@@ -2,4 +2,38 @@
   <div class="tech-management-header title-bar">
     <h1 class="px-3 my-2">Gestion des techniciennes</h1>
   </div>
+  <div class="tech-management-content p-3">
+    <div class="all-techs clean-border-right p-3">
+      <div class="tech-content p-2">
+        <h3 class="tech-title">Techniciens</h3>
+        <div class="all-active-techs border">
+          <div class="tech-row border-bottom p-2" *ngFor="let tech of activeTechnicians">
+            <div class="tech-name">
+              <span style="text-align: left">{{simplePersonIdentifier(tech)}}</span>
+            </div>
+            <div class="tech-btn-deactivate">
+              <button type="button" class="btn btn-cancel" (click)="deactivateTech(tech)">Désactivé</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tech-content p-2">
+        <h3 class="tech-title">Techniciens inactifs</h3>
+        <div class="all-inactive-techs border">
+          <div class="tech-row border-bottom p-2" *ngFor="let tech of inactiveTechnicians">
+            <div class="tech-name">
+              <span style="text-align: left">{{simplePersonIdentifier(tech)}}</span>
+            </div>
+            <div class="tech-btn-deactivate">
+              <button type="button" class="btn btn-add" (click)="activateTech(tech)">Activé</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tech-absence p-3">
+      <h3 class="tech-absence-title">Absences</h3>
+      <div class="tech-all-absences border"></div>
+    </div>
+  </div>
 </div>

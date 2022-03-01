@@ -3,7 +3,7 @@ import {AestheticCareService} from "../../../services/product/aesthetic/care/aes
 import {TechnicianService} from "../../../services/person/technician/technician.service";
 import {AgendaService} from "../../../services/agenda/agenda.service";
 import {AestheticCareDTO} from "../../../services/product/aesthetic/care/dto/aesthetic-care-dto";
-import {TechnicianDTO} from "../../../services/person/technician/technician-dto";
+import {TechnicianDTO} from "../../../services/person/technician/dto/technician-dto";
 import {FreeTimeSlotDTO} from "../../../services/agenda/free-time-slot-dto";
 import {DateTool} from "../../../tool/date-tool";
 import {AppointmentService} from "../../../services/appointment/appointment.service";

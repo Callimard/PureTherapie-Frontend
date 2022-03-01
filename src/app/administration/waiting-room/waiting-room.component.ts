@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TechnicianDTO} from "../../../services/person/technician/technician-dto";
+import {TechnicianDTO} from "../../../services/person/technician/dto/technician-dto";
 import {TechnicianService} from "../../../services/person/technician/technician.service";
 import {WaitingRoomService} from "../../../services/waitingroom/waiting-room.service";
 import {WaitingRoomDTO} from "../../../services/waitingroom/waiting-room-dto";

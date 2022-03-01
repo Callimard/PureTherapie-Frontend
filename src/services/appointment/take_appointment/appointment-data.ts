@@ -1,4 +1,4 @@
-import {TechnicianDTO} from "../../person/technician/technician-dto";
+import {TechnicianDTO} from "../../person/technician/dto/technician-dto";
 import {AestheticCareDTO} from "../../product/aesthetic/care/dto/aesthetic-care-dto";
 
 export class AppointmentData {
