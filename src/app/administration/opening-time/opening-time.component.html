@@ -7,7 +7,7 @@
       <h3 class="opening-column-title">Ouvertures globales:</h3>
       <div class="opening-content generic-card">
         <div class="grid-row border-bottom-separator" *ngFor="let globalOpening of globalOpeningsTimes">
-          <span class="day-title">{{getDay(globalOpening.day)}}</span>
+          <span class="day-title">{{getDay(globalOpening.dayNumber)}}</span>
           <span class="times">De {{globalOpening.openingTime}} à {{globalOpening.closeTime}}</span>
           <div class="btn-container">
             <button class="btn-edition btn btn-simple my-1" (click)="updateGlobalOpeningTime(globalOpening)">

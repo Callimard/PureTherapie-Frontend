@@ -96,7 +96,7 @@ export class CreateAppointmentModalComponent implements OnInit {
   }
 
   private chargeFreeTimeSlots() {
-    this.agendaService.getFreeTimeSlots(this.selectedTechnician.idPerson, this.selectedDay, this.selectedAC.timeExecution).then(res => {
+    this.agendaService.getFreeTimeSlots(this.selectedTechnician.idPerson, this.selectedDay, this.selectedAC.executionTime).then(res => {
       this.allFreeTS = res;
       if (this.paramTime !== undefined) {
         let found = false;

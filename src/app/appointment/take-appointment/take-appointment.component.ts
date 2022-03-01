@@ -84,7 +84,7 @@ export class TakeAppointmentComponent implements OnInit {
   }
 
   private chargeFreeTimeSlots() {
-    this.agendaService.getFreeTimeSlots(this.selectedTechnician.idPerson, this.selectedDay, this.selectedAC.timeExecution).then(res => {
+    this.agendaService.getFreeTimeSlots(this.selectedTechnician.idPerson, this.selectedDay, this.selectedAC.executionTime).then(res => {
       this.allFreeTS = res;
       this.selectedFreeTS = this.allFreeTS[0];
     });

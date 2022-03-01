@@ -29,7 +29,7 @@
               [(ngModel)]="selectedAC">
         <option *ngFor="let ac of allACs" [ngValue]="ac">{{ac.name}}</option>
       </select>
-      <span class="col-sm-3 m-sm-auto"><strong>{{selectedAC.timeExecution}} minutes</strong></span>
+      <span class="col-sm-3 m-sm-auto"><strong>{{selectedAC.executionTime}} minutes</strong></span>
     </div>
     <div class="appointment-info-row">
       <label for="technicians" class="">
@@ -72,7 +72,7 @@
             <strong>Technicien(ne): </strong> {{this.selectedTechnician.lastName}} {{this.selectedTechnician.firstName}}
             <br/>
             <strong>Soin pratiqué: </strong> {{this.selectedAC.name}}<br/>
-            <strong>Temps de prise en charge: </strong> {{this.selectedAC.timeExecution}} min<br/>
+            <strong>Temps de prise en charge: </strong> {{this.selectedAC.executionTime}} min<br/>
           </p>
         </div>
         <div class="modal-footer">
@@ -93,7 +93,7 @@
       <strong>Technicien(ne): </strong> {{this.selectedTechnician.lastName}} {{this.selectedTechnician.firstName}}
       <br/>
       <strong>Soin pratiqué: </strong> {{this.selectedAC.name}}<br/>
-      <strong>Temps de prise en charge: </strong> {{this.selectedAC.timeExecution}} min<br/>
+      <strong>Temps de prise en charge: </strong> {{this.selectedAC.executionTime}} min<br/>
     </p>
     <a href="https://puretherapie.com/" class="btn btn-primary success-appointment-text text-bold">Retour à l'acceuil
       PureTherapie</a>

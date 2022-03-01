@@ -1,4 +1,4 @@
-import {ClientDTO} from "../person/client/client-dto";
+import {ClientDTO} from "../../person/client/client-dto";
 
 export class ClientArrivalDTO {
   constructor(public idClientArrival: number,

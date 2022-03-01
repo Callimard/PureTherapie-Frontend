@@ -1,0 +1,52 @@
+.surbooking-container {
+  flex: 1 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 13px;
+}
+
+.surbooking-control {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.surbooking-date {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 13px;
+}
+
+.btn-add-surbooking {
+  flex: 0 1 auto;
+}
+
+.all-surbookings {
+  flex: 1 0 300px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  overflow: overlay;
+}
+
+.surbooking-row {
+  flex: 0 1 auto;
+
+  display: grid;
+  grid-template: 100% / 1fr 1fr 1fr;
+}
+
+.surbooking-row-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

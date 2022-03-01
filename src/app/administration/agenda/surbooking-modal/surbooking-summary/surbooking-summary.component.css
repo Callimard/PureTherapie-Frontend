@@ -1,0 +1,31 @@
+.surbooking-summary-container {
+  flex: 1 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.surbooking-summary-row-info {
+  display: flex;
+  justify-content: flex-start;
+  flex-grow: 1;
+}
+
+.commercial-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.surbooking-summary-all-btn {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.client-termination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

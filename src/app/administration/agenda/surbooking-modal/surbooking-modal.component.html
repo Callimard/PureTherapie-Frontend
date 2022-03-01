@@ -1,0 +1,34 @@
+<div class="modal-content">
+  <div class="modal-header title-bar">
+    <h2 class="modal-title">SurBooking</h2>
+    <button type="button" class="btn-close" (click)="close()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="surbooking-container">
+      <div class="surbooking-control">
+        <div class="surbooking-date">
+          <label class="text-bold">Jour:</label>
+          <input type="date" [(ngModel)]="day" [disabled]="true"/>
+        </div>
+        <button class="btn-add-surbooking btn btn-add" (click)="createSurbooking()">Ajouter</button>
+      </div>
+      <div class="all-surbookings border">
+        <div class="surbooking-row basic-row border-bottom p-2" *ngFor="let surbooking of surbookings"
+        (click)="surbookingSummary(surbooking)">
+          <div class="surbooking-row-item">
+            <span>{{simplePersonIdentifier(surbooking.client)}}</span>
+          </div>
+          <div class="surbooking-row-item">
+            <span>{{surbooking.aestheticCare.name}}</span>
+          </div>
+          <div class="surbooking-row-item">
+            <span>{{surbooking.time}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer d-flex justify-content-end">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+  </div>
+</div>

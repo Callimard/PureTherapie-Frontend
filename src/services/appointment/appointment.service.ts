@@ -4,7 +4,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {GlobalVariables} from "../../global/global-variables";
 import {TakeAppointmentSuccessDTO} from "./take_appointment/take-appointment-success-dto";
 import {SimpleResponseDTO} from "../util/simple-response-dto";
-import {AppointmentDTO} from "./appointment-dto";
+import {AppointmentDTO} from "./dto/appointment-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ import {AppointmentDTO} from "./appointment-dto";
 export class AppointmentService {
 
   constructor(private httpClient: HttpClient) {
+    // Normal
   }
 
   public getAllClientAppointments(idClient: number): Promise<AppointmentDTO[]> {

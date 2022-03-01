@@ -1,0 +1,73 @@
+.terminate-client-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.client-commercial-content, .next-client-appointment-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.next-client-appointment-content {
+  align-items: center;
+}
+
+.commercial-operation {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.to-paid-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.purchase-summary {
+  flex-grow: 1;
+  display: grid;
+  grid-template: 50% 50% / 100%;
+}
+
+.product-summary-title {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.bundle-purchase-summary {
+  grid-area: 1 span 1 / 1 span 1;
+  border-bottom: 1px solid rgba(175, 173, 173, 0.42);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.client-all-bundle-purchases {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 150px;
+  overflow: auto;
+  border: 1px solid #000000;
+}
+
+.ac-purchase-summary {
+  grid-area: 2 span 1 / 1 span 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.client-all-ac-purchases {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 150px;
+  overflow: auto;
+  border: 1px solid #000000;
+}

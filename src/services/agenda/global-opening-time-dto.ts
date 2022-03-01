@@ -1,7 +1,7 @@
 export class GlobalOpeningTimeDTO {
 
   constructor(public idGlobalOpeningTime: number,
-              public day: number,
+              public dayNumber: number,
               public openingTime: string,
               public closeTime: string) {
   }

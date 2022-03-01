@@ -1,0 +1,44 @@
+<div class="modal-content">
+  <div class="modal-header title-bar">
+    <h2 class="modal-title">Ajouter un surbooking</h2>
+    <button type="button" class="btn-close" (click)="close()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="create-surbooking-container">
+      <app-search-client (clientEvent)="updateClient($event)"></app-search-client>
+      <div class="flex-grow-1 d-flex flex-column justify-content-start p-3" *ngIf="client != null">
+        <div class="d-flex justify-content-center align-items-center mt-2">
+          <hr class="separator">
+        </div>
+        <div>
+          <div class="ac-info d-flex justify-content-start my-2">
+            <label class="bold-label p-2" for="ac">Soin: </label>
+            <select name="ac" id="ac" class="ac-selected flex-grow-1 p-2"
+                    [(ngModel)]="selectedAC">
+              <option *ngFor="let ac of allACs" [ngValue]="ac">{{ac.name}}</option>
+            </select>
+            <span class="little-span my-auto p-2">{{selectedAC.executionTime}} min</span>
+            <span class="little-span my-auto p-2">prix: {{selectedAC.price}} €</span>
+          </div>
+        </div>
+        <div class="day-info d-flex justify-content-start my-2">
+          <label class="bold-label p-2" for="day">Jour: </label>
+          <input type="date" name="day" id="day" class="day-selected flex-grow-1"
+                 [(ngModel)]="selectedDay" [disabled]="true"/>
+        </div>
+        <div class="time-info d-flex justify-content-start my-2">
+          <label class="bold-label p-2" for="time">Horaires: </label>
+          <input type="time" id="time" name="time" [(ngModel)]="selectedTime"/>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+          <button type="submit" class="create-appointment-btn btn btn-validation" (click)="confirmCreateSurbooking()">Créer le
+            surbooking
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer d-flex justify-content-end">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+  </div>
+</div>

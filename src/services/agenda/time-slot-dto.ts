@@ -1,11 +1,11 @@
 import {TechnicianDTO} from "../person/technician/technician-dto";
-import {AppointmentDTO} from "../appointment/appointment-dto";
+import {AppointmentDTO} from "../appointment/dto/appointment-dto";
 
 export class TimeSlotDTO {
   constructor(public idTimeSlot: number,
               public day: string,
               public begin: string,
-              public time: number,
+              public duration: number,
               public free: boolean,
               public launchBreak: boolean,
               public absence: boolean,

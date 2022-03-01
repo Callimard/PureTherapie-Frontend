@@ -1,4 +1,4 @@
-import {AppointmentDTO} from "../../appointment/appointment-dto";
+import {AppointmentDTO} from "../../appointment/dto/appointment-dto";
 
 export class ClientBasicAppointmentDTO {
 

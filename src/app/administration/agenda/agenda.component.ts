@@ -10,6 +10,7 @@ import {
 } from "../client/client-administration/client-registration-modal/client-registration-modal.component";
 import {Rechargeable} from "../../../tool/rechargeable";
 import {AgendaPerTechnicianComponent} from "./agenda-per-technician/agenda-per-technician.component";
+import {SurbookingModalComponent} from "./surbooking-modal/surbooking-modal.component";
 
 @Component({
   selector: 'app-agenda',
@@ -52,6 +53,15 @@ export class AgendaComponent implements OnInit, Rechargeable {
 
   dayChange(newDay: string) {
     this.today = newDay;
+  }
+
+  surbooking() {
+    this.modalService.show(SurbookingModalComponent, {
+      initialState: {
+        day: this.today
+      },
+      class: 'medium-modal'
+    });
   }
 
 }

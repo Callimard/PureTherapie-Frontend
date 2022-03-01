@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ClientDTO} from "../../../../../../../../services/person/client/client-dto";
-import {AppointmentDTO} from "../../../../../../../../services/appointment/appointment-dto";
+import {AppointmentDTO} from "../../../../../../../../services/appointment/dto/appointment-dto";
 import {PersonDTO} from "../../../../../../../../services/person/person-dto";
 import {PersonTool} from "../../../../../../../../tool/person-tool";
 import {AppointmentService} from "../../../../../../../../services/appointment/appointment.service";
