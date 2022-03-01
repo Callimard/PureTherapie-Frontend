@@ -38,6 +38,18 @@ export class SurbookingService {
     });
   }
 
+  public cancelSurbooking(idSurbooking: number): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.delete<any>(GlobalVariables.SURBOOKINGS_URL + "/" + idSurbooking).subscribe({
+        next: (res) => resolve(res),
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to cancel surbooking, Err = ", err.error);
+          reject(err.error);
+        }
+      })
+    });
+  }
+
   public clientArrive(idSurbooking: number): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.httpClient.post(GlobalVariables.SURBOOKINGS_URL

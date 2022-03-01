@@ -57,7 +57,8 @@ export class SurbookingModalComponent implements OnInit, Rechargeable {
   surbookingSummary(surbooking: SurbookingDTO) {
     this.modalService.show(SurbookingSummaryComponent, {
       initialState: {
-        surbooking: surbooking
+        surbooking: surbooking,
+        rechargeable: this
       }
     });
   }
