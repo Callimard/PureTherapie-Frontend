@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from "../../../services/auth/authentication.service";
 
 @Component({
   selector: 'app-product-management',
@@ -8,12 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductManagementComponent implements OnInit {
 
-  constructor() {
+  constructor(private authService: AuthenticationService) {
     // Normal
   }
 
   ngOnInit(): void {
-    // Normal
+    this.authService.checkLogin();
   }
 
 }
