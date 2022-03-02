@@ -1,0 +1,8 @@
+.forgotten-password-text {
+  color: #2c81e8;
+  text-decoration: underline;
+}
+
+.forgotten-password-text:hover {
+  cursor: pointer;
+}
