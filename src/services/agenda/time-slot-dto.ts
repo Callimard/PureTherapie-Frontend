@@ -1,4 +1,4 @@
-import {TechnicianDTO} from "../person/technician/technician-dto";
+import {TechnicianDTO} from "../person/technician/dto/technician-dto";
 import {AppointmentDTO} from "../appointment/dto/appointment-dto";
 
 export class TimeSlotDTO {

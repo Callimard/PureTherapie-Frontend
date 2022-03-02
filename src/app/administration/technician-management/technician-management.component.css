@@ -1,0 +1,87 @@
+.tech-management-container {
+  flex: 1 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  border-radius: 10px;
+}
+
+.tech-management-header {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: flex-start;
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.tech-management-content {
+  flex: 1 0 auto;
+
+  display: grid;
+  grid-template: 100% / 50% 50%;
+}
+
+.all-techs {
+  display: grid;
+  grid-template: 65% 35% / 100%;
+}
+
+.tech-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.tech-row {
+  flex: 0 1 auto;
+
+  display: grid;
+  grid-template: 100% / 80% 20%;
+}
+
+.tech-name, .tech-btn-deactivate {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.tech-absence {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 13px;
+}
+
+.tech-absence-title, .tech-title {
+  text-align: left;
+  text-decoration: underline;
+}
+
+.tech-all-absences, .all-active-techs, .all-inactive-techs {
+  flex: 1 0 200px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  overflow: overlay;
+}
+
+.btn-add-tech-absence {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tech-absence-row {
+  flex: 0 1 auto;
+
+  display: grid;
+  grid-template: 100% / 30% 60% 10%;
+}
