@@ -25,6 +25,7 @@ export class ClientAdministrationComponent implements OnInit {
 
   constructor(private clientService: ClientService, private modalService: BsModalService,
               private authenticationService: AuthenticationService) {
+    // Normal
   }
 
   ngOnInit(): void {

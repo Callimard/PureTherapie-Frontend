@@ -9,6 +9,7 @@ import {BsModalService} from "ngx-bootstrap/modal";
 import {
   CreateTechnicianAbsenceModalComponent
 } from "./create-technician-absence-modal/create-technician-absence-modal.component";
+import {AuthenticationService} from "../../../services/auth/authentication.service";
 
 @Component({
   selector: 'app-technician-management',
@@ -24,12 +25,14 @@ export class TechnicianManagementComponent implements OnInit, Rechargeable {
   activeTechnicians: TechnicianDTO[] = [];
   inactiveTechnicians: TechnicianDTO[] = [];
 
-  constructor(private technicianService: TechnicianService, private modalService: BsModalService) {
+  constructor(private technicianService: TechnicianService, private authService: AuthenticationService,
+              private modalService: BsModalService) {
     // Normal
   }
 
   ngOnInit(): void {
     this.recharge();
+    this.authService.checkLogin();
   }
 
   recharge(): void {
