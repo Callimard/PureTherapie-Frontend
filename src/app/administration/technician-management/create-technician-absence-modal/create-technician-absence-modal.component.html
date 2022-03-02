@@ -1,0 +1,27 @@
+<div class="modal-content">
+  <div class="modal-header title-bar">
+    <h2 class="modal-title">Ajouter une absence pour {{simplePersonIdentifier(technician)}}</h2>
+    <button type="button" class="btn-close" (click)="close()"></button>
+  </div>
+  <div class="modal-body">
+    <form class="tech-absence-form" (ngSubmit)="confirmAddTechnicianAbsence()">
+      <div class="absence-row">
+        <label for="absenceDay" class="my-2">Jour:</label>
+        <input type="date" id="absenceDay"
+               name="absenceDay" [(ngModel)]="selectedDay"/>
+      </div>
+      <div class="absence-row">
+        <span>De</span>
+        <input type="time" min="00:00" max="23:00" name="absenceBeginTime" [(ngModel)]="selectedBeginTime"/>
+        <span>à:</span>
+        <input type="time" min="00:00" max="23:00" name="absenceBeginTime" [(ngModel)]="selectedEndTime"/>
+      </div>
+      <button class="btn-submit btn btn-simple my-2" type="submit">
+        Ajouter
+      </button>
+    </form>
+  </div>
+  <div class="modal-footer d-flex justify-content-end">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+  </div>
+</div>

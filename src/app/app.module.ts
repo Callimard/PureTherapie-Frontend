@@ -154,6 +154,7 @@ import {
   TerminateSurbookingModalComponent
 } from './administration/agenda/surbooking-modal/terminate-surbooking-modal/terminate-surbooking-modal.component';
 import {TechnicianManagementComponent} from './administration/technician-management/technician-management.component';
+import { CreateTechnicianAbsenceModalComponent } from './administration/technician-management/create-technician-absence-modal/create-technician-absence-modal.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -234,7 +235,8 @@ const appRoutes: Routes = [
     CreateSurbookingModalComponent,
     SurbookingSummaryComponent,
     TerminateSurbookingModalComponent,
-    TechnicianManagementComponent
+    TechnicianManagementComponent,
+    CreateTechnicianAbsenceModalComponent
   ],
   imports: [
     TooltipModule.forRoot(),

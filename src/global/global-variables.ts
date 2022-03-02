@@ -73,6 +73,7 @@ export class GlobalVariables {
   public static readonly ALL_BUNDLE_PURCHASE_STOCKS = "/stocks";
 
   public static readonly TECHNICIANS_URL = GlobalVariables.API_V1_URL + "/technicians";
+  public static readonly TECHNICIAN_ABSENCES_URL = GlobalVariables.TECHNICIANS_URL + "/absences";
 
   public static readonly AGENDA_URL = GlobalVariables.API_V1_URL + "/agenda";
   public static readonly TECHNICIAN_FREE_TIME_SLOTS_URL = GlobalVariables.AGENDA_URL + "/technicians/free_time_slots";

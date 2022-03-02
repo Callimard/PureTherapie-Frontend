@@ -70,3 +70,18 @@
 
   overflow: overlay;
 }
+
+.btn-add-tech-absence {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tech-absence-row {
+  flex: 0 1 auto;
+
+  display: grid;
+  grid-template: 100% / 30% 60% 10%;
+}
