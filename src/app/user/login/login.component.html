@@ -9,13 +9,16 @@
         <label for="username">
           Votre nom d'utilisateur
         </label>
-        <input type="email" id="username" name="username" class="form-control" [ngModel]=""/>
+        <input type="email" id="username" name="username" class="form-control" [(ngModel)]="username"/>
       </div>
       <div class="form-group">
         <label for="password">
           Votre mot de passe
         </label>
         <input type="password" id="password" name="password" class="form-control" [ngModel]=""/>
+      </div>
+      <div class="form-group">
+        <span class="forgotten-password-text" (click)="confirmForgottenPassword()">Mot de pass oublié?</span>
       </div>
     </div>
     <div class="d-flex justify-content-center">
