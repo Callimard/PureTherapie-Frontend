@@ -155,6 +155,9 @@ import {
 } from './administration/agenda/surbooking-modal/terminate-surbooking-modal/terminate-surbooking-modal.component';
 import {TechnicianManagementComponent} from './administration/technician-management/technician-management.component';
 import { CreateTechnicianAbsenceModalComponent } from './administration/technician-management/create-technician-absence-modal/create-technician-absence-modal.component';
+import { ClientCardModalComponent } from './administration/client/client-administration/client-edition-modal/client-information/client-card-modal/client-card-modal.component';
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
 
 registerLocaleData(localeFr, 'fr');
 
@@ -236,7 +239,8 @@ const appRoutes: Routes = [
     SurbookingSummaryComponent,
     TerminateSurbookingModalComponent,
     TechnicianManagementComponent,
-    CreateTechnicianAbsenceModalComponent
+    CreateTechnicianAbsenceModalComponent,
+    ClientCardModalComponent
   ],
   imports: [
     TooltipModule.forRoot(),
@@ -246,7 +250,9 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     RouterModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [CookieService, AuthenticationService,
     {

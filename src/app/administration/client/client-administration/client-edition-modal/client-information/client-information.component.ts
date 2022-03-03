@@ -10,6 +10,7 @@ import {ClientService} from "../../../../../../services/person/client/client.ser
 import {ClientAbsenceDelayDTO} from "../../../../../../services/person/client/client-absence-delay-dto";
 import {ClientBasicAppointmentDTO} from "../../../../../../services/person/client/client-basic-appointment-dto";
 import {ClientRemainingStockPayDTO} from "../../../../../../services/person/client/client-remaining-stock-pay-dto";
+import {ClientCardModalComponent} from "./client-card-modal/client-card-modal.component";
 
 @Component({
   selector: 'app-client-information',
@@ -94,6 +95,17 @@ export class ClientInformationComponent implements OnInit, OnChanges {
       return this.client.phone[1] === '0';
     } else
       return false;
+  }
+
+  displayClientCard() {
+    if (this.client != null) {
+      this.modalService.show(ClientCardModalComponent, {
+        class: 'medium-modal',
+        initialState: {
+          client: this.client
+        }
+      });
+    }
   }
 
 }

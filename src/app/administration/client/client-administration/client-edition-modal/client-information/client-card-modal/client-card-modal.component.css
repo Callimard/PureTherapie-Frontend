@@ -1,0 +1,39 @@
+.client-cards-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.add-client-card {
+  flex: 0 1 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-upload {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+}
+
+.client-cards-content {
+  flex: 1 0 500px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 45px;
+
+  overflow: overlay;
+}
+
+.client-card-image {
+  width: 100%;
+}

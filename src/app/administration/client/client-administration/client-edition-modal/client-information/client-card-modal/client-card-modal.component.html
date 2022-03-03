@@ -1,0 +1,29 @@
+<div class="modal-content">
+  <div class="modal-header title-bar">
+    <h2 class="modal-title success-title">Fiches client</h2>
+    <button type="button" class="btn-close" (click)="close()"></button>
+  </div>
+  <div class="modal-body client-cards-container">
+    <div class="add-client-card p-2">
+      <input type="file" class="file-input"
+             (change)="onFileSelected($event)" #fileUpload>
+
+      <div class="file-upload">
+
+        {{fileName || "No file uploaded yet."}}
+
+        <button mat-mini-fab color="primary" class="upload-btn"
+                (click)="fileUpload.click()">
+          <mat-icon>attach_file</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="client-cards-content border p-4">
+      <img class="client-card-image generic-card" [src]="backEndHost() + i.slice(1)" alt="client-card"
+           *ngFor="let i of cardsImagePath"/>
+    </div>
+  </div>
+  <div class="modal-footer d-flex justify-content-end">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+  </div>
+</div>

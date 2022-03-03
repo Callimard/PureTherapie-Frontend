@@ -15,6 +15,34 @@ export class ClientService {
   constructor(private httpClient: HttpClient) {
   }
 
+  public getClientCardsPath(idClient: number): Promise<string[]> {
+    return new Promise<string[]>((resolve, reject) => {
+      this.httpClient.get<string[]>(GlobalVariables.CLIENTS_URL + "/" + idClient + GlobalVariables.CLIENT_CARDS)
+        .subscribe({
+          next: (res) => {
+            resolve(res);
+          }, error: (err: HttpErrorResponse) => {
+            console.error("Fail to get client cards path, Err = ", err.error);
+            reject(err.error);
+          }
+        })
+    })
+  }
+
+  public uploadsClientCard(idClient: number, formData: FormData): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.post(GlobalVariables.CLIENTS_URL + "/" + idClient + GlobalVariables.CLIENT_CARDS, formData)
+        .subscribe({
+          next: (res) => {
+            resolve(res);
+          }, error: (err: HttpErrorResponse) => {
+            console.error("Fail to upload client card, Err = ", err.error);
+            reject(err.error);
+          }
+        });
+    });
+  }
+
   public getClientRemainingStockAndPay(idClient: number): Promise<ClientRemainingStockPayDTO> {
     return new Promise<ClientRemainingStockPayDTO>((resolve, reject) => {
       this.httpClient.get<ClientRemainingStockPayDTO>(GlobalVariables.CLIENTS_URL +
@@ -22,7 +50,7 @@ export class ClientService {
         next: (res) => {
           resolve(res);
         }, error: (err: HttpErrorResponse) => {
-          console.error("Fail to get clietn remaing stock and pay, Err = ", err.error);
+          console.error("Fail to get client remaining stock and pay, Err = ", err.error);
           reject(err.error);
         }
       })
