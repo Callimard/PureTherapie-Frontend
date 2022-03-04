@@ -48,7 +48,7 @@ export class CreateTechnicianAbsenceModalComponent implements OnInit {
     let confirmModal: BsModalRef = this.modalService.show(SimpleConfirmationModalComponent);
     confirmModal.content.title = "Confirmation d'ajout d'absence";
     confirmModal.content.text = "Êtes-vous sûr de vouloir ajouter une absence pour " + this.simplePersonIdentifier(this.technician);
-    confirmModal.content.confirmation = () => this.addTechnicianAbsence();
+    confirmModal.content.confirmationFunction = () => this.addTechnicianAbsence();
   }
 
   private addTechnicianAbsence() {
@@ -65,6 +65,7 @@ export class CreateTechnicianAbsenceModalComponent implements OnInit {
     successModal.content.title = "Ajout d'absence réussi";
     successModal.content.text = "L'ajout de l'absence technicienne a reussie";
     this.rechargeable?.recharge();
+    this.bsRef.hide();
   }
 
   private failCreateTechAbsence(err: any) {
