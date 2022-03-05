@@ -158,6 +158,7 @@ import { CreateTechnicianAbsenceModalComponent } from './administration/technici
 import { ClientCardModalComponent } from './administration/client/client-administration/client-edition-modal/client-information/client-card-modal/client-card-modal.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import { SafeUrlPipePipe } from './util/pipe/safe-url-pipe.pipe';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -240,20 +241,21 @@ const appRoutes: Routes = [
     TerminateSurbookingModalComponent,
     TechnicianManagementComponent,
     CreateTechnicianAbsenceModalComponent,
-    ClientCardModalComponent
+    ClientCardModalComponent,
+    SafeUrlPipePipe
   ],
-  imports: [
-    TooltipModule.forRoot(),
-    ModalModule.forRoot(),
-    BrowserAnimationsModule,
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    RouterModule,
-    RouterModule.forRoot(appRoutes),
-    MatIconModule,
-    MatButtonModule
-  ],
+    imports: [
+        TooltipModule.forRoot(),
+        ModalModule.forRoot(),
+        BrowserAnimationsModule,
+        BrowserModule,
+        HttpClientModule,
+        FormsModule,
+        RouterModule,
+        RouterModule.forRoot(appRoutes),
+        MatIconModule,
+        MatButtonModule
+    ],
   providers: [CookieService, AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS,

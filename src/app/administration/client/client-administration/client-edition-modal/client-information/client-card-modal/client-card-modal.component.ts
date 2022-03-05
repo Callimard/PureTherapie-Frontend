@@ -91,14 +91,29 @@ export class ClientCardModalComponent implements OnInit, Rechargeable {
 
   deleteClientCard(cardPath: string) {
     if (this.client) {
-      this.clientService.deleteClientCard(this.client?.idPerson, ClientCardModalComponent.getCardFileName(cardPath))
+      this.clientService.deleteClientCard(this.client?.idPerson, this.getCardFileName(cardPath))
         .then(() => this.recharge())
         .catch((err) => console.error("Client card delete fail, err = ", err));
     }
   }
 
-  public static getCardFileName(cardPath: string): string {
+  isImage(cardPath: string): boolean {
+    let extension: string = this.getCardFileNameExtension(this.getCardFileName(cardPath));
+    return extension === 'png' || extension === 'jpeg';
+  }
+
+  isPdf(cardPath: string): boolean {
+    let extension: string = this.getCardFileNameExtension(this.getCardFileName(cardPath));
+    return extension === 'pdf';
+  }
+
+  getCardFileName(cardPath: string): string {
     let split = cardPath.split("\\");
+    return split[split.length - 1];
+  }
+
+  getCardFileNameExtension(cardFileName: string): string {
+    let split = cardFileName.split("\.");
     return split[split.length - 1];
   }
 }
