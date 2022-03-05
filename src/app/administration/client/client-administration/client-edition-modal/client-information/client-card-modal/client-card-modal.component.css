@@ -34,6 +34,21 @@
   overflow: overlay;
 }
 
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 .client-card-image {
   width: 100%;
+}
+
+.remove-client-card-btn {
+  position: relative;
+}
+
+.remove-client-card-btn:after {
+  display: inline-block;
+  content: "\00d7";
 }

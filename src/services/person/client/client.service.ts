@@ -15,6 +15,20 @@ export class ClientService {
   constructor(private httpClient: HttpClient) {
   }
 
+  public deleteClientCard(idClient: number, cardFile: string): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.delete(GlobalVariables.CLIENTS_URL + "/" + idClient + GlobalVariables.CLIENT_CARDS + "/" + cardFile)
+        .subscribe({
+          next: (res) => {
+            resolve(res);
+          }, error: (err: HttpErrorResponse) => {
+            console.error("Fail to delete client card, Err = ", err.error);
+            reject(err.error);
+          }
+        })
+    })
+  }
+
   public getClientCardsPath(idClient: number): Promise<string[]> {
     return new Promise<string[]>((resolve, reject) => {
       this.httpClient.get<string[]>(GlobalVariables.CLIENTS_URL + "/" + idClient + GlobalVariables.CLIENT_CARDS)

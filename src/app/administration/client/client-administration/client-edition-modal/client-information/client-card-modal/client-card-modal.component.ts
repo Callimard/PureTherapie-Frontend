@@ -51,7 +51,6 @@ export class ClientCardModalComponent implements OnInit, Rechargeable {
       formData.append('client_card', file);
       this.clientService.uploadsClientCard(this.client.idPerson, formData)
         .then(() => {
-          console.log("Client card uploaded");
           this.recharge();
         })
         .catch((err) => console.error("Client card upload fail, err = ", err));
@@ -60,5 +59,18 @@ export class ClientCardModalComponent implements OnInit, Rechargeable {
 
   backEndHost(): string {
     return GlobalVariables.BACK_END_URL;
+  }
+
+  deleteClientCard(cardPath: string) {
+    if (this.client) {
+      this.clientService.deleteClientCard(this.client?.idPerson, ClientCardModalComponent.getCardFileName(cardPath))
+        .then(() => this.recharge())
+        .catch((err) => console.error("Client card delete fail, err = ", err));
+    }
+  }
+
+  public static getCardFileName(cardPath: string): string {
+    let split = cardPath.split("\\");
+    return split[split.length - 1];
   }
 }
