@@ -6,7 +6,7 @@
   <div class="modal-body client-cards-container">
     <div class="add-client-card p-2">
       <input type="file" class="file-input"
-             (change)="onFileSelected($event)" #fileUpload>
+             (change)="onFileSelected($event)" #fileUpload multiple>
 
       <div class="file-upload">
 
@@ -20,7 +20,7 @@
     </div>
     <div class="client-cards-content border p-4">
       <div class="cards-container generic-card" *ngFor="let i of cardsImagePath">
-        <img class="client-card-image card-top-right-radius card-top-left-radius" [src]="backEndHost() + i.slice(1)"
+        <img class="client-card-image card-top-right-radius card-top-left-radius" [src]="backendHost() + i.slice(1)"
              alt="client-card"/>
         <button type="button"
                 class="btn btn-cancel remove-client-card-btn" (click)="deleteClientCard(i)"></button>

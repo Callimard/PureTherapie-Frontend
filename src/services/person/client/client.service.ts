@@ -43,9 +43,23 @@ export class ClientService {
     })
   }
 
-  public uploadsClientCard(idClient: number, formData: FormData): Promise<any> {
+  public uploadClientCard(idClient: number, formData: FormData): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.httpClient.post(GlobalVariables.CLIENTS_URL + "/" + idClient + GlobalVariables.CLIENT_CARDS, formData)
+        .subscribe({
+          next: (res) => {
+            resolve(res);
+          }, error: (err: HttpErrorResponse) => {
+            console.error("Fail to upload client card, Err = ", err.error);
+            reject(err.error);
+          }
+        });
+    });
+  }
+
+  public uploadSeveralClientCard(idClient: number, formData: FormData): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.post(GlobalVariables.CLIENTS_URL + "/" + idClient + GlobalVariables.CLIENT_CARDS + "/several", formData)
         .subscribe({
           next: (res) => {
             resolve(res);
