@@ -18,8 +18,7 @@ export class ClientAdministrationComponent implements OnInit {
 
   foundClients: ClientDTO[] = [];
 
-  selectedLastName?: string;
-  selectedFirstName?: string;
+  selectedName?: string;
   selectedEmail?: string;
   selectPhone?: string;
 
@@ -40,7 +39,7 @@ export class ClientAdministrationComponent implements OnInit {
 
   search() {
     this.foundClients = [];
-    this.clientService.searchClientsWithFilter(this.selectedPage, this.selectedLastName, this.selectedFirstName,
+    this.clientService.searchClientsWithFilter(this.selectedPage, this.selectedName,
       this.selectedEmail, this.selectPhone).then((clients) => {
       this.foundClients = clients;
     }).catch((err) => {
@@ -49,8 +48,7 @@ export class ClientAdministrationComponent implements OnInit {
   }
 
   cleanFilter() {
-    this.selectedLastName = '';
-    this.selectedFirstName = '';
+    this.selectedName = '';
     this.selectedEmail = '';
     this.selectPhone = '';
     this.search();
