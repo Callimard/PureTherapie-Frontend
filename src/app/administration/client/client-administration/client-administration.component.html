@@ -16,23 +16,22 @@
       <div class="client-label-5 d-flex justify-content-start flex-grow-1">Action</div>
     </div>
     <div class="client-filter-row p-3" style="box-shadow: 0 3px 2px #adacac;">
-      <div class="client-label-1 filter-input">
-        <input class="client_research_field" type="text" [(ngModel)]="selectedLastName"
-               (input)="updateFilter()"/>
+      <div class="name-input filter-input">
+        <input class="client-name-search-field client_research_field" type="text"
+               placeholder="Nom ou prénom"
+               [(ngModel)]="selectedName" (input)="updateFilter()"/>
       </div>
-      <div class="client-label-2 filter-input">
-        <input class="client_research_field" type="text" [(ngModel)]="selectedFirstName"
-               (input)="updateFilter()"/>
+      <div class="filter-input">
+        <input class="client_research_field" type="text"
+               placeholder="email"
+               [(ngModel)]="selectedEmail" (input)="updateFilter()"/>
       </div>
-      <div class="client-label-3 filter-input">
-        <input class="client_research_field" type="text" [(ngModel)]="selectedEmail"
-               (input)="updateFilter()"/>
+      <div class="filter-input">
+        <input class="client_research_field" type="text"
+               placeholder="téléphone"
+               [(ngModel)]="selectPhone" (input)="updateFilter()"/>
       </div>
-      <div class="client-label-4 filter-input">
-        <input class="client_research_field" type="text" [(ngModel)]="selectPhone"
-               (input)="updateFilter()"/>
-      </div>
-      <div class="client-label-5 filter-btn">
+      <div class="filter-btn">
         <button type="button" class="btn btn-simple text-bold" (click)="cleanFilter()">
           Effacer
         </button>

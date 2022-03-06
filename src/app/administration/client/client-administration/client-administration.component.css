@@ -20,12 +20,21 @@
   background-color: rgba(162, 193, 252, 0.87);
 }
 
+.name-input {
+  grid-column: 1 / span 2;
+}
+
 .filter-input {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-grow: 0;
   flex-shrink: 0;
+}
+
+.client-name-search-field {
+  flex: 1 0 auto;
+  margin-right: 20px;
 }
 
 .filter-all {
