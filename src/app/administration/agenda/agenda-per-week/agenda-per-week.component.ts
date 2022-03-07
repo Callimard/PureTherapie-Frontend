@@ -28,7 +28,7 @@ export class AgendaPerWeekComponent implements OnInit, OnChanges {
   technicians: TechnicianDTO[] = [];
   dayTechTs: Map<string, Map<number, TimeSlotDTO[]>> = new Map<string, Map<number, TimeSlotDTO[]>>();
 
-  private agendaLineHeight: string = "7%";
+  private agendaLineHeight: string = "8%";
   agendaGridTemplateRow: string = "repeat(18, " + this.agendaLineHeight + ")";
 
   constructor(private agendaService: AgendaService, private technicianService: TechnicianService) {
