@@ -13,6 +13,10 @@ export class TimeSlotDTO {
               public appointment: AppointmentDTO) {
   }
 
+  public isOccupied(): boolean {
+    return !this.free || this.launchBreak || this.absence;
+  }
+
   public static default(appointment?: AppointmentDTO): TimeSlotDTO {
     return new TimeSlotDTO(-1, "DEFAULT_TIME_SLOT", "DEFAULT_TIME_SLOT", -1, true,
       false, false, TechnicianDTO.default(),

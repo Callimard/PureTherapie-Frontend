@@ -15,23 +15,25 @@ export class AgendaService {
 
   public getFreeTimeSlots(idTechnician: number, day: string, processDuration: number): Promise<FreeTimeSlotDTO[]> {
     return new Promise<FreeTimeSlotDTO[]>(((resolve, reject) => {
-      this.httpClient.get<FreeTimeSlotDTO[]>(GlobalVariables.TECHNICIAN_FREE_TIME_SLOTS_URL + "?idTechnician="
-        + idTechnician + "&day=" + day + "&processDuration=" + processDuration).subscribe({
-        next: (freeTimeSlots) => {
-          resolve(freeTimeSlots);
-        },
-        error: (error: HttpErrorResponse) => {
-          console.error("Fail to charge free time slots, error = ", error.error);
-          reject(error.error);
-        }
-      });
+      this.httpClient.get<FreeTimeSlotDTO[]>(GlobalVariables.AGENDA_TECHNICIANS_URL
+        + "/" + idTechnician + GlobalVariables.AGENDA_FREE_TS
+        + "?day=" + day + "&processDuration=" + processDuration)
+        .subscribe({
+          next: (freeTimeSlots) => {
+            resolve(freeTimeSlots);
+          },
+          error: (error: HttpErrorResponse) => {
+            console.error("Fail to charge free time slots, error = ", error.error);
+            reject(error.error);
+          }
+        });
     }));
   }
 
   public getAllTimeSlotsOfTechnician(idTechnician: number, day: string): Promise<TimeSlotDTO[]> {
     return new Promise<TimeSlotDTO[]>(((resolve, reject) => {
-      this.httpClient.get<TimeSlotDTO[]>(GlobalVariables.DAY_ALL_TECHNICIAN_TIME_SLOTS_URL + "?idTechnician=" +
-        idTechnician + "&date=" + day).subscribe({
+      this.httpClient.get<TimeSlotDTO[]>(GlobalVariables.AGENDA_TECHNICIANS_URL
+        + "/" + idTechnician + GlobalVariables.AGENDA_TS + "?date=" + day).subscribe({
         next: (res) => {
           resolve(res);
         },
@@ -45,13 +47,27 @@ export class AgendaService {
 
   public getAllTimeSlotsOfDay(day: string): Promise<TimeSlotDTO[]> {
     return new Promise<TimeSlotDTO[]>((resolve, reject) => {
-      this.httpClient.get<TimeSlotDTO[]>(GlobalVariables.DAY_ALL_TIME_SLOTS_URL + "?date=" + day).subscribe({
+      this.httpClient.get<TimeSlotDTO[]>(GlobalVariables.AGENDA_TS_URL + "?date=" + day).subscribe({
         next: res => resolve(res),
         error: (err: HttpErrorResponse) => {
           console.error("Fail to get all TS of the day, Error = ", err);
           reject(err.error);
         }
       })
+    })
+  }
+
+  public getAllDayTechnicianTimeSlot(date: string): Promise<Map<number, TimeSlotDTO[]>> {
+    return new Promise<Map<number, TimeSlotDTO[]>>((resolve, reject) => {
+      this.httpClient.get<Map<number, TimeSlotDTO[]>>(GlobalVariables.AGENDA_TECHNICIANS_URL
+        + GlobalVariables.AGENDA_TS + "?date=" + date)
+        .subscribe({
+          next: res => resolve(res),
+          error: (err: HttpErrorResponse) => {
+            console.error("Fail to get all day technician TS, Error = ", err);
+            reject(err.error);
+          }
+        })
     })
   }
 }

@@ -47,7 +47,7 @@ export class GlobalVariables {
   public static readonly LOGOUT_URL = GlobalVariables.USERS_URL + "/logout";
 
   public static readonly CLIENTS_URL = GlobalVariables.API_V1_URL + "/clients";
-  public static readonly CLIENT_CARDS =  "/cards";
+  public static readonly CLIENT_CARDS = "/cards";
   public static readonly CLIENTS_GET_WITH_EMAIL_URL = GlobalVariables.CLIENTS_URL + "/searchWithEmail";
   public static readonly CLIENT_GET_WITH_PHONE_URL = GlobalVariables.CLIENTS_URL + "/searchWithPhone";
   public static readonly CLIENT_IS_NEW = GlobalVariables.CLIENTS_URL + "/isNew";
@@ -78,9 +78,10 @@ export class GlobalVariables {
   public static readonly TECHNICIAN_ABSENCES_URL = GlobalVariables.TECHNICIANS_URL + "/absences";
 
   public static readonly AGENDA_URL = GlobalVariables.API_V1_URL + "/agenda";
-  public static readonly TECHNICIAN_FREE_TIME_SLOTS_URL = GlobalVariables.AGENDA_URL + "/technicians/free_time_slots";
-  public static readonly DAY_ALL_TIME_SLOTS_URL = GlobalVariables.AGENDA_URL + "/time_slots";
-  public static readonly DAY_ALL_TECHNICIAN_TIME_SLOTS_URL = GlobalVariables.AGENDA_URL + "/technician/time_slots";
+  public static readonly AGENDA_TECHNICIANS_URL = GlobalVariables.AGENDA_URL + "/technicians";
+  public static readonly AGENDA_FREE_TS = "/free_time_slots";
+  public static readonly AGENDA_TS = "/time_slots";
+  public static readonly AGENDA_TS_URL = GlobalVariables.AGENDA_URL + GlobalVariables.AGENDA_TS;
 
   public static readonly APPOINTMENTS_URL = GlobalVariables.API_V1_URL + "/appointments";
   public static readonly CLIENT_APPOINTMENT_URL = GlobalVariables.APPOINTMENTS_URL + "/clients";
@@ -94,7 +95,7 @@ export class GlobalVariables {
   public static readonly APPOINTMENT_CLIENT_URL = GlobalVariables.APPOINTMENTS_URL + GlobalVariables.APPOINTMENT_CLIENT;
 
   public static readonly SURBOOKINGS_URL = GlobalVariables.API_V1_URL + "/surbookings";
-  public static readonly SURBOOKING_CLIENT_ARRIVE ="/clientArrive";
+  public static readonly SURBOOKING_CLIENT_ARRIVE = "/clientArrive";
   public static readonly SURBOOKING_FINALIZE = "/finalize";
 
   public static readonly BILL_URL = GlobalVariables.API_V1_URL + "/bills";
