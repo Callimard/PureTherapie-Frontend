@@ -1,0 +1,52 @@
+.agenda-week-container {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 3px;
+}
+
+.select-week-content {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: flex-start;
+  gap: 13px;
+}
+
+.change-week-btn-content {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: flex-start;
+  gap: 3px;
+}
+
+.select-week-btn {
+  padding: 3px;
+  border-radius: 0;
+}
+
+.week-tittle {
+  align-self: center;
+}
+
+.week-container {
+  flex: 1 0 auto;
+
+  display: grid;
+  grid-template: 4% 96% / 100%;
+}
+
+.week-row {
+  display: grid;
+  grid-template: 100% / 1fr repeat(7, 5fr);
+}
+
+.day-week-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}

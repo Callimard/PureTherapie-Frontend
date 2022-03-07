@@ -37,6 +37,7 @@
   <div class="agenda-content p-2">
     <app-agenda-per-technician [today]="today" class="agenda-per-tech generic-card"
                                *ngIf="agendaView == 1"></app-agenda-per-technician>
-    <app-agenda-per-week *ngIf="agendaView == 2" class="agenda-per-week generic-card"></app-agenda-per-week>
+    <app-agenda-per-week [day]="today" class="agenda-per-week generic-card"
+                         *ngIf="agendaView == 2"></app-agenda-per-week>
   </div>
 </div>
