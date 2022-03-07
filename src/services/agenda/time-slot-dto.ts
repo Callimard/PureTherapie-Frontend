@@ -13,8 +13,8 @@ export class TimeSlotDTO {
               public appointment: AppointmentDTO) {
   }
 
-  public isOccupied(): boolean {
-    return !this.free || this.launchBreak || this.absence;
+  public static isOccupied(ts: TimeSlotDTO): boolean {
+    return !ts.free || ts.launchBreak || ts.absence;
   }
 
   public static default(appointment?: AppointmentDTO): TimeSlotDTO {

@@ -77,3 +77,11 @@
   align-items: center;
 }
 
+.ts-totally-occupied {
+  background-color: rgba(173, 0, 0, 0.46);
+}
+
+.ts-closed {
+  background-color: rgba(98, 98, 98, 0.25);
+}
+

@@ -57,9 +57,9 @@ export class AgendaService {
     })
   }
 
-  public getAllDayTechnicianTimeSlot(date: string): Promise<Map<number, TimeSlotDTO[]>> {
-    return new Promise<Map<number, TimeSlotDTO[]>>((resolve, reject) => {
-      this.httpClient.get<Map<number, TimeSlotDTO[]>>(GlobalVariables.AGENDA_TECHNICIANS_URL
+  public getAllDayTechnicianTimeSlot(date: string): Promise<TimeSlotDTO[]> {
+    return new Promise<TimeSlotDTO[]>((resolve, reject) => {
+      this.httpClient.get<TimeSlotDTO[]>(GlobalVariables.AGENDA_TECHNICIANS_URL
         + GlobalVariables.AGENDA_TS + "?date=" + date)
         .subscribe({
           next: res => resolve(res),

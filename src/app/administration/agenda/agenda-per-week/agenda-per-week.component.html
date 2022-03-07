@@ -31,9 +31,12 @@
       <div class="day-week-ts-content"
            [style.grid-template-rows]="agendaGridTemplateRow"
            *ngFor="let weekDay of allWeekDays">
-        <div class="day-ts-content clean-border-dashed-bottom clean-border-left touchable"
+        <div class="day-ts-content clean-border-dashed-bottom clean-border-left" (click)="selectDay(weekDay)"
+             *ngFor="let ts of allTs"
              [class.current-day-content]="weekDay === day"
-             *ngFor="let ts of allTs">
+             [class.clean-border-dashed-bottom]="!closed(weekDay) && !noTsForTime(weekDay, ts.begin)"
+             [class.ts-totally-occupied]="!noTsForTime(weekDay, ts.begin) && totallyOccupied(weekDay, ts.begin)"
+             [class.ts-closed]="closed(weekDay) || noTsForTime(weekDay, ts.begin)">
 
         </div>
       </div>

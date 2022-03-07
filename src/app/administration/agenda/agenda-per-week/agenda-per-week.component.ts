@@ -4,6 +4,7 @@ import {AgendaService} from "../../../../services/agenda/agenda.service";
 import {TimeSlotDTO} from "../../../../services/agenda/time-slot-dto";
 import {TechnicianDTO} from "../../../../services/person/technician/dto/technician-dto";
 import {TechnicianService} from "../../../../services/person/technician/technician.service";
+import {Rechargeable} from "../../../../tool/rechargeable";
 
 // noinspection JSMethodCanBeStatic
 @Component({
@@ -12,7 +13,7 @@ import {TechnicianService} from "../../../../services/person/technician/technici
   styleUrls: ['./agenda-per-week.component.css'],
   host: {'class': 'b'}
 })
-export class AgendaPerWeekComponent implements OnInit, OnChanges {
+export class AgendaPerWeekComponent implements OnInit, OnChanges, Rechargeable {
 
   @Input() day: string = DateTool.toMySQLDateString(new Date());
   @Output() dayChange = new EventEmitter<string>();
@@ -40,6 +41,10 @@ export class AgendaPerWeekComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.recharge();
+  }
+
+  recharge(): void {
     this.currentDay = new Date(this.day);
 
     let oldFirstDay = new Date(this.firstDayWeek);
@@ -81,6 +86,7 @@ export class AgendaPerWeekComponent implements OnInit, OnChanges {
     let tsDays: TimeSlotDTO[][] = [];
     await this.chargeAllDayTimeSlots(tsDays);
     await this.chargeAllDayTechTimeSlots();
+    this.allTs = [];
     this.allTs = this.searchLongerDay(tsDays);
     this.agendaGridTemplateRow = "repeat(" + this.allTs.length + ", " + this.agendaLineHeight + ")";
   }
@@ -98,7 +104,19 @@ export class AgendaPerWeekComponent implements OnInit, OnChanges {
     await this.chargeAllTechnicians();
     for (let weekDay of this.allWeekDays) {
       this.agendaService.getAllDayTechnicianTimeSlot(weekDay).then((res) => {
-        this.dayTechTs.set(weekDay, res);
+        let map: Map<number, TimeSlotDTO[]> = new Map<number, TimeSlotDTO[]>();
+
+        for (let ts of res) {
+          let techTs = map.get(ts.technician.idPerson);
+          if (!techTs) {
+            techTs = [];
+            map.set(ts.technician.idPerson, techTs);
+          }
+          techTs.push(ts);
+        }
+
+
+        this.dayTechTs.set(weekDay, map);
       });
     }
   }
@@ -121,16 +139,14 @@ export class AgendaPerWeekComponent implements OnInit, OnChanges {
     let tmp = new Date(this.firstDayWeek);
     tmp.setDate(this.firstDayWeek.getDate() - 7);
     this.updateCurrentDay(tmp);
-    this.updateWeekDays();
-    this.updateTimeSlots().then(() => console.log("Finish to get ts time"));
+    this.recharge();
   }
 
   nextWeek() {
     let tmp = new Date(this.lastDayWeek);
     tmp.setDate(this.lastDayWeek.getDate() + 1);
     this.updateCurrentDay(tmp);
-    this.updateWeekDays();
-    this.updateTimeSlots().then(() => console.log("Finish to get ts time"));
+    this.recharge();
   }
 
   selectDay(day: string) {
@@ -152,23 +168,55 @@ export class AgendaPerWeekComponent implements OnInit, OnChanges {
       return '';
   }
 
-  totallyOccupied(day: string, beginTS: string): boolean {
-    let dayMap: Map<number, TimeSlotDTO[]> | undefined = this.dayTechTs.get(day);
+  closed(day: string): boolean {
+    let dayMap = this.dayTechTs.get(day);
+    if (dayMap !== undefined) {
+      return dayMap.size <= 0;
+    } else
+      return true;
+  }
 
-    if (dayMap) {
+  noTsForTime(day: string, beginTS: string): boolean {
+    let dayMap = this.dayTechTs.get(day);
+
+    if (dayMap !== undefined) {
+      for (let tech of this.technicians) {
+        let techTS: TimeSlotDTO[] | undefined = dayMap.get(tech.idPerson);
+        if (techTS) {
+          for (let ts of techTS) {
+            if (ts.begin === beginTS) {
+              return false;
+            }
+          }
+        }
+      }
+      return true;
+    }
+    return true;
+  }
+
+  totallyOccupied(day: string, beginTS: string): boolean {
+    let dayMap = this.dayTechTs.get(day);
+
+    if (dayMap !== undefined) {
       let nbOccupied = 0;
       for (let tech of this.technicians) {
         let techTS: TimeSlotDTO[] | undefined = dayMap.get(tech.idPerson);
         if (techTS) {
           let foundTs = false;
           for (let ts of techTS) {
-            if (ts.begin === beginTS && ts.isOccupied()) {
-              nbOccupied += 1;
+            if (ts.begin === beginTS) {
               foundTs = true;
+              if (TimeSlotDTO.isOccupied(ts)) {
+                nbOccupied += 1;
+                break;
+              }
             }
           }
-          if (!foundTs)
+
+          if (!foundTs) {
             nbOccupied += 1;
+          }
         }
       }
       return nbOccupied == this.technicians.length;

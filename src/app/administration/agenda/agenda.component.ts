@@ -27,7 +27,7 @@ export class AgendaComponent implements OnInit, Rechargeable {
   createAppointmentModal?: BsModalRef;
   registerClientModal?: BsModalRef;
 
-  agendaView: number = 2;
+  agendaView: number = 1;
 
   constructor(private technicianService: TechnicianService, private agendaService: AgendaService,
               private authService: AuthenticationService, private modalService: BsModalService) {
