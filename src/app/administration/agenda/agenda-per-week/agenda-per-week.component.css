@@ -40,9 +40,13 @@
   grid-template: 4% 96% / 100%;
 }
 
-.week-row {
+.week-day-header, .week-day-content {
   display: grid;
-  grid-template: 100% / 1fr repeat(7, 5fr);
+  grid-template-rows: 100%;
+}
+
+.week-row {
+  grid-template-columns: 2fr repeat(7, 7fr);
 }
 
 .day-week-header {
@@ -50,3 +54,26 @@
   justify-content: flex-start;
   align-items: center;
 }
+
+.current-day-header {
+  background-color: #71db08c2;
+}
+
+.current-day-content {
+  background-color: rgba(113, 219, 8, 0.14);
+}
+
+.week-day-content {
+  overflow: overlay;
+}
+
+.all-ts, .day-week-ts-content {
+  display: grid;
+}
+
+.ts-time-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

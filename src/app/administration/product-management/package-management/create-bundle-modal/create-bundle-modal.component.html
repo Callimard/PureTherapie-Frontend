@@ -46,7 +46,7 @@
             <span class="text-bold" style="text-align: right">Durée</span>
           </div>
           <div class="all-ac-rows">
-            <div class="ac-row basic-row border-bottom p-2" *ngFor="let ac of allAcs" (click)="addACIntoBundle(ac)">
+            <div class="ac-row touchable border-bottom p-2" *ngFor="let ac of allAcs" (click)="addACIntoBundle(ac)">
               <span class="text-bold" style="text-align: left">{{ac.name}}</span>
               <span style="text-align: center">{{ac.price}} €</span>
               <span style="text-align: right">{{ac.executionTime}} minutes</span>

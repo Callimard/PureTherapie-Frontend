@@ -7,7 +7,7 @@
       <div class="tech-content p-2">
         <h3 class="tech-title">Techniciens</h3>
         <div class="all-active-techs border">
-          <div class="tech-row basic-row border-bottom p-1" *ngFor="let tech of activeTechnicians"
+          <div class="tech-row touchable border-bottom p-1" *ngFor="let tech of activeTechnicians"
                [class.basic-row-active]="selectedTech != null && selectedTech.idPerson == tech.idPerson">
             <span class="my-auto" style="text-align: left"
                   (click)="displayTechAbsences(tech)">{{simplePersonIdentifier(tech)}}</span>
@@ -19,7 +19,7 @@
       <div class="tech-content p-2">
         <h3 class="tech-title">Techniciens inactifs</h3>
         <div class="all-inactive-techs border">
-          <div class="tech-row basic-row border-bottom p-2" *ngFor="let tech of inactiveTechnicians"
+          <div class="tech-row touchable border-bottom p-2" *ngFor="let tech of inactiveTechnicians"
                [class.basic-row-active]="selectedTech != null && selectedTech.idPerson == tech.idPerson">
             <span class="my-auto" style="text-align: left"
                   (click)="displayTechAbsences(tech)">{{simplePersonIdentifier(tech)}}</span>
@@ -33,7 +33,7 @@
       <h3 class="tech-absence-title">
         Absences{{selectedTech != null ? ' de ' + simplePersonIdentifier(selectedTech) : ''}}</h3>
       <div class="tech-all-absences border">
-        <div class="tech-absence-row basic-row border-bottom p-1" *ngFor="let techAbsence of selectedTechAbsences">
+        <div class="tech-absence-row touchable border-bottom p-1" *ngFor="let techAbsence of selectedTechAbsences">
           <span class="my-auto" style="text-align: left">{{techAbsence.day}}</span>
           <span class="my-auto" style="text-align: center">De {{techAbsence.beginTime}} à {{techAbsence.endTime}}</span>
           <button class="btn btn-cancel m-2 p-2" (click)="deleteTechAbsence(techAbsence)">Supprimer</button>

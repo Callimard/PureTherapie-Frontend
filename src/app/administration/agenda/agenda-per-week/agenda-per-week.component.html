@@ -1,10 +1,10 @@
 <div class="agenda-week-container card-radius p-1">
   <div class="select-week-content">
     <div class="change-week-btn-content">
-      <button type="button" class="btn btn-simple select-week-btn material-icons">
+      <button type="button" class="btn btn-simple select-week-btn material-icons" (click)="previousWeek()">
         chevron_left
       </button>
-      <button type="button" class="btn btn-simple select-week-btn material-icons">
+      <button type="button" class="btn btn-simple select-week-btn material-icons" (click)="nextWeek()">
         chevron_right
       </button>
     </div>
@@ -14,13 +14,28 @@
   <div class="week-container clean-border">
     <div class="week-day-header week-row clean-border-bottom">
       <div></div>
-      <div class="day-week-header clean-border-left basic-row p-2" *ngFor="let weekDay of allWeekDays">
+      <div class="day-week-header clean-border-left touchable p-2"
+           (click)="selectDay(weekDay)"
+           [class.current-day-header]="weekDay === day"
+           *ngFor="let weekDay of allWeekDays">
         <span class="text-bold">{{weekDay | date:'ccc dd MMM'}}</span>
       </div>
     </div>
     <div class="week-day-content week-row">
-      <div></div>
-      <div class="day-week-ts-content clean-border-left" *ngFor="let weekDay of allWeekDays">
+      <div class="all-ts"
+           [style.grid-template-rows]="agendaGridTemplateRow">
+        <div class="ts-time-content clean-border-dashed-bottom" *ngFor="let ts of allTs">
+          <span class="text-bold">{{ts.begin}}</span>
+        </div>
+      </div>
+      <div class="day-week-ts-content"
+           [style.grid-template-rows]="agendaGridTemplateRow"
+           *ngFor="let weekDay of allWeekDays">
+        <div class="day-ts-content clean-border-dashed-bottom clean-border-left touchable"
+             [class.current-day-content]="weekDay === day"
+             *ngFor="let ts of allTs">
+
+        </div>
       </div>
     </div>
   </div>

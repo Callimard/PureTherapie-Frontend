@@ -10,6 +10,7 @@ import {TimeSlotDTO} from "./time-slot-dto";
 export class AgendaService {
 
   constructor(private httpClient: HttpClient) {
+    // Normal
   }
 
   public getFreeTimeSlots(idTechnician: number, day: string, processDuration: number): Promise<FreeTimeSlotDTO[]> {
@@ -40,5 +41,17 @@ export class AgendaService {
         }
       });
     }));
+  }
+
+  public getAllTimeSlotsOfDay(day: string): Promise<TimeSlotDTO[]> {
+    return new Promise<TimeSlotDTO[]>((resolve, reject) => {
+      this.httpClient.get<TimeSlotDTO[]>(GlobalVariables.DAY_ALL_TIME_SLOTS_URL + "?date=" + day).subscribe({
+        next: res => resolve(res),
+        error: (err: HttpErrorResponse) => {
+          console.error("Fail to get all TS of the day, Error = ", err);
+          reject(err.error);
+        }
+      })
+    })
   }
 }
