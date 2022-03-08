@@ -18,6 +18,7 @@ import {SimpleResponseDTO} from "../../../../../services/util/simple-response-dt
 import {FailModalComponent} from "../../../../util/modal/fail-modal/fail-modal.component";
 import {SurbookingService} from "../../../../../services/appointment/surbooking.service";
 import {SurbookingDTO} from "../../../../../services/appointment/dto/surbooking-dto";
+import {ClientRemainingStockPayDTO} from "../../../../../services/person/client/client-remaining-stock-pay-dto";
 
 @Component({
   selector: 'app-terminate-surbooking-modal',
@@ -27,6 +28,7 @@ import {SurbookingDTO} from "../../../../../services/appointment/dto/surbooking-
 export class TerminateSurbookingModalComponent implements OnInit, Rechargeable {
 
   surbooking: SurbookingDTO = SurbookingDTO.default();
+  clientRemainingStock: ClientRemainingStockPayDTO = ClientRemainingStockPayDTO.default();
 
   clientUnpaidBundlePurchases: BundlePurchaseDTO[] = [];
   clientUnpaidACPurchases: SessionPurchaseDTO[] = [];
@@ -53,6 +55,13 @@ export class TerminateSurbookingModalComponent implements OnInit, Rechargeable {
     this.chargeAllUnpaidBundlePurchases();
     this.chargeAllUnpaidACPurchases();
     this.verifyClientHasPaidToday();
+    this.chargeClientRemainingStockAndPay();
+  }
+
+  private chargeClientRemainingStockAndPay() {
+    this.clientService.getClientRemainingStockAndPay(this.surbooking.client.idPerson).then((res) => {
+      this.clientRemainingStock = res;
+    });
   }
 
   close() {

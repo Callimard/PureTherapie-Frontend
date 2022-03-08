@@ -154,9 +154,10 @@ hr {
   justify-content: flex-start;
 }
 
-.agenda-per-technician {
-  display: grid;
-  grid-template: 5% 95%/ 100%;
+.agenda-per-technician, .agenda-per-week {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .agenda-choose-date {

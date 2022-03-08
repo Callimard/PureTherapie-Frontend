@@ -11,7 +11,7 @@ import {Rechargeable} from "../../../../tool/rechargeable";
   selector: 'app-agenda-per-week',
   templateUrl: './agenda-per-week.component.html',
   styleUrls: ['./agenda-per-week.component.css'],
-  host: {'class': 'b'}
+  host: {'class': 'agenda-per-week'}
 })
 export class AgendaPerWeekComponent implements OnInit, OnChanges, Rechargeable {
 

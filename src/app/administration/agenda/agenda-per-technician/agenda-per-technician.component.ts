@@ -25,7 +25,7 @@ export class AgendaPerTechnicianComponent implements OnInit, OnChanges, Recharge
   private tsColumnSize: string = "5%";
   agendaRowColumn: string = "5% 1fr 1fr 1fr 1fr";
 
-  private agendaLineHeight: string = "8%";
+  private agendaLineHeight: string = "10%";
   agendaContentGrid: string = "repeat(18, " + this.agendaLineHeight + ")";
 
   allTechnicians: TechnicianDTO[] = [];

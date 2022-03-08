@@ -14,6 +14,29 @@
   align-items: center;
 }
 
+.commercial-header {
+  display: grid;
+  grid: 100% / 50% 50%;
+}
+
+.client-info-summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.client-name-info {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.client-info-group {
+  display: flex;
+  gap: 5px;
+}
 .commercial-operation {
   display: flex;
   flex-direction: column;

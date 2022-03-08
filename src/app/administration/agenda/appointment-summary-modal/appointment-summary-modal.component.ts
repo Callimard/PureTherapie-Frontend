@@ -12,6 +12,7 @@ import {ClientArrivalModalComponent} from "../client-arrival-modal/client-arriva
 import {TerminateClientModalComponent} from "../terminate-client-modal/terminate-client-modal.component";
 import {AestheticCareService} from "../../../../services/product/aesthetic/care/aesthetic-care.service";
 import {Rechargeable} from "../../../../tool/rechargeable";
+import {ClientDTO} from "../../../../services/person/client/client-dto";
 
 @Component({
   selector: 'app-appointment-summary-modal',
@@ -109,11 +110,13 @@ export class AppointmentSummaryModalComponent implements OnInit, Rechargeable {
 
   terminateClient() {
     let terminateClientModal: BsModalRef = this.modalService.show(TerminateClientModalComponent, {
-      class: "big-modal"
+      class: "big-modal",
+      initialState: {
+        client: this.appointmentInfo != null ? this.appointmentInfo.client : ClientDTO.default()
+      }
     });
     terminateClientModal.content.parent = this.bsModalRef;
     if (this.appointmentInfo != null) {
-      terminateClientModal.content.client = this.appointmentInfo.client;
       terminateClientModal.content.appointment = this.appointmentInfo;
       terminateClientModal.content.appointmentAC = this.appointmentInfo.aestheticCare;
       terminateClientModal.content.rechargeable = this;
