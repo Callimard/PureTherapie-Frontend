@@ -1,5 +1,5 @@
 .agenda-week-container {
-  flex: 1 0 auto;
+  flex: 1 0 150px;
 
   display: flex;
   flex-direction: column;
@@ -33,7 +33,7 @@
 }
 
 .week-container {
-  flex: 1 0 500px;
+  flex: 1 0 150px;
 
   display: flex;
   flex-direction: column;
