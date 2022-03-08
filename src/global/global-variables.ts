@@ -25,6 +25,7 @@ export class GlobalVariables {
   public static readonly INTERN_AGENDA_URL = 'agenda';
   public static readonly INTERN_WAITING_ROOM = 'waiting_room';
   public static readonly INTERN_OPENING_TIME = 'opening';
+  public static readonly INTERN_INIT_USER_PASSWORD = 'users/password/reset';
 
   // BACKEND Session
 
@@ -43,6 +44,7 @@ export class GlobalVariables {
 
   public static readonly USERS_URL = GlobalVariables.API_V1_URL + "/users";
   public static readonly USER_FORGOTTEN_PASSWORD_URL = GlobalVariables.USERS_URL + "/passwordForgotten";
+  public static readonly USER_RESET_PASSWORD_URL = GlobalVariables.USERS_URL + "/password/reset";
   public static readonly LOGIN_URL = GlobalVariables.USERS_URL + "/login";
   public static readonly LOGOUT_URL = GlobalVariables.USERS_URL + "/logout";
 
