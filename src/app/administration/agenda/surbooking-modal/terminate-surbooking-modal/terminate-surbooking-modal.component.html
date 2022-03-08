@@ -1,16 +1,39 @@
 <div class="modal-content">
-  <div class="modal-header">
-    <h2 class="modal-title success-title">Finaliser avec le client</h2>
+  <div class="modal-header title-bar">
+    <h2 class="modal-title">Finaliser avec le client</h2>
     <button type="button" class="btn-close" (click)="close()"></button>
   </div>
   <div class="modal-body terminate-client-content">
-    <div class="client-commercial-content p-2">
-      <div class="commercial-operation border-bottom-separator p-2" *ngIf="clientACStock <= 2">
-        <h3 class="text-bold" style="text-decoration: underline">Commerce:</h3>
-        <p class="text-bold text-fail" style="font-size: 150%">Essayer de vendre au client un package de soin</p>
-        <button class="text-bold btn btn-validation align-self-center" (click)="sellBundle()">
-          Vendre
-        </button>
+    <div class="client-commercial-content border-bottom-separator p-2">
+      <div class="commercial-header">
+        <div class="client-info-summary p-2">
+          <h3 class="text-bold" style="text-decoration: underline">Client:</h3>
+          <div class="client-name-info">
+            <div class="client-info-group">
+              <span class="text-bold">Nom: </span>
+              <span>{{surbooking.client.lastName}}</span>
+            </div>
+            <div class="client-info-group">
+              <span class="text-bold">Prénom: </span>
+              <span>{{surbooking.client.firstName}}</span>
+            </div>
+          </div>
+          <div class="client-info-group">
+            <span class="text-bold">Stock total restant:</span>
+            <span>{{clientRemainingStock.remainingStock}}</span>
+          </div>
+          <div class="client-info-group">
+            <span class="text-bold">Reste à payer:</span>
+            <span>{{clientRemainingStock.remainingToPay}} €</span>
+          </div>
+        </div>
+        <div class="commercial-operation p-2" *ngIf="clientACStock <= 2">
+          <h3 class="text-bold" style="text-decoration: underline">Commerce:</h3>
+          <p class="text-bold text-fail" style="font-size: 150%">Essayer de vendre au client un package de soin</p>
+          <button class="text-bold btn btn-validation align-self-center" (click)="sellBundle()">
+            Vendre
+          </button>
+        </div>
       </div>
       <div class="to-paid-content p-2">
         <h3 class="text-bold" style="text-decoration: underline; text-align: center">A payer</h3>
