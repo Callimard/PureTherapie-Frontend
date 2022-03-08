@@ -1,6 +1,5 @@
 .agenda-week-container {
-  width: 100%;
-  height: 100%;
+  flex: 1 0 auto;
 
   display: flex;
   flex-direction: column;
@@ -34,10 +33,13 @@
 }
 
 .week-container {
-  flex: 1 0 auto;
+  flex: 1 0 500px;
 
-  display: grid;
-  grid-template: 4% 96% / 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  overflow: overlay;
 }
 
 .week-day-header, .week-day-content {
@@ -45,11 +47,15 @@
   grid-template-rows: 100%;
 }
 
-.week-row {
-  grid-template-columns: 2fr repeat(7, 7fr);
+.week-day-content {
+  flex: 0 1 auto;
 }
 
-.day-week-header {
+.week-row {
+  grid-template-columns: 5.5% repeat(7, 13.5%);
+}
+
+.week-day-header-title {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -63,12 +69,14 @@
   background-color: rgba(113, 219, 8, 0.14);
 }
 
-.week-day-content {
-  overflow: overlay;
+.all-ts, .day-week-ts-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-.all-ts, .day-week-ts-content {
-  display: grid;
+.ts-time-content, .day-ts-content {
+  height: 60px;
 }
 
 .ts-time-content {

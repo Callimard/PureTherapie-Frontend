@@ -19,6 +19,7 @@
       <label for="agenda-view-selection" class="text-bold">Vue de l'agenda:</label>
       <select id="agenda-view-selection" name="agenda-view-selection" [(ngModel)]="agendaView">
         <option value="1">Par techniciennes</option>
+        <option value="2">Par semaines</option>
       </select>
     </div>
   </div>
@@ -35,7 +36,7 @@
   <div class="all-agenda-content p-2">
     <app-agenda-per-technician [today]="today" class="agenda-per-tech generic-card"
                                *ngIf="agendaView == 1"></app-agenda-per-technician>
-    <!--<app-agenda-per-week [day]="today" class="agenda-per-week generic-card"
-                         *ngIf="agendaView == 2" (dayChange)="dayChange($event)"></app-agenda-per-week>-->
+    <app-agenda-per-week [day]="today" class="agenda-per-week generic-card"
+                         *ngIf="agendaView == 2" (dayChange)="dayChange($event)"></app-agenda-per-week>
   </div>
 </div>
