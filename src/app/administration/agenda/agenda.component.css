@@ -13,9 +13,6 @@
 
   display: flex;
   justify-content: flex-start;
-
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
 }
 
 .agenda-all-btn {
@@ -70,7 +67,7 @@
   align-items: center;
 }
 
-.agenda-content {
+.all-agenda-content {
   flex: 1 0 auto;
 
   display: flex;

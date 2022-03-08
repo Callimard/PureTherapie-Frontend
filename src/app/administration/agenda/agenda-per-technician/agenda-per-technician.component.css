@@ -1,8 +1,18 @@
+.per-tech-agenda-container {
+  flex: 1 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 .agenda-row {
   display: grid;
 }
 
 .agenda-content {
+  flex: 1 0 500px;
+
   display: grid;
 
   overflow: overlay;
