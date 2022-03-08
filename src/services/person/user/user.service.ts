@@ -18,4 +18,14 @@ export class UserService {
         error: (err: HttpErrorResponse) => console.error("Fail to make new password, Err = ", err.error)
       })
   }
+
+  public resetPassword(username: string, code: string, password: string): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.post<any>(GlobalVariables.USER_RESET_PASSWORD_URL
+        + "?code=" + code + "&username=" + username, password).subscribe({
+        next: (res) => resolve(res),
+        error: (err: HttpErrorResponse) => console.error("Fail to reset password, Err = ", err.error)
+      });
+    });
+  }
 }

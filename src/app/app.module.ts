@@ -154,12 +154,17 @@ import {
   TerminateSurbookingModalComponent
 } from './administration/agenda/surbooking-modal/terminate-surbooking-modal/terminate-surbooking-modal.component';
 import {TechnicianManagementComponent} from './administration/technician-management/technician-management.component';
-import { CreateTechnicianAbsenceModalComponent } from './administration/technician-management/create-technician-absence-modal/create-technician-absence-modal.component';
-import { ClientCardModalComponent } from './administration/client/client-administration/client-edition-modal/client-information/client-card-modal/client-card-modal.component';
+import {
+  CreateTechnicianAbsenceModalComponent
+} from './administration/technician-management/create-technician-absence-modal/create-technician-absence-modal.component';
+import {
+  ClientCardModalComponent
+} from './administration/client/client-administration/client-edition-modal/client-information/client-card-modal/client-card-modal.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
-import { SafeUrlPipePipe } from './util/pipe/safe-url-pipe.pipe';
-import { AgendaPerWeekComponent } from './administration/agenda/agenda-per-week/agenda-per-week.component';
+import {SafeUrlPipePipe} from './util/pipe/safe-url-pipe.pipe';
+import {AgendaPerWeekComponent} from './administration/agenda/agenda-per-week/agenda-per-week.component';
+import {InitUserPasswordComponent} from './administration/init-user-password/init-user-password.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -176,6 +181,7 @@ const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_NOTIFICATIONS, component: NotificationsComponent},
   {path: GlobalVariables.INTERN_ADMINISTRATION_PRODUCTS_URL, component: ProductManagementComponent},
   {path: GlobalVariables.INTERN_ADMINISTRATION_TECHNICIAN_URL, component: TechnicianManagementComponent},
+  {path: GlobalVariables.INTERN_INIT_USER_PASSWORD, component: InitUserPasswordComponent},
   {path: '', redirectTo: GlobalVariables.INTERN_LOGIN_URL, pathMatch: 'full'}
 ];
 
@@ -244,20 +250,21 @@ const appRoutes: Routes = [
     CreateTechnicianAbsenceModalComponent,
     ClientCardModalComponent,
     SafeUrlPipePipe,
-    AgendaPerWeekComponent
+    AgendaPerWeekComponent,
+    InitUserPasswordComponent
   ],
-    imports: [
-        TooltipModule.forRoot(),
-        ModalModule.forRoot(),
-        BrowserAnimationsModule,
-        BrowserModule,
-        HttpClientModule,
-        FormsModule,
-        RouterModule,
-        RouterModule.forRoot(appRoutes),
-        MatIconModule,
-        MatButtonModule
-    ],
+  imports: [
+    TooltipModule.forRoot(),
+    ModalModule.forRoot(),
+    BrowserAnimationsModule,
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    RouterModule,
+    RouterModule.forRoot(appRoutes),
+    MatIconModule,
+    MatButtonModule
+  ],
   providers: [CookieService, AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS,
