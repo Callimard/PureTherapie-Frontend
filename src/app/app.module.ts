@@ -159,6 +159,7 @@ import { ClientCardModalComponent } from './administration/client/client-adminis
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import { SafeUrlPipePipe } from './util/pipe/safe-url-pipe.pipe';
+import { AgendaPerWeekComponent } from './administration/agenda/agenda-per-week/agenda-per-week.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -242,7 +243,8 @@ const appRoutes: Routes = [
     TechnicianManagementComponent,
     CreateTechnicianAbsenceModalComponent,
     ClientCardModalComponent,
-    SafeUrlPipePipe
+    SafeUrlPipePipe,
+    AgendaPerWeekComponent
   ],
     imports: [
         TooltipModule.forRoot(),

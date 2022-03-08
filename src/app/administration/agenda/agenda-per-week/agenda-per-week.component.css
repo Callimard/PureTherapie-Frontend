@@ -1,0 +1,87 @@
+.agenda-week-container {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 3px;
+}
+
+.select-week-content {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: flex-start;
+  gap: 13px;
+}
+
+.change-week-btn-content {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: flex-start;
+  gap: 3px;
+}
+
+.select-week-btn {
+  padding: 3px;
+  border-radius: 0;
+}
+
+.week-tittle {
+  align-self: center;
+}
+
+.week-container {
+  flex: 1 0 auto;
+
+  display: grid;
+  grid-template: 4% 96% / 100%;
+}
+
+.week-day-header, .week-day-content {
+  display: grid;
+  grid-template-rows: 100%;
+}
+
+.week-row {
+  grid-template-columns: 2fr repeat(7, 7fr);
+}
+
+.day-week-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.current-day-header {
+  background-color: #71db08c2;
+}
+
+.current-day-content {
+  background-color: rgba(113, 219, 8, 0.14);
+}
+
+.week-day-content {
+  overflow: overlay;
+}
+
+.all-ts, .day-week-ts-content {
+  display: grid;
+}
+
+.ts-time-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ts-totally-occupied {
+  background-color: rgba(173, 0, 0, 0.46);
+}
+
+.ts-closed {
+  background-color: rgba(98, 98, 98, 0.25);
+}
+
