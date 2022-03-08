@@ -6,10 +6,6 @@
 
   height: 82%;
   width: 95%;
-
-  background: linear-gradient(to bottom, #ffffff, rgba(246, 246, 246, 0.85));
-  box-shadow: 0 2px 4px 0;
-  border-radius: .4em;
 }
 
 @media screen and (min-width: 680px) {

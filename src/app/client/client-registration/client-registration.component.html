@@ -1,6 +1,8 @@
 <div class="client-self-navigation-card">
-  <div class="client-registration-content p-3" *ngIf="!success">
-    <h3 style="text-align: center" class="text-bold text-decoration-underline align-self-stretch">Enregistrement client</h3>
+  <form class="client-registration-content p-3" *ngIf="!success"
+        (ngSubmit)="openModalClientRegistrationSuccess(clientRegistrationConfirmation)">
+    <h3 style="text-align: center" class="text-bold text-decoration-underline align-self-stretch">Enregistrement
+      client</h3>
     <div class="client-registration-information">
       <div class="d-flex justify-content-start my-2">
         <input type="text" id="lastName" name="lastName" placeholder="Nom" class="form-control ms-2"
@@ -34,14 +36,12 @@
         </div>
       </div>
     </div>
-    <button class="text-bold btn btn-primary mt-sm-3" type="button"
-            (click)="openModalClientRegistrationSuccess(clientRegistrationConfirmation)">Enregistrement
-    </button>
+    <button class="text-bold btn btn-simple mt-sm-3" type="submit">Enregistrement</button>
 
     <ng-template #clientRegistrationConfirmation>
       <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title text-success" id="takingAppointmentConfirmation">Récapitulatif de
+        <div class="modal-header title-bar">
+          <h2 class="modal-title" id="takingAppointmentConfirmation">Récapitulatif de
             l'enreigistrement</h2>
           <button type="button" class="btn-close" (click)="declineClientRegistration()"></button>
         </div>
@@ -66,16 +66,16 @@
           </p>
         </div>
         <div class="modal-footer d-flex justify-content-end">
-          <button type="button" class="text-bold btn btn-danger" (click)="declineClientRegistration()">Annuler</button>
-          <button type="button" class="text-bold btn btn-primary"
+          <button type="button" class="text-bold btn btn-add"
                   (click)="confirmClientRegistrationAndAppointment()"
                   *ngIf="validAppointmentAfterRegistration === 'true'">S'enregistrer et valider le rendez-vous
           </button>
+          <button type="button" class="text-bold btn btn-cancel" (click)="declineClientRegistration()">Annuler</button>
         </div>
       </div>
     </ng-template>
-  </div>
-  <div class="success-appointment-registration-content p-3"
+  </form>
+  <div class="generic-card success-appointment-registration-content p-3"
        *ngIf="success">
     <h2 class="text-success">Félicitation, votre
       enregistrement{{chooseAlsoTakingAppointment ? " et votre prise de rendez-vous ont été pris en compte" : ''}}</h2>
@@ -98,6 +98,6 @@
       <strong>Soin pratiqué: </strong> {{appointmentData.ac.name}}<br/>
       <strong>Temps de prise en charge: </strong> {{appointmentData.ac.executionTime}} min<br/>
     </p>
-    <a href="https://puretherapie.com/" class="text-bold btn btn-primary">Retour à l'acceuil PureTherapie</a>
+    <a href="https://puretherapie.com/" class="text-bold btn btn-simple">Retour à l'acceuil PureTherapie</a>
   </div>
 </div>

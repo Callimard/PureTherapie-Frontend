@@ -1,11 +1,11 @@
-<div class="client-self-navigation-card m-4">
-  <div class="client-research-content p-3"
-       *ngIf="(makeClientResearch === 'true' && newClient === 'false') && !takingAppointmentSuccess">
-    <h3 class="text-bold text-decoration-underline" style="margin-bottom: 15px">Vos informations</h3>
+<div class="generic-card client-self-navigation-card m-4">
+  <form class="client-research-content p-3" (ngSubmit)="searchClient()"
+        *ngIf="(makeClientResearch === 'true' && newClient === 'false') && !takingAppointmentSuccess">
+    <!--<h3 class="text-bold text-decoration-underline" style="margin-bottom: 15px">Vos informations</h3>
     <label class="search-label text-bold" for="client-email-research">Votre email: </label>
     <input class="client-email-input flex-fill" type="email" name="client-email-research" id="client-email-research"
            [(ngModel)]="clientEmail"/>
-    <span class="text-bold  text-decoration-underline text-success p-2">ou</span>
+    <span class="text-bold  text-decoration-underline text-success p-2">ou</span>-->
     <label class="search-label flex-grow-0 text-bold" for="client-phone-research">Votre téléphone: </label>
     <input class="client-phone-input flex-fill" type="tel" name="client-phone-research" id="client-phone-research"
            size="10" minlength="10" maxlength="10" [(ngModel)]="clientPhone"/>
@@ -14,13 +14,14 @@
       <span class="text-success" *ngIf="hasSearchClient && clientHasBeenFound">Nous vous avons trouvé!</span>
     </div>
     <div class="flex-fill d-flex justify-content-center align-items-center my-2">
-      <button type="button" class="search-client-btn btn btn-primary text-bold" (click)="searchClient()">
+      <button type="submit" class="search-client-btn btn btn-simple text-bold">
         Rechercher le client
       </button>
     </div>
-  </div>
+  </form>
 
-  <div class="appointment-information p-3" *ngIf="!takingAppointmentSuccess">
+  <form class="appointment-information p-3" *ngIf="!takingAppointmentSuccess"
+        (ngSubmit)="openModalTakeAppointmentConfirmation(takingAppointmentConfirmation)">
     <div class="appointment-info-row">
       <label for="aestheticCare" class="">
         <strong>Soin:</strong>
@@ -52,15 +53,14 @@
       </select>
     </div>
     <div class="appointment-btn-row">
-      <button class="btn btn-primary text-bold" type="button"
-              (click)="openModalTakeAppointmentConfirmation(takingAppointmentConfirmation)">
+      <button class="btn btn-simple text-bold" type="submit">
         Prendre rendez-vous !
       </button>
     </div>
     <ng-template #takingAppointmentConfirmation>
       <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title text-success" id="takingAppointmentConfirmation">Confirmation de pris de
+        <div class="modal-header title-bar">
+          <h3 class="modal-title" id="takingAppointmentConfirmation">Confirmation de pris de
             rendez-vous</h3>
           <button type="button" class="btn-close" (click)="declineTakingAppointment()"></button>
         </div>
@@ -76,13 +76,13 @@
           </p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="text-bold btn btn-danger" (click)="declineTakingAppointment()">Annuler</button>
-          <button type="button" class="text-bold btn btn-primary" (click)="confirmTakingAppointment()">
+          <button type="button" class="text-bold btn btn-add" (click)="confirmTakingAppointment()">
             Accepté{{newClient === 'true' ? " et s'enregistrer" : ''}}</button>
+          <button type="button" class="text-bold btn btn-cancel" (click)="declineTakingAppointment()">Annuler</button>
         </div>
       </div>
     </ng-template>
-  </div>
+  </form>
   <div class="success-appointment-content p-3"
        *ngIf="takingAppointmentSuccess">
     <h2 class="text-success success-appointment-text">Félicitation, votre rendez-vous à été validé!</h2>
@@ -95,7 +95,7 @@
       <strong>Soin pratiqué: </strong> {{this.selectedAC.name}}<br/>
       <strong>Temps de prise en charge: </strong> {{this.selectedAC.executionTime}} min<br/>
     </p>
-    <a href="https://puretherapie.com/" class="btn btn-primary success-appointment-text text-bold">Retour à l'acceuil
+    <a href="https://puretherapie.com/" class="btn btn-simple success-appointment-text text-bold">Retour à l'acceuil
       PureTherapie</a>
   </div>
 </div>
