@@ -13,8 +13,8 @@
         <button class="btn-add-surbooking btn btn-add" (click)="createSurbooking()">Ajouter</button>
       </div>
       <div class="all-surbookings border">
-        <div class="surbooking-row basic-row border-bottom p-2" *ngFor="let surbooking of surbookings"
-        (click)="surbookingSummary(surbooking)">
+        <div class="surbooking-row touchable border-bottom p-2" *ngFor="let surbooking of surbookings"
+             (click)="surbookingSummary(surbooking)">
           <div class="surbooking-row-item">
             <span>{{simplePersonIdentifier(surbooking.client)}}</span>
           </div>

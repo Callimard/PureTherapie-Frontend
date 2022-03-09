@@ -1,0 +1,49 @@
+<div class="tech-management-container main-card border m-2">
+  <div class="tech-management-header title-bar">
+    <h1 class="px-3 my-2">Gestion des techniciennes</h1>
+  </div>
+  <div class="tech-management-content p-3">
+    <div class="all-techs clean-border-right p-3">
+      <div class="tech-content p-2">
+        <h3 class="tech-title">Techniciens</h3>
+        <div class="all-active-techs border">
+          <div class="tech-row touchable border-bottom p-1" *ngFor="let tech of activeTechnicians"
+               [class.basic-row-active]="selectedTech != null && selectedTech.idPerson == tech.idPerson">
+            <span class="my-auto" style="text-align: left"
+                  (click)="displayTechAbsences(tech)">{{simplePersonIdentifier(tech)}}</span>
+            <button type="button" class="btn btn-cancel mx-auto my-auto p-2" (click)="deactivateTech(tech)">Désactiver
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="tech-content p-2">
+        <h3 class="tech-title">Techniciens inactifs</h3>
+        <div class="all-inactive-techs border">
+          <div class="tech-row touchable border-bottom p-2" *ngFor="let tech of inactiveTechnicians"
+               [class.basic-row-active]="selectedTech != null && selectedTech.idPerson == tech.idPerson">
+            <span class="my-auto" style="text-align: left"
+                  (click)="displayTechAbsences(tech)">{{simplePersonIdentifier(tech)}}</span>
+            <button type="button" class="btn btn-add mx-auto my-auto p-2" (click)="activateTech(tech)">Activer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tech-absence p-3">
+      <h3 class="tech-absence-title">
+        Absences{{selectedTech != null ? ' de ' + simplePersonIdentifier(selectedTech) : ''}}</h3>
+      <div class="tech-all-absences border">
+        <div class="tech-absence-row touchable border-bottom p-1" *ngFor="let techAbsence of selectedTechAbsences">
+          <span class="my-auto" style="text-align: left">{{techAbsence.day}}</span>
+          <span class="my-auto" style="text-align: center">De {{techAbsence.beginTime}} à {{techAbsence.endTime}}</span>
+          <button class="btn btn-cancel m-2 p-2" (click)="deleteTechAbsence(techAbsence)">Supprimer</button>
+        </div>
+        <div class="btn-add-tech-absence p-3">
+          <button type="button" class="btn btn-add" *ngIf="this.selectedTech != null" (click)="addTechAbsence()">Ajouter
+            une absence
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

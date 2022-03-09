@@ -86,7 +86,7 @@
 
 .title-bar {
   background-color: #A2C1FC;
-  box-shadow: 0 1px 2px black;
+  box-shadow: 0 3px 8px 0 #abababad;;
 }
 
 .btn-simple {
@@ -147,6 +147,10 @@
   border-radius: .4em;
 }
 
+.card-radius {
+  border-radius: .4em;
+}
+
 .card-top-left-radius {
   border-top-left-radius: .4em;
 }
@@ -184,11 +188,11 @@
   box-shadow: 0 3px 5px 0 #b1b1b1;
 }
 
-.basic-row:hover {
+.touchable:hover {
   background-color: rgba(162, 193, 252, 0.66);
 }
 
-.basic-row:active {
+.touchable:active, .basic-row-active {
   background-color: rgba(162, 193, 252, 0.87);
 }
 

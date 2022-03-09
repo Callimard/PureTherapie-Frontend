@@ -112,21 +112,59 @@ import {
 import {
   ClientSpecificInformationComponent
 } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-specific-information.component';
-import { ClientProductsComponent } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-products/client-products.component';
-import { ClientGeneralInfoComponent } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-general-info.component';
-import { ClientPaymentsComponent } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-payments/client-payments.component';
-import { ClientAppointmentsComponent } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-appointments/client-appointments.component';
-import { ClientPurchasesComponent } from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-purchases/client-purchases.component';
-import { ProductManagementComponent } from './administration/product-management/product-management.component';
-import { PackageManagementComponent } from './administration/product-management/package-management/package-management.component';
-import { AestheticCareManagementComponent } from './administration/product-management/aesthetic-care-management/aesthetic-care-management.component';
-import { CreateUpdateAcModalComponent } from './administration/product-management/aesthetic-care-management/create-update-ac-modal/create-update-ac-modal.component';
-import { CreateBundleModalComponent } from './administration/product-management/package-management/create-bundle-modal/create-bundle-modal.component';
-import { UpdateBundleModalComponent } from './administration/product-management/package-management/update-bundle-modal/update-bundle-modal.component';
-import { SurbookingModalComponent } from './administration/agenda/surbooking-modal/surbooking-modal.component';
-import { CreateSurbookingModalComponent } from './administration/agenda/surbooking-modal/create-surbooking-modal/create-surbooking-modal.component';
-import { SurbookingSummaryComponent } from './administration/agenda/surbooking-modal/surbooking-summary/surbooking-summary.component';
-import { TerminateSurbookingModalComponent } from './administration/agenda/surbooking-modal/terminate-surbooking-modal/terminate-surbooking-modal.component';
+import {
+  ClientProductsComponent
+} from './administration/client/client-administration/client-edition-modal/client-specific-information/client-products/client-products.component';
+import {
+  ClientGeneralInfoComponent
+} from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-general-info.component';
+import {
+  ClientPaymentsComponent
+} from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-payments/client-payments.component';
+import {
+  ClientAppointmentsComponent
+} from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-appointments/client-appointments.component';
+import {
+  ClientPurchasesComponent
+} from './administration/client/client-administration/client-edition-modal/client-specific-information/client-general-info/client-purchases/client-purchases.component';
+import {ProductManagementComponent} from './administration/product-management/product-management.component';
+import {
+  PackageManagementComponent
+} from './administration/product-management/package-management/package-management.component';
+import {
+  AestheticCareManagementComponent
+} from './administration/product-management/aesthetic-care-management/aesthetic-care-management.component';
+import {
+  CreateUpdateAcModalComponent
+} from './administration/product-management/aesthetic-care-management/create-update-ac-modal/create-update-ac-modal.component';
+import {
+  CreateBundleModalComponent
+} from './administration/product-management/package-management/create-bundle-modal/create-bundle-modal.component';
+import {
+  UpdateBundleModalComponent
+} from './administration/product-management/package-management/update-bundle-modal/update-bundle-modal.component';
+import {SurbookingModalComponent} from './administration/agenda/surbooking-modal/surbooking-modal.component';
+import {
+  CreateSurbookingModalComponent
+} from './administration/agenda/surbooking-modal/create-surbooking-modal/create-surbooking-modal.component';
+import {
+  SurbookingSummaryComponent
+} from './administration/agenda/surbooking-modal/surbooking-summary/surbooking-summary.component';
+import {
+  TerminateSurbookingModalComponent
+} from './administration/agenda/surbooking-modal/terminate-surbooking-modal/terminate-surbooking-modal.component';
+import {TechnicianManagementComponent} from './administration/technician-management/technician-management.component';
+import {
+  CreateTechnicianAbsenceModalComponent
+} from './administration/technician-management/create-technician-absence-modal/create-technician-absence-modal.component';
+import {
+  ClientCardModalComponent
+} from './administration/client/client-administration/client-edition-modal/client-information/client-card-modal/client-card-modal.component';
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {SafeUrlPipePipe} from './util/pipe/safe-url-pipe.pipe';
+import {AgendaPerWeekComponent} from './administration/agenda/agenda-per-week/agenda-per-week.component';
+import {InitUserPasswordComponent} from './administration/init-user-password/init-user-password.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -142,6 +180,8 @@ const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_OPENING_TIME, component: OpeningTimeComponent},
   {path: GlobalVariables.INTERN_NOTIFICATIONS, component: NotificationsComponent},
   {path: GlobalVariables.INTERN_ADMINISTRATION_PRODUCTS_URL, component: ProductManagementComponent},
+  {path: GlobalVariables.INTERN_ADMINISTRATION_TECHNICIAN_URL, component: TechnicianManagementComponent},
+  {path: GlobalVariables.INTERN_INIT_USER_PASSWORD, component: InitUserPasswordComponent},
   {path: '', redirectTo: GlobalVariables.INTERN_LOGIN_URL, pathMatch: 'full'}
 ];
 
@@ -205,7 +245,13 @@ const appRoutes: Routes = [
     SurbookingModalComponent,
     CreateSurbookingModalComponent,
     SurbookingSummaryComponent,
-    TerminateSurbookingModalComponent
+    TerminateSurbookingModalComponent,
+    TechnicianManagementComponent,
+    CreateTechnicianAbsenceModalComponent,
+    ClientCardModalComponent,
+    SafeUrlPipePipe,
+    AgendaPerWeekComponent,
+    InitUserPasswordComponent
   ],
   imports: [
     TooltipModule.forRoot(),
@@ -215,7 +261,9 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     RouterModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [CookieService, AuthenticationService,
     {

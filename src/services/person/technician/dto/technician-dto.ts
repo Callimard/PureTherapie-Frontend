@@ -1,4 +1,4 @@
-import {PersonDTO} from "../person-dto";
+import {PersonDTO} from "../../person-dto";
 
 export class TechnicianDTO extends PersonDTO {
   constructor(idPerson: number, firstName: string, lastName: string, email: string, gender: boolean, phone: string, birthday: string,

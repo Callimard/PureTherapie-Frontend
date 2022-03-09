@@ -19,11 +19,13 @@ export class GlobalVariables {
   public static readonly INTERN_ADMINISTRATION_URL = 'administration';
   public static readonly INTERN_ADMINISTRATION_CLIENT_URL = GlobalVariables.INTERN_ADMINISTRATION_URL + '/clients';
   public static readonly INTERN_ADMINISTRATION_PRODUCTS_URL = GlobalVariables.INTERN_ADMINISTRATION_URL + '/products';
+  public static readonly INTERN_ADMINISTRATION_TECHNICIAN_URL = GlobalVariables.INTERN_ADMINISTRATION_URL + '/technicians';
   public static readonly INTERN_NOTIFICATIONS = 'notifications';
   public static readonly INTERN_PRODUCT_PURCHASE_URL = 'product-purchase';
   public static readonly INTERN_AGENDA_URL = 'agenda';
   public static readonly INTERN_WAITING_ROOM = 'waiting_room';
   public static readonly INTERN_OPENING_TIME = 'opening';
+  public static readonly INTERN_INIT_USER_PASSWORD = 'users/password/reset';
 
   // BACKEND Session
 
@@ -36,15 +38,18 @@ export class GlobalVariables {
 
   // BACKEND URL
 
-  public static readonly BACK_END_URL = "http://localhost:8080";
+  public static readonly BACK_END_URL = "https://rdvfaceup.com:8080";
 
   public static readonly API_V1_URL = GlobalVariables.BACK_END_URL + "/api/v1"
 
   public static readonly USERS_URL = GlobalVariables.API_V1_URL + "/users";
+  public static readonly USER_FORGOTTEN_PASSWORD_URL = GlobalVariables.USERS_URL + "/passwordForgotten";
+  public static readonly USER_RESET_PASSWORD_URL = GlobalVariables.USERS_URL + "/password/reset";
   public static readonly LOGIN_URL = GlobalVariables.USERS_URL + "/login";
   public static readonly LOGOUT_URL = GlobalVariables.USERS_URL + "/logout";
 
   public static readonly CLIENTS_URL = GlobalVariables.API_V1_URL + "/clients";
+  public static readonly CLIENT_CARDS = "/cards";
   public static readonly CLIENTS_GET_WITH_EMAIL_URL = GlobalVariables.CLIENTS_URL + "/searchWithEmail";
   public static readonly CLIENT_GET_WITH_PHONE_URL = GlobalVariables.CLIENTS_URL + "/searchWithPhone";
   public static readonly CLIENT_IS_NEW = GlobalVariables.CLIENTS_URL + "/isNew";
@@ -72,11 +77,13 @@ export class GlobalVariables {
   public static readonly ALL_BUNDLE_PURCHASE_STOCKS = "/stocks";
 
   public static readonly TECHNICIANS_URL = GlobalVariables.API_V1_URL + "/technicians";
+  public static readonly TECHNICIAN_ABSENCES_URL = GlobalVariables.TECHNICIANS_URL + "/absences";
 
   public static readonly AGENDA_URL = GlobalVariables.API_V1_URL + "/agenda";
-  public static readonly TECHNICIAN_FREE_TIME_SLOTS_URL = GlobalVariables.AGENDA_URL + "/technicians/free_time_slots";
-  public static readonly DAY_ALL_TIME_SLOTS_URL = GlobalVariables.AGENDA_URL + "/time_slots";
-  public static readonly DAY_ALL_TECHNICIAN_TIME_SLOTS_URL = GlobalVariables.AGENDA_URL + "/technician/time_slots";
+  public static readonly AGENDA_TECHNICIANS_URL = GlobalVariables.AGENDA_URL + "/technicians";
+  public static readonly AGENDA_FREE_TS = "/free_time_slots";
+  public static readonly AGENDA_TS = "/time_slots";
+  public static readonly AGENDA_TS_URL = GlobalVariables.AGENDA_URL + GlobalVariables.AGENDA_TS;
 
   public static readonly APPOINTMENTS_URL = GlobalVariables.API_V1_URL + "/appointments";
   public static readonly CLIENT_APPOINTMENT_URL = GlobalVariables.APPOINTMENTS_URL + "/clients";
@@ -90,7 +97,7 @@ export class GlobalVariables {
   public static readonly APPOINTMENT_CLIENT_URL = GlobalVariables.APPOINTMENTS_URL + GlobalVariables.APPOINTMENT_CLIENT;
 
   public static readonly SURBOOKINGS_URL = GlobalVariables.API_V1_URL + "/surbookings";
-  public static readonly SURBOOKING_CLIENT_ARRIVE ="/clientArrive";
+  public static readonly SURBOOKING_CLIENT_ARRIVE = "/clientArrive";
   public static readonly SURBOOKING_FINALIZE = "/finalize";
 
   public static readonly BILL_URL = GlobalVariables.API_V1_URL + "/bills";

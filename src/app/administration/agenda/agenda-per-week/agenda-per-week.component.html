@@ -1,0 +1,41 @@
+<div class="agenda-week-container card-radius p-1">
+  <div class="select-week-content">
+    <div class="change-week-btn-content">
+      <button type="button" class="btn btn-simple select-week-btn material-icons" (click)="previousWeek()">
+        chevron_left
+      </button>
+      <button type="button" class="btn btn-simple select-week-btn material-icons" (click)="nextWeek()">
+        chevron_right
+      </button>
+    </div>
+    <span class="week-tittle text-bold">Semaine {{day | date:'w'}} ({{stringDate(firstDayWeek) | date:'dd MMMM'}}
+      - {{stringDate(lastDayWeek) | date:'dd MMMM y'}})</span>
+  </div>
+  <div class="week-container clean-border">
+    <div class="week-day-header week-row clean-border-bottom">
+      <div></div>
+      <div class="week-day-header-title clean-border-left touchable p-2"
+           (click)="selectDay(weekDay)"
+           [class.current-day-header]="weekDay === day"
+           *ngFor="let weekDay of allWeekDays">
+        <span class="text-bold">{{weekDay | date:'ccc dd MMM'}}</span>
+      </div>
+    </div>
+    <div class="week-day-content week-row" *ngFor="let ts of allTs">
+      <div class="all-ts">
+        <div class="ts-time-content clean-border-dashed-bottom" >
+          <span class="text-bold">{{ts.begin}}</span>
+        </div>
+      </div>
+      <div class="day-week-ts-content"
+           *ngFor="let weekDay of allWeekDays">
+        <div class="day-ts-content clean-border-dashed-bottom clean-border-left" (click)="selectDay(weekDay)"
+             [class.current-day-content]="weekDay === day"
+             [class.clean-border-dashed-bottom]="!closed(weekDay) && !noTsForTime(weekDay, ts.begin)"
+             [class.ts-totally-occupied]="!noTsForTime(weekDay, ts.begin) && totallyOccupied(weekDay, ts.begin)"
+             [class.ts-closed]="closed(weekDay) || noTsForTime(weekDay, ts.begin)">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

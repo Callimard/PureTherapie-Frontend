@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {TechnicianDTO} from "../../../../services/person/technician/technician-dto";
+import {TechnicianDTO} from "../../../../services/person/technician/dto/technician-dto";
 import {TimeSlotDTO} from "../../../../services/agenda/time-slot-dto";
 import {DateTool} from "../../../../tool/date-tool";
 import {TechnicianService} from "../../../../services/person/technician/technician.service";
@@ -25,7 +25,7 @@ export class AgendaPerTechnicianComponent implements OnInit, OnChanges, Recharge
   private tsColumnSize: string = "5%";
   agendaRowColumn: string = "5% 1fr 1fr 1fr 1fr";
 
-  private agendaLineHeight: string = "7%";
+  private agendaLineHeight: string = "10%";
   agendaContentGrid: string = "repeat(18, " + this.agendaLineHeight + ")";
 
   allTechnicians: TechnicianDTO[] = [];

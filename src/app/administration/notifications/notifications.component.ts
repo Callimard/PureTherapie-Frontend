@@ -12,11 +12,11 @@ export class NotificationsComponent implements OnInit {
   currentFilter: number = 0;
 
   constructor(private authenticationService: AuthenticationService) {
-    this.authenticationService.checkLogin();
+    // Normal
   }
 
   ngOnInit(): void {
-    // Normal
+    this.authenticationService.checkLogin();
   }
 
   filterChange(filter: number) {

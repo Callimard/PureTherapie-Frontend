@@ -60,7 +60,7 @@ export class ClientRegistrationComponent implements OnInit {
         this.extractValidAppointmentAfterRegistrationParam(params);
       },
       error: (fail) => {
-        console.log("Fail to load url params, ", fail);
+        console.error("Fail to load url params, ", fail);
       }
     });
   }

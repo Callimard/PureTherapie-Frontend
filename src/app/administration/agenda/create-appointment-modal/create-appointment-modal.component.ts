@@ -1,6 +1,6 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {TechnicianDTO} from "../../../../services/person/technician/technician-dto";
+import {TechnicianDTO} from "../../../../services/person/technician/dto/technician-dto";
 import {DateTool} from "../../../../tool/date-tool";
 import {AestheticCareDTO} from "../../../../services/product/aesthetic/care/dto/aesthetic-care-dto";
 import {FreeTimeSlotDTO} from "../../../../services/agenda/free-time-slot-dto";

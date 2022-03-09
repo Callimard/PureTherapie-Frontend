@@ -34,6 +34,10 @@ import {
 } from "../create-appointment-modal/create-appointment-modal.component";
 import {BillService} from "../../../../services/product/bill/bill.service";
 import {Rechargeable} from "../../../../tool/rechargeable";
+import {PersonDTO} from "../../../../services/person/person-dto";
+import {PersonTool} from "../../../../tool/person-tool";
+import {ClientService} from "../../../../services/person/client/client.service";
+import {ClientRemainingStockPayDTO} from "../../../../services/person/client/client-remaining-stock-pay-dto";
 
 @Component({
   selector: 'app-terminate-client-modal',
@@ -43,6 +47,7 @@ import {Rechargeable} from "../../../../tool/rechargeable";
 export class TerminateClientModalComponent implements OnInit, AppointmentCreationObserver, PaymentObserver, Rechargeable {
 
   client: ClientDTO = ClientDTO.default();
+  clientRemainingStock: ClientRemainingStockPayDTO = ClientRemainingStockPayDTO.default();
   appointment: AppointmentDTO = AppointmentDTO.default();
   appointmentAC: AestheticCareDTO = AestheticCareDTO.default();
 
@@ -62,12 +67,12 @@ export class TerminateClientModalComponent implements OnInit, AppointmentCreatio
 
   constructor(private acService: AestheticCareService, private bundleService: BundleService,
               private appointmentService: AppointmentService, private agendaService: AgendaService,
-              private billService: BillService,
+              private billService: BillService, private clientService: ClientService,
               public bsModalRef: BsModalRef, private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
-    // Normal
+    this.chargeClientStockAndRemainingPayment();
   }
 
   private static getNextOneMonthDay(): string {
@@ -87,7 +92,14 @@ export class TerminateClientModalComponent implements OnInit, AppointmentCreatio
     this.chargeACStock();
     this.chargeAllTimeSlots(this.appointment.technician.idPerson, this.nextSelectedDay);
     this.verifyClientHasPaidToday();
+    this.chargeClientStockAndRemainingPayment();
     this.rechargeable?.recharge();
+  }
+
+  private chargeClientStockAndRemainingPayment() {
+    this.clientService.getClientRemainingStockAndPay(this.client.idPerson).then((res) => {
+      this.clientRemainingStock = res;
+    });
   }
 
   private chargeACStock() {
@@ -229,6 +241,10 @@ export class TerminateClientModalComponent implements OnInit, AppointmentCreatio
     confirmationModal.content.title = "Ne pas prendre de rdv pour le prochain client";
     confirmationModal.content.text = "Êtes-vous sûr de ne pas prendre un prochain rendez-vous pour le client?";
     confirmationModal.content.confirmationFunction = () => this.newAppointmentChosen = true;
+  }
+
+  simplePersonIdentifier(person: PersonDTO): string {
+    return PersonTool.formatPersonSimpleIdentifier(person);
   }
 
 }

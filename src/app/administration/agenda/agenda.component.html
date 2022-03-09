@@ -1,28 +1,41 @@
-<div class="agenda-container main-card d-flex flex-column  justify-content-start flex-fill border m-2">
-  <div class="agenda-header title-bar d-flex flex-row justify-content-start">
+<div class="agenda-container main-card border m-2">
+  <div class="agenda-header title-bar">
     <h1 class="px-3 my-2">Agenda</h1>
   </div>
-  <div class="d-flex justify-content-start p-2 m-2">
-    <button class="add-appointment-btn btn btn-simple text-bold p-2 mx-2" type="button" (click)="createAppointment()">
+  <div class="agenda-all-btn p-2">
+    <button class="add-appointment-btn btn btn-simple text-bold" type="button" (click)="createAppointment()">
       Créer un
       rendez-vous
     </button>
-    <button class="register-client-btn btn btn-simple text-bold p-2 mx-2" type="button" (click)="registerClient()">
+    <button class="register-client-btn btn btn-simple text-bold" type="button" (click)="registerClient()">
       Enregistrer un client
     </button>
-    <button class="register-client-btn btn btn-cancel text-bold p-2 mx-2" type="button" (click)="surbooking()">
+    <button class="register-client-btn btn btn-cancel text-bold" type="button" (click)="surbooking()">
       Surbooking
     </button>
   </div>
-  <div class="choose-date-content">
-    <div class="flex-shrink-1 d-flex justify-content-start p-2 m-2" style="position: absolute">
-      <label class="agenda-day-label mx-3" for="agenda-day">Jour: </label>
-      <input type="date" name="agenda-day" id="agenda-day" [(ngModel)]="today"/>
-    </div>
-    <div class="flex-grow-1 d-flex justify-content-center align-items-center">
-    <app-agenda-choose-date [chosenDay]="today" (dayChangeEvent)="dayChange($event)"
-                            style="width: 15%;"></app-agenda-choose-date>
+  <div class="agenda-view-mode p-2">
+    <div class="agenda-select-view">
+      <label for="agenda-view-selection" class="text-bold">Vue de l'agenda:</label>
+      <select id="agenda-view-selection" name="agenda-view-selection" [(ngModel)]="agendaView">
+        <option value="1">Par techniciennes</option>
+      </select>
     </div>
   </div>
-  <app-agenda-per-technician [today]="today" class="generic-card flex-grow-1 m-2"></app-agenda-per-technician>
+  <div class="choose-date-content">
+    <div class="agenda-day-selection-input p-2">
+      <label class="agenda-day-label" for="agenda-day">Jour: </label>
+      <input type="date" name="agenda-day" id="agenda-day" [(ngModel)]="today"/>
+    </div>
+    <div class="chose-date-content">
+      <app-agenda-choose-date [chosenDay]="today" (dayChangeEvent)="dayChange($event)"
+                              style="width: 15%;"></app-agenda-choose-date>
+    </div>
+  </div>
+  <div class="all-agenda-content p-2">
+    <app-agenda-per-technician [today]="today" class="agenda-per-tech generic-card"
+                               *ngIf="agendaView == 1"></app-agenda-per-technician>
+    <!--<app-agenda-per-week [day]="today" class="agenda-per-week generic-card"
+                         *ngIf="agendaView == 2" (dayChange)="dayChange($event)"></app-agenda-per-week>-->
+  </div>
 </div>

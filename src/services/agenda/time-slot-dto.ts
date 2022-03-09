@@ -1,4 +1,4 @@
-import {TechnicianDTO} from "../person/technician/technician-dto";
+import {TechnicianDTO} from "../person/technician/dto/technician-dto";
 import {AppointmentDTO} from "../appointment/dto/appointment-dto";
 
 export class TimeSlotDTO {
@@ -11,6 +11,10 @@ export class TimeSlotDTO {
               public absence: boolean,
               public technician: TechnicianDTO,
               public appointment: AppointmentDTO) {
+  }
+
+  public static isOccupied(ts: TimeSlotDTO): boolean {
+    return !ts.free || ts.launchBreak || ts.absence;
   }
 
   public static default(appointment?: AppointmentDTO): TimeSlotDTO {

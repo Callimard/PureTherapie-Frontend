@@ -15,6 +15,62 @@ export class ClientService {
   constructor(private httpClient: HttpClient) {
   }
 
+  public deleteClientCard(idClient: number, cardFile: string): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.delete(GlobalVariables.CLIENTS_URL + "/" + idClient + GlobalVariables.CLIENT_CARDS + "/" + cardFile)
+        .subscribe({
+          next: (res) => {
+            resolve(res);
+          }, error: (err: HttpErrorResponse) => {
+            console.error("Fail to delete client card, Err = ", err.error);
+            reject(err.error);
+          }
+        })
+    })
+  }
+
+  public getClientCardsPath(idClient: number): Promise<string[]> {
+    return new Promise<string[]>((resolve, reject) => {
+      this.httpClient.get<string[]>(GlobalVariables.CLIENTS_URL + "/" + idClient + GlobalVariables.CLIENT_CARDS)
+        .subscribe({
+          next: (res) => {
+            resolve(res);
+          }, error: (err: HttpErrorResponse) => {
+            console.error("Fail to get client cards path, Err = ", err.error);
+            reject(err.error);
+          }
+        })
+    })
+  }
+
+  public uploadClientCard(idClient: number, formData: FormData): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.post(GlobalVariables.CLIENTS_URL + "/" + idClient + GlobalVariables.CLIENT_CARDS, formData)
+        .subscribe({
+          next: (res) => {
+            resolve(res);
+          }, error: (err: HttpErrorResponse) => {
+            console.error("Fail to upload client card, Err = ", err.error);
+            reject(err.error);
+          }
+        });
+    });
+  }
+
+  public uploadSeveralClientCard(idClient: number, formData: FormData): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.httpClient.post(GlobalVariables.CLIENTS_URL + "/" + idClient + GlobalVariables.CLIENT_CARDS + "/several", formData)
+        .subscribe({
+          next: (res) => {
+            resolve(res);
+          }, error: (err: HttpErrorResponse) => {
+            console.error("Fail to upload client card, Err = ", err.error);
+            reject(err.error);
+          }
+        });
+    });
+  }
+
   public getClientRemainingStockAndPay(idClient: number): Promise<ClientRemainingStockPayDTO> {
     return new Promise<ClientRemainingStockPayDTO>((resolve, reject) => {
       this.httpClient.get<ClientRemainingStockPayDTO>(GlobalVariables.CLIENTS_URL +
@@ -22,7 +78,7 @@ export class ClientService {
         next: (res) => {
           resolve(res);
         }, error: (err: HttpErrorResponse) => {
-          console.error("Fail to get clietn remaing stock and pay, Err = ", err.error);
+          console.error("Fail to get client remaining stock and pay, Err = ", err.error);
           reject(err.error);
         }
       })
@@ -123,13 +179,12 @@ export class ClientService {
     })
   }
 
-  public searchClientsWithFilter(page?: number, lastName?: string, firstName?: string, email?: string, phone?: string): Promise<ClientDTO[]> {
+  public searchClientsWithFilter(page?: number, name?: string, email?: string, phone?: string): Promise<ClientDTO[]> {
     return new Promise<ClientDTO[]>((resolve, reject) => {
       this.httpClient.get<ClientDTO[]>(GlobalVariables.CLIENTS_URL
         + (page != null ? "?page=" + (page - 1) + "&" : "?")
         + "filter="
-        + "lastName=" + (lastName ? lastName : '') + "+"
-        + "firstName=" + (firstName ? firstName : '') + "+"
+        + "name=" + (name ? name : '') + "+"
         + "email=" + (email ? email : '') + "+"
         + "phone=" + (phone ? '33' + phone.slice(1) : '')).subscribe({
         next: (clients) => {
