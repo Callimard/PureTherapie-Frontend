@@ -83,17 +83,17 @@ import {AgendaChooseDateComponent} from './administration/agenda/agenda-choose-d
 import {registerLocaleData} from "@angular/common";
 
 import localeFr from '@angular/common/locales/fr';
-import {NotificationsComponent} from './administration/notifications/notifications.component';
+import {HistoricalComponent} from './administration/historical/historical.component';
 import {
-  NotificationsSimpleFilterComponent
-} from './administration/notifications/notifications-simple-filter/notifications-simple-filter.component';
-import {NotificationTabComponent} from './administration/notifications/notification-tab/notification-tab.component';
+  HistoricalSimpleFilterComponent
+} from './administration/historical/historical-simple-filter/historical-simple-filter.component';
+import {HistoricalTabComponent} from './administration/historical/historical-tab/historical-tab.component';
 import {
-  NotificationTabRowComponent
-} from './administration/notifications/notification-tab/notification-tab-row/notification-tab-row.component';
+  HistoricalTabRowComponent
+} from './administration/historical/historical-tab/historical-tab-row/historical-tab-row.component';
 import {
-  NotificationModalComponent
-} from './administration/notifications/notification-tab/notification-modal/notification-modal.component';
+  HistoricalModalComponent
+} from './administration/historical/historical-tab/historical-modal/historical-modal.component';
 import {
   GlobalOpeningTimeModalComponent
 } from './administration/opening-time/global-opening-time-modal/global-opening-time-modal.component';
@@ -178,7 +178,7 @@ const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_AGENDA_URL, component: AgendaComponent},
   {path: GlobalVariables.INTERN_WAITING_ROOM, component: WaitingRoomComponent},
   {path: GlobalVariables.INTERN_OPENING_TIME, component: OpeningTimeComponent},
-  {path: GlobalVariables.INTERN_NOTIFICATIONS, component: NotificationsComponent},
+  {path: GlobalVariables.INTERN_HISTORICAL, component: HistoricalComponent},
   {path: GlobalVariables.INTERN_ADMINISTRATION_PRODUCTS_URL, component: ProductManagementComponent},
   {path: GlobalVariables.INTERN_ADMINISTRATION_TECHNICIAN_URL, component: TechnicianManagementComponent},
   {path: GlobalVariables.INTERN_INIT_USER_PASSWORD, component: InitUserPasswordComponent},
@@ -220,11 +220,11 @@ const appRoutes: Routes = [
     ClientAestheticCareRowComponent,
     AgendaPerTechnicianComponent,
     AgendaChooseDateComponent,
-    NotificationsComponent,
-    NotificationsSimpleFilterComponent,
-    NotificationTabComponent,
-    NotificationTabRowComponent,
-    NotificationModalComponent,
+    HistoricalComponent,
+    HistoricalSimpleFilterComponent,
+    HistoricalTabComponent,
+    HistoricalTabRowComponent,
+    HistoricalModalComponent,
     GlobalOpeningTimeModalComponent,
     ExceptionalOpeningTimeModalComponent,
     ExceptionalCloseModalComponent,

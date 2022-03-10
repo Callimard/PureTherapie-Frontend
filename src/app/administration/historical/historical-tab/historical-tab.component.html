@@ -11,8 +11,8 @@
     </div>
   </div>
   <div class="tab-rows">
-    <app-notification-tab-row class="clean-border-bottom" [notificationView]="notificationView"
-                              (notificationUpdated)="notificationUpdated()"
-                              *ngFor="let notificationView of notificationViews"></app-notification-tab-row>
+    <app-historical-tab-row class="clean-border-bottom" [historicalView]="historicalView"
+                              (historicalUpdated)="notificationUpdated()"
+                              *ngFor="let historicalView of historicalViews"></app-historical-tab-row>
   </div>
 </div>
