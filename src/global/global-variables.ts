@@ -20,7 +20,7 @@ export class GlobalVariables {
   public static readonly INTERN_ADMINISTRATION_CLIENT_URL = GlobalVariables.INTERN_ADMINISTRATION_URL + '/clients';
   public static readonly INTERN_ADMINISTRATION_PRODUCTS_URL = GlobalVariables.INTERN_ADMINISTRATION_URL + '/products';
   public static readonly INTERN_ADMINISTRATION_TECHNICIAN_URL = GlobalVariables.INTERN_ADMINISTRATION_URL + '/technicians';
-  public static readonly INTERN_NOTIFICATIONS = 'notifications';
+  public static readonly INTERN_HISTORICAL = 'historical';
   public static readonly INTERN_PRODUCT_PURCHASE_URL = 'product-purchase';
   public static readonly INTERN_AGENDA_URL = 'agenda';
   public static readonly INTERN_WAITING_ROOM = 'waiting_room';
@@ -113,8 +113,8 @@ export class GlobalVariables {
   public static readonly EXCEPTIONAL_OPENINGS_URL = GlobalVariables.GLOBAL_OPENING_TIMES_URL + "/exceptional_openings";
   public static readonly EXCEPTIONAL_CLOSING_URL = GlobalVariables.GLOBAL_OPENING_TIMES_URL + "/exceptional_closings";
 
-  public static readonly NOTIFICATIONS_URL = GlobalVariables.API_V1_URL + "/notifications";
-  public static readonly NOTIFICATIONS_SET_VIEWED = "/setViewed";
+  public static readonly HISTORICAL_URL = GlobalVariables.API_V1_URL + "/historical";
+  public static readonly HISTORICAL_SET_VIEWED = "/setViewed";
 
   // BACK END CONSTANTS;
 
