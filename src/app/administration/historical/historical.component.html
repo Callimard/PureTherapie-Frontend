@@ -1,0 +1,8 @@
+<div class="notifications-container main-card border m-2">
+  <div class="notifications-header title-bar">
+    <h1 class="px-3 my-2">Notifications</h1>
+  </div>
+  <app-historical-simple-filter class="mt-5" (filterChange)="filterChange($event)"></app-historical-simple-filter>
+  <app-historical-tab [filter]="currentFilter" class="notifications-content mt-2"></app-historical-tab>
+</div>
+

@@ -1,12 +1,12 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
-  selector: 'app-notifications-simple-filter',
-  templateUrl: './notifications-simple-filter.component.html',
-  styleUrls: ['./notifications-simple-filter.component.css'],
+  selector: 'app-historical-simple-filter',
+  templateUrl: './historical-simple-filter.component.html',
+  styleUrls: ['./historical-simple-filter.component.css'],
   host: {'class': 'notification-simple-filter'}
 })
-export class NotificationsSimpleFilterComponent implements OnInit {
+export class HistoricalSimpleFilterComponent implements OnInit {
 
   @Output() filterChange = new EventEmitter<number>();
 
@@ -25,8 +25,8 @@ export class NotificationsSimpleFilterComponent implements OnInit {
     if (filter == this.activeFilter)
       return;
 
-    if (filter >= NotificationsSimpleFilterComponent.FILTER_NUMBER)
-      this.activeFilter = NotificationsSimpleFilterComponent.FILTER_NUMBER - 1;
+    if (filter >= HistoricalSimpleFilterComponent.FILTER_NUMBER)
+      this.activeFilter = HistoricalSimpleFilterComponent.FILTER_NUMBER - 1;
     else if (filter < 0)
       this.activeFilter = 0;
     else

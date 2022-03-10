@@ -1,0 +1,14 @@
+<div class="tab-row-container p-2" (click)="onClick()">
+  <div class="tab-row-cell">
+    <span class="text-bold"
+          [class.alter-title]="historicalView.historical.type">
+      {{historicalView.historical.historicalTitle}}
+    </span>
+  </div>
+  <div class="tab-row-cell">
+    <span style="text-overflow: '-'">{{historicalView.historical.text}}</span>
+  </div>
+  <div class="tab-row-cell">
+    <span>{{formatDateTime(historicalView.historical.creationDate)}}</span>
+  </div>
+</div>
