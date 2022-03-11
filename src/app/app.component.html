@@ -66,6 +66,13 @@
         <strong>Historique</strong>
       </a>
     </li>
+    <li class="nav-item">
+      <a routerLink="administration/reporting" class="nav-link text-black d-flex justify-content-start align-items-center"
+         routerLinkActive="active">
+        <span class="material-icons mx-2">receipt_long</span>
+        <strong>Reporting</strong>
+      </a>
+    </li>
     <li class="nav-item" *ngIf="!isAuthenticated()">
       <a routerLink="login" class="nav-link d-flex justify-content-start align-items-center text-black"
          routerLinkActive="active">

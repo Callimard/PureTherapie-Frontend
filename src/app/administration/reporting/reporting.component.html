@@ -1,0 +1,6 @@
+<div *ngIf="turnoverKPI != null">
+  <h2>{{turnoverKPI.kpiName}}</h2>
+  <p>CA total: {{turnoverKPI.res.totalTurnover}} €</p>
+  <p *ngFor="let mpTurnover of turnoverKPI.res.turnoverByMeanOfPayment">CA par {{mpTurnover.meansOfPayment}}
+    : {{mpTurnover.turnover}} €</p>
+</div>
