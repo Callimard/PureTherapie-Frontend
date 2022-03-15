@@ -1,0 +1,166 @@
+.reporting-container {
+  flex: 1 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  border-radius: 10px;
+}
+
+.reporting-header {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: flex-start;
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.reporting-all-btn {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: flex-start;
+}
+
+.reporting-content {
+  flex: 1 0 auto;
+
+  display: grid;
+  grid-template: 100% / 50% 50%;
+}
+
+.reports {
+  flex: 1 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.reports-browser {
+  flex: 1 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.reports-browser-filter {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: flex-start;
+}
+
+.filter-title {
+  border-top: 1px solid black;
+
+  background-color: #fdfcfc;
+}
+
+.filter-title:hover {
+  cursor: pointer;
+
+  background-color: #FCDDA2;
+}
+
+.filter-title:active {
+  background-color: #efd597;
+}
+
+.filter-active {
+  background-color: #FCDDA2;
+}
+
+.left-title {
+  border-left: 1px solid black;
+}
+
+.right-title {
+  border-right: 1px solid black;
+}
+
+.reports-browser-content {
+  flex: 1 0 150px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  overflow: overlay;
+
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.report-row {
+  flex: 0 1 auto;
+
+  display: grid;
+  grid-template: 100% / 1fr 3fr;
+}
+
+.reports-browser-footer {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid black;
+}
+
+.chose-page-content {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.page-input {
+  flex-shrink: 1;
+  width: 30px;
+}
+
+input.page-input::-webkit-outer-spin-button,
+input.page-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input.page-input [type=number] {
+  -moz-appearance: textfield;
+}
+
+.report-file-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.report-file-content {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.report-file-content-header {
+  flex: 0 1 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.report-file {
+  width: 100%;
+  height: 100%;
+}

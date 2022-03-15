@@ -20,9 +20,9 @@
     </div>
     <div class="client-cards-content border p-4">
       <div class="cards-container generic-card" *ngFor="let iPath of cardsImagePath">
-        <img class="client-card-image card-top-right-radius card-top-left-radius" [src]="backendHost() + iPath.slice(1)"
+        <img class="client-card-image card-top-right-radius card-top-left-radius" [src]="backendHost() + iPath"
              alt="client-card" *ngIf="isImage(iPath)"/>
-        <embed [src]="backendHost() + iPath.slice(1) | safeUrlPipe" height="750px"
+        <embed [src]="backendHost() + iPath | safeUrl" height="750px"
                class="client-card-image card-top-right-radius card-top-left-radius" type="application/pdf"
                *ngIf="isPdf(iPath)"/>
         <button type="button"

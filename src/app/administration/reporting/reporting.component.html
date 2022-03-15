@@ -1,0 +1,52 @@
+<div class="reporting-container border main-card m-2">
+  <div class="reporting-header title-bar">
+    <h1 class="px-3 my-2">Reporting</h1>
+  </div>
+  <div class="reporting-all-btn p-2">
+    <button type="button" class="btn btn-simple" (click)="createReport()">Générer un report</button>
+  </div>
+  <div class="reporting-content p-2">
+    <div class="reports-browser">
+      <div class="reports-browser-filter">
+        <span class="filter-title left-title p-2"
+              [class.filter-active]="filter === 'day'"
+              (click)="changeFilter('day')">Journalier</span>
+        <span class="filter-title left-title p-2"
+              [class.filter-active]="filter === 'week'"
+              (click)="changeFilter('week')">Hebdomadaire</span>
+        <span class="filter-title left-title p-2"
+              [class.filter-active]="filter  === 'month'"
+              (click)="changeFilter('month')">Mensuel</span>
+        <span class="filter-title left-title p-2"
+              [class.filter-active]="filter  === 'year'"
+              (click)="changeFilter('year')">Annuel</span>
+        <span class="filter-title left-title right-title p-2"
+              [class.filter-active]="filter  === 'custom'"
+              (click)="changeFilter('custom')">Personnalisés</span>
+      </div>
+      <div class="reports-browser-content">
+        <div class="report-row touchable border-bottom" *ngFor="let report of mapReports.get(filter)"
+             (click)="selectReport(report)">
+          <span style="text-align: left" class="p-2">{{report.reportType.name}}</span>
+          <span style="text-align: right" class="p-2">{{report.dateBegin}} / {{report.dateEnd}}</span>
+        </div>
+      </div>
+      <div class="reports-browser-footer p-2">
+        <div class="chose-page-content">
+          <button class="material-icons btn btn-simple p-1" (click)="previousPage()">chevron_left</button>
+          <input type="number" min="1" class="page-input" id="page" name="page" [(ngModel)]="page"/>
+          <button class="material-icons btn btn-simple p-1" (click)="nextPage()">chevron_right</button>
+        </div>
+      </div>
+    </div>
+    <div class="report-file-container p-3" *ngIf="selectedReport != null">
+      <div class="report-file-content-header">
+        <button type="button" class="btn btn-simple" (click)="executeSelectedReport()">Regénérer le pdf</button>
+      </div>
+      <div class="report-file-content">
+        <embed [src]="backendReportUploadsUrl() + selectedReport.file | safeUrl"
+               class="report-file card-top-right-radius card-top-left-radius" type="application/pdf"/>
+      </div>
+    </div>
+  </div>
+</div>

@@ -108,7 +108,7 @@ export class ClientCardModalComponent implements OnInit, Rechargeable {
   }
 
   getCardFileName(cardPath: string): string {
-    let split = cardPath.split("/");
+    let split = cardPath.split("\\");
     return split[split.length - 1];
   }
 

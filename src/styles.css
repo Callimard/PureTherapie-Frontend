@@ -176,12 +176,12 @@ hr {
 }
 
 .client-specific-info, .client-general-info, .client-payments, .client-appointments, .client-purchases, .product-management,
-.aesthetic-care-management, .package-management, .technician-management, .init-user-password {
+.aesthetic-care-management, .package-management, .technician-management, .init-user-password, .reporting {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
-.product-management, .technician-management, .init-user-password {
+.product-management, .technician-management, .init-user-password, .reporting {
   flex: 1 0 auto;
 }

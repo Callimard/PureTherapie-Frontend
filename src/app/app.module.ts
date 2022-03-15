@@ -162,9 +162,11 @@ import {
 } from './administration/client/client-administration/client-edition-modal/client-information/client-card-modal/client-card-modal.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
-import {SafeUrlPipePipe} from './util/pipe/safe-url-pipe.pipe';
+import {SafeUrlPipe} from './util/pipe/safe-url-pipe.pipe';
 import {AgendaPerWeekComponent} from './administration/agenda/agenda-per-week/agenda-per-week.component';
 import {InitUserPasswordComponent} from './administration/init-user-password/init-user-password.component';
+import {ReportingComponent} from './administration/reporting/reporting.component';
+import { CreateReportModalComponent } from './administration/reporting/create-report-modal/create-report-modal.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -182,6 +184,7 @@ const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_ADMINISTRATION_PRODUCTS_URL, component: ProductManagementComponent},
   {path: GlobalVariables.INTERN_ADMINISTRATION_TECHNICIAN_URL, component: TechnicianManagementComponent},
   {path: GlobalVariables.INTERN_INIT_USER_PASSWORD, component: InitUserPasswordComponent},
+  {path: GlobalVariables.INTERN_REPORTING_URL, component: ReportingComponent},
   {path: '', redirectTo: GlobalVariables.INTERN_LOGIN_URL, pathMatch: 'full'}
 ];
 
@@ -249,9 +252,11 @@ const appRoutes: Routes = [
     TechnicianManagementComponent,
     CreateTechnicianAbsenceModalComponent,
     ClientCardModalComponent,
-    SafeUrlPipePipe,
+    SafeUrlPipe,
     AgendaPerWeekComponent,
-    InitUserPasswordComponent
+    InitUserPasswordComponent,
+    ReportingComponent,
+    CreateReportModalComponent
   ],
   imports: [
     TooltipModule.forRoot(),
