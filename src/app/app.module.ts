@@ -162,10 +162,11 @@ import {
 } from './administration/client/client-administration/client-edition-modal/client-information/client-card-modal/client-card-modal.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
-import {SafeUrlPipePipe} from './util/pipe/safe-url-pipe.pipe';
+import {SafeUrlPipe} from './util/pipe/safe-url-pipe.pipe';
 import {AgendaPerWeekComponent} from './administration/agenda/agenda-per-week/agenda-per-week.component';
 import {InitUserPasswordComponent} from './administration/init-user-password/init-user-password.component';
 import {ReportingComponent} from './administration/reporting/reporting.component';
+import { CreateReportModalComponent } from './administration/reporting/create-report-modal/create-report-modal.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -251,10 +252,11 @@ const appRoutes: Routes = [
     TechnicianManagementComponent,
     CreateTechnicianAbsenceModalComponent,
     ClientCardModalComponent,
-    SafeUrlPipePipe,
+    SafeUrlPipe,
     AgendaPerWeekComponent,
     InitUserPasswordComponent,
-    ReportingComponent
+    ReportingComponent,
+    CreateReportModalComponent
   ],
   imports: [
     TooltipModule.forRoot(),
