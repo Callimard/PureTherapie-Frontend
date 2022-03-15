@@ -1,0 +1,28 @@
+.dashboard-container {
+  flex: 1 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  border-radius: 10px;
+}
+
+.dashboard-header {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: flex-start;
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.dashboard-content {
+  flex: 1 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 25px;
+  row-gap: 25px;
+}
