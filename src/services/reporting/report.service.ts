@@ -17,6 +17,10 @@ export class ReportService {
     return this.httpClient.get<ReportDTO[]>(GlobalVariables.REPORTS_URL + "?reportTypeName=" + reportTypeName + "&page=" + page);
   }
 
+  public executeReport(idReport: number): Observable<any> {
+    return this.httpClient.post<any>(GlobalVariables.REPORTS_URL + "/" + idReport, null);
+  }
+
   public generateCustomReport(dateBegin: string, dateEnd: string): Observable<any> {
     return this.httpClient.post<any>(GlobalVariables.CUSTOM_REPORT_URL + "?begin=" + dateBegin + "&end=" + dateEnd, null);
   }

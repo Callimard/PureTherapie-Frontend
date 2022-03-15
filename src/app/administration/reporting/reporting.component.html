@@ -6,7 +6,7 @@
     <button type="button" class="btn btn-simple" (click)="createReport()">Générer un report</button>
   </div>
   <div class="reporting-content p-2">
-    <div class="reports-browser clean-border-right p-3">
+    <div class="reports-browser">
       <div class="reports-browser-filter">
         <span class="filter-title left-title p-2"
               [class.filter-active]="filter === 'day'"
@@ -25,7 +25,8 @@
               (click)="changeFilter('custom')">Personnalisés</span>
       </div>
       <div class="reports-browser-content">
-        <div class="report-row touchable border-bottom" *ngFor="let report of mapReports.get(filter)">
+        <div class="report-row touchable border-bottom" *ngFor="let report of mapReports.get(filter)"
+             (click)="selectReport(report)">
           <span style="text-align: left" class="p-2">{{report.reportType.name}}</span>
           <span style="text-align: right" class="p-2">{{report.dateBegin}} / {{report.dateEnd}}</span>
         </div>
@@ -38,8 +39,14 @@
         </div>
       </div>
     </div>
-    <div class="report-file p-3">
-
+    <div class="report-file-container p-3" *ngIf="selectedReport != null">
+      <div class="report-file-content-header">
+        <button type="button" class="btn btn-simple" (click)="executeSelectedReport()">Regénérer le pdf</button>
+      </div>
+      <div class="report-file-content">
+        <embed [src]="backendReportUploadsUrl() + selectedReport.file | safeUrl"
+               class="report-file card-top-right-radius card-top-left-radius" type="application/pdf"/>
+      </div>
     </div>
   </div>
 </div>

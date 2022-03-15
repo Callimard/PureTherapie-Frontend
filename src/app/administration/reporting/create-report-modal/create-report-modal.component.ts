@@ -6,6 +6,7 @@ import {Observable} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SuccessModalComponent} from "../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../util/modal/fail-modal/fail-modal.component";
+import {Rechargeable} from "../../../../tool/rechargeable";
 
 @Component({
   selector: 'app-create-report-modal',
@@ -18,6 +19,8 @@ export class CreateReportModalComponent implements OnInit {
   dateBegin: string = DateTool.toMySQLDateString(new Date());
   dateMonth: string = DateTool.toMySQLDateString(new Date());
   dateEnd: string = DateTool.toMySQLDateString(new Date());
+
+  rechargeable?: Rechargeable;
 
   constructor(private reportService: ReportService, public bsRef: BsModalRef, private modalService: BsModalService) {
     // Normal
@@ -80,8 +83,8 @@ export class CreateReportModalComponent implements OnInit {
     let successModal: BsModalRef = this.modalService.show(SuccessModalComponent);
     successModal.content.title = "Génération de rapport";
     successModal.content.text = "La génération du rapport a réussi";
+    this.rechargeable?.recharge();
     this.bsRef.hide();
-
   }
 
   private failGenerateReport(error: any) {

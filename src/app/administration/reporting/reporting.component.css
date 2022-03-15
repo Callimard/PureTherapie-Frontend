@@ -138,3 +138,29 @@ input.page-input::-webkit-inner-spin-button {
 input.page-input [type=number] {
   -moz-appearance: textfield;
 }
+
+.report-file-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.report-file-content {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.report-file-content-header {
+  flex: 0 1 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.report-file {
+  width: 100%;
+  height: 100%;
+}

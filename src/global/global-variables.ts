@@ -119,6 +119,8 @@ export class GlobalVariables {
 
   public static readonly KPIS_URL = GlobalVariables.API_V1_URL + "/kpis";
 
+  public static readonly REPORTS_UPLOAD_URL = "/uploads/reports"
+
   public static readonly REPORTS_URL = GlobalVariables.API_V1_URL + "/reports";
   public static readonly CUSTOM_REPORT_URL = GlobalVariables.REPORTS_URL + "/custom";
   public static readonly DAILY_REPORT_URL = GlobalVariables.REPORTS_URL + "/daily";
