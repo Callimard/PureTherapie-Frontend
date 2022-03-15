@@ -167,6 +167,8 @@ import {AgendaPerWeekComponent} from './administration/agenda/agenda-per-week/ag
 import {InitUserPasswordComponent} from './administration/init-user-password/init-user-password.component';
 import {ReportingComponent} from './administration/reporting/reporting.component';
 import { CreateReportModalComponent } from './administration/reporting/create-report-modal/create-report-modal.component';
+import { DashboardComponent } from './administration/dashboard/dashboard.component';
+import { KPICardComponent } from './administration/dashboard/kpicard/kpicard.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -185,6 +187,7 @@ const appRoutes: Routes = [
   {path: GlobalVariables.INTERN_ADMINISTRATION_TECHNICIAN_URL, component: TechnicianManagementComponent},
   {path: GlobalVariables.INTERN_INIT_USER_PASSWORD, component: InitUserPasswordComponent},
   {path: GlobalVariables.INTERN_REPORTING_URL, component: ReportingComponent},
+  {path: GlobalVariables.INTERN_DASHBOARD_URL, component: DashboardComponent},
   {path: '', redirectTo: GlobalVariables.INTERN_LOGIN_URL, pathMatch: 'full'}
 ];
 
@@ -256,7 +259,9 @@ const appRoutes: Routes = [
     AgendaPerWeekComponent,
     InitUserPasswordComponent,
     ReportingComponent,
-    CreateReportModalComponent
+    CreateReportModalComponent,
+    DashboardComponent,
+    KPICardComponent
   ],
   imports: [
     TooltipModule.forRoot(),

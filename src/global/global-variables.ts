@@ -27,6 +27,7 @@ export class GlobalVariables {
   public static readonly INTERN_OPENING_TIME = 'opening';
   public static readonly INTERN_INIT_USER_PASSWORD = 'users/password/reset';
   public static readonly INTERN_REPORTING_URL = 'administration/reporting';
+  public static readonly INTERN_DASHBOARD_URL = 'administration/dashboard';
 
   // BACKEND Session
 
