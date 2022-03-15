@@ -26,6 +26,8 @@ export class GlobalVariables {
   public static readonly INTERN_WAITING_ROOM = 'waiting_room';
   public static readonly INTERN_OPENING_TIME = 'opening';
   public static readonly INTERN_INIT_USER_PASSWORD = 'users/password/reset';
+  public static readonly INTERN_REPORTING_URL = 'administration/reporting';
+  public static readonly INTERN_DASHBOARD_URL = 'administration/dashboard';
 
   // BACKEND Session
 
@@ -115,6 +117,17 @@ export class GlobalVariables {
 
   public static readonly HISTORICAL_URL = GlobalVariables.API_V1_URL + "/historical";
   public static readonly HISTORICAL_SET_VIEWED = "/setViewed";
+
+  public static readonly KPIS_URL = GlobalVariables.API_V1_URL + "/kpis";
+
+  public static readonly REPORTS_UPLOAD_URL = "/uploads/reports"
+
+  public static readonly REPORTS_URL = GlobalVariables.API_V1_URL + "/reports";
+  public static readonly CUSTOM_REPORT_URL = GlobalVariables.REPORTS_URL + "/custom";
+  public static readonly DAILY_REPORT_URL = GlobalVariables.REPORTS_URL + "/daily";
+  public static readonly WEEKLY_REPORT_URL = GlobalVariables.REPORTS_URL + "/weekly";
+  public static readonly MONTHLY_REPORT_URL = GlobalVariables.REPORTS_URL + "/monthly";
+  public static readonly ANNUAL_REPORT_URL = GlobalVariables.REPORTS_URL + "/annual";
 
   // BACK END CONSTANTS;
 
