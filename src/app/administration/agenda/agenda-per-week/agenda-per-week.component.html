@@ -23,14 +23,15 @@
     </div>
     <div class="week-day-content week-row" *ngFor="let ts of allTs">
       <div class="all-ts">
-        <div class="ts-time-content clean-border-dashed-bottom" >
+        <div class="ts-time-content clean-border-dashed-bottom">
           <span class="text-bold">{{ts.begin}}</span>
         </div>
       </div>
       <div class="day-week-ts-content"
            *ngFor="let weekDay of allWeekDays">
-        <div class="day-ts-content clean-border-dashed-bottom clean-border-left" (click)="selectDay(weekDay)"
-             [class.current-day-content]="weekDay === day"
+        <div class="day-ts-content touchable clean-border-dashed-bottom clean-border-left"
+             (click)="tsClick(weekDay, ts)"
+             [class.current-day-content]="weekDay === day && isClickable(weekDay, ts)"
              [class.clean-border-dashed-bottom]="!closed(weekDay) && !noTsForTime(weekDay, ts.begin)"
              [class.ts-totally-occupied]="!noTsForTime(weekDay, ts.begin) && totallyOccupied(weekDay, ts.begin)"
              [class.ts-closed]="closed(weekDay) || noTsForTime(weekDay, ts.begin)">

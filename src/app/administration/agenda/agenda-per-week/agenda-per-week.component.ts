@@ -5,6 +5,8 @@ import {TimeSlotDTO} from "../../../../services/agenda/time-slot-dto";
 import {TechnicianDTO} from "../../../../services/person/technician/dto/technician-dto";
 import {TechnicianService} from "../../../../services/person/technician/technician.service";
 import {Rechargeable} from "../../../../tool/rechargeable";
+import {BsModalService} from "ngx-bootstrap/modal";
+import {CreateAppointmentModalComponent} from "../create-appointment-modal/create-appointment-modal.component";
 
 // noinspection JSMethodCanBeStatic
 @Component({
@@ -27,12 +29,13 @@ export class AgendaPerWeekComponent implements OnInit, OnChanges, Rechargeable {
   allTs: TimeSlotDTO[] = [];
 
   technicians: TechnicianDTO[] = [];
-  dayTechTs: Map<string, Map<number, TimeSlotDTO[]>> = new Map<string, Map<number, TimeSlotDTO[]>>();
+  dayTechTs: Map<string, Map<number, Map<string, TimeSlotDTO>>> = new Map<string, Map<number, Map<string, TimeSlotDTO>>>();
 
   private agendaLineHeight: string = "8%";
   agendaGridTemplateRow: string = "repeat(18, " + this.agendaLineHeight + ")";
 
-  constructor(private agendaService: AgendaService, private technicianService: TechnicianService) {
+  constructor(private agendaService: AgendaService, private technicianService: TechnicianService,
+              private modalService: BsModalService) {
     // Normal
   }
 
@@ -104,19 +107,21 @@ export class AgendaPerWeekComponent implements OnInit, OnChanges, Rechargeable {
     await this.chargeAllTechnicians();
     for (let weekDay of this.allWeekDays) {
       this.agendaService.getAllDayTechnicianTimeSlot(weekDay).then((res) => {
-        let map: Map<number, TimeSlotDTO[]> = new Map<number, TimeSlotDTO[]>();
+        let mapTech: Map<number, Map<string, TimeSlotDTO>> = new Map<number, Map<string, TimeSlotDTO>>();
 
         for (let ts of res) {
-          let techTs = map.get(ts.technician.idPerson);
-          if (!techTs) {
-            techTs = [];
-            map.set(ts.technician.idPerson, techTs);
+          let mapTechTs: Map<string, TimeSlotDTO> | undefined = mapTech.get(ts.technician.idPerson);
+
+          if (!mapTechTs) {
+            mapTechTs = new Map<string, TimeSlotDTO>();
+            mapTech.set(ts.technician.idPerson, mapTechTs);
           }
-          techTs.push(ts);
+
+          mapTechTs.set(ts.begin, ts);
         }
 
 
-        this.dayTechTs.set(weekDay, map);
+        this.dayTechTs.set(weekDay, mapTech);
       });
     }
   }
@@ -155,9 +160,28 @@ export class AgendaPerWeekComponent implements OnInit, OnChanges, Rechargeable {
     this.dayChange.emit(this.day);
   }
 
+  tsClick(day: string, ts: TimeSlotDTO) {
+    this.selectDay(day);
+    if (this.isClickable(day, ts)) {
+      this.modalService.show(CreateAppointmentModalComponent, {
+        class: 'medium-modal',
+        initialState: {
+          selectedDay: day,
+          paramTime: ts.begin,
+          rechargeable: this
+        }
+      });
+    }
+  }
+
+  isClickable(day: string, ts: TimeSlotDTO): boolean {
+    return !(!this.noTsForTime(day, ts.begin) && this.totallyOccupied(day, ts.begin)) && !this.closed(day) && !this.noTsForTime(day, ts.begin);
+  }
+
   private updateCurrentDay(date: Date) {
     this.currentDay = new Date(date);
     this.day = DateTool.toMySQLDateString(this.currentDay);
+    console.log("NEW DAY = ", this.day);
     this.dayChange.emit(this.day);
   }
 
@@ -177,16 +201,14 @@ export class AgendaPerWeekComponent implements OnInit, OnChanges, Rechargeable {
   }
 
   noTsForTime(day: string, beginTS: string): boolean {
-    let dayMap = this.dayTechTs.get(day);
+    let dayMap: Map<number, Map<string, TimeSlotDTO>> | undefined = this.dayTechTs.get(day);
 
     if (dayMap !== undefined) {
       for (let tech of this.technicians) {
-        let techTS: TimeSlotDTO[] | undefined = dayMap.get(tech.idPerson);
+        let techTS: Map<string, TimeSlotDTO> | undefined = dayMap.get(tech.idPerson);
         if (techTS) {
-          for (let ts of techTS) {
-            if (ts.begin === beginTS) {
-              return false;
-            }
+          if (techTS.get(beginTS) !== undefined) {
+            return false;
           }
         }
       }
@@ -196,25 +218,15 @@ export class AgendaPerWeekComponent implements OnInit, OnChanges, Rechargeable {
   }
 
   totallyOccupied(day: string, beginTS: string): boolean {
-    let dayMap = this.dayTechTs.get(day);
+    let dayMap: Map<number, Map<string, TimeSlotDTO>> | undefined = this.dayTechTs.get(day);
 
     if (dayMap !== undefined) {
       let nbOccupied = 0;
       for (let tech of this.technicians) {
-        let techTS: TimeSlotDTO[] | undefined = dayMap.get(tech.idPerson);
+        let techTS: Map<string, TimeSlotDTO> | undefined = dayMap.get(tech.idPerson);
         if (techTS) {
-          let foundTs = false;
-          for (let ts of techTS) {
-            if (ts.begin === beginTS) {
-              foundTs = true;
-              if (TimeSlotDTO.isOccupied(ts)) {
-                nbOccupied += 1;
-                break;
-              }
-            }
-          }
-
-          if (!foundTs) {
+          let ts: TimeSlotDTO | undefined = techTS.get(beginTS);
+          if (ts === undefined || TimeSlotDTO.isOccupied(ts)) {
             nbOccupied += 1;
           }
         }
