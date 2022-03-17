@@ -7,6 +7,7 @@ import {
 import {SuccessModalComponent} from "../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../util/modal/fail-modal/fail-modal.component";
 import {ExceptionalCloseDTO} from "../../../../services/agenda/exceptional-close-dto";
+import {Rechargeable} from "../../../../tool/rechargeable";
 
 @Component({
   selector: 'app-exceptional-close-modal',
@@ -17,7 +18,7 @@ export class ExceptionalCloseModalComponent implements OnInit {
 
   selectedDay: string = "";
 
-  rechargeable?: { recharge(): () => void };
+  rechargeable?: Rechargeable;
 
   constructor(private openingAndCloseService: OpeningAndCloseService, public bsModalRef: BsModalRef,
               private modalService: BsModalService) {

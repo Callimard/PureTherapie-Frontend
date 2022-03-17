@@ -22,6 +22,7 @@ import {FailModalComponent} from "../../util/modal/fail-modal/fail-modal.compone
 import {
   EditExceptionalOpeningModalComponent
 } from "./edit-exceptional-opening-modal/edit-exceptional-opening-modal.component";
+import {Rechargeable} from "../../../tool/rechargeable";
 
 @Component({
   selector: 'app-opening-time',
@@ -29,7 +30,7 @@ import {
   styleUrls: ['./opening-time.component.css'],
   host: {'class': 'd-flex flex-column flex-grow-1'}
 })
-export class OpeningTimeComponent implements OnInit {
+export class OpeningTimeComponent implements OnInit, Rechargeable {
 
   globalOpeningsTimes: GlobalOpeningTimeDTO[] = [];
   exceptionalOpenings: ExceptionalOpeningDTO[] = [];

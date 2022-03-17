@@ -1,0 +1,116 @@
+.agenda-month-container {
+  flex: 1 0 150px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.agenda-month-header {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: flex-start;
+  gap: 13px;
+}
+
+.change-month {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: flex-start;
+  gap: 3px;
+}
+
+.select-month-btn {
+  padding: 3px;
+  border-radius: 0;
+}
+
+.month-title {
+  align-self: center;
+}
+
+.agenda-month-content {
+  flex: 1 0 150px;
+
+  display: grid;
+  grid-template: 100% / repeat(7, 1fr);
+
+  overflow: overlay;
+}
+
+.day-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.day-column-header {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.day {
+  flex: 0 1 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.out-month-day {
+  color: rgba(80, 80, 80, 0.47);
+}
+
+.month-day {
+  color: #000000;
+}
+
+.day-header {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.day-content {
+  flex: 1 0 165px;
+}
+
+.day-open {
+  background-color: #A2C1FC;
+}
+
+.day-open:hover {
+  background-color: #92b5ff;
+}
+
+.day-open:active {
+  background-color: #89b0fd;
+}
+
+.day-close {
+  background-color: rgba(162, 193, 252, 0.2);
+}
+
+.day-close:hover {
+  background-color: rgba(162, 193, 252, 0.41);
+}
+
+.day-close:active {
+  background-color: rgba(162, 193, 252, 0.62);
+}
+
+.current-day-header {
+  background-color: #71db08c2;
+}
+
+.current-day-content {
+  border: 3px solid #71db08c2;
+}

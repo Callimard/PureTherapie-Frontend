@@ -1,7 +1,8 @@
 export class DateTool {
 
   public static toMySQLDateString(date: Date): string {
-    return date.toISOString().split('T')[0];
+    let split: string[] = date.toLocaleDateString().split('/');
+    return split[2] + '-' + split[1] + '-' + split[0];
   }
 
   public static extractOnlyDate(dateTime: string): string {

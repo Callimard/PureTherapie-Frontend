@@ -40,7 +40,7 @@ export class GlobalVariables {
 
   // BACKEND URL
 
-  public static readonly BACK_END_URL = "https://rdvfaceup.com:8080";
+  public static readonly BACK_END_URL = "http://localhost:8080";
 
   public static readonly API_V1_URL = GlobalVariables.BACK_END_URL + "/api/v1"
 
@@ -114,6 +114,7 @@ export class GlobalVariables {
   public static readonly GLOBAL_OPENING_TIMES_URL = GlobalVariables.API_V1_URL + "/openings";
   public static readonly EXCEPTIONAL_OPENINGS_URL = GlobalVariables.GLOBAL_OPENING_TIMES_URL + "/exceptional_openings";
   public static readonly EXCEPTIONAL_CLOSING_URL = GlobalVariables.GLOBAL_OPENING_TIMES_URL + "/exceptional_closings";
+  public static readonly IS_OPEN_DAY = GlobalVariables.GLOBAL_OPENING_TIMES_URL + "/isOpen";
 
   public static readonly HISTORICAL_URL = GlobalVariables.API_V1_URL + "/historical";
   public static readonly HISTORICAL_SET_VIEWED = "/setViewed";

@@ -7,6 +7,7 @@ import {
 import {SuccessModalComponent} from "../../../util/modal/success-modal/success-modal.component";
 import {FailModalComponent} from "../../../util/modal/fail-modal/fail-modal.component";
 import {ExceptionalOpeningDTO} from "../../../../services/agenda/exceptional-opening-dto";
+import {Rechargeable} from "../../../../tool/rechargeable";
 
 @Component({
   selector: 'app-edit-exceptional-opening-modal',
@@ -15,16 +16,18 @@ import {ExceptionalOpeningDTO} from "../../../../services/agenda/exceptional-ope
 })
 export class EditExceptionalOpeningModalComponent implements OnInit {
 
+  paramDay?: string;
   exceptionalOpening: ExceptionalOpeningDTO = ExceptionalOpeningDTO.default();
 
-  rechargeable?: { recharge(): () => void };
+  rechargeable?: Rechargeable;
 
   constructor(private openingAndCloseService: OpeningAndCloseService, public bsModalRef: BsModalRef, private modalService: BsModalService) {
     // Normal
   }
 
   ngOnInit(): void {
-    // Normal
+    if (this.paramDay)
+      this.exceptionalOpening.day = this.paramDay;
   }
 
   close() {

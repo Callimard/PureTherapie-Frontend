@@ -76,7 +76,7 @@
   align-items: flex-start;
 }
 
-.agenda-per-tech, .agenda-per-week {
+.agenda-per-tech, .agenda-per-week, .agenda-per-month {
   flex: 1 0 auto;
 
   align-self: stretch;
