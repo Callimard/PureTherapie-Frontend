@@ -41,6 +41,12 @@
   overflow: overlay;
 }
 
+@supports (-moz-appearance:none) {
+  .all-packages {
+    overflow: auto;
+  }
+}
+
 .package-row {
   flex: 0 1 auto;
 

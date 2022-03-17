@@ -42,6 +42,12 @@
   overflow: overlay;
 }
 
+@supports (-moz-appearance:none) {
+  .week-container {
+    overflow: auto;
+  }
+}
+
 .week-day-header, .week-day-content {
   display: grid;
   grid-template-rows: 100%;

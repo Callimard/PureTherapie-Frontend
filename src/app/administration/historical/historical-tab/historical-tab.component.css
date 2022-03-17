@@ -18,11 +18,17 @@
 }
 
 .tab-rows {
-  flex: 1;
+  flex: 1 0 150px;
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 
   overflow: overlay;
+}
+
+@supports (-moz-appearance:none) {
+  .tab-rows {
+    overflow: auto;
+  }
 }

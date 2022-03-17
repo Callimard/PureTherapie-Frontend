@@ -34,6 +34,12 @@
   overflow: overlay;
 }
 
+@supports (-moz-appearance:none) {
+  .client-cards-content {
+    overflow: auto;
+  }
+}
+
 .cards-container {
   display: flex;
   flex-direction: column;

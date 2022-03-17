@@ -83,3 +83,9 @@
 
   overflow: overlay;
 }
+
+@supports (-moz-appearance:none) {
+  .bundle-acs-content, .all-ac-rows {
+    overflow: auto;
+  }
+}
