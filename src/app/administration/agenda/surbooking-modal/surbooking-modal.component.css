@@ -38,6 +38,12 @@
   overflow: overlay;
 }
 
+@supports (-moz-appearance:none) {
+  .all-surbookings {
+    overflow: auto;
+  }
+}
+
 .surbooking-row {
   flex: 0 1 auto;
 

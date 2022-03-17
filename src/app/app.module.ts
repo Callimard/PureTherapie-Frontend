@@ -169,6 +169,7 @@ import {ReportingComponent} from './administration/reporting/reporting.component
 import { CreateReportModalComponent } from './administration/reporting/create-report-modal/create-report-modal.component';
 import { DashboardComponent } from './administration/dashboard/dashboard.component';
 import { KPICardComponent } from './administration/dashboard/kpicard/kpicard.component';
+import { AgendaPerMonthComponent } from './administration/agenda/agenda-per-month/agenda-per-month.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -261,7 +262,8 @@ const appRoutes: Routes = [
     ReportingComponent,
     CreateReportModalComponent,
     DashboardComponent,
-    KPICardComponent
+    KPICardComponent,
+    AgendaPerMonthComponent
   ],
   imports: [
     TooltipModule.forRoot(),

@@ -17,6 +17,9 @@
 }
 
 .notifications-content {
-  flex-grow: 1;
-  height: 150px;
+  flex: 1 0 150px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }

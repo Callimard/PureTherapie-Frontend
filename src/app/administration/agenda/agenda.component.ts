@@ -22,7 +22,7 @@ export class AgendaComponent implements OnInit, Rechargeable {
 
   @ViewChild(AgendaPerTechnicianComponent) aPerTech?: AgendaPerTechnicianComponent;
 
-  today: string = DateTool.toMySQLDateString(new Date());
+  day: string = DateTool.toMySQLDateString(new Date());
 
   createAppointmentModal?: BsModalRef;
   registerClientModal?: BsModalRef;
@@ -44,7 +44,10 @@ export class AgendaComponent implements OnInit, Rechargeable {
 
   createAppointment() {
     this.createAppointmentModal = this.modalService.show(CreateAppointmentModalComponent, {
-      class: 'medium-modal'
+      class: 'medium-modal',
+      initialState: {
+        selectedDay: this.day
+      }
     });
     this.createAppointmentModal.content.rechargeable = this;
   }
@@ -54,13 +57,13 @@ export class AgendaComponent implements OnInit, Rechargeable {
   }
 
   dayChange(newDay: string) {
-    this.today = newDay;
+    this.day = newDay;
   }
 
   surbooking() {
     this.modalService.show(SurbookingModalComponent, {
       initialState: {
-        day: this.today
+        day: this.day
       },
       class: 'medium-modal'
     });

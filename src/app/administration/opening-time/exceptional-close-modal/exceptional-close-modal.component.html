@@ -4,11 +4,12 @@
     <button type="button" class="btn-close" (click)="close()"></button>
   </div>
   <div class="modal-body exceptional-times-content">
-    <form class="exceptional-opening-day-form" (ngSubmit)="onSubmit()">
-      <label for="exceptional-opening-day" class="my-2">Jour: <input type="date" id="exceptional-opening-day"
-                                                                      name="exceptional-opening-day"
-                                                                      [(ngModel)]="this.selectedDay"/>
+    <form class="exceptional-closing-day-form" (ngSubmit)="onSubmit()">
+      <label for="exceptional-closing-day" class="my-2">Jour:
       </label>
+      <input type="date" id="exceptional-closing-day"
+             name="exceptional-closing-day"
+             [(ngModel)]="this.selectedDay"/>
       <button class="btn-submit btn btn-simple my-2" type="submit">
         Ajouter
       </button>

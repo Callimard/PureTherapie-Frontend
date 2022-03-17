@@ -154,7 +154,7 @@ hr {
   justify-content: flex-start;
 }
 
-.agenda-per-technician, .agenda-per-week {
+.agenda-per-technician, .agenda-per-week, .agenda-per-month {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

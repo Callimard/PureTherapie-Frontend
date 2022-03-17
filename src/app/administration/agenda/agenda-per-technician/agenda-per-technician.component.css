@@ -18,6 +18,12 @@
   overflow: overlay;
 }
 
+@supports (-moz-appearance:none) {
+  .agenda-content {
+    overflow: auto;
+  }
+}
+
 .agenda-technician-title {
   display: flex;
   justify-content: center;
