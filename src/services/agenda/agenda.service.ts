@@ -3,6 +3,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {FreeTimeSlotDTO} from "./free-time-slot-dto";
 import {GlobalVariables} from "../../global/global-variables";
 import {TimeSlotDTO} from "./time-slot-dto";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,10 @@ export class AgendaService {
 
   constructor(private httpClient: HttpClient) {
     // Normal
+  }
+
+  public isOpenDay(day: string): Observable<boolean> {
+    return this.httpClient.get<boolean>(GlobalVariables.IS_OPEN_DAY + "?day=" + day);
   }
 
   public getFreeTimeSlots(idTechnician: number, day: string, processDuration: number): Promise<FreeTimeSlotDTO[]> {

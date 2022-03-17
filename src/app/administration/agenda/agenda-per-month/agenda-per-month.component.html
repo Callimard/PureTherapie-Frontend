@@ -1,0 +1,163 @@
+<div class="agenda-month-container card-radius p-1">
+  <div class="agenda-month-header">
+    <div class="change-month">
+      <button type="button" class="btn btn-simple select-month-btn material-icons" (click)="previousMonth()">
+        chevron_left
+      </button>
+      <button type="button" class="btn btn-simple select-month-btn material-icons" (click)="nextMonth()">
+        chevron_right
+      </button>
+    </div>
+    <span class="month-title text-bold">{{currentDayString | date:'MMMM yyy'}} ({{firstDayMonth | date: 'EEEE dd MMM'}}
+      - {{lastDayMonth | date: 'EEEE dd MMM'}})</span>
+  </div>
+  <div class="agenda-month-content clean-border-left clean-border-right clean-border-bottom clean-border-top">
+    <div class="day-column">
+      <div class="day-column-header clean-border-bottom">
+        <span class="text-bold">Dimanche</span>
+      </div>
+      <div class="day border-bottom border-end"
+           [class.out-month-day]="!isInCurrentMonth(day)"
+           [class.month-day]="isInCurrentMonth(day)"
+           *ngFor="let day of mapMonthDay.get(0)">
+        <div class="day-header border-bottom"
+             (click)="clickDayHeader(day)"
+             [class.current-day-header]="day === currentDayString">
+          <span>{{day | date:'dd'}}</span>
+        </div>
+        <div class="day-content"
+             (click)="clickOn(day)"
+             [class.current-day-content]="day === currentDayString"
+             [class.day-open]="isOpen(day)"
+             [class.day-close]="!isOpen(day)">
+        </div>
+      </div>
+    </div>
+    <div class="day-column">
+      <div class="day-column-header clean-border-bottom">
+        <span class="text-bold">Lundi</span>
+      </div>
+      <div class="day border-bottom border-end"
+           [class.out-month-day]="!isInCurrentMonth(day)"
+           [class.month-day]="isInCurrentMonth(day)"
+           *ngFor="let day of mapMonthDay.get(1)">
+        <div class="day-header border-bottom"
+             (click)="clickDayHeader(day)"
+             [class.current-day-header]="day === currentDayString">
+          <span>{{day | date:'dd'}}</span>
+        </div>
+        <div class="day-content"
+             (click)="clickOn(day)"
+             [class.current-day-content]="day === currentDayString"
+             [class.day-open]="isOpen(day)"
+             [class.day-close]="!isOpen(day)">
+        </div>
+      </div>
+    </div>
+    <div class="day-column">
+      <div class="day-column-header clean-border-bottom">
+        <span class="text-bold">Mardi</span>
+      </div>
+      <div class="day border-bottom border-end"
+           [class.out-month-day]="!isInCurrentMonth(day)"
+           [class.month-day]="isInCurrentMonth(day)"
+           *ngFor="let day of mapMonthDay.get(2)">
+        <div class="day-header border-bottom"
+             (click)="clickDayHeader(day)"
+             [class.current-day-header]="day === currentDayString">
+          <span>{{day | date:'dd'}}</span>
+        </div>
+        <div class="day-content"
+             (click)="clickOn(day)"
+             [class.current-day-content]="day === currentDayString"
+             [class.day-open]="isOpen(day)"
+             [class.day-close]="!isOpen(day)">
+        </div>
+      </div>
+    </div>
+    <div class="day-column">
+      <div class="day-column-header clean-border-bottom">
+        <span class="text-bold">Mercredi</span>
+      </div>
+      <div class="day border-bottom border-end"
+           [class.out-month-day]="!isInCurrentMonth(day)"
+           [class.month-day]="isInCurrentMonth(day)"
+           *ngFor="let day of mapMonthDay.get(3)">
+        <div class="day-header border-bottom"
+             (click)="clickDayHeader(day)"
+             [class.current-day-header]="day === currentDayString">
+          <span>{{day | date:'dd'}}</span>
+        </div>
+        <div class="day-content"
+             (click)="clickOn(day)"
+             [class.current-day-content]="day === currentDayString"
+             [class.day-open]="isOpen(day)"
+             [class.day-close]="!isOpen(day)">
+        </div>
+      </div>
+    </div>
+    <div class="day-column">
+      <div class="day-column-header clean-border-bottom">
+        <span class="text-bold">Jeudi</span>
+      </div>
+      <div class="day border-bottom border-end"
+           [class.out-month-day]="!isInCurrentMonth(day)"
+           [class.month-day]="isInCurrentMonth(day)"
+           *ngFor="let day of mapMonthDay.get(4)">
+        <div class="day-header border-bottom"
+             (click)="clickDayHeader(day)"
+             [class.current-day-header]="day === currentDayString">
+          <span>{{day | date:'dd'}}</span>
+        </div>
+        <div class="day-content"
+             (click)="clickOn(day)"
+             [class.current-day-content]="day === currentDayString"
+             [class.day-open]="isOpen(day)"
+             [class.day-close]="!isOpen(day)">
+        </div>
+      </div>
+    </div>
+    <div class="day-column">
+      <div class="day-column-header clean-border-bottom">
+        <span class="text-bold">Vendredi</span>
+      </div>
+      <div class="day border-bottom border-end"
+           [class.out-month-day]="!isInCurrentMonth(day)"
+           [class.month-day]="isInCurrentMonth(day)"
+           *ngFor="let day of mapMonthDay.get(5)">
+        <div class="day-header border-bottom"
+             (click)="clickDayHeader(day)"
+             [class.current-day-header]="day === currentDayString">
+          <span>{{day | date:'dd'}}</span>
+        </div>
+        <div class="day-content"
+             (click)="clickOn(day)"
+             [class.current-day-content]="day === currentDayString"
+             [class.day-open]="isOpen(day)"
+             [class.day-close]="!isOpen(day)">
+        </div>
+      </div>
+    </div>
+    <div class="day-column">
+      <div class="day-column-header clean-border-bottom">
+        <span class="text-bold">Samedi</span>
+      </div>
+      <div class="day border-bottom"
+           [class.out-month-day]="!isInCurrentMonth(day)"
+           [class.month-day]="isInCurrentMonth(day)"
+           *ngFor="let day of mapMonthDay.get(6)">
+        <div class="day-header border-bottom"
+             (click)="clickDayHeader(day)"
+             [class.current-day-header]="day === currentDayString">
+          <span>{{day | date:'dd'}}</span>
+        </div>
+        <div class="day-content"
+             (click)="clickOn(day)"
+             [class.current-day-content]="day === currentDayString"
+             [class.day-open]="isOpen(day)"
+             [class.day-close]="!isOpen(day)">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
