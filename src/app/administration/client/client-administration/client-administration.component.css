@@ -57,6 +57,12 @@
   overflow: overlay;
 }
 
+@supports (-moz-appearance:none) {
+  .clients-tab {
+    overflow: auto;
+  }
+}
+
 .client-info-item {
   display: flex;
   justify-content: flex-start;
@@ -84,8 +90,8 @@
 }
 
 .page-input {
-  flex-shrink: 1;
-  width: 30px;
+  flex:0 1 auto;
+  width: 55px;
   text-align: center;
 }
 

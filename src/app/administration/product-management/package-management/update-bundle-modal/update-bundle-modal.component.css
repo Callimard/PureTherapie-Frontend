@@ -37,6 +37,12 @@
   overflow: overlay;
 }
 
+@supports (-moz-appearance:none) {
+  .bundle-acs-content {
+    overflow: auto;
+  }
+}
+
 .bundle-ac-row {
   flex: 0 1 auto;
 

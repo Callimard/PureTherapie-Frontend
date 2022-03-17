@@ -41,6 +41,12 @@
   overflow: overlay;
 }
 
+@supports (-moz-appearance:none) {
+  .agenda-month-content {
+    overflow: auto;
+  }
+}
+
 .day-column {
   display: flex;
   flex-direction: column;

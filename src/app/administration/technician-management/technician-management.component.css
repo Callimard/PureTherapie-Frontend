@@ -71,6 +71,12 @@
   overflow: overlay;
 }
 
+@supports (-moz-appearance:none) {
+  .tech-all-absences, .all-active-techs, .all-inactive-techs {
+    overflow: auto;
+  }
+}
+
 .btn-add-tech-absence {
   flex: 0 1 auto;
 
